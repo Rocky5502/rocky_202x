@@ -8,9 +8,14 @@ import {
   GraduationCap,
   BookOpen,
   ExternalLink,
+  MessageCircle,
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+
+const contactEmail = "sahchandan98@buaa.edu.cn";
+
+const mailtoLink = `mailto:${contactEmail}?subject=Research Collaboration Inquiry&body=Dear Chandan,%0D%0A%0D%0AI am interested in connecting with you about...%0D%0A%0D%0ABest regards,`;
 
 const cards = [
   {
@@ -42,6 +47,12 @@ const cards = [
   },
 
   {
+    name: "WeChat",
+    href: `${import.meta.env.BASE_URL}wechat.jpg`,
+    icon: MessageCircle,
+  },
+
+  {
     name: "ResearchGate",
     href: links.researchgate,
     icon: BookOpen,
@@ -70,12 +81,15 @@ export const Contact = () => (
       </p>
 
       <p className="mb-3 text-muted-foreground">
-        {profile.affiliation}
+        Software Engineering Institute, Beihang University · Beijing, China
       </p>
 
-      <p className="mb-6 text-sm text-cyan-300 md:text-base">
-        sahchandan98@buaa.edu.cn
-      </p>
+      <a
+        href={mailtoLink}
+        className="mb-6 inline-block text-sm text-cyan-300 transition hover:text-cyan-200 md:text-base"
+      >
+        {contactEmail}
+      </a>
 
       <div className="mb-6">
         <p className="mx-auto max-w-2xl text-lg font-medium text-white">
@@ -93,14 +107,14 @@ export const Contact = () => (
         size="lg"
         className="glow rounded-full bg-gradient-accent text-white hover:opacity-90"
       >
-        <a href="mailto:sahchandan98@buaa.edu.cn">
+        <a href={mailtoLink}>
           <Mail className="mr-2 h-4 w-4" />
           Get in touch
         </a>
       </Button>
     </div>
 
-    <div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-6">
+    <div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-7">
       {cards.map((c) => {
         const Icon = c.icon as any;
 
@@ -116,9 +130,7 @@ export const Contact = () => (
               <Icon />
             </div>
 
-            <span className="text-sm font-medium">
-              {c.name}
-            </span>
+            <span className="text-sm font-medium">{c.name}</span>
           </a>
         );
       })}
