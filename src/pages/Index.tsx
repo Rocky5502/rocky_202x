@@ -7,6 +7,7 @@ import { Projects } from "@/components/sections/Projects";
 import { Honors } from "@/components/sections/Honors";
 import { Talks } from "@/components/sections/Talks";
 import { Timeline } from "@/components/sections/Timeline";
+import AwardsGalaxy from "@/components/AwardsGalaxy";
 import { Gallery } from "@/components/sections/Gallery";
 import { Contact } from "@/components/sections/Contact";
 import { Footer } from "@/components/sections/Footer";
