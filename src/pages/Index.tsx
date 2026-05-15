@@ -1,8 +1,9 @@
 import { Nav } from "@/components/Nav";
 import { Hero } from "@/components/sections/Hero";
 import { About } from "@/components/sections/About";
-import { Research } from "@/components/sections/Research";
 import RockyNews from "@/components/RockyNews";
+import { Research } from "@/components/sections/Research";
+import RockyLectures from "@/components/RockyLectures";
 import { Publications } from "@/components/sections/Publications";
 import { Projects } from "@/components/sections/Projects";
 import { Honors } from "@/components/sections/Honors";
@@ -10,7 +11,6 @@ import { Talks } from "@/components/sections/Talks";
 import { Timeline } from "@/components/sections/Timeline";
 import { Gallery } from "@/components/sections/Gallery";
 import AwardsGalaxy from "@/components/AwardsGalaxy";
-import RockyLectures from "@/components/RockyLectures";
 import { Contact } from "@/components/sections/Contact";
 import { Footer } from "@/components/sections/Footer";
 
@@ -19,8 +19,9 @@ const Index = () => (
     <Nav />
     <Hero />
     <About />
-    <Research />
     <RockyNews />
+    <Research />
+    <RockyLectures />
     <Publications />
     <Projects />
     <Honors />
@@ -28,7 +29,6 @@ const Index = () => (
     <Timeline />
     <Gallery />
     <AwardsGalaxy />
-    <RockyLectures />
     <Contact />
     <Footer />
   </main>
