@@ -10,6 +10,7 @@ import { Talks } from "@/components/sections/Talks";
 import { Timeline } from "@/components/sections/Timeline";
 import { Gallery } from "@/components/sections/Gallery";
 import AwardsGalaxy from "@/components/AwardsGalaxy";
+import RockyLectures from "@/components/RockyLectures";
 import { Contact } from "@/components/sections/Contact";
 import { Footer } from "@/components/sections/Footer";
 
@@ -27,6 +28,7 @@ const Index = () => (
     <Timeline />
     <Gallery />
     <AwardsGalaxy />
+    <RockyLectures />
     <Contact />
     <Footer />
   </main>
