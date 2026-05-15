@@ -25,20 +25,22 @@ export const Hero = () => {
         <div className="animate-fade-in">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-xs font-mono mb-6">
             <span className="h-2 w-2 rounded-full bg-primary animate-pulse-glow" />
-            {profile.affiliation} · {profile.location}
+            PhD Researcher · {profile.affiliation}
           </div>
-          <h1 className="heading-display text-5xl md:text-7xl lg:text-8xl font-bold leading-[1.05] mb-6">
+          <h1 className="heading-display text-5xl md:text-7xl lg:text-[5.25rem] font-bold leading-[1.02] tracking-tight mb-6">
             {profile.name}
             <br />
             <span className="text-gradient">{profile.altName}</span>
           </h1>
-          <p className="text-lg md:text-xl text-muted-foreground mb-3 max-w-2xl">
-            {profile.role}
+          <p className="text-lg md:text-xl text-foreground/90 mb-3 max-w-2xl font-medium">
+            Reliable, uncertainty-aware AI for the next generation of software intelligence.
           </p>
-          <p className="text-base md:text-lg text-foreground/80 mb-10 max-w-2xl leading-relaxed">
-            {profile.tagline}
+          <p className="text-base text-muted-foreground mb-8 max-w-2xl leading-relaxed">
+            LLMs · AI for Software Engineering · Fair &amp; Personality-Aware Recommenders · Multimodal AI ·{" "}
+            <span className="text-foreground/80">Beijing, China</span>
           </p>
-          <div className="flex flex-wrap gap-3">
+
+          <div className="flex flex-wrap gap-3 mb-10">
             <Button asChild size="lg" className="bg-gradient-accent text-white hover:opacity-90 rounded-full glow">
               <a href="#publications">
                 <BookOpen className="mr-2 h-4 w-4" /> Publications
@@ -59,6 +61,21 @@ export const Hero = () => {
                 <Mail className="mr-2 h-4 w-4" /> Contact <ArrowRight className="ml-1 h-4 w-4" />
               </a>
             </Button>
+          </div>
+
+          <div className="grid grid-cols-3 gap-4 max-w-xl border-t border-border/60 pt-6">
+            <div>
+              <div className="font-display text-2xl md:text-3xl font-bold text-gradient">8+</div>
+              <div className="text-[11px] uppercase tracking-wider text-muted-foreground mt-1">Selected papers</div>
+            </div>
+            <div>
+              <div className="font-display text-2xl md:text-3xl font-bold text-gradient">6+</div>
+              <div className="text-[11px] uppercase tracking-wider text-muted-foreground mt-1">Top-tier reviewer roles</div>
+            </div>
+            <div>
+              <div className="font-display text-2xl md:text-3xl font-bold text-gradient">ECIR'26</div>
+              <div className="text-[11px] uppercase tracking-wider text-muted-foreground mt-1">Outstanding Reviewer</div>
+            </div>
           </div>
         </div>
 
