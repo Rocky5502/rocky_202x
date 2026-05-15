@@ -15,7 +15,7 @@ const awardsData = {
   2025: [
     {
   title: "ASE 2025",
-  image: "public/awards/ase2025.png",
+  image: "/awards/ase2025.png",
   link: "https://conf.researchr.org/profile/ase-2025/chandankumarsah",
   source: "ASE 2025",
 },
