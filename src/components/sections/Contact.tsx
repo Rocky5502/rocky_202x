@@ -1,12 +1,36 @@
 import { Section } from "@/components/Section";
 import { links, profile } from "@/data/site";
-import { Github, Linkedin, Mail, GraduationCap, BookOpen, Calendar } from "lucide-react";
+
+import {
+  Github,
+  Linkedin,
+  Mail,
+  GraduationCap,
+  BookOpen,
+  ExternalLink,
+} from "lucide-react";
+
 import { Button } from "@/components/ui/button";
 
 const cards = [
-  { name: "Google Scholar", href: links.scholar, icon: GraduationCap },
-  { name: "LinkedIn", href: links.linkedin, icon: Linkedin },
-  { name: "GitHub", href: links.github, icon: Github },
+  {
+    name: "Google Scholar",
+    href: links.scholar,
+    icon: GraduationCap,
+  },
+
+  {
+    name: "LinkedIn",
+    href: links.linkedin,
+    icon: Linkedin,
+  },
+
+  {
+    name: "GitHub",
+    href: links.github,
+    icon: Github,
+  },
+
   {
     name: "X (Twitter)",
     href: links.x,
@@ -16,9 +40,18 @@ const cards = [
       </svg>
     ),
   },
-  { name: "ResearchGate", href: links.researchgate, icon: BookOpen },
-  { name: "ASE 2025", href: links.ase, icon: Calendar },
-  { name: "AIware 2025", href: links.aiware, icon: Calendar },
+
+  {
+    name: "ResearchGate",
+    href: links.researchgate,
+    icon: BookOpen,
+  },
+
+  {
+    name: "OpenReview",
+    href: "https://openreview.net/profile?id=%7EChandan_Kumar_Sah1",
+    icon: ExternalLink,
+  },
 ];
 
 export const Contact = () => (
@@ -26,36 +59,66 @@ export const Contact = () => (
     id="contact"
     eyebrow="09 · Contact"
     title="Let's collaborate."
-    subtitle="Open to research collaborations, talks, mentorship, and meaningful conversations about reliable AI."
+    subtitle="Open to research collaborations, talks, mentorship, AI education, and meaningful conversations about reliable and uncertainty-aware AI."
   >
-    <div className="card-elegant p-8 md:p-12 text-center mb-8 relative overflow-hidden">
-      <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-96 h-96 bg-gradient-accent opacity-20 blur-3xl rounded-full" />
-      <p className="text-2xl md:text-3xl font-display font-semibold mb-2">
-        {profile.name} · <span className="text-gradient">{profile.altName}</span>
+    <div className="card-elegant relative mb-8 overflow-hidden p-8 text-center md:p-12">
+      <div className="absolute left-1/2 top-0 h-96 w-96 -translate-x-1/2 rounded-full bg-gradient-accent opacity-20 blur-3xl" />
+
+      <p className="font-display mb-2 text-2xl font-semibold md:text-3xl">
+        {profile.name} ·{" "}
+        <span className="text-gradient">{profile.altName}</span>
       </p>
-      <p className="text-muted-foreground mb-6">{profile.affiliation}</p>
-      <Button asChild size="lg" className="bg-gradient-accent text-white hover:opacity-90 rounded-full glow">
-        <a href={`mailto:${profile.email}`}>
-          <Mail className="mr-2 h-4 w-4" /> Get in touch
+
+      <p className="mb-3 text-muted-foreground">
+        {profile.affiliation}
+      </p>
+
+      <p className="mb-6 text-sm text-cyan-300 md:text-base">
+        sahchandan98@buaa.edu.cn
+      </p>
+
+      <div className="mb-6">
+        <p className="mx-auto max-w-2xl text-lg font-medium text-white">
+          Building AI systems that know when they don’t know.
+        </p>
+
+        <p className="mt-2 text-muted-foreground">
+          Reliable AI · Uncertainty-Aware LLMs · Software Intelligence ·
+          AI for Software Engineering
+        </p>
+      </div>
+
+      <Button
+        asChild
+        size="lg"
+        className="glow rounded-full bg-gradient-accent text-white hover:opacity-90"
+      >
+        <a href="mailto:sahchandan98@buaa.edu.cn">
+          <Mail className="mr-2 h-4 w-4" />
+          Get in touch
         </a>
       </Button>
     </div>
 
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+    <div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-6">
       {cards.map((c) => {
         const Icon = c.icon as any;
+
         return (
           <a
             key={c.name}
             href={c.href}
             target="_blank"
             rel="noreferrer"
-            className="card-elegant p-5 flex flex-col items-center justify-center gap-2 text-center group"
+            className="card-elegant group flex flex-col items-center justify-center gap-3 p-5 text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
           >
-            <div className="h-10 w-10 rounded-xl bg-gradient-accent flex items-center justify-center group-hover:scale-110 transition-transform text-white">
+            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-accent text-white transition-transform group-hover:scale-110">
               <Icon />
             </div>
-            <span className="text-sm font-medium">{c.name}</span>
+
+            <span className="text-sm font-medium">
+              {c.name}
+            </span>
           </a>
         );
       })}
