@@ -38,35 +38,50 @@ export const Publications = () => {
       </div>
 
       <div className="grid gap-4">
-        {filtered.map((p: Publication) => (
-          <article key={p.title} className="card-elegant p-6 md:p-7">
-            <div className="flex flex-wrap items-start justify-between gap-3 mb-3">
-              <Badge variant="outline" className="font-mono text-[10px] uppercase tracking-wider">
-                {p.category}
-              </Badge>
-              {p.status && (
-                <span className="text-xs font-mono text-primary">{p.status}</span>
-              )}
-            </div>
-            <h3 className="font-display text-lg md:text-xl font-semibold leading-snug mb-2">
-              {p.title}
-            </h3>
-            {p.venue && (
-              <p className="text-sm text-muted-foreground mb-4">{p.venue}</p>
-            )}
-            <div className="flex flex-wrap gap-2">
-              <Button size="sm" variant="outline" disabled className="rounded-full">
-                <FileText className="h-3.5 w-3.5 mr-1.5" /> PDF
-              </Button>
-              <Button size="sm" variant="outline" disabled className="rounded-full">
-                <Link2 className="h-3.5 w-3.5 mr-1.5" /> DOI
-              </Button>
-              <Button size="sm" variant="outline" disabled className="rounded-full">
-                <Code className="h-3.5 w-3.5 mr-1.5" /> Code
-              </Button>
-              <Button size="sm" variant="outline" disabled className="rounded-full">
-                <BookMarked className="h-3.5 w-3.5 mr-1.5" /> BibTeX
-              </Button>
+        {filtered.map((p: Publication, i) => (
+          <article
+            key={p.title}
+            className="card-elegant p-6 md:p-7 group relative overflow-hidden"
+          >
+            <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-accent opacity-0 group-hover:opacity-100 transition-opacity" />
+            <div className="flex items-start gap-5">
+              <div className="hidden md:flex flex-col items-center pt-1 min-w-[3rem]">
+                <span className="font-mono text-xs text-muted-foreground">
+                  [{String(filtered.length - i).padStart(2, "0")}]
+                </span>
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="flex flex-wrap items-center gap-2 mb-3">
+                  <Badge variant="outline" className="font-mono text-[10px] uppercase tracking-wider">
+                    {p.category}
+                  </Badge>
+                  {p.status && (
+                    <span className="text-[11px] font-mono px-2 py-0.5 rounded-full bg-primary/10 text-primary border border-primary/20">
+                      {p.status}
+                    </span>
+                  )}
+                </div>
+                <h3 className="font-display text-lg md:text-xl font-semibold leading-snug mb-2 group-hover:text-gradient transition-all">
+                  {p.title}
+                </h3>
+                {p.venue && (
+                  <p className="text-sm text-muted-foreground italic mb-4">{p.venue}</p>
+                )}
+                <div className="flex flex-wrap gap-2">
+                  <Button size="sm" variant="outline" disabled className="rounded-full">
+                    <FileText className="h-3.5 w-3.5 mr-1.5" /> PDF
+                  </Button>
+                  <Button size="sm" variant="outline" disabled className="rounded-full">
+                    <Link2 className="h-3.5 w-3.5 mr-1.5" /> DOI
+                  </Button>
+                  <Button size="sm" variant="outline" disabled className="rounded-full">
+                    <Code className="h-3.5 w-3.5 mr-1.5" /> Code
+                  </Button>
+                  <Button size="sm" variant="outline" disabled className="rounded-full">
+                    <BookMarked className="h-3.5 w-3.5 mr-1.5" /> BibTeX
+                  </Button>
+                </div>
+              </div>
             </div>
           </article>
         ))}
