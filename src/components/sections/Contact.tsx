@@ -11,6 +11,9 @@ import {
   MessageCircle,
 } from "lucide-react";
 
+const gmailLink =
+  "https://mail.google.com/mail/?view=cm&fs=1&to=sahchandan98@buaa.edu.cn";
+
 const cards = [
   {
     name: "Google Scholar",
@@ -68,30 +71,31 @@ export const Contact = () => (
         <span className="text-gradient">{profile.altName}</span>
       </p>
 
-      <p className="mb-3 text-muted-foreground">
+      <p className="mb-6 text-muted-foreground">
         Software Engineering Institute, Beihang University · Beijing, China
       </p>
 
-      <div className="mb-6">
+      <div className="mb-4">
         <p className="mx-auto max-w-2xl text-lg font-medium text-white">
           Building AI systems that know when they don’t know.
         </p>
 
-        <p className="mt-2 text-muted-foreground">
-          Reliable AI · Uncertainty-Aware LLMs · Software Intelligence · AI for
-          Software Engineering
+        <p className="mt-3 text-xl font-semibold text-cyan-300">
+          AI for Good
         </p>
       </div>
+    </div>
 
-      <div className="mt-8">
-        <a
-          href="mailto:sahchandan98@buaa.edu.cn"
-          className="glow inline-flex items-center rounded-full bg-gradient-accent px-8 py-4 text-white transition hover:opacity-90"
-        >
-          <Mail className="mr-2 h-5 w-5" />
-          Get in touch
-        </a>
-      </div>
+    <div className="mb-8 flex justify-center">
+      <a
+        href={gmailLink}
+        target="_blank"
+        rel="noreferrer"
+        className="glow inline-flex items-center rounded-full bg-gradient-accent px-8 py-4 text-white transition hover:opacity-90"
+      >
+        <Mail className="mr-2 h-5 w-5" />
+        Get in touch
+      </a>
     </div>
 
     <div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-7">
