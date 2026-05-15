@@ -11,31 +11,22 @@ import {
   MessageCircle,
 } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
-
-const contactEmail = "sahchandan98@buaa.edu.cn";
-
-const mailtoLink = `mailto:${contactEmail}?subject=Research Collaboration Inquiry&body=Dear Chandan,%0D%0A%0D%0AI am interested in connecting with you about...%0D%0A%0D%0ABest regards,`;
-
 const cards = [
   {
     name: "Google Scholar",
     href: links.scholar,
     icon: GraduationCap,
   },
-
   {
     name: "LinkedIn",
     href: links.linkedin,
     icon: Linkedin,
   },
-
   {
     name: "GitHub",
     href: links.github,
     icon: Github,
   },
-
   {
     name: "X (Twitter)",
     href: links.x,
@@ -45,19 +36,16 @@ const cards = [
       </svg>
     ),
   },
-
   {
     name: "WeChat",
     href: `${import.meta.env.BASE_URL}wechat.jpg`,
     icon: MessageCircle,
   },
-
   {
     name: "ResearchGate",
     href: links.researchgate,
     icon: BookOpen,
   },
-
   {
     name: "OpenReview",
     href: "https://openreview.net/profile?id=%7EChandan_Kumar_Sah1",
@@ -84,34 +72,26 @@ export const Contact = () => (
         Software Engineering Institute, Beihang University · Beijing, China
       </p>
 
-      <a
-        href={mailtoLink}
-        className="mb-6 inline-block text-sm text-cyan-300 transition hover:text-cyan-200 md:text-base"
-      >
-        {contactEmail}
-      </a>
-
       <div className="mb-6">
         <p className="mx-auto max-w-2xl text-lg font-medium text-white">
           Building AI systems that know when they don’t know.
         </p>
 
         <p className="mt-2 text-muted-foreground">
-          Reliable AI · Uncertainty-Aware LLMs · Software Intelligence ·
-          AI for Software Engineering
+          Reliable AI · Uncertainty-Aware LLMs · Software Intelligence · AI for
+          Software Engineering
         </p>
       </div>
 
-      <Button
-        asChild
-        size="lg"
-        className="glow rounded-full bg-gradient-accent text-white hover:opacity-90"
-      >
-        <a href={mailtoLink}>
-          <Mail className="mr-2 h-4 w-4" />
+      <div className="mt-8">
+        <a
+          href="mailto:sahchandan98@buaa.edu.cn"
+          className="glow inline-flex items-center rounded-full bg-gradient-accent px-8 py-4 text-white transition hover:opacity-90"
+        >
+          <Mail className="mr-2 h-5 w-5" />
           Get in touch
         </a>
-      </Button>
+      </div>
     </div>
 
     <div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-7">
