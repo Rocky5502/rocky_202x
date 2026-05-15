@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import { ThemeToggle } from "./ThemeToggle";
 import { cn } from "@/lib/utils";
-
 const sections = [
   ["about", "About"],
+  ["rocky-news", "News"],
   ["research", "Research"],
+  ["lectures", "Lectures"],
   ["publications", "Publications"],
   ["projects", "Projects"],
-  ["honors", "Honors"],
+  ["awards", "Awards"],
   ["talks", "Talks"],
   ["timeline", "CV"],
   ["contact", "Contact"],
