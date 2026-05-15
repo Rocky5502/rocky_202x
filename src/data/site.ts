@@ -73,12 +73,6 @@ export const publications: Publication[] = [
     category: "Fairness",
     status: "Selected",
   },
-  {
-    title:
-      "Prescribed Performance Control for Solving Time-Varying Underdetermined Linear Systems With Bounds on States and Their Derivatives",
-    category: "Theory",
-    status: "Published",
-  },
 ];
 
 export const projects = [
@@ -129,12 +123,30 @@ export const pillars = [
 ];
 
 export const honors = [
+  "Outstanding Reviewer Award — ECIR 2026",
   "International Student Ambassador, Beihang University",
   "Academic & Innovation Lead, International Graduate Student Union",
   "WiDS (Women in Data Science) Ambassador — Beijing",
-  "AI policy research engagement",
+  "Selected speaker — ASE 2025 / AIware 2025 research profile",
   "Terahertz Science & Application Summer School — participant & presenter",
+  "AI policy research engagement",
 ];
+
+export const reviewing = {
+  conferences: [
+    "NeurIPS",
+    "ICCV",
+    "AAAI",
+    "ECIR",
+    "ASE",
+    "AIware",
+  ],
+  journals: [
+    "ACM Transactions on Software Engineering and Methodology (TOSEM)",
+    "Complex & Intelligent Systems (Springer)",
+    "IEEE Transactions on Neural Networks and Learning Systems",
+  ],
+};
 
 export const talks = [
   {
@@ -183,10 +195,11 @@ export const timeline = [
 ];
 
 export const service = [
+  "Reviewer — NeurIPS, ICCV, AAAI, ECIR (top AI/ML venues)",
+  "Reviewer — ACM Transactions on Software Engineering and Methodology (TOSEM)",
+  "Reviewer — Complex & Intelligent Systems (Springer)",
+  "PC member / sub-reviewer — ASE, AIware research tracks",
   "International Student Ambassador, Beihang University",
-  "Graduate student leadership & mentorship",
-  "WiDS Beijing community engagement",
-  "Diversity & inclusion in AI research",
-  "AI policy & governance dialogue",
-  "Research recruitment & global collaboration",
+  "WiDS Beijing community engagement & mentorship",
+  "Graduate student leadership · diversity & inclusion in AI",
 ];
