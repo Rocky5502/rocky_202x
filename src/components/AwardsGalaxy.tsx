@@ -14,9 +14,9 @@ const awardsData = {
 
   2025: [
     {
-      title: "ASE 2025 Research Profile",
+      title: "ASE 2025",
       image:
-        "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200&auto=format&fit=crop",
+        "image: "/awards/ase2025.png",
       link: "https://conf.researchr.org/profile/ase-2025/chandankumarsah",
       source: "ASE 2025",
     },
