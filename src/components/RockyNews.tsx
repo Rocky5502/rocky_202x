@@ -4,7 +4,7 @@ import { Calendar, ExternalLink, Flame, X } from "lucide-react";
 const newsItems = [
   {
     date: "Apr 2026",
-    location: "Seoul, South Korea",
+    location: "Seoul, South Korea 🇰🇷",
     tag: "Global Venture Award",
     title: "Bronze Prize – 2026 Alliance Students' Venture Forum",
     summary:
@@ -15,7 +15,7 @@ const newsItems = [
   },
   {
     date: "Jun 2025",
-    location: "Beijing, China",
+    location: "Beijing, China 🇨🇳",
     tag: "Graduation Honor",
     title: "Excellent International Graduate 2025",
     summary:
@@ -52,7 +52,7 @@ const newsItems = [
 },
   {
     date: "Dec 2024",
-    location: "Beijing, China",
+    location: "Beijing, China 🇨🇳",
     tag: "Scholarship Ceremony",
     title:
       "Two First Prizes at Beihang Foreign Students Scholarship Awarding Ceremony",
@@ -64,7 +64,7 @@ const newsItems = [
   },
   {
     date: "Nov 2024",
-    location: "Beijing, China",
+    location: "Beijing, China 🇨🇳",
     tag: "Global Beihang",
     title: "Excellent Student Sharing by Global Beihang",
     summary:
@@ -75,7 +75,7 @@ const newsItems = [
   },
   {
     date: "Mar 2024",
-    location: "St. Gallen, Switzerland",
+    location: "St. Gallen, Switzerland 🇨🇭",
     tag: "Leader of Tomorrow",
     title: "Selected as Leader of Tomorrow by St. Gallen Symposium",
     summary:
