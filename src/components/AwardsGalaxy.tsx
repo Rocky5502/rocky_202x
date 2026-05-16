@@ -66,12 +66,6 @@ const awardsData = {
       link: "https://www.campuschina.org/",
       issuedBy: "Chinese Government Scholarship",
     },
-    {
-      title: "Delegate – 4th Global Peace Summit",
-      image: `${import.meta.env.BASE_URL}awards/globalpeace2025.png`,
-      link: "https://www.humanitarianaffairs.asia/GlobalPeaceSummit/Overview/",
-      issuedBy: "United Nations Conference Centre · Bangkok, Thailand",
-    },
   ],
 
   2024: [
@@ -79,13 +73,14 @@ const awardsData = {
       title: "Two First Prizes – Excellent Study & Outstanding Behavior",
       image: `${import.meta.env.BASE_URL}awards/foreignstudent2024.png`,
       link: "https://mp.weixin.qq.com/s/4r20vM7lkoOD4Oeaz2z79w",
-      issuedBy: "Beihang University Foreign Students Scholarship",
+      issuedBy: "Beihang University",
     },
     {
       title: "National Innovation Competition – Second Prize",
       image: `${import.meta.env.BASE_URL}awards/innovation2024.png`,
       link: "https://mp.weixin.qq.com/s/BCkFELXLxtA6as1DB_tmBw",
-      issuedBy: "National College Student Innovation and Invention Competition",
+      issuedBy:
+        "National College Student Innovation and Invention Competition",
     },
     {
       title: "Best Researcher Award",
@@ -94,7 +89,8 @@ const awardsData = {
       issuedBy: "ScienceFather",
     },
     {
-      title: "1st Prize – IS Academic Forum for Outstanding International Students",
+      title:
+        "1st Prize – IS Academic Forum for Outstanding International Students",
       image: `${import.meta.env.BASE_URL}awards/isforum2024.png`,
       link: "https://mp.weixin.qq.com/s/YsV-IkwAHGJ4LvGc14rUvg",
       issuedBy: "University of Science and Technology Beijing",
@@ -103,7 +99,7 @@ const awardsData = {
       title: "Best Oral Presentation Award",
       image: `${import.meta.env.BASE_URL}awards/terahertz2024.png`,
       link: "https://www.buaa.edu.cn/",
-      issuedBy: "1st International Terahertz Summer School",
+      issuedBy: "International Terahertz Summer School",
     },
     {
       title: "Excellent Poster Award",
@@ -112,7 +108,8 @@ const awardsData = {
       issuedBy: "Beihang University",
     },
     {
-      title: "Champion – 1st Robot Competition for International Students in Beijing",
+      title:
+        "Champion – 1st Robot Competition for International Students in Beijing",
       image: `${import.meta.env.BASE_URL}awards/robot2024.png`,
       link: "https://news.buaa.edu.cn/info/1002/62507.htm",
       issuedBy: "China University Robotics Committee",
@@ -148,69 +145,11 @@ const awardsData = {
       issuedBy: "Peking University",
     },
   ],
-
-  2023: [
-    {
-      title: "AI Teacher Training Seminar – Peking University",
-      image: `${import.meta.env.BASE_URL}awards/pkuai2023.png`,
-      link: "https://www.pku.edu.cn/",
-      issuedBy: "Peking University / Ministry of Education",
-    },
-    {
-      title: "Best Delegate – XI Model SCO",
-      image: `${import.meta.env.BASE_URL}awards/sco2023.png`,
-      link: "https://mp.weixin.qq.com/s/G-6LVI4xpmf5qjrSHi3rww",
-      issuedBy: "Embassy of Kazakhstan / SCO Secretariat",
-    },
-    {
-      title: "Top Innovator – Huawei Global Impact Sprint",
-      image: `${import.meta.env.BASE_URL}awards/huawei2023.png`,
-      link: "https://mp.weixin.qq.com/s/L7-qBAcIOlmapQNPBc3gLQ",
-      issuedBy: "Huawei Global Impact Sprint",
-    },
-    {
-      title: "Innovator Award – SDG Open Hackathon",
-      image: `${import.meta.env.BASE_URL}awards/sdg2023.png`,
-      link: "https://www.tsinghua.edu.cn/en/",
-      issuedBy: "Tsinghua University",
-    },
-  ],
-
-  2022: [
-    {
-      title: "Chinese Government Scholarship – Master's",
-      image: `${import.meta.env.BASE_URL}awards/csc2022.png`,
-      link: "https://www.campuschina.org/",
-      issuedBy: "China Scholarship Council",
-    },
-    {
-      title: "Officially Licensed Software Engineer",
-      image: `${import.meta.env.BASE_URL}awards/nec2022.png`,
-      link: "https://nec.gov.np/",
-      issuedBy: "Nepal Engineering Council",
-    },
-  ],
-
-  2021: [
-    {
-      title: "Critical Thinking in English Language Teaching",
-      image: `${import.meta.env.BASE_URL}awards/relo2021.png`,
-      link: "https://regionalenglishlanguagenetwork.org/",
-      issuedBy: "Regional English Language Office",
-    },
-  ],
-
-  2018: [
-    {
-      title: "Full Belt and Road Scholarship – Bachelor",
-      image: `${import.meta.env.BASE_URL}awards/beltroad2018.png`,
-      link: "https://www.scu.edu.cn/",
-      issuedBy: "China Government / Sichuan University",
-    },
-  ],
 };
 
-const years = Object.keys(awardsData).sort((a, b) => Number(b) - Number(a));
+const years = Object.keys(awardsData).sort(
+  (a, b) => Number(b) - Number(a)
+);
 
 const AwardsGalaxy = () => {
   const [selectedYear, setSelectedYear] = useState("2026");
@@ -228,7 +167,7 @@ const AwardsGalaxy = () => {
       <div className="pointer-events-none absolute left-10 top-20 h-72 w-72 rounded-full bg-cyan-500/10 blur-3xl" />
       <div className="pointer-events-none absolute bottom-20 right-10 h-72 w-72 rounded-full bg-violet-500/10 blur-3xl" />
 
-      <div className="relative z-10 mx-auto max-w-[1600px]">
+      <div className="relative z-10 mx-auto max-w-7xl">
         <div className="mb-14 text-center">
           <p className="mb-3 text-sm font-semibold uppercase tracking-[0.35em] text-cyan-600 dark:text-cyan-300">
             Awards · Certificates · Milestones
@@ -272,14 +211,14 @@ const AwardsGalaxy = () => {
           </p>
         </div>
 
-        <<div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
           {selectedAwards.map((award, index) => (
             <a
               key={`${selectedYear}-${index}`}
               href={award.link}
               target="_blank"
               rel="noreferrer"
-              className="group relative overflow-hidden rounded-3xl border border-border bg-card/70 backdrop-blur-lg transition-all duration-500 hover:-translate-y-2 hover:border-cyan-300/60 hover:shadow-2xl hover:shadow-cyan-500/20"
+              className="group relative overflow-hidden rounded-3xl border border-border bg-card/70 transition-all duration-500 hover:-translate-y-2 hover:border-cyan-300/60 hover:shadow-2xl hover:shadow-cyan-500/20"
             >
               <div className="overflow-hidden bg-muted">
                 <img
@@ -287,7 +226,6 @@ const AwardsGalaxy = () => {
                   alt={award.title}
                   loading="lazy"
                   className="h-40 w-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  scale-110"
                   onError={(event) => {
                     event.currentTarget.src =
                       "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?q=80&w=1200&auto=format&fit=crop";
@@ -296,18 +234,18 @@ const AwardsGalaxy = () => {
               </div>
 
               <div className="p-3">
-                <div className="mb-3 flex items-start justify-between gap-3">
-                  <h3 className="text-base font-semibold leading-snug text-foreground">
+                <div className="mb-2 flex items-start justify-between gap-2">
+                  <h3 className="text-sm font-semibold leading-snug text-foreground">
                     {award.title}
                   </h3>
 
                   <ExternalLink
                     className="mt-1 shrink-0 text-cyan-600 dark:text-cyan-300"
-                    size={16}
+                    size={14}
                   />
                 </div>
 
-                <p className="text-xs font-medium text-cyan-600 dark:text-cyan-300">
+                <p className="text-[11px] font-medium text-cyan-600 dark:text-cyan-300">
                   Issued by: {award.issuedBy}
                 </p>
               </div>
