@@ -25,6 +25,32 @@ const newsItems = [
     link: "https://ev.buaa.edu.cn/",
   },
   {
+  date: "Mar 2025",
+  location: "Beijing, China 🇨🇳",
+  tag: "ICCV / AI World",
+  title:
+    "Our ICCV Research on Autonomous Vehicles Recognized by AI World",
+  summary:
+    "Our multimodal AI research on autonomous vehicle intelligence and traffic understanding was recognized among notable AI research papers.",
+  article:
+    "In March 2025, our research on AI for Autonomous Vehicles was recognized by AI World as one of the week's notable AI research papers. In this work, we proposed a deep learning and multimodal LLM-based framework for traffic sign recognition with 99.8% accuracy and robust lane detection with 99.6% accuracy under diverse real-world conditions. This project reflects our broader vision of building trustworthy and intelligent multimodal AI systems for future transportation. Huge thanks to my collaborators Ankit Kumar Shaw, Dr. Xiaoli Lian, Arsalan Baig, Dr. Tuopu Wen, Dr. Kun Jiang, Dr. Mengmeng Yang, and Dr. Diange Yang, along with support from Beihang University and Tsinghua University.",
+  link:
+    "https://www.linkedin.com/posts/%F0%9D%97%A7%F0%9D%97%B5%F0%9D%97%B6%F0%9D%98%80-%F0%9D%97%AA%F0%9D%97%B2%F0%9D%97%B2%F0%9D%97%B8%F0%9D%98%80-%F0%9D%9F%AD%F0%9D%9F%AC-%F0%9D%97%A1%F0%9D%97%BC%F0%9D%98%81%F0%9D%97%AE%F0%9D%97%AF%F0%9D%97%B9-share-7305970124585328640-N1CT",
+},
+  {
+  date: "Jan 2025",
+  location: "Bangkok, Thailand 🇹🇭",
+  tag: "Global Peace Summit",
+  title:
+    "First Nepalese & International Student from Beihang University to Present at the 4th Global Peace Summit 2025",
+  summary:
+    "Represented Beihang University and Nepal at the Humanitarian Affairs Peace Ambassador – 4th Global Peace Summit 2025 in Bangkok, Thailand.",
+  article:
+    "In January 2025, I had the honor of becoming the very first Nepalese and international student from Beihang University, Beijing, China, to present at the Humanitarian Affairs Peace Ambassador – 4th Global Peace Summit 2025 in Bangkok, Thailand. As a student from Nepal — the birthplace of Lord Buddha — it was deeply meaningful to share my thoughts on peace, humanity, education, global collaboration, and compassionate leadership. This experience reminded me that technology, education, and humanity must move together toward a more peaceful world. One quote that deeply inspired me during the summit was: 'If we have no peace, it is because we have forgotten that we belong to each other.'",
+  link: "https://www.humanitarianaffairs.asia/",
+  video: "https://www.youtube.com/watch?v=Jx1RHekcpkk",
+},
+  {
     date: "Dec 2024",
     location: "Beijing, China",
     tag: "Scholarship Ceremony",
