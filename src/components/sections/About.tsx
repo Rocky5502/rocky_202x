@@ -45,7 +45,7 @@ export const About = () => (
           calibration as a first-class metric.
         </p>
         <p>
-          I work across the full stack of modern AI research — from{" "}
+          I work across the full stack of modern SE and AI research — from{" "}
           <em>training and post-training</em> of LLMs, to{" "}
           <em>retrieval-augmented generation</em> and tool use, to{" "}
           <em>multimodal vision–language</em> systems for autonomy and HD-map
