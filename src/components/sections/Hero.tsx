@@ -140,7 +140,7 @@ export const Hero = () => {
               </div>
 
               <div className="mt-1 text-[11px] uppercase tracking-wider text-muted-foreground">
-                Academic &amp; Industry
+                Academic &amp; Industry Opportunities
               </div>
             </div>
           </div>
