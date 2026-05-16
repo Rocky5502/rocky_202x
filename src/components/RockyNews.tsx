@@ -68,22 +68,22 @@ const RockyNews = () => {
   return (
     <section
       id="rocky-news"
-      className="relative overflow-hidden bg-slate-950 px-6 py-24 text-white"
+      className="relative overflow-hidden bg-background px-6 py-24 text-foreground"
     >
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(34,211,238,0.18),transparent_35%),radial-gradient(circle_at_bottom_right,rgba(168,85,247,0.18),transparent_35%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(34,211,238,0.12),transparent_35%),radial-gradient(circle_at_bottom_right,rgba(168,85,247,0.12),transparent_35%)]" />
 
       <div className="relative z-10 mx-auto max-w-7xl">
         <div className="mb-14 text-center">
-          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-orange-400/30 bg-orange-400/10 px-5 py-2 text-sm font-semibold text-orange-300">
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-orange-400/30 bg-orange-400/10 px-5 py-2 text-sm font-semibold text-orange-500 dark:text-orange-300">
             <Flame size={18} />
             Rocky News / Hot News
           </div>
 
-          <h2 className="mb-4 text-4xl font-bold md:text-6xl">
+          <h2 className="mb-4 text-4xl font-bold md:text-6xl text-foreground">
             🔥 Rocky’s Good News
           </h2>
 
-          <p className="mx-auto max-w-3xl text-lg text-slate-400">
+          <p className="mx-auto max-w-3xl text-lg text-muted-foreground">
             Selected milestones, global recognitions, academic breakthroughs,
             and personal stories from my research and leadership journey.
           </p>
@@ -93,30 +93,30 @@ const RockyNews = () => {
           {newsItems.map((item, index) => (
             <article
               key={index}
-              className="group rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-lg transition-all duration-500 hover:-translate-y-2 hover:border-orange-300/60 hover:shadow-2xl hover:shadow-orange-500/20"
+              className="group rounded-3xl border border-border bg-card/70 p-6 backdrop-blur-lg transition-all duration-500 hover:-translate-y-2 hover:border-orange-300/60 hover:shadow-2xl hover:shadow-orange-500/20"
             >
               <div className="mb-5 flex flex-col gap-3">
                 <div className="flex flex-wrap items-center gap-3">
-                  <span className="inline-flex items-center gap-2 rounded-full bg-cyan-400/10 px-4 py-2 text-sm font-semibold text-cyan-300">
+                  <span className="inline-flex items-center gap-2 rounded-full bg-cyan-400/10 px-4 py-2 text-sm font-semibold text-cyan-600 dark:text-cyan-300">
                     <Calendar size={16} />
                     {item.date}
                   </span>
 
-                  <span className="rounded-full bg-orange-400/10 px-3 py-1 text-xs font-semibold text-orange-300">
+                  <span className="rounded-full bg-orange-400/10 px-3 py-1 text-xs font-semibold text-orange-500 dark:text-orange-300">
                     {item.tag}
                   </span>
                 </div>
 
-                <p className="text-sm font-medium text-slate-400">
+                <p className="text-sm font-medium text-muted-foreground">
                   📍 {item.location}
                 </p>
               </div>
 
-              <h3 className="mb-4 text-2xl font-bold leading-tight">
+              <h3 className="mb-4 text-2xl font-bold leading-tight text-foreground">
                 {item.title}
               </h3>
 
-              <p className="mb-6 text-slate-400">{item.summary}</p>
+              <p className="mb-6 text-muted-foreground">{item.summary}</p>
 
               <div className="flex flex-wrap gap-3">
                 <button
@@ -130,7 +130,7 @@ const RockyNews = () => {
                   href={item.link}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full border border-white/10 px-5 py-2 font-semibold text-white transition hover:bg-white/10"
+                  className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-2 font-semibold text-foreground transition hover:bg-muted"
                 >
                   Source <ExternalLink size={16} />
                 </a>
@@ -141,23 +141,25 @@ const RockyNews = () => {
       </div>
 
       {activeNews && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 px-6 backdrop-blur-sm">
-          <div className="relative max-h-[85vh] w-full max-w-3xl overflow-y-auto rounded-3xl border border-white/10 bg-slate-950 p-8 text-white shadow-2xl">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-6 backdrop-blur-sm">
+          <div className="relative max-h-[85vh] w-full max-w-3xl overflow-y-auto rounded-3xl border border-border bg-background p-8 text-foreground shadow-2xl">
             <button
               onClick={() => setActiveNews(null)}
-              className="absolute right-5 top-5 rounded-full bg-white/10 p-2 transition hover:bg-white/20"
+              className="absolute right-5 top-5 rounded-full bg-muted p-2 transition hover:bg-muted/80"
               aria-label="Close news story"
             >
               <X size={20} />
             </button>
 
-            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.25em] text-cyan-300">
+            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.25em] text-cyan-600 dark:text-cyan-300">
               {activeNews.date} · {activeNews.location} · {activeNews.tag}
             </p>
 
-            <h3 className="mb-5 text-3xl font-bold">{activeNews.title}</h3>
+            <h3 className="mb-5 text-3xl font-bold text-foreground">
+              {activeNews.title}
+            </h3>
 
-            <p className="mb-6 text-lg leading-8 text-slate-300">
+            <p className="mb-6 text-lg leading-8 text-muted-foreground">
               {activeNews.article}
             </p>
 
