@@ -19,7 +19,8 @@ const schools = [
 
   {
     when: "November 2025",
-    title: "The International Software Engineering Winter School on Hybrid and Generative Intelligence",
+    title:
+      "The International Software Engineering Winter School on Hybrid and Generative Intelligence",
     where: "University of Bern · Bern, Switzerland",
     desc: "Research-intensive winter school exploring hybrid intelligence, generative AI, human-AI collaboration, and next-generation intelligent systems.",
     link: "https://innoguard-winter-school-2025.inf.unibe.ch/",
@@ -66,7 +67,7 @@ export const AcademicSchools = () => (
                 !isLeft ? "lg:[&>*:first-child]:order-2" : ""
               }`}
             >
-              <div className="hidden lg:flex justify-center">
+              <div className="hidden justify-center lg:flex">
                 <div className="z-10 flex h-16 w-16 items-center justify-center rounded-full border border-cyan-400/30 bg-slate-950 shadow-2xl shadow-cyan-500/20">
                   {school.type === "winter" ? (
                     <Snowflake className="h-7 w-7 text-cyan-300" />
@@ -100,7 +101,7 @@ export const AcademicSchools = () => (
                     </div>
                   </div>
 
-                  <h3 className="mb-4 text-2xl font-bold leading-tight text-white">
+                  <h3 className="mb-4 text-2xl font-bold leading-tight text-foreground">
                     {school.title}
                   </h3>
 
@@ -112,7 +113,7 @@ export const AcademicSchools = () => (
                     {school.desc}
                   </p>
 
-                  <div className="inline-flex items-center gap-2 text-sm font-semibold text-white transition group-hover:text-cyan-300">
+                  <div className="inline-flex items-center gap-2 text-sm font-semibold text-foreground transition group-hover:text-cyan-300">
                     Visit Program
                     <ExternalLink className="h-4 w-4" />
                   </div>
