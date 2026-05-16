@@ -4,6 +4,7 @@ import { Calendar, ExternalLink, Flame, X } from "lucide-react";
 const newsItems = [
   {
     date: "Apr 2026",
+    location: "Seoul, South Korea",
     tag: "Global Venture Award",
     title: "Bronze Prize – 2026 Alliance Students' Venture Forum",
     summary:
@@ -14,6 +15,7 @@ const newsItems = [
   },
   {
     date: "Jun 2025",
+    location: "Beijing, China",
     tag: "Graduation Honor",
     title: "Excellent International Graduate 2025",
     summary:
@@ -23,7 +25,31 @@ const newsItems = [
     link: "https://ev.buaa.edu.cn/",
   },
   {
+    date: "Dec 2024",
+    location: "Beijing, China",
+    tag: "Scholarship Ceremony",
+    title:
+      "Two First Prizes at Beihang Foreign Students Scholarship Awarding Ceremony",
+    summary:
+      "Received First Prize for Outstanding Behavior and First Prize for Excellent Study at Beihang University.",
+    article:
+      "In December 2024, I received two First Prize honors at the Awarding Ceremony of Beijing Government Scholarship and Beihang University Foreign Students Scholarship in Beijing, China: First Prize for Outstanding Behavior and First Prize for Excellent Study. This recognition reflects my commitment to academic excellence, leadership, community service, and international student engagement at Beihang University.",
+    link: "https://mp.weixin.qq.com/s/4r20vM7lkoOD4Oeaz2z79w",
+  },
+  {
+    date: "Nov 2024",
+    location: "Beijing, China",
+    tag: "Global Beihang",
+    title: "Excellent Student Sharing by Global Beihang",
+    summary:
+      "Featured by Global Beihang as an excellent student sharing story at Beihang University, Beijing, China.",
+    article:
+      "In November 2024, I was featured in an Excellent Student Sharing story by Global Beihang, Beihang University, Beijing, China. This feature highlighted my academic journey, international student experience, research ambition, and commitment to contributing to the Beihang community and global AI research ecosystem.",
+    link: "https://mp.weixin.qq.com/s/YC6sWWiat3WbJjGlf3hi-w",
+  },
+  {
     date: "Mar 2024",
+    location: "St. Gallen, Switzerland",
     tag: "Leader of Tomorrow",
     title: "Selected as Leader of Tomorrow by St. Gallen Symposium",
     summary:
@@ -63,21 +89,27 @@ const RockyNews = () => {
           </p>
         </div>
 
-        <div className="grid gap-8 md:grid-cols-3">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {newsItems.map((item, index) => (
             <article
               key={index}
               className="group rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-lg transition-all duration-500 hover:-translate-y-2 hover:border-orange-300/60 hover:shadow-2xl hover:shadow-orange-500/20"
             >
-              <div className="mb-5 flex items-center justify-between gap-4">
-                <span className="inline-flex items-center gap-2 rounded-full bg-cyan-400/10 px-4 py-2 text-sm font-semibold text-cyan-300">
-                  <Calendar size={16} />
-                  {item.date}
-                </span>
+              <div className="mb-5 flex flex-col gap-3">
+                <div className="flex flex-wrap items-center gap-3">
+                  <span className="inline-flex items-center gap-2 rounded-full bg-cyan-400/10 px-4 py-2 text-sm font-semibold text-cyan-300">
+                    <Calendar size={16} />
+                    {item.date}
+                  </span>
 
-                <span className="rounded-full bg-orange-400/10 px-3 py-1 text-xs font-semibold text-orange-300">
-                  {item.tag}
-                </span>
+                  <span className="rounded-full bg-orange-400/10 px-3 py-1 text-xs font-semibold text-orange-300">
+                    {item.tag}
+                  </span>
+                </div>
+
+                <p className="text-sm font-medium text-slate-400">
+                  📍 {item.location}
+                </p>
               </div>
 
               <h3 className="mb-4 text-2xl font-bold leading-tight">
@@ -86,7 +118,7 @@ const RockyNews = () => {
 
               <p className="mb-6 text-slate-400">{item.summary}</p>
 
-              <div className="flex gap-3">
+              <div className="flex flex-wrap gap-3">
                 <button
                   onClick={() => setActiveNews(item)}
                   className="rounded-full bg-orange-400 px-5 py-2 font-semibold text-black transition hover:bg-orange-300"
@@ -114,12 +146,13 @@ const RockyNews = () => {
             <button
               onClick={() => setActiveNews(null)}
               className="absolute right-5 top-5 rounded-full bg-white/10 p-2 transition hover:bg-white/20"
+              aria-label="Close news story"
             >
               <X size={20} />
             </button>
 
             <p className="mb-3 text-sm font-semibold uppercase tracking-[0.25em] text-cyan-300">
-              {activeNews.date} · {activeNews.tag}
+              {activeNews.date} · {activeNews.location} · {activeNews.tag}
             </p>
 
             <h3 className="mb-5 text-3xl font-bold">{activeNews.title}</h3>
