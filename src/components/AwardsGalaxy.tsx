@@ -167,6 +167,13 @@ const awardsData = {
       issuedBy: "Chinese Government Scholarship",
       location: "Beijing, China 🇨🇳",
     },
+    {
+  title: "4th Global Peace Summit 2025",
+  image: `${import.meta.env.BASE_URL}awards/globalpeace2025.png`,
+  link: "https://www.humanitarianaffairs.asia/",
+  issuedBy: "Humanitarian Affairs Asia",
+  location: "Bangkok, Thailand 🇹🇭",
+},
   ],
 
   2024: [
