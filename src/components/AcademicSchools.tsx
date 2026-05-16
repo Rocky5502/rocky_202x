@@ -13,16 +13,16 @@ const schools = [
     title: "ACM Europe School on Recommender Systems",
     where: "Technische Universität Wien · Vienna, Austria",
     desc: "Advanced academic school focused on recommender systems, personalization, evaluation, responsible recommendation, and the future of human-centered AI systems.",
-    link: "https://recsys.acm.org/",
+    link: "https://recsys-lab.at/rsss2025/",
     type: "summer",
   },
 
   {
     when: "November 2025",
-    title: "SEG Winter School on Hybrid and Generative Intelligence",
+    title: "The International Software Engineering Winter School on Hybrid and Generative Intelligence",
     where: "University of Bern · Bern, Switzerland",
     desc: "Research-intensive winter school exploring hybrid intelligence, generative AI, human-AI collaboration, and next-generation intelligent systems.",
-    link: "https://www.unibe.ch/",
+    link: "https://innoguard-winter-school-2025.inf.unibe.ch/",
     type: "winter",
   },
 
@@ -31,7 +31,7 @@ const schools = [
     title: "AI Summer School",
     where: "Beihang University · Hangzhou, China",
     desc: "International AI summer school focused on cutting-edge artificial intelligence, interdisciplinary collaboration, academic exchange, and global research training.",
-    link: "https://www.buaa.edu.cn/",
+    link: "https://biss.buaa.edu.cn/",
     type: "summer",
   },
 
@@ -40,7 +40,7 @@ const schools = [
     title: "International Terahertz Summer School",
     where: "Beihang University · Hangzhou, China",
     desc: "Advanced summer school on terahertz technology, AI applications, intelligent sensing, imaging systems, and emerging interdisciplinary technologies.",
-    link: "https://www.buaa.edu.cn/",
+    link: "https://biss.buaa.edu.cn/",
     type: "summer",
   },
 ];
