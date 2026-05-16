@@ -45,7 +45,7 @@ const cards = [
 
   {
     name: "WeChat",
-    href: `${import.meta.env.BASE_URL}wechat.jpg`,
+   href: `${import.meta.env.BASE_URL}wechat.jpg`,
     icon: MessageCircle,
   },
 
