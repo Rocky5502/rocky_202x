@@ -3,7 +3,7 @@ import { Image } from "lucide-react";
 
 const items = [
   "Academic presentation",
-  "Terahertz Summer School",
+  "Summer/Winter School",
   "Conference travel",
   "Research group",
   "Beihang community",
@@ -15,7 +15,7 @@ export const Gallery = () => (
     id="gallery"
     eyebrow="08 · Gallery"
     title="Moments from the journey."
-    subtitle="Replaceable placeholders — drop in your photos to bring this to life."
+    subtitle="coming soon"
   >
     <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
       {items.map((label, i) => (
