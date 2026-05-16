@@ -18,7 +18,7 @@ export const Publications = () => {
       id="publications"
       eyebrow="03 · Publications"
       title="Publications & Research."
-      subtitle="Filter by topic. Links and BibTeX appear once formal venues / records become public."
+      subtitle="Filter by topic. Links and BibTeX will appear soon"
     >
       <div className="flex flex-wrap gap-2 mb-8">
         {categories.map((c) => (
