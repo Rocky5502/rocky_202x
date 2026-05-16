@@ -26,12 +26,12 @@ export const Research = () => (
       })}
     </div>
 
-    ```tsx
+   
 <div className="card-elegant p-8 md:p-10 relative overflow-hidden">
   <div className="absolute -top-20 -right-20 w-72 h-72 bg-gradient-accent opacity-20 blur-3xl rounded-full" />
 
   <div className="font-mono text-xs uppercase tracking-[0.25em] text-primary mb-3">
-    Current PhD Direction
+  Current Research Directions & Ongoing Work
   </div>
 
   <div className="space-y-8">
