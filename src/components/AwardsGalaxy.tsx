@@ -4,61 +4,133 @@ import { ExternalLink } from "lucide-react";
 const awardsData = {
   2026: [
     {
-      title: "Outstanding Reviewer Award (ECIR 2026)",
+      title: "Outstanding Reviewer Award – ECIR 2026",
       image: `${import.meta.env.BASE_URL}awards/ecir2026.png`,
       link: "https://ecir2026.eu/",
-      issuedBy: "ECIR 2026 · Delft, Netherlands",
+      issuedBy: "48th European Conference on Information Retrieval",
     },
     {
       title: "Bronze Prize – 2026 Alliance Students' Venture Forum",
       image: `${import.meta.env.BASE_URL}awards/alliance2026.png`,
       link: "https://www.hankyung.com/",
-      issuedBy: "The Korea Economic Daily",
+      issuedBy: "The Korea Economic Daily · Seoul, South Korea",
     },
     {
-      title: "Community Choice Award 2026",
+      title: "Certificate of Completion – KTG Alliance Students' Venture Forum",
+      image: `${import.meta.env.BASE_URL}awards/alliance-completion2026.png`,
+      link: "https://www.hankyung.com/",
+      issuedBy: "The Korea Economic Daily / KT&G",
+    },
+    {
+      title: "Community Choice Award – 18th APNG Camp",
       image: `${import.meta.env.BASE_URL}awards/apng-community2026.png`,
       link: "https://apngcamp.asia/",
-      issuedBy: "18th APNG Camp · Indonesia",
+      issuedBy: "APNG Camp · Tangerang, Indonesia",
     },
     {
-      title: "Fellowship Awardee – APNG Camp 2026",
+      title: "Certificate of Fellowship – 18th APNG Camp",
       image: `${import.meta.env.BASE_URL}awards/apng-fellowship2026.png`,
       link: "https://apngcamp.asia/",
       issuedBy: "Asia Pacific Next Generation",
+    },
+    {
+      title: "IASEAI’26 Presentation Certificate",
+      image: `${import.meta.env.BASE_URL}awards/iaseai2026.png`,
+      link: "https://arxiv.org/abs/2602.02582",
+      issuedBy: "International Association for Safe & Ethical AI",
+    },
+    {
+      title: "Chapter Acceptance – AI in Education",
+      image: `${import.meta.env.BASE_URL}awards/intechopen2026.png`,
+      link: "https://www.intechopen.com/chapters/1230310",
+      issuedBy: "IntechOpen · London",
     },
   ],
 
   2025: [
     {
-      title: "Excellent Paper Award & Excellent Poster Award",
-      image: `${import.meta.env.BASE_URL}awards/tsinghua2025.png`,
-      link: "https://www.tsinghua.edu.cn/en/",
-      issuedBy: "Tsinghua University",
+      title: "AI and Digital Transformation in Government",
+      image: `${import.meta.env.BASE_URL}awards/oxford-unesco2025.png`,
+      link: "https://www.sbs.ox.ac.uk/",
+      issuedBy: "Oxford Saïd Business School / UNESCO",
     },
     {
-      title: "First Prize – Belt and Road Ambassador's Scholarship",
+      title: "ACM Europe School on Recommender Systems 2025",
+      image: `${import.meta.env.BASE_URL}awards/acm-recsys-school2025.png`,
+      link: "https://recsys-lab.at/rsss2025/",
+      issuedBy: "TU Wien · Vienna, Austria",
+    },
+    {
+      title: "ASE 2025 Conference Attendance",
+      image: `${import.meta.env.BASE_URL}awards/ase-attendance2025.png`,
+      link: "https://conf.researchr.org/home/ase-2025",
+      issuedBy: "IEEE/ACM ASE 2025 · Seoul, South Korea",
+    },
+    {
+      title: "ACM SRC Recognition – ASE 2025",
+      image: `${import.meta.env.BASE_URL}awards/ase-src-recognition2025.png`,
+      link: "https://conf.researchr.org/home/ase-2025",
+      issuedBy: "Association for Computing Machinery",
+    },
+    {
+      title: "ASE 2025 Student Research Competition – Second Place",
+      image: `${import.meta.env.BASE_URL}awards/ase-src-second2025.png`,
+      link: "https://conf.researchr.org/home/ase-2025",
+      issuedBy: "ACM Student Research Competition",
+    },
+    {
+      title: "First Prize – Belt and Road Ambassador Scholarship 2025",
       image: `${import.meta.env.BASE_URL}awards/beltroad2025.png`,
       link: "https://np.china-embassy.gov.cn/",
       issuedBy: "Embassy of Nepal in Beijing / OCCFC",
     },
     {
-      title: "ASE 2025 Student Research Competition – Second Place",
-      image: `${import.meta.env.BASE_URL}awards/ase2025.png`,
-      link: "https://conf.researchr.org/home/ase-2025",
-      issuedBy: "ACM / IEEE ASE 2025",
+      title: "SEG Winter School on Hybrid and Generative Intelligence",
+      image: `${import.meta.env.BASE_URL}awards/seg-winter-school2025.png`,
+      link: "https://innoguard-winter-school-2025.inf.unibe.ch/",
+      issuedBy: "University of Bern · Switzerland",
+    },
+    {
+      title: "Reviewer Certificate – Complex & Intelligent Systems",
+      image: `${import.meta.env.BASE_URL}awards/springer-reviewer2025.png`,
+      link: "https://link.springer.com/journal/40747",
+      issuedBy: "Springer Nature",
+    },
+    {
+      title: "Excellent Paper Award – AUA Postgraduate Forum",
+      image: `${import.meta.env.BASE_URL}awards/aua-paper2025.png`,
+      link: "https://www.tsinghua.edu.cn/en/",
+      issuedBy: "Tsinghua SIGS / Asian Universities Alliance",
+    },
+    {
+      title: "Excellent Poster Award – AUA Postgraduate Forum",
+      image: `${import.meta.env.BASE_URL}awards/aua-poster2025.png`,
+      link: "https://www.tsinghua.edu.cn/en/",
+      issuedBy: "Tsinghua SIGS / Asian Universities Alliance",
+    },
+    {
+      title: "National AI Application Innovation Competition – Second Prize",
+      image: `${import.meta.env.BASE_URL}awards/aiinnovation2025.png`,
+      link: "https://www.baidu.com/",
+      issuedBy: "China Society of Technology Economics",
+    },
+    {
+      title: "AI Photonics Summer School Completion Certificate",
+      image: `${import.meta.env.BASE_URL}awards/ai-photonics2025.png`,
+      link: "https://biss.buaa.edu.cn/",
+      issuedBy: "Beihang International Summer School",
+    },
+    {
+      title: "Empowering Electronic Information with Digital Intelligence",
+      image: `${import.meta.env.BASE_URL}awards/electronic-info-forum2025.png`,
+      link: "https://www.buaa.edu.cn/",
+      issuedBy: "PGSU · School of Electronic Information Engineering",
     },
     {
       title: "Excellent International Graduate 2025",
       image: `${import.meta.env.BASE_URL}awards/internationalgraduate2025.png`,
       link: "https://ev.buaa.edu.cn/",
       issuedBy: "Beihang University",
-    },
-    {
-      title: "National AI Application Innovation Competition – Second Prize",
-      image: `${import.meta.env.BASE_URL}awards/aiinnovation2025.png`,
-      link: "https://www.baidu.com/",
-      issuedBy: "National AI Application Innovation Competition",
     },
     {
       title: "Chinese Government Scholarship – PhD",
@@ -73,14 +145,13 @@ const awardsData = {
       title: "Two First Prizes – Excellent Study & Outstanding Behavior",
       image: `${import.meta.env.BASE_URL}awards/foreignstudent2024.png`,
       link: "https://mp.weixin.qq.com/s/4r20vM7lkoOD4Oeaz2z79w",
-      issuedBy: "Beihang University",
+      issuedBy: "Beihang University Foreign Students Scholarship",
     },
     {
       title: "National Innovation Competition – Second Prize",
       image: `${import.meta.env.BASE_URL}awards/innovation2024.png`,
       link: "https://mp.weixin.qq.com/s/BCkFELXLxtA6as1DB_tmBw",
-      issuedBy:
-        "National College Student Innovation and Invention Competition",
+      issuedBy: "National College Student Innovation and Invention Competition",
     },
     {
       title: "Best Researcher Award",
@@ -89,17 +160,16 @@ const awardsData = {
       issuedBy: "ScienceFather",
     },
     {
-      title:
-        "1st Prize – IS Academic Forum for Outstanding International Students",
+      title: "1st Prize – IS Academic Forum for Outstanding International Students",
       image: `${import.meta.env.BASE_URL}awards/isforum2024.png`,
       link: "https://mp.weixin.qq.com/s/YsV-IkwAHGJ4LvGc14rUvg",
       issuedBy: "University of Science and Technology Beijing",
     },
     {
-      title: "Best Oral Presentation Award",
+      title: "Best Oral Presentation Award – Terahertz Summer School",
       image: `${import.meta.env.BASE_URL}awards/terahertz2024.png`,
       link: "https://www.buaa.edu.cn/",
-      issuedBy: "International Terahertz Summer School",
+      issuedBy: "1st International Terahertz Summer School",
     },
     {
       title: "Excellent Poster Award",
@@ -108,8 +178,7 @@ const awardsData = {
       issuedBy: "Beihang University",
     },
     {
-      title:
-        "Champion – 1st Robot Competition for International Students in Beijing",
+      title: "Champion – 1st Robot Competition for International Students in Beijing",
       image: `${import.meta.env.BASE_URL}awards/robot2024.png`,
       link: "https://news.buaa.edu.cn/info/1002/62507.htm",
       issuedBy: "China University Robotics Committee",
@@ -145,11 +214,60 @@ const awardsData = {
       issuedBy: "Peking University",
     },
   ],
+
+  "2023–2018": [
+    {
+      title: "AI Teacher Training Seminar – Peking University",
+      image: `${import.meta.env.BASE_URL}awards/pkuai2023.png`,
+      link: "https://www.pku.edu.cn/",
+      issuedBy: "Peking University / Ministry of Education",
+    },
+    {
+      title: "Best Delegate – XI Model SCO",
+      image: `${import.meta.env.BASE_URL}awards/sco2023.png`,
+      link: "https://mp.weixin.qq.com/s/G-6LVI4xpmf5qjrSHi3rww",
+      issuedBy: "Embassy of Kazakhstan / SCO Secretariat",
+    },
+    {
+      title: "Top Innovator – Huawei Global Impact Sprint",
+      image: `${import.meta.env.BASE_URL}awards/huawei2023.png`,
+      link: "https://mp.weixin.qq.com/s/L7-qBAcIOlmapQNPBc3gLQ",
+      issuedBy: "Huawei Global Impact Sprint",
+    },
+    {
+      title: "Innovator Award – SDG Open Hackathon",
+      image: `${import.meta.env.BASE_URL}awards/sdg2023.png`,
+      link: "https://www.tsinghua.edu.cn/en/",
+      issuedBy: "Tsinghua University",
+    },
+    {
+      title: "Chinese Government Scholarship – Master's",
+      image: `${import.meta.env.BASE_URL}awards/csc2022.png`,
+      link: "https://www.campuschina.org/",
+      issuedBy: "China Scholarship Council",
+    },
+    {
+      title: "Officially Licensed Software Engineer",
+      image: `${import.meta.env.BASE_URL}awards/nec2022.png`,
+      link: "https://nec.gov.np/",
+      issuedBy: "Nepal Engineering Council",
+    },
+    {
+      title: "Critical Thinking in English Language Teaching",
+      image: `${import.meta.env.BASE_URL}awards/relo2021.png`,
+      link: "https://regionalenglishlanguagenetwork.org/",
+      issuedBy: "Regional English Language Office",
+    },
+    {
+      title: "Full Belt and Road Scholarship – Bachelor",
+      image: `${import.meta.env.BASE_URL}awards/beltroad2018.png`,
+      link: "https://www.scu.edu.cn/",
+      issuedBy: "China Government / Sichuan University",
+    },
+  ],
 };
 
-const years = Object.keys(awardsData).sort(
-  (a, b) => Number(b) - Number(a)
-);
+const years = Object.keys(awardsData);
 
 const AwardsGalaxy = () => {
   const [selectedYear, setSelectedYear] = useState("2026");
