@@ -263,9 +263,7 @@ export const timeline = [
     where: "Independent initiative",
     desc: "Applied generative intelligence and research entrepreneurship.",
   },
-];
 
-export const academicSchools = [
   {
     when: "2025",
     title: "ACM Europe School on Recommender Systems",
