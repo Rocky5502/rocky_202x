@@ -26,7 +26,7 @@ const newsItems = [
   },
   {
   date: "Mar 2025",
-  location: "Beijing, China 🇨🇳",
+  location: "Las Vegas, USA 🇺🇸",
   tag: "ICCV / AI World",
   title:
     "Our ICCV Research on Autonomous Vehicles Recognized by AI World",
