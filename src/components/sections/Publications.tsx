@@ -17,7 +17,7 @@ export const Publications = () => {
     <Section
       id="publications"
       eyebrow="03 · Publications"
-      title="Selected papers & research."
+      title="Publications & Research."
       subtitle="Filter by topic. Links and BibTeX appear once formal venues / records become public."
     >
       <div className="flex flex-wrap gap-2 mb-8">
