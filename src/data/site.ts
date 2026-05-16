@@ -264,27 +264,7 @@ export const timeline = [
     desc: "Applied generative intelligence and research entrepreneurship.",
   },
 
-  {
-    when: "2025",
-    title: "ACM Europe School on Recommender Systems",
-    where: "Vienna, Austria",
-    desc: "Advanced academic school focused on recommender systems, personalization, evaluation, and responsible recommendation.",
-    link: "https://recsys.acm.org/",
-  },
-  {
-    when: "2025",
-    title: "SEG Winter School on Hybrid and Generative Intelligence",
-    where: "University of Bern, Switzerland",
-    desc: "Winter school on hybrid intelligence, generative AI, human-AI collaboration, and future intelligent systems.",
-    link: "https://www.unibe.ch/",
-  },
-  {
-    when: "July 2025",
-    title: "AI Summer School",
-    where: "Hangzhou, China · Beihang University",
-    desc: "AI summer school focused on artificial intelligence, academic exchange, research training, and international collaboration.",
-    link: "https://www.buaa.edu.cn/",
-  },
+ 
 ];
 
 export const service = [
