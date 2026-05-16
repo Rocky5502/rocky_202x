@@ -106,7 +106,7 @@ export const publications: Publication[] = [
       "Unveiling Bias in Fairness Evaluations of Large Language Models: A Critical Literature Review of Music and Movie Recommendation Systems",
     authors: "Sah Chandan Kumar, Lian Xiaoli, Muhammad Mirajul Islam",
     venue:
-      "International Journal of Innovative Science and Research Technology, 8(12), ISSN: 2456-2165",
+      "International Journal of Innovative Science and Research Technology",
     year: "2024",
     category: "Fairness",
     status: "Published",
@@ -119,7 +119,7 @@ export const publications: Publication[] = [
     authors:
       "Sah Chandan Kumar, Lian Xiaoli, Muhammad Mirajul Islam, Md Kamrul Islam",
     venue:
-      "36th IEEE International Conference on Software Engineering Education and Training",
+      "The 36th IEEE International Conference on Software Engineering Education and Training",
     year: "2024",
     category: "SE & AI",
     status: "Published",
@@ -143,7 +143,7 @@ export const publications: Publication[] = [
     title:
       "RUL Forecasting for Wind Turbine Predictive Maintenance Based on Deep Learning",
     authors: "Syed Shazaib Shah, Tan Daoliang, Sah Chandan Kumar",
-    venue: "Heliyon, Volume 10, Issue 20, e39268, ISSN 2405-8440",
+    venue: "Heliyon, Cell",
     year: "2024",
     category: "Maintenance",
     status: "Published",
@@ -223,7 +223,7 @@ export const reviewing = {
 export const talks = [
   {
     title: "Understanding Uncertainty in LLMs",
-    venue: "ASE 2025 / AIware 2025",
+    venue: "ASE 2025 ",
     year: "2025",
   },
   {
@@ -264,7 +264,6 @@ export const timeline = [
     desc: "Applied generative intelligence and research entrepreneurship.",
   },
 
- 
 ];
 
 export const service = [
