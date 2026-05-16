@@ -78,6 +78,15 @@ export const Hero = () => {
             </div>
           </div>
         </div>
+        <div>
+  <div className="font-display text-2xl md:text-3xl font-bold text-gradient">
+    Open
+  </div>
+
+  <div className="text-[11px] uppercase tracking-wider text-muted-foreground mt-1">
+    Open to Academic & AI Research Opportunities
+  </div>
+</div>
 
         <div className="relative mx-auto lg:mx-0 animate-scale-in">
           <div className="absolute -inset-4 rounded-full bg-gradient-accent blur-3xl opacity-40 animate-pulse-glow" />
