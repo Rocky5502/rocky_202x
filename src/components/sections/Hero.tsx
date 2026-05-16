@@ -65,8 +65,8 @@ export const Hero = () => {
 
           <div className="grid grid-cols-3 gap-4 max-w-xl border-t border-border/60 pt-6">
             <div>
-              <div className="font-display text-2xl md:text-3xl font-bold text-gradient">8+</div>
-              <div className="text-[11px] uppercase tracking-wider text-muted-foreground mt-1">Selected papers</div>
+              <div className="font-display text-2xl md:text-3xl font-bold text-gradient">10+</div>
+              <div className="text-[11px] uppercase tracking-wider text-muted-foreground mt-1">Research papers</div>
             </div>
             <div>
               <div className="font-display text-2xl md:text-3xl font-bold text-gradient">6+</div>
