@@ -76,15 +76,9 @@ export const Hero = () => {
               <div className="font-display text-2xl md:text-3xl font-bold text-gradient">ECIR'26</div>
               <div className="text-[11px] uppercase tracking-wider text-muted-foreground mt-1">Outstanding Reviewer</div>
             </div>
-          </div>
-        </div>
-        <div>
-  <div className="font-display text-2xl md:text-3xl font-bold text-gradient">
-    Open
-  </div>
-
-  <div className="text-[11px] uppercase tracking-wider text-muted-foreground mt-1">
-    Open to Academic & AI Research Opportunities
+      <div className="font-display text-2xl md:text-3xl font-bold text-gradient">ECIR'26</div>
+              <div className="text-[11px] uppercase tracking-wider text-muted-foreground mt-1">O Open to Academic & AI Research Opportunities</div>
+            </div>
   </div>
 </div>
 
