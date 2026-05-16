@@ -44,6 +44,13 @@ const schools = [
     link: "https://biss.buaa.edu.cn/",
     type: "summer",
   },
+  {
+  when: "August 2022",
+  title: "ZJU SDG Global Summer School",
+  where: "Zhejiang University · Hangzhou, China 🇨🇳",
+  desc: "Global summer school focused on Sustainable Development Goals (SDGs), Information Technology, Smart City innovation, interdisciplinary collaboration, and global leadership.",
+  link: "https://www.zju.edu.cn/english/",
+},
 ];
 
 export const AcademicSchools = () => (
