@@ -82,7 +82,7 @@ export const publications: Publication[] = [
     authors:
       "Ankit Kumar Shaw, Chandan Kumar Sah, Xiaoli Lian, Arsalan Shahid Baig, Tuopu Wen, Kun Jiang, Mengmeng Yang, Diange Yang, Li Zhang",
     venue:
-      "Proceedings of the IEEE/CVF International Conference on Computer Vision, pp. 4547–4556",
+      "The IEEE/CVF International Conference on Computer Vision, ICCV 2025",
     year: "2025",
     category: "Multimodal",
     status: "Published",
@@ -94,7 +94,7 @@ export const publications: Publication[] = [
       "PerFairX: Is There a Balance Between Fairness and Personality in Large Language Model Recommendations?",
     authors: "Chandan Kumar Sah",
     venue:
-      "2025 IEEE/CVF International Conference on Computer Vision Workshops (ICCVW), pp. 2771–2780",
+      "The IEEE/CVF International Conference on Computer Vision, ICCV 2025",
     year: "2025",
     category: "Fairness",
     status: "Published",
@@ -132,7 +132,7 @@ export const publications: Publication[] = [
     authors:
       "Ankit Kumar Shaw, Kun Jiang, Tuopu Wen, Sah Chandan Kumar, Yining Shi, Mengmeng Yang, Diange Yang, Xiaoli Lian",
     venue:
-      "CVPR 2025 Workshop / Proceedings of the Computer Vision and Pattern Recognition Conference",
+      "The IEEE/CVF Conference on Computer Vision and Pattern Recognition, CVPR 2025",
     year: "2025",
     category: "Multimodal",
     status: "Published",
