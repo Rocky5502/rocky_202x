@@ -221,19 +221,126 @@ export const reviewing = {
 };
 
 export const talks = [
+{
+  title:
+    "Uncertainty and Fairness Awareness in LLM-Based Recommendation Systems",
+  venue:
+    "The International Association for Safe & Ethical AI (IASEAI 2026)",
+  eventDate: "24–26 February 2026",
+  location: "UNESCO House · Paris, France 🇫🇷",
+  type: "International Conference Paper Presentation",
+  paper:
+    "Uncertainty and Fairness Awareness in LLM-Based Recommendation Systems",
+  link: "https://www.iaseai.org/our-programs/iaseai26",
+  year: "2026",
+},
+  {
+  title:
+    "FairEval: Evaluating Fairness in LLM-Based Recommendations with Personality Awareness",
+  venue:
+    "2025 Asian Universities Alliance Postgraduate Forum & Greater Bay Area Postgraduate Nanshan Academic Forum",
+  eventDate: "19-21 December 2025",
+  location: "Tsinghua Shenzhen International Graduate School · Shenzhen, China 🇨🇳",
+  type: "Academic Forum Research Presentation",
+  paper:
+    "FairEval: Evaluating Fairness in LLM-Based Recommendations with Personality Awareness",
+  link: "https://www.sigs.tsinghua.edu.cn/en/2026/0114/c1303a288207/page.htm",
+  year: "2025",
+},
   {
     title: "Understanding Uncertainty in LLMs",
-    venue: "ASE 2025 ",
+    venue:
+      "40th IEEE/ACM International Conference on Automated Software Engineering (ASE 2025)",
+    eventDate: "16–20 November 2025",
+    location: "Seoul, South Korea 🇰🇷",
+    type: "Conference Paper Presentation",
+    paper:
+      "Understanding Uncertainty in LLMs",
+    link: "https://conf.researchr.org/home/ase-2025",
     year: "2025",
   },
+
   {
-    title: "Fairness & Innovation in AI for LLM Recommender Systems",
-    venue: "Beihang Terahertz Summer School Presentation",
+    title:
+      "PerFairX: Is There a Balance Between Fairness and Personality in Large Language Model Recommendations?",
+    venue:
+      "IEEE/CVF International Conference on Computer Vision Workshops (ICCVW 2025)",
+    eventDate: "October 2025",
+    location: "Honolulu, Hawaii, USA 🇺🇸",
+    type: "Workshop Paper Presentation",
+    paper:
+      "PerFairX: Fairness and Personality-Aware LLM Recommendations",
+    link: "https://iccv.thecvf.com/",
+    year: "2025",
+  },
+
+  {
+    title:
+      "SafeRoute: Enhancing Traffic Scene Understanding via a Unified Deep Learning and Multimodal LLM",
+    venue:
+      "IEEE/CVF International Conference on Computer Vision (ICCV 2025)",
+    eventDate: "October 2025",
+    location: "Honolulu, Hawaii, USA 🇺🇸",
+    type: "Research Paper Presentation",
+    paper:
+      "SafeRoute: Enhancing Traffic Scene Understanding via a Unified Deep Learning and Multimodal LLM",
+    link: "https://iccv.thecvf.com/",
+    year: "2025",
+  },
+
+  {
+    title:
+      "Fairness & Innovation in AI for LLM Recommender Systems",
+    venue:
+      "The 1st International Terahertz Science & Application Summer School",
+    eventDate: "August 2024",
+    location: "Beijing, China 🇨🇳",
+    type: "Academic Presentation",
+    paper:
+      "Fairness & Innovation in AI for Large Language Model Recommendation Systems",
+    link: "https://www.buaa.edu.cn/",
     year: "2024",
   },
+
   {
-    title: "Invited talks · seminars · workshops",
-    venue: "Coming soon",
+    title:
+      "Navigating the AI Frontier: Integrating Artificial Intelligence into Software Engineering Education",
+    venue:
+      "36th IEEE International Conference on Software Engineering Education and Training (CSEE&T 2024)",
+    eventDate: "15–18 April 2024",
+    location: "Würzburg, Germany 🇩🇪",
+    type: "Conference Presentation",
+    paper:
+      "Navigating the AI Frontier: A Critical Literature Review on Integrating Artificial Intelligence into Software Engineering Education",
+    link: "https://conf.researchr.org/home/cseet-2024",
+    year: "2024",
+  },
+
+  {
+    title:
+      "Speaker at Academic Symposium – PGSU Academic & Innovation Forum",
+    venue:
+      "International School, Beihang University",
+    eventDate: "2024",
+    location: "Beijing, China 🇨🇳",
+    type: "Invited Academic Talk",
+    paper:
+      "AI Research, Innovation, and International Academic Collaboration",
+    link: "https://is.buaa.edu.cn/",
+    year: "2024",
+  },
+
+  {
+    title:
+      "Future invited talks · seminars · workshops",
+    venue:
+      "International AI, Software Engineering, and Responsible AI communities",
+    eventDate: "2026+",
+    location: "Global",
+    type: "Upcoming",
+    paper:
+      "Reliable AI, Uncertainty-Aware LLMs, and AI for Good",
+    link: "https://rocky5502.github.io/rocky_202x/",
     year: "2026",
   },
 ];
