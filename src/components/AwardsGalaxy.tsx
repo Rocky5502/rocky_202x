@@ -175,12 +175,26 @@ const awardsData = {
       location: "Beijing, China 🇨🇳",
     },
     {
+  title: "Participant – ECIR 2025",
+  image: `${import.meta.env.BASE_URL}awards/ecir2025.png`,
+  link: "https://ecir2025.eu/",
+  issuedBy: "47th European Conference on Information Retrieval",
+  location: "Lucca, Italy 🇮🇹",
+},
+    {
       title: "Chinese Government Scholarship – PhD",
       image: `${import.meta.env.BASE_URL}awards/cscphd2025.png`,
       link: "https://www.campuschina.org/",
       issuedBy: "Chinese Government Scholarship",
       location: "Beijing, China 🇨🇳",
     },
+    {
+  title: "Department Head of Academic & Innovation – PGSU",
+  image: `${import.meta.env.BASE_URL}awards/pgsu-head2025.png`,
+  link: "https://is.buaa.edu.cn/",
+  issuedBy: "International School, Beihang University",
+  location: "Beijing, China 🇨🇳",
+},
     {
   title: "4th Global Peace Summit 2025",
   image: `${import.meta.env.BASE_URL}awards/globalpeace2025.png`,
@@ -191,6 +205,13 @@ const awardsData = {
   ],
 
   2024: [
+    {
+  title: "Presentation Certificate – CSEE&T 2024",
+  image: `${import.meta.env.BASE_URL}awards/cseet2024.png`,
+  link: "https://conf.researchr.org/home/cseet-2024",
+  issuedBy: "36th IEEE International Conference on Software Engineering Education and Training",
+  location: "Würzburg, Germany 🇩🇪",
+},
     {
       title: "First Prize – Excellent Study",
       image: `${import.meta.env.BASE_URL}awards/foreignstudent2024.png`,
@@ -219,6 +240,13 @@ const awardsData = {
       issuedBy: "ScienceFather",
       location: "Global Research Community 🌍",
     },
+    {
+  title: "Journal Publication Certificate – IJISRT",
+  image: `${import.meta.env.BASE_URL}awards/ijisrt2024.png`,
+  link: "https://ijisrt.com/",
+  issuedBy: "International Journal of Innovative Science and Research Technology",
+  location: "Rajasthan, India 🇮🇳",
+},
     {
       title: "1st Prize – IS Academic Forum for Outstanding International Students",
       image: `${import.meta.env.BASE_URL}awards/isforum2024.png`,
@@ -275,6 +303,20 @@ const awardsData = {
       issuedBy: "World Green Science Day",
       location: "Global Online 🌍",
     },
+    {
+  title: "Speaker – Academic Symposium PGSU 2024",
+  image: `${import.meta.env.BASE_URL}awards/pgsu-speaker2024.png`,
+  link: "https://is.buaa.edu.cn/",
+  issuedBy: "International School, Beihang University",
+  location: "Beijing, China 🇨🇳",
+},
+    {
+  title: "Department Head of Academic & Innovation – PGSU",
+  image: `${import.meta.env.BASE_URL}awards/pgsu-head2024.png`,
+  link: "https://is.buaa.edu.cn/",
+  issuedBy: "International School, Beihang University",
+  location: "Beijing, China 🇨🇳",
+},
   ],
 
   "2023–2018": [
@@ -286,12 +328,40 @@ const awardsData = {
       location: "Beijing, China 🇨🇳",
     },
     {
+  title: "Department Head of Academic & Innovation – PGSU",
+  image: `${import.meta.env.BASE_URL}awards/pgsu-head2023.png`,
+  link: "https://is.buaa.edu.cn/",
+  issuedBy: "International School, Beihang University",
+  location: "Beijing, China 🇨🇳",
+},
+    {
       title: "Best Delegate – XI Model SCO",
       image: `${import.meta.env.BASE_URL}awards/sco2023.png`,
       link: "https://mp.weixin.qq.com/s/G-6LVI4xpmf5qjrSHi3rww",
       issuedBy: "Embassy of Kazakhstan / SCO Secretariat",
       location: "Beijing, China 🇨🇳",
     },
+    {
+  title: "Participant – World Chinese Conference",
+  image: `${import.meta.env.BASE_URL}awards/worldchinese2023.png`,
+  link: "https://www.chinese.cn/",
+  issuedBy: "World Chinese Conference",
+  location: "Beijing, China 🇨🇳",
+},
+    {
+  title: "Delegate – National Engineering Pedagogy Alliance Seminar",
+  image: `${import.meta.env.BASE_URL}awards/pedagogy2023.png`,
+  link: "https://www.tsinghua.edu.cn/",
+  issuedBy: "Tsinghua University",
+  location: "Beijing, China 🇨🇳",
+},
+    {
+  title: "Speaker & Participant – SABRI 5th Anniversary",
+  image: `${import.meta.env.BASE_URL}awards/sabri2023.png`,
+  link: "https://www.tsinghua.edu.cn/",
+  issuedBy: "Student Association of Belt and Road Initiative (SABRI), Tsinghua University",
+  location: "Beijing, China 🇨🇳",
+},
     {
       title: "Top Innovator – Huawei Global Impact Sprint",
       image: `${import.meta.env.BASE_URL}awards/huawei2023.png`,
@@ -307,12 +377,40 @@ const awardsData = {
       location: "Beijing, China 🇨🇳",
     },
     {
+  title: "Delegate – Big Data & AI Software Symposium (BDAISS 2023)",
+  image: `${import.meta.env.BASE_URL}awards/bdaiss2023.png`,
+  link: "https://www.tsinghua.edu.cn/",
+  issuedBy: "School of Software, Tsinghua University",
+  location: "Beijing, China 🇨🇳",
+},
+    {
       title: "Chinese Government Scholarship – Master's",
       image: `${import.meta.env.BASE_URL}awards/csc2022.png`,
       link: "https://www.campuschina.org/",
       issuedBy: "China Scholarship Council",
       location: "Beijing, China 🇨🇳",
     },
+    {
+  title: "Participant – Greening the Shipping Industry in Technology",
+  image: `${import.meta.env.BASE_URL}awards/shipping2023.png`,
+  link: "https://www.tsinghua.edu.cn/",
+  issuedBy: "School of Environment, Tsinghua University",
+  location: "Beijing, China 🇨🇳",
+},
+    {
+  title: "Delegate – China International Supply Chain Expo",
+  image: `${import.meta.env.BASE_URL}awards/supplychain2023.png`,
+  link: "https://en.cisce.org.cn/",
+  issuedBy: "Global Chain Innovation & Development Forum",
+  location: "Beijing, China 🇨🇳",
+},
+    {
+  title: "Participant – China–Southeast Asian Symposium Towards Ecological Civilization",
+  image: `${import.meta.env.BASE_URL}awards/ecological2023.png`,
+  link: "https://english.bnu.edu.cn/",
+  issuedBy: "Beijing Normal University",
+  location: "Beijing, China 🇨🇳",
+},
     {
       title: "Delegate – Yenching Global Symposium",
       image: `${import.meta.env.BASE_URL}awards/yenching2024.png`,
