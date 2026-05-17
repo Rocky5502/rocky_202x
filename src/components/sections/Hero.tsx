@@ -17,7 +17,7 @@ export const Hero = () => {
   return (
     <section
       id="home"
-      className="relative flex min-h-screen items-center overflow-hidden px-6 pt-40 pb-20 md:pt-44 lg:pt-36"
+      className="relative flex min-h-screen items-center overflow-hidden px-6 pb-20 pt-52 md:pt-56 lg:pt-48"
     >
       <div
         className="absolute inset-0 -z-10 opacity-40 dark:opacity-60"
@@ -32,17 +32,21 @@ export const Hero = () => {
       <div className="absolute inset-0 -z-10 neural-bg" />
 
       <div className="container-narrow grid w-full items-center gap-14 lg:grid-cols-[1.05fr_0.95fr]">
-        <div className="animate-fade-in max-w-3xl">
+        <div className="max-w-3xl animate-fade-in">
           <div className="glass mb-5 inline-flex items-center gap-2 rounded-full px-4 py-1.5 font-mono text-xs">
             <span className="h-2 w-2 animate-pulse-glow rounded-full bg-primary" />
             PhD Researcher · {profile.affiliation}
           </div>
 
-          <h1 className="heading-display mb-5 text-3xl font-bold leading-[1.15] tracking-tight md:text-4xl lg:text-[3.25rem] xl:text-[3.5rem]">
-            {profile.name}
-            <br />
-            <span className="text-gradient inline-block mt-2 md:mt-3">{profile.altName}</span>
-          </h1>
+          <div className="mb-6">
+            <h1 className="heading-display text-4xl font-bold leading-[1.04] tracking-tight md:text-5xl lg:text-[3.75rem] xl:text-[4.1rem]">
+              {profile.name}
+            </h1>
+
+            <p className="mt-3 font-display text-3xl font-bold leading-none tracking-tight text-gradient md:text-4xl lg:text-[3.1rem] xl:text-[3.35rem]">
+              {profile.altName}
+            </p>
+          </div>
 
           <p className="mb-3 max-w-2xl text-lg font-medium text-foreground/90 md:text-xl">
             Reliable, uncertainty-aware AI for the next generation of software
@@ -142,7 +146,6 @@ export const Hero = () => {
               </div>
             </div>
           </div>
-
         </div>
 
         <div className="relative mx-auto flex animate-scale-in flex-col items-center lg:mx-0">
