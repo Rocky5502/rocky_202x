@@ -268,13 +268,6 @@ const awardsData = {
       issuedBy: "World Green Science Day",
       location: "Global Online 🌍",
     },
-    {
-      title: "Delegate – Yenching Global Symposium",
-      image: `${import.meta.env.BASE_URL}awards/yenching2024.png`,
-      link: "https://www.pku.edu.cn/",
-      issuedBy: "Peking University",
-      location: "Beijing, China 🇨🇳",
-    },
   ],
 
   "2023–2018": [
@@ -311,6 +304,13 @@ const awardsData = {
       image: `${import.meta.env.BASE_URL}awards/csc2022.png`,
       link: "https://www.campuschina.org/",
       issuedBy: "China Scholarship Council",
+      location: "Beijing, China 🇨🇳",
+    },
+    {
+      title: "Delegate – Yenching Global Symposium",
+      image: `${import.meta.env.BASE_URL}awards/yenching2024.png`,
+      link: "https://www.pku.edu.cn/",
+      issuedBy: "Peking University",
       location: "Beijing, China 🇨🇳",
     },
     {
