@@ -212,7 +212,7 @@ export const honors = [
 ];
 
 export const reviewing = {
-  conferences: ["NeurIPS", "ICCV", "AAAI", "ECIR", "ASE", "AIware"],
+  conferences: ["NeurIPS", "ICCV", "AAAI", "ECIR", "ASE", "CVPR"],
   journals: [
     "ACM Transactions on Software Engineering and Methodology (TOSEM)",
     "Complex & Intelligent Systems (Springer)",
@@ -241,21 +241,32 @@ export const talks = [
 export const timeline = [
   {
     when: "2025 — Present",
-    title: "PhD Researcher",
-    where: "Software Engineering Institute, Beihang University",
-    desc: "Researching uncertainty-aware LLMs, retrieval-augmented code generation, AI for software engineering, fairness, and reliable AI systems.",
+    title: "Ph.D. Researcher · Software Engineering & Artificial Intelligence",
+    where:
+      "School of Computer Science and Engineering, Beihang University · Beijing, China",
+    link: "https://scse.buaa.edu.cn/",
+    desc:
+      "Researching uncertainty-aware LLMs, retrieval-augmented code generation, AI for software engineering, fairness-aware recommender systems, and reliable AI architectures.",
   },
+
   {
-    when: "2022 — 2025",
+    when: "2022",
     title: "M.Eng. · Computer Science & Engineering",
-    where: "School of Computer Science and Engineering, Beihang University",
-    desc: "Focused on artificial intelligence, software engineering, recommender systems, fairness, and LLM-based intelligent systems.",
+    where:
+      "School of Computer Science and Engineering, Beihang University · Beijing, China",
+    link: "https://scse.buaa.edu.cn/",
+    desc:
+      "Focused on artificial intelligence, software engineering, recommender systems, fairness evaluation, multimodal AI, and LLM-based intelligent systems.",
   },
+
   {
-    when: "2018 — 2021",
+    when: "2018",
     title: "B.Eng. · Software Engineering",
-    where: "Sichuan University",
-    desc: "Built foundations in software systems, algorithms, programming, and applied machine learning.",
+    where:
+      "School of Software Engineering, Sichuan University · Chengdu, China",
+    link: "https://sw.scu.edu.cn/",
+    desc:
+      "Built strong foundations in software engineering, algorithms, intelligent systems, programming, and applied machine learning.",
   },
   {
     when: "Ongoing",
