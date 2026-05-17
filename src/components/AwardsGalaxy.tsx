@@ -48,9 +48,9 @@ const awardsData = {
     {
       title: "IASEAI’26 Presentation Certificate",
       image: `${import.meta.env.BASE_URL}awards/iaseai2026.png`,
-      link: "https://arxiv.org/abs/2602.02582",
-      issuedBy: "International Association for Safe & Ethical AI",
-      location: "Global Research Community 🌍",
+      link: "https://www.iaseai.org/our-programs/iaseai26",
+      issuedBy: "The International Association for Safe & Ethical AI (IASEAI)",
+      location: "Paris, France 🇫🇷",
     },
     {
       title: "Chapter Acceptance – AI in Education",
@@ -59,6 +59,13 @@ const awardsData = {
       issuedBy: "IntechOpen",
       location: "London, United Kingdom 🇬🇧",
     },
+    {
+  title: "Delegate – India AI Impact Summit 2026",
+  image: `${import.meta.env.BASE_URL}awards/indiaai2026.png`,
+  link: "https://impact.indiaai.gov.in/",
+  issuedBy: "India AI Mission / AI Impact Summit",
+  location: "New Delhi, India 🇮🇳",
+},
   ],
 
   2025: [
