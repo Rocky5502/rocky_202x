@@ -70,6 +70,13 @@ const awardsData = {
 
   2025: [
     {
+  title: "Participant – International Conference on AI Scientist (ICAIS 2025)",
+  image: `${import.meta.env.BASE_URL}awards/icais2025.png`,
+  link: "https://www.bza.edu.cn/en/detail/b82zccbm09l9xxdccxka4xg9o90jjy60",
+  issuedBy: "Zhongguancun Academy · ICAIS 2025",
+  location: "Beijing, China 🇨🇳",
+},
+    {
       title: "AI and Digital Transformation in Government",
       image: `${import.meta.env.BASE_URL}awards/oxford-unesco2025.png`,
       link: "https://www.sbs.ox.ac.uk/",
