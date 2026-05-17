@@ -57,7 +57,7 @@ export const publications: Publication[] = [
     authors:
       "Chandan Kumar Sah, Xiaoli Lian, Li Zhang, Tony Xu, Syed Shazaib Shah",
     venue:
-      "The International Association for Safe & Ethical AI (IASEAI), February 2026 · Soon to appear in AAAI proceedings",
+      "The Second International Association for Safe & Ethical AI (IASEAI), February 2026 · Soon to appear in AAAI proceedings",
     year: "2026",
     category: "Fairness",
     status: "Published / Proceedings forthcoming",
@@ -225,7 +225,7 @@ export const talks = [
   title:
     "Uncertainty and Fairness Awareness in LLM-Based Recommendation Systems",
   venue:
-    "The International Association for Safe & Ethical AI (IASEAI 2026)",
+    "The 2nd International Association for Safe & Ethical AI (IASEAI 2026)",
   eventDate: "24–26 February 2026",
   location: "UNESCO House · Paris, France 🇫🇷",
   type: "International Conference Paper Presentation",
@@ -265,9 +265,9 @@ export const talks = [
       "PerFairX: Is There a Balance Between Fairness and Personality in Large Language Model Recommendations?",
     venue:
       "IEEE/CVF International Conference on Computer Vision Workshops (ICCVW 2025)",
-    eventDate: "October 2025",
+    eventDate: "19–23 October 2025",
     location: "Honolulu, Hawaii, USA 🇺🇸",
-    type: "Workshop Paper Presentation",
+    type: "ICCV 2025 Research Paper Presentation",
     paper:
       "PerFairX: Fairness and Personality-Aware LLM Recommendations",
     link: "https://iccv.thecvf.com/",
@@ -279,14 +279,27 @@ export const talks = [
       "SafeRoute: Enhancing Traffic Scene Understanding via a Unified Deep Learning and Multimodal LLM",
     venue:
       "IEEE/CVF International Conference on Computer Vision (ICCV 2025)",
-    eventDate: "October 2025",
+    eventDate: "19–23 October 2025",
     location: "Honolulu, Hawaii, USA 🇺🇸",
-    type: "Research Paper Presentation",
+    type: "ICCV 2025 Research Paper Presentation",
     paper:
       "SafeRoute: Enhancing Traffic Scene Understanding via a Unified Deep Learning and Multimodal LLM",
     link: "https://iccv.thecvf.com/",
     year: "2025",
   },
+  {
+  title:
+    "CleanMAP: Distilling Multimodal LLMs for Confidence-Driven Crowdsourced HD Map Updates",
+  venue:
+    "IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR 2025)",
+  eventDate: "11–15 June 2025",
+  location: "Music City Center · Nashville, Tennessee, USA 🇺🇸",
+  type: "CVPR 2025 Research Paper Presentation",
+  paper:
+    "CleanMAP: Distilling Multimodal LLMs for Confidence-Driven Crowdsourced HD Map Updates",
+  link: "https://cvpr.thecvf.com/",
+  year: "2025",
+},
 
   {
     title:
