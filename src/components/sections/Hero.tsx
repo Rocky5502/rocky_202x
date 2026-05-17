@@ -10,6 +10,7 @@ import {
 import heroBg from "@/assets/hero-bg.jpg";
 import portrait from "@/assets/portrait.jpg";
 import { Button } from "@/components/ui/button";
+import { SiteReactions } from "@/components/SiteReactions";
 import { profile, links } from "@/data/site";
 
 export const Hero = () => {
@@ -102,6 +103,10 @@ export const Hero = () => {
                 <ArrowRight className="ml-1 h-4 w-4" />
               </a>
             </Button>
+          </div>
+
+          <div className="mb-8">
+            <SiteReactions />
           </div>
 
           <div className="grid max-w-3xl grid-cols-2 gap-4 border-t border-border/60 pt-6 md:grid-cols-4">
