@@ -185,7 +185,14 @@ const awardsData = {
 
   2024: [
     {
-      title: "Two First Prizes – Excellent Study & Outstanding Behavior",
+      title: "First Prize – Excellent Study",
+      image: `${import.meta.env.BASE_URL}awards/foreignstudent2024.png`,
+      link: "https://mp.weixin.qq.com/s/4r20vM7lkoOD4Oeaz2z79w",
+      issuedBy: "Beihang University Foreign Students Scholarship",
+      location: "Beijing, China 🇨🇳",
+    },
+    {
+      title: "First Prize – Outstanding Behavior",
       image: `${import.meta.env.BASE_URL}awards/foreignstudent2024.png`,
       link: "https://mp.weixin.qq.com/s/4r20vM7lkoOD4Oeaz2z79w",
       issuedBy: "Beihang University Foreign Students Scholarship",
