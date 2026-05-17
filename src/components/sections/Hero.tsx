@@ -17,7 +17,7 @@ export const Hero = () => {
   return (
     <section
       id="home"
-      className="relative flex min-h-screen items-center overflow-hidden pt-24"
+      className="relative flex min-h-screen items-center overflow-hidden px-6 pt-40 pb-20 md:pt-44 lg:pt-36"
     >
       <div
         className="absolute inset-0 -z-10 opacity-40 dark:opacity-60"
@@ -31,14 +31,14 @@ export const Hero = () => {
       <div className="absolute inset-0 -z-10 bg-gradient-to-b from-background/60 via-background/80 to-background" />
       <div className="absolute inset-0 -z-10 neural-bg" />
 
-      <div className="container-narrow grid w-full items-center gap-12 lg:grid-cols-[1.3fr_1fr]">
-        <div className="animate-fade-in">
-          <div className="glass mb-6 inline-flex items-center gap-2 rounded-full px-4 py-1.5 font-mono text-xs">
+      <div className="container-narrow grid w-full items-center gap-14 lg:grid-cols-[1.05fr_0.95fr]">
+        <div className="animate-fade-in max-w-3xl">
+          <div className="glass mb-5 inline-flex items-center gap-2 rounded-full px-4 py-1.5 font-mono text-xs">
             <span className="h-2 w-2 animate-pulse-glow rounded-full bg-primary" />
             PhD Researcher · {profile.affiliation}
           </div>
 
-          <h1 className="heading-display mb-6 text-4xl font-bold leading-[1.03] tracking-tight md:text-6xl lg:text-[4.65rem]">
+          <h1 className="heading-display mb-5 text-4xl font-bold leading-[1.04] tracking-tight md:text-5xl lg:text-[3.95rem] xl:text-[4.25rem]">
             {profile.name}
             <br />
             <span className="text-gradient">{profile.altName}</span>
@@ -55,7 +55,7 @@ export const Hero = () => {
             <span className="text-foreground/80">Beijing, China</span>
           </p>
 
-          <div className="mb-10 flex flex-wrap gap-3">
+          <div className="mb-9 flex flex-wrap gap-3">
             <Button
               asChild
               size="lg"
@@ -105,7 +105,7 @@ export const Hero = () => {
             </Button>
           </div>
 
-          <div className="grid max-w-3xl grid-cols-2 gap-4 border-t border-border/60 pt-6 md:grid-cols-4">
+          <div className="grid max-w-2xl grid-cols-2 gap-4 border-t border-border/60 pt-6 md:grid-cols-4">
             <div>
               <div className="font-display text-2xl font-bold text-gradient md:text-3xl">
                 10+
@@ -143,12 +143,12 @@ export const Hero = () => {
             </div>
           </div>
 
-          <div className="mt-6 flex flex-wrap items-center gap-3 border-t border-border/40 pt-5">
+          <div className="mt-5 max-w-2xl border-t border-border/40 pt-5">
             <SiteReactions />
           </div>
         </div>
 
-        <div className="relative mx-auto animate-scale-in lg:mx-0">
+        <div className="relative mx-auto flex animate-scale-in flex-col items-center lg:mx-0">
           <div className="absolute -inset-4 animate-pulse-glow rounded-full bg-gradient-accent opacity-40 blur-3xl" />
 
           <div className="glow animate-float relative h-64 w-64 overflow-hidden rounded-full border-2 border-primary/30 md:h-80 md:w-80">
