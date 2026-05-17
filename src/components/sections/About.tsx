@@ -53,7 +53,7 @@ export const About = () => (
             rel="noreferrer"
             className="text-cyan-300 underline underline-offset-4 hover:text-cyan-200"
           >
-            Prof. Xiaoli Lian.
+            Prof. Xiaoli Lian
          </a>
           . My research focuses on building{" "}
           <strong>uncertainty-aware and trustworthy AI systems</strong> that can
