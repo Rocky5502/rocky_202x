@@ -272,6 +272,7 @@ export const timeline = [
     when: "Ongoing",
     title: "Founders AGI · 文浩AGI",
     where: "Independent initiative",
+    link: "https://www.linkedin.com/company/foundersagi/?viewAsMember=true",
     desc: "Applied generative intelligence and research entrepreneurship.",
   },
 
