@@ -29,7 +29,8 @@ export const About = () => (
     id="about"
     eyebrow="01 · About"
     title="Building AI that engineers, scientists, and society can trust."
-    subtitle="Doctoral researcher at Beihang University working at the intersection of large language models, software engineering, and the science of reliable, uncertainty-aware AI."
+    subtitle="Doctoral researcher at Beihang University working at the intersection of large language models, software engineering, and the science of reliable, fairness
+ uncertainty-aware AI."
   >
     <div className="grid lg:grid-cols-[1.4fr_1fr] gap-10 lg:gap-16 items-start">
       <div className="space-y-5 text-base md:text-lg leading-relaxed text-foreground/85">
