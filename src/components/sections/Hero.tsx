@@ -38,7 +38,7 @@ export const Hero = () => {
             PhD Researcher · {profile.affiliation}
           </div>
 
-          <h1 className="heading-display mb-5 text-4xl font-bold leading-[1.04] tracking-tight md:text-5xl lg:text-[3.95rem] xl:text-[4.25rem]">
+          <h1 className="heading-display mb-5 text-3xl font-bold leading-[1.04] tracking-tight md:text-4xl lg:text-[3.25rem] xl:text-[3.5rem]">
             {profile.name}
             <br />
             <span className="text-gradient">{profile.altName}</span>
@@ -173,6 +173,10 @@ export const Hero = () => {
             <div className="glass flex items-center gap-2 rounded-full px-4 py-2 text-sm text-foreground/70">
               <MapPin className="h-4 w-4" />
               Beijing, China 🇨🇳
+            </div>
+
+            <div className="mt-2 border-t border-border/40 pt-4">
+              <SiteReactions />
             </div>
           </div>
         </div>
