@@ -142,6 +142,10 @@ export const Hero = () => {
               </div>
             </div>
           </div>
+
+          <div className="mt-6 flex flex-wrap items-center gap-3 border-t border-border/40 pt-5">
+            <SiteReactions />
+          </div>
         </div>
 
         <div className="relative mx-auto animate-scale-in lg:mx-0">
