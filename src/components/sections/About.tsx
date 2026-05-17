@@ -34,9 +34,27 @@ export const About = () => (
     <div className="grid lg:grid-cols-[1.4fr_1fr] gap-10 lg:gap-16 items-start">
       <div className="space-y-5 text-base md:text-lg leading-relaxed text-foreground/85">
         <p>
-          I am <strong>Chandan Kumar Sah</strong> — known professionally as{" "}
-          <strong>Rocky 文浩</strong> — a PhD researcher at the{" "}
-          <em>Software Engineering Institute, Beihang University</em>. My research
+         I am <strong>Chandan Kumar Sah</strong> — professionally known as{" "}
+          <strong>Rocky 文浩</strong> — a Ph.D. researcher at the{" "}
+          <em>School of Computer Science and Engineering, Beihang University</em>,
+          supervised by{" "}
+          <a
+            href="https://shi.buaa.edu.cn/06453/en/yjgk/21897/list/index.htm"
+            target="_blank"
+            rel="noreferrer"
+            className="text-cyan-300 underline underline-offset-4 hover:text-cyan-200"
+          >
+            Prof. Li Zhang
+          </a>{" "}
+          and{" "}
+          <a
+            href="https://scse.buaa.edu.cn/info/1389/10618.htm"
+            target="_blank"
+            rel="noreferrer"
+            className="text-cyan-300 underline underline-offset-4 hover:text-cyan-200"
+          >
+            Prof. Xiaoli Lian
+          </a> My research
           program develops the foundations of <strong>uncertainty-aware language
           models</strong> and the systems that turn them into{" "}
           <strong>trustworthy software intelligence</strong>: code generation
