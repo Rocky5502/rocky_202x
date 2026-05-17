@@ -62,7 +62,13 @@ export const Publications = () => {
                   )}
                 </div>
                 <h3 className="font-display text-lg md:text-xl font-semibold leading-snug mb-2 group-hover:text-gradient transition-all">
-                  {p.title}
+                  {p.link ? (
+                    <a href={p.link} target="_blank" rel="noopener noreferrer" className="hover:underline">
+                      {p.title}
+                    </a>
+                  ) : (
+                    p.title
+                  )}
                 </h3>
                 {p.venue && (
                   <p className="text-sm text-muted-foreground italic mb-4">{p.venue}</p>
