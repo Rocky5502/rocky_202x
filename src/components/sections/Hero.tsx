@@ -4,6 +4,7 @@ import {
   Github,
   Mail,
   GraduationCap,
+  MapPin,
 } from "lucide-react";
 
 import heroBg from "@/assets/hero-bg.jpg";
@@ -108,7 +109,6 @@ export const Hero = () => {
               <div className="font-display text-2xl font-bold text-gradient md:text-3xl">
                 10+
               </div>
-
               <div className="mt-1 text-[11px] uppercase tracking-wider text-muted-foreground">
                 Research Papers
               </div>
@@ -118,7 +118,6 @@ export const Hero = () => {
               <div className="font-display text-2xl font-bold text-gradient md:text-3xl">
                 6+
               </div>
-
               <div className="mt-1 text-[11px] uppercase tracking-wider text-muted-foreground">
                 Top-Tier Reviewer Roles
               </div>
@@ -128,7 +127,6 @@ export const Hero = () => {
               <div className="font-display text-2xl font-bold text-gradient md:text-3xl">
                 ECIR&apos;26
               </div>
-
               <div className="mt-1 text-[11px] uppercase tracking-wider text-muted-foreground">
                 Outstanding Reviewer
               </div>
@@ -138,9 +136,8 @@ export const Hero = () => {
               <div className="font-display text-2xl font-bold text-gradient md:text-3xl">
                 Open
               </div>
-
               <div className="mt-1 text-[11px] uppercase tracking-wider text-muted-foreground">
-                Academic &amp; Industry Opportunities
+                Academia &amp; Industry
               </div>
             </div>
           </div>
@@ -157,6 +154,21 @@ export const Hero = () => {
               height={768}
               className="h-full w-full object-cover"
             />
+          </div>
+
+          <div className="mt-6 flex flex-col items-center gap-3">
+            <a
+              href="mailto:sahchandan98@buaa.edu.cn"
+              className="glass flex items-center gap-2 rounded-full px-4 py-2 text-sm text-foreground/80 transition hover:text-cyan-300"
+            >
+              <Mail className="h-4 w-4" />
+              sahchandan98@buaa.edu.cn
+            </a>
+
+            <div className="glass flex items-center gap-2 rounded-full px-4 py-2 text-sm text-foreground/70">
+              <MapPin className="h-4 w-4" />
+              Beijing, China 🇨🇳
+            </div>
           </div>
         </div>
       </div>
