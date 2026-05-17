@@ -43,9 +43,9 @@ export const Hero = () => {
               {profile.name}
             </h1>
 
-            <p className="mt-3 font-display text-2xl font-bold leading-none tracking-tight text-gradient md:text-3xl lg:text-[2.45rem] xl:text-[2.7rem]">
-              {profile.altName}
-            </p>
+            <p className="mt-3 font-display text-lg font-semibold leading-none tracking-[0.02em] text-gradient md:text-2xl lg:text-[2rem]">
+  {profile.altName}
+</p>
           </div>
 
           <p className="mb-3 max-w-2xl text-lg font-medium text-foreground/90 md:text-xl">
