@@ -26,6 +26,10 @@ const uncertaintyCourse = {
   format: "10–12 Lectures · Research-Oriented · YouTube Series",
   outcome:
     "By the end of this course, learners will understand how to measure, interpret, propagate, and mitigate uncertainty in modern large language models.",
+  philosophy:
+  "Course philosophy: not just how LLMs work, but how to build AI systems that know their limits.",
+footer:
+  "Coming soon — each lecture will be linked to a dedicated YouTube video once published.",
   lectures: [
     {
       no: "01",
@@ -134,6 +138,10 @@ const softwareEngineeringCourse = {
   format: "10–12 Lectures · Research-Oriented · YouTube Series",
   outcome:
     "By the end of this course, learners will understand how modern AI systems generate, retrieve, repair, test, and reason about software — and how to build reliable AI coding agents for real-world repositories.",
+  philosophy:
+  "Course philosophy: not just how AI writes code, but how to build software intelligence that engineers can trust.",
+footer:
+  "Coming soon — this course will connect research papers, coding agents, OpenCoder-style systems, and real-world software engineering practice.",
   lectures: [
     {
       no: "01",
@@ -242,6 +250,10 @@ const deepLearningCourse = {
   format: "10–12 Lectures · Conceptual + Mathematical + Practical YouTube Series",
   outcome:
     "By the end of this course, learners will understand the core foundations of deep learning, how modern neural systems are trained, why they succeed, where they fail, and how to build more reliable, fair, and uncertainty-aware AI models.",
+  philosophy:
+  "Course philosophy: not just how neural networks learn, but how to design deep learning systems that are reliable, fair, and responsible.",
+footer:
+  "Coming soon — this course will build from foundations to transformers, trustworthy AI, and real-world deployment.",
   lectures: [
     {
       no: "01",
@@ -613,17 +625,15 @@ const RockyLectures = () => {
                 </a>
               ))}
             </div>
+<div className="mt-10 rounded-3xl border border-cyan-400/20 bg-cyan-400/10 p-6 text-center">
+  <p className="text-lg font-semibold text-foreground">
+    {selectedCourse.philosophy}
+  </p>
 
-            <div className="mt-10 rounded-3xl border border-cyan-400/20 bg-cyan-400/10 p-6 text-center">
-              <p className="text-lg font-semibold text-foreground">
-                Course philosophy: not just “how LLMs work,” but how to build AI
-                systems that know their limits.
-              </p>
-
-              <p className="mt-2 text-sm text-muted-foreground">
-                Coming soon.
-              </p>
-            </div>
+  <p className="mt-2 text-sm text-muted-foreground">
+    {selectedCourse.footer}
+  </p>
+</div>
           </div>
         </div>
       )}
