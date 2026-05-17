@@ -68,12 +68,28 @@ export const Publications = () => {
                   <p className="text-sm text-muted-foreground italic mb-4">{p.venue}</p>
                 )}
                 <div className="flex flex-wrap gap-2">
-                  <Button size="sm" variant="outline" disabled className="rounded-full">
-                    <FileText className="h-3.5 w-3.5 mr-1.5" /> PDF
-                  </Button>
-                  <Button size="sm" variant="outline" disabled className="rounded-full">
-                    <Link2 className="h-3.5 w-3.5 mr-1.5" /> DOI
-                  </Button>
+                  {p.link ? (
+                    <Button asChild size="sm" variant="outline" className="rounded-full">
+                      <a href={p.link} target="_blank" rel="noopener noreferrer">
+                        <FileText className="h-3.5 w-3.5 mr-1.5" /> Paper
+                      </a>
+                    </Button>
+                  ) : (
+                    <Button size="sm" variant="outline" disabled className="rounded-full">
+                      <FileText className="h-3.5 w-3.5 mr-1.5" /> Paper
+                    </Button>
+                  )}
+                  {p.link ? (
+                    <Button asChild size="sm" variant="outline" className="rounded-full">
+                      <a href={p.link} target="_blank" rel="noopener noreferrer">
+                        <Link2 className="h-3.5 w-3.5 mr-1.5" /> DOI / Link
+                      </a>
+                    </Button>
+                  ) : (
+                    <Button size="sm" variant="outline" disabled className="rounded-full">
+                      <Link2 className="h-3.5 w-3.5 mr-1.5" /> DOI
+                    </Button>
+                  )}
                   <Button size="sm" variant="outline" disabled className="rounded-full">
                     <Code className="h-3.5 w-3.5 mr-1.5" /> Code
                   </Button>

@@ -38,10 +38,10 @@ export const Hero = () => {
             PhD Researcher · {profile.affiliation}
           </div>
 
-          <h1 className="heading-display mb-5 text-3xl font-bold leading-[1.04] tracking-tight md:text-4xl lg:text-[3.25rem] xl:text-[3.5rem]">
+          <h1 className="heading-display mb-5 text-3xl font-bold leading-[1.15] tracking-tight md:text-4xl lg:text-[3.25rem] xl:text-[3.5rem]">
             {profile.name}
             <br />
-            <span className="text-gradient">{profile.altName}</span>
+            <span className="text-gradient inline-block mt-2 md:mt-3">{profile.altName}</span>
           </h1>
 
           <p className="mb-3 max-w-2xl text-lg font-medium text-foreground/90 md:text-xl">
