@@ -38,7 +38,7 @@ export const Hero = () => {
             PhD Researcher · {profile.affiliation}
           </div>
 
-          <h1 className="heading-display mb-6 text-5xl font-bold leading-[1.02] tracking-tight md:text-7xl lg:text-[5.25rem]">
+          <h1 className="heading-display mb-6 text-4xl font-bold leading-[1.03] tracking-tight md:text-6xl lg:text-[4.65rem]">
             {profile.name}
             <br />
             <span className="text-gradient">{profile.altName}</span>
@@ -103,10 +103,6 @@ export const Hero = () => {
                 <ArrowRight className="ml-1 h-4 w-4" />
               </a>
             </Button>
-          </div>
-
-          <div className="mb-8">
-            <SiteReactions />
           </div>
 
           <div className="grid max-w-3xl grid-cols-2 gap-4 border-t border-border/60 pt-6 md:grid-cols-4">
