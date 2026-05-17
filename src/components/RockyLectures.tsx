@@ -125,6 +125,114 @@ const uncertaintyCourse = {
     },
   ],
 };
+const softwareEngineeringCourse = {
+  title: "AI for Software Engineering",
+  subtitle:
+    "A research-driven course on repository-level code generation, retrieval-augmented programming, AI coding agents, uncertainty-aware OpenCoder, and reliable software intelligence.",
+  level: "Graduate / PhD Research Level",
+  status: "Coming Soon",
+  format: "10–12 Lectures · Research-Oriented · YouTube Series",
+  outcome:
+    "By the end of this course, learners will understand how modern AI systems generate, retrieve, repair, test, and reason about software — and how to build reliable AI coding agents for real-world repositories.",
+  lectures: [
+    {
+      no: "01",
+      title: "What Is AI for Software Engineering?",
+      description:
+        "A big-picture introduction to AI for SE: code generation, program repair, testing, software maintenance, developer tools, and the rise of LLM-powered software intelligence.",
+      youtube:
+        "https://www.youtube.com/results?search_query=AI+for+Software+Engineering+lecture",
+    },
+    {
+      no: "02",
+      title: "From Code Completion to Repository-Level Code Generation",
+      description:
+        "Understanding the evolution from autocomplete systems to large language models that reason across files, modules, APIs, dependencies, and whole repositories.",
+      youtube:
+        "https://www.youtube.com/results?search_query=repository+level+code+generation+LLM",
+    },
+    {
+      no: "03",
+      title: "Retrieval-Augmented Coding: Why Context Matters",
+      description:
+        "How retrieval-augmented generation improves code generation by bringing in similar code snippets, repository context, documentation, issue reports, and API knowledge.",
+      youtube:
+        "https://www.youtube.com/results?search_query=retrieval+augmented+code+generation+LLM",
+    },
+    {
+      no: "04",
+      title: "Understanding Repository Context",
+      description:
+        "How AI coding systems understand project structure, call graphs, dependency graphs, naming conventions, coding style, and cross-file relationships.",
+      youtube:
+        "https://www.youtube.com/results?search_query=repository+context+LLM+code+generation",
+    },
+    {
+      no: "05",
+      title: "AI Coding Agents and Tool Use",
+      description:
+        "A deep dive into coding agents that can search, edit, run tests, inspect errors, call tools, and iteratively improve software through agentic workflows.",
+      youtube:
+        "https://www.youtube.com/results?search_query=AI+coding+agents+tool+use+software+engineering",
+    },
+    {
+      no: "06",
+      title: "Uncertainty in AI-Generated Code",
+      description:
+        "Why code LLMs can be overconfident, how uncertainty appears in generated programs, and how models can estimate risk before writing or modifying code.",
+      youtube:
+        "https://www.youtube.com/results?search_query=uncertainty+in+LLM+code+generation",
+    },
+    {
+      no: "07",
+      title: "OpenCoder: Toward Uncertainty-Aware Code Generation",
+      description:
+        "Introducing the idea of OpenCoder: an uncertainty-aware framework for retrieval, generation, verification, and mitigation in repository-level code generation.",
+      youtube:
+        "https://www.youtube.com/results?search_query=uncertainty+aware+code+generation+framework",
+    },
+    {
+      no: "08",
+      title: "Code Verification, Testing, and Self-Repair",
+      description:
+        "How AI-generated code can be evaluated using unit tests, static analysis, execution feedback, self-debugging, program repair, and test-driven generation.",
+      youtube:
+        "https://www.youtube.com/results?search_query=LLM+code+verification+testing+self+repair",
+    },
+    {
+      no: "09",
+      title: "Benchmarking AI for Software Engineering",
+      description:
+        "Understanding benchmarks for code generation, bug fixing, repository-level tasks, software agents, evaluation metrics, and the limits of current testing protocols.",
+      youtube:
+        "https://www.youtube.com/results?search_query=AI+software+engineering+benchmarks+code+generation",
+    },
+    {
+      no: "10",
+      title: "Security, Reliability, and Trustworthy AI Coding",
+      description:
+        "Exploring insecure code generation, hallucinated APIs, hidden bugs, license risks, fairness in developer tools, and safety challenges in AI-assisted programming.",
+      youtube:
+        "https://www.youtube.com/results?search_query=secure+reliable+AI+code+generation+LLM",
+    },
+    {
+      no: "11",
+      title: "Human-AI Collaboration in Software Development",
+      description:
+        "How developers interact with AI tools, when to trust or reject model suggestions, and how future coding assistants can support human creativity and engineering judgment.",
+      youtube:
+        "https://www.youtube.com/results?search_query=human+AI+collaboration+software+engineering+LLM",
+    },
+    {
+      no: "12",
+      title: "The Future of Software Intelligence",
+      description:
+        "A final lecture on the future of AI-native software engineering: autonomous coding agents, uncertainty-aware IDEs, self-evolving repositories, and reliable software intelligence.",
+      youtube:
+        "https://www.youtube.com/results?search_query=future+of+AI+for+software+engineering+coding+agents",
+    },
+  ],
+};
 
 const lectures = [
   {
@@ -139,13 +247,15 @@ const lectures = [
   },
 
   {
-    title: "AI for Software Engineering",
-    description:
-      "Repository-level code generation, retrieval-augmented coding, AI coding agents, uncertainty-aware OpenCoder, and reliable software intelligence.",
-    status: "Coming Soon",
-    category: "Software Engineering",
-    icon: Code2,
-  },
+  title: "AI for Software Engineering",
+  description:
+    "Repository-level code generation, retrieval-augmented coding, AI coding agents, uncertainty-aware OpenCoder, and reliable software intelligence.",
+  status: "Coming Soon",
+  category: "Software Engineering",
+  icon: Code2,
+  featured: true,
+  course: softwareEngineeringCourse,
+},
 
   {
     title: "Deep Learning Fundamentals",
@@ -402,8 +512,7 @@ const RockyLectures = () => {
               </p>
 
               <p className="mt-2 text-sm text-muted-foreground">
-                Replace each YouTube search URL with your real lecture video
-                link once you publish the chapter.
+                Coming soon.
               </p>
             </div>
           </div>
