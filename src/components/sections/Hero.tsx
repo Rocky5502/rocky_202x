@@ -17,7 +17,7 @@ export const Hero = () => {
   return (
     <section
       id="home"
-      className="relative flex min-h-screen items-center overflow-hidden px-6 pb-20 pt-52 md:pt-56 lg:pt-48"
+      className="relative flex min-h-screen items-start overflow-hidden px-6 pb-20 pt-32 md:pt-36 lg:pt-40"
     >
       <div
         className="absolute inset-0 -z-10 opacity-40 dark:opacity-60"
@@ -33,17 +33,17 @@ export const Hero = () => {
 
       <div className="container-narrow grid w-full items-center gap-14 lg:grid-cols-[1.05fr_0.95fr]">
         <div className="max-w-3xl animate-fade-in">
-          <div className="glass mb-5 inline-flex items-center gap-2 rounded-full px-4 py-1.5 font-mono text-xs">
+          <div className="glass mb-4 inline-flex items-center gap-2 rounded-full px-4 py-1.5 font-mono text-xs">
             <span className="h-2 w-2 animate-pulse-glow rounded-full bg-primary" />
             PhD Researcher · {profile.affiliation}
           </div>
 
           <div className="mb-6">
-            <h1 className="heading-display text-4xl font-bold leading-[1.04] tracking-tight md:text-5xl lg:text-[3.75rem] xl:text-[4.1rem]">
+            <h1 className="heading-display max-w-2xl text-3xl font-bold leading-[1.08] tracking-tight md:text-5xl lg:text-[3.2rem] xl:text-[3.45rem]">
               {profile.name}
             </h1>
 
-            <p className="mt-3 font-display text-3xl font-bold leading-none tracking-tight text-gradient md:text-4xl lg:text-[3.1rem] xl:text-[3.35rem]">
+            <p className="mt-3 font-display text-2xl font-bold leading-none tracking-tight text-gradient md:text-3xl lg:text-[2.45rem] xl:text-[2.7rem]">
               {profile.altName}
             </p>
           </div>
@@ -148,7 +148,7 @@ export const Hero = () => {
           </div>
         </div>
 
-        <div className="relative mx-auto flex animate-scale-in flex-col items-center lg:mx-0">
+        <div className="relative mx-auto flex animate-scale-in flex-col items-center lg:mx-0 lg:pt-8">
           <div className="absolute -inset-4 animate-pulse-glow rounded-full bg-gradient-accent opacity-40 blur-3xl" />
 
           <div className="glow animate-float relative h-64 w-64 overflow-hidden rounded-full border-2 border-primary/30 md:h-80 md:w-80">
