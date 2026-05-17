@@ -16,9 +16,9 @@ import { profile, links } from "@/data/site";
 export const Hero = () => {
   return (
     <section
-      id="home"
-      className="relative flex min-h-screen items-start overflow-hidden px-6 pb-20 pt-32 md:pt-36 lg:pt-40"
-    >
+  id="home"
+  className="relative flex min-h-[calc(100vh-96px)] items-center overflow-hidden px-6 pb-20 pt-12 md:pt-16 lg:pt-20"
+>
       <div
         className="absolute inset-0 -z-10 opacity-40 dark:opacity-60"
         style={{
