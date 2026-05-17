@@ -20,7 +20,7 @@ const focus = [
   {
     icon: Users,
     label: "Community",
-    text: "Reviewer for NeurIPS, ICCV, AAAI, TOSEM. ECIR 2026 Outstanding Reviewer.",
+    text: "Reviewer for NeurIPS, CVPR, ICCV, AAAI, TOSEM. ECIR 2026 Outstanding Reviewer.",
   },
 ];
 
@@ -53,35 +53,42 @@ export const About = () => (
             rel="noreferrer"
             className="text-cyan-300 underline underline-offset-4 hover:text-cyan-200"
           >
-            Prof. Xiaoli Lian
-          </a> My research
-          program develops the foundations of <strong>uncertainty-aware language
-          models</strong> and the systems that turn them into{" "}
-          <strong>trustworthy software intelligence</strong>: code generation
-          assistants that know what they don't know, retrieval-augmented
-          reasoning that can abstain, and evaluation methodology that treats
-          calibration as a first-class metric.
+            Prof. Xiaoli Lian.
+         </a>
+          . My research focuses on building{" "}
+          <strong>uncertainty-aware and trustworthy AI systems</strong> that can
+          reason reliably, recognize their limitations, and support real-world
+          decision-making responsibly.
         </p>
+
         <p>
-          I work across the full stack of modern SE and AI research — from{" "}
-          <em>training and post-training</em> of LLMs, to{" "}
-          <em>retrieval-augmented generation</em> and tool use, to{" "}
-          <em>multimodal vision–language</em> systems for autonomy and HD-map
-          updating. A second thread of my work studies{" "}
-          <strong>fairness and personality-aware recommendation</strong>,
-          auditing how LLM recommenders shape what people see, listen to, and
-          believe.
+          My current work explores the intersection of{" "}
+          <strong>large language models, software engineering, retrieval-augmented generation,
+          and multimodal AI systems</strong>. I study how uncertainty propagates
+          through reasoning and retrieval pipelines, how LLMs should abstain
+          when uncertain, and how next-generation AI coding systems can become
+          more reliable, transparent, and human-aligned.
         </p>
+
         <p>
-          Beyond research, I serve the community as a reviewer for{" "}
-          <strong>NeurIPS, ICCV, AAAI, ECIR</strong>, the{" "}
-          <strong>ACM Transactions on Software Engineering and Methodology
-          (TOSEM)</strong>, and <strong>Complex &amp; Intelligent Systems</strong>,
-          and was recognized with the <strong>Outstanding Reviewer Award at
-          ECIR 2026</strong>. I lead student initiatives as an International
-          Student Ambassador and WiDS Beijing Ambassador, mentor across borders,
-          and collaborate widely on the question of how generative intelligence
-          should be deployed responsibly.
+          In parallel, I investigate{" "}
+          <strong>fairness, bias, and personality-aware recommendation systems</strong>,
+          examining how LLM-driven recommender systems influence human behavior,
+          personalization, and information exposure. My broader vision is to
+          advance <strong>AI for Good</strong> by designing intelligent systems
+          that are not only powerful, but also safe, equitable, interpretable,
+          and socially responsible.
+        </p>
+
+        <p>
+          Beyond research, I actively contribute to the international AI
+          community as a reviewer for{" "}
+          <strong>NeurIPS, CVPR, ICCV, AAAI, ECIR</strong>,{" "}
+          <strong>ACM TOSEM</strong>, and{" "}
+          <strong>Complex & Intelligent Systems</strong>. I was honored with the{" "}
+          <strong>Outstanding Reviewer Award at ECIR 2026</strong>, and continue
+          to engage globally through academic leadership, mentoring,
+          international research collaborations, and AI education initiatives.
         </p>
       </div>
 
