@@ -154,6 +154,13 @@ const awardsData = {
       location: "Beijing, China 🇨🇳",
     },
     {
+  title: "Presenter – ICCV 2025 Research Paper",
+  image: `${import.meta.env.BASE_URL}awards/iccv2025.png`,
+  link: "https://iccv.thecvf.com/",
+  issuedBy: "IEEE/CVF International Conference on Computer Vision (ICCV 2025)",
+  location: "Honolulu, Hawaii, USA 🇺🇸",
+},
+    {
       title: "AI Photonics Summer School Completion Certificate",
       image: `${import.meta.env.BASE_URL}awards/ai-photonics2025.png`,
       link: "https://biss.buaa.edu.cn/",
