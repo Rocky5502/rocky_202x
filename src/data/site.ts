@@ -248,6 +248,19 @@ export const talks = [
   year: "2025",
 },
   {
+  title:
+    "Uncertainty Quantification in Machine Learning for Responsible AI",
+  venue:
+    "The 1st International Conference on AI Scientist (ICAIS 2025)",
+  eventDate: "23–24 November 2025",
+  location: "Beijing, China 🇨🇳",
+  type: "International AI Conference Participation",
+  paper:
+    "Uncertainty Quantification in Machine Learning for Responsible AI",
+  link: "https://www.bza.edu.cn/en/detail/b82zccbm09l9xxdccxka4xg9o90jjy60",
+  year: "2025",
+},
+  {
     title: "Understanding Uncertainty in LLMs",
     venue:
       "40th IEEE/ACM International Conference on Automated Software Engineering (ASE 2025)",
