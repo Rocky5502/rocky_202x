@@ -233,7 +233,114 @@ const softwareEngineeringCourse = {
     },
   ],
 };
-
+const deepLearningCourse = {
+  title: "Deep Learning Fundamentals",
+  subtitle:
+    "A Harvard-style research course on neural networks, representation learning, optimization, transformers, trustworthy AI, and modern deep learning systems.",
+  level: "Graduate / Advanced Undergraduate / Research Preparation",
+  status: "Coming Soon",
+  format: "10–12 Lectures · Conceptual + Mathematical + Practical YouTube Series",
+  outcome:
+    "By the end of this course, learners will understand the core foundations of deep learning, how modern neural systems are trained, why they succeed, where they fail, and how to build more reliable, fair, and uncertainty-aware AI models.",
+  lectures: [
+    {
+      no: "01",
+      title: "The Deep Learning Revolution: From Perceptrons to Foundation Models",
+      description:
+        "A historical and conceptual introduction to neural networks, representation learning, deep architectures, and why deep learning transformed modern AI.",
+      youtube:
+        "https://www.youtube.com/results?search_query=deep+learning+fundamentals+lecture+neural+networks",
+    },
+    {
+      no: "02",
+      title: "Mathematical Foundations for Deep Learning",
+      description:
+        "A clear review of vectors, matrices, gradients, probability, optimization, loss functions, and the mathematical language behind neural networks.",
+      youtube:
+        "https://www.youtube.com/results?search_query=mathematics+for+deep+learning+lecture",
+    },
+    {
+      no: "03",
+      title: "Neural Networks from First Principles",
+      description:
+        "Building neural networks layer by layer: neurons, activations, forward propagation, loss computation, and the intuition behind learning.",
+      youtube:
+        "https://www.youtube.com/results?search_query=neural+networks+from+scratch+deep+learning",
+    },
+    {
+      no: "04",
+      title: "Backpropagation and Gradient-Based Learning",
+      description:
+        "Understanding how neural networks learn through backpropagation, gradient descent, chain rule, parameter updates, and optimization dynamics.",
+      youtube:
+        "https://www.youtube.com/results?search_query=backpropagation+gradient+descent+deep+learning+lecture",
+    },
+    {
+      no: "05",
+      title: "Optimization, Generalization, and Overfitting",
+      description:
+        "Why deep models generalize, how overfitting happens, and how regularization, dropout, normalization, early stopping, and data augmentation improve learning.",
+      youtube:
+        "https://www.youtube.com/results?search_query=deep+learning+optimization+generalization+overfitting",
+    },
+    {
+      no: "06",
+      title: "Convolutional Neural Networks and Visual Intelligence",
+      description:
+        "A deep dive into CNNs, feature maps, convolution, pooling, image classification, object detection, and the foundations of computer vision systems.",
+      youtube:
+        "https://www.youtube.com/results?search_query=convolutional+neural+networks+computer+vision+lecture",
+    },
+    {
+      no: "07",
+      title: "Sequence Models: RNNs, LSTMs, and Attention",
+      description:
+        "Understanding sequential learning, recurrent networks, long-range dependencies, attention mechanisms, and the path toward transformer models.",
+      youtube:
+        "https://www.youtube.com/results?search_query=RNN+LSTM+attention+deep+learning+lecture",
+    },
+    {
+      no: "08",
+      title: "Transformers and the Architecture of Modern AI",
+      description:
+        "Exploring self-attention, positional encoding, encoder-decoder architectures, scaling laws, and why transformers power today’s large language models.",
+      youtube:
+        "https://www.youtube.com/results?search_query=transformers+self+attention+deep+learning+lecture",
+    },
+    {
+      no: "09",
+      title: "Representation Learning and Embeddings",
+      description:
+        "How deep models learn meaningful representations for text, images, graphs, users, code, and multimodal data across modern AI systems.",
+      youtube:
+        "https://www.youtube.com/results?search_query=representation+learning+embeddings+deep+learning",
+    },
+    {
+      no: "10",
+      title: "Trustworthy Deep Learning: Fairness, Bias, and Uncertainty",
+      description:
+        "A special lecture on trustworthy AI: how deep models can be biased, overconfident, unfair, or uncertain — and how fairness evaluation, uncertainty quantification, calibration, and responsible AI methods help build safer systems.",
+      youtube:
+        "https://www.youtube.com/results?search_query=trustworthy+deep+learning+fairness+uncertainty+calibration",
+    },
+    {
+      no: "11",
+      title: "Multimodal Deep Learning",
+      description:
+        "Learning from text, images, audio, video, sensors, and structured data through multimodal fusion, contrastive learning, vision-language models, and real-world AI systems.",
+      youtube:
+        "https://www.youtube.com/results?search_query=multimodal+deep+learning+vision+language+models",
+    },
+    {
+      no: "12",
+      title: "Building Deep Learning Systems for the Real World",
+      description:
+        "A final synthesis lecture on deployment, evaluation, robustness, monitoring, failure analysis, AI safety, and the future of deep learning research.",
+      youtube:
+        "https://www.youtube.com/results?search_query=building+real+world+deep+learning+systems",
+    },
+  ],
+};
 const lectures = [
   {
     title: "Uncertainty in Large Language Models",
@@ -257,14 +364,16 @@ const lectures = [
   course: softwareEngineeringCourse,
 },
 
-  {
-    title: "Deep Learning Fundamentals",
-    description:
-      "Neural networks, transformers, representation learning, optimization, and practical deep learning systems for modern AI applications.",
-    status: "Coming Soon",
-    category: "Deep Learning",
-    icon: Cpu,
-  },
+ {
+  title: "Deep Learning Fundamentals",
+  description:
+    "Neural networks, transformers, representation learning, optimization, trustworthy AI, and practical deep learning systems for modern AI applications.",
+  status: "Coming Soon",
+  category: "Deep Learning",
+  icon: Cpu,
+  featured: true,
+  course: deepLearningCourse,
+},
 
   {
     title: "AI Governance & Responsible AI",
