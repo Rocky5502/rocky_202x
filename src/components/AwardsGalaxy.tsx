@@ -272,7 +272,7 @@ const awardsData = {
       title: "Excellent Poster Award",
       image: `${import.meta.env.BASE_URL}awards/poster2024.png`,
       link: "https://www.buaa.edu.cn/",
-      issuedBy: "Beihang University",
+      issuedBy: "International Aerospace Academic Seminar, Beihang University",
       location: "Hangzhou, China 🇨🇳",
     },
     {
