@@ -3,8 +3,7 @@ import {
   doc,
   increment,
   onSnapshot,
-  setDoc,
-  updateDoc,
+  runTransaction,
 } from "firebase/firestore";
 import { Eye, Heart } from "lucide-react";
 import { db } from "@/lib/firebase";
@@ -12,16 +11,10 @@ import { cn } from "@/lib/utils";
 
 const statsRef = doc(db, "siteStats", "homepage");
 
-/**
- * Launch baseline:
- * Website displays baseline + real Firebase count.
- *
- * Example:
- * Firestore views = 10  → website shows 5,510 views
- * Firestore loves = 3   → website shows 803 loved
- */
-const BASELINE_VIEWS = 5500;
-const BASELINE_LOVES = 800;
+// Launch baseline.
+// Website shows: baseline + real Firebase count.
+const BASELINE_VIEWS = 6500;
+const BASELINE_LOVES = 888;
 
 export const SiteReactions = () => {
   const [views, setViews] = useState(0);
@@ -34,26 +27,32 @@ export const SiteReactions = () => {
 
     const initializeCounter = async () => {
       try {
-        // Create document if missing, but never reset existing values.
-        await setDoc(
-          statsRef,
-          {
-            views: 0,
-            loves: 0,
-          },
-          { merge: true }
-        );
-
         const alreadyViewed = localStorage.getItem("rocky_home_viewed");
 
-        // One real view per browser/device.
-        if (!alreadyViewed) {
-          await updateDoc(statsRef, {
-            views: increment(1),
-          });
+        await runTransaction(db, async (transaction) => {
+          const snap = await transaction.get(statsRef);
 
-          localStorage.setItem("rocky_home_viewed", "true");
-        }
+          if (!snap.exists()) {
+            transaction.set(statsRef, {
+              views: alreadyViewed ? 0 : 1,
+              loves: 0,
+            });
+
+            if (!alreadyViewed) {
+              localStorage.setItem("rocky_home_viewed", "true");
+            }
+
+            return;
+          }
+
+          if (!alreadyViewed) {
+            transaction.update(statsRef, {
+              views: increment(1),
+            });
+
+            localStorage.setItem("rocky_home_viewed", "true");
+          }
+        });
 
         if (mounted) {
           setLoved(localStorage.getItem("rocky_loved") === "true");
@@ -65,7 +64,6 @@ export const SiteReactions = () => {
 
     initializeCounter();
 
-    // Real-time Firebase listener.
     const unsubscribe = onSnapshot(
       statsRef,
       (snapshot) => {
@@ -96,8 +94,19 @@ export const SiteReactions = () => {
     if (!ready || loved) return;
 
     try {
-      await updateDoc(statsRef, {
-        loves: increment(1),
+      await runTransaction(db, async (transaction) => {
+        const snap = await transaction.get(statsRef);
+
+        if (!snap.exists()) {
+          transaction.set(statsRef, {
+            views: 0,
+            loves: 1,
+          });
+        } else {
+          transaction.update(statsRef, {
+            loves: increment(1),
+          });
+        }
       });
 
       setLoved(true);
