@@ -14,7 +14,7 @@ const newsItems = [
   link:
     "https://www.linkedin.com/posts/ecir2026-informationretrieval-peerreview-ugcPost-7444362976096194561-mBcj",
   conferenceLink: "https://ecir2026.eu/",
-}
+},
   {
     date: "Apr 2026",
     location: "Seoul, South Korea 🇰🇷",
