@@ -150,6 +150,27 @@ export const publications: Publication[] = [
     contribution: "Co-author",
     link: "https://www.sciencedirect.com/science/article/pii/S2405844024152991",
   },
+  {
+  title:
+    "FairEval: Evaluating Fairness in LLM-Based Recommendations with Personality Awareness",
+  authors: "Chandan Kumar Sah, Xiaoli Lian, Tony Xu, and Li Zhang",
+  venue: "arXiv Preprint",
+  year: "2025",
+  category: "Fairness",
+  status: "Preprint",
+  link: "https://arxiv.org/abs/2504.07801",
+},
+{
+  title:
+    "Advancing Autonomous Vehicle Intelligence: Deep Learning and Multimodal LLM for Traffic Sign Recognition and Robust Lane Detection",
+  authors:
+    "Chandan Kumar Sah, Ankit Kumar Shaw, Xiaoli Lian, Arsalan Shahid Baig, Tuopu Wen, Kun Jiang, Mengmeng Yang, and Diange Yang",
+  venue: "arXiv Preprint",
+  year: "2025",
+  category: "Multimodal",
+  status: "Preprint",
+  link: "https://arxiv.org/abs/2503.06313",
+},
 ];
 
 export const projects = [
