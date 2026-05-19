@@ -3,17 +3,25 @@ import { Calendar, ExternalLink, Flame, X } from "lucide-react";
 
 const newsItems = [
   {
-  date: "Mar 2026",
+  date: "Apr 2026",
   location: "Delft, Netherlands 🇳🇱",
-  tag: "Outstanding Reviewer",
-  title: "Recognized with the Outstanding Reviewer Award at ECIR 2026",
+  tag: "Reviewer Recognition",
+  title: "Outstanding Reviewer Award ECIR 2026",
   summary:
-    "Honored to be recognized as an Outstanding Reviewer for the 48th European Conference on Information Retrieval (ECIR 2026).",
+    "Recognized as an Outstanding Reviewer for contributions to the peer-review process of the 48th European Conference on Information Retrieval.",
   article:
-    "I am truly honored to be recognized with the Outstanding Reviewer Award at ECIR 2026, the 48th European Conference on Information Retrieval, held in Delft, The Netherlands. As part of the main conference reviewing community, I contributed to the peer-review process by evaluating research submissions and supporting the academic quality of one of the leading conferences in information retrieval. This recognition is meaningful to me because peer review is not only a service responsibility, but also a way to help strengthen research integrity, academic dialogue, and the global AI/IR community.",
-  link:
-    "https://www.linkedin.com/posts/ecir2026-informationretrieval-peerreview-ugcPost-7444362976096194561-mBcj",
-  conferenceLink: "https://ecir2026.eu/",
+    "I am honored to be recognized with the Outstanding Reviewer Award at ECIR 2026, the 48th European Conference on Information Retrieval, held in Delft, The Netherlands. Serving as a reviewer for the main conference was a meaningful opportunity to contribute to the academic community, support rigorous peer review, and help strengthen the quality of research in information retrieval, AI, and related fields. This recognition reflects my continued commitment to research service, academic integrity, and the global scientific community.",
+  links: [
+    {
+      label: "LinkedIn Announcement",
+      url: "https://www.linkedin.com/posts/ecir2026-informationretrieval-peerreview-ugcPost-7444362976096194561-mBcj",
+    },
+    {
+      label: "ECIR 2026 Conference",
+      url: "https://ecir2026.eu/",
+    },
+  ],
+},
 },
   {
     date: "Apr 2026",
