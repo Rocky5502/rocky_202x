@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import {
   doc,
+  getDoc,
   increment,
   onSnapshot,
   setDoc,
@@ -12,31 +13,34 @@ import { cn } from "@/lib/utils";
 
 const statsRef = doc(db, "siteStats", "homepage");
 
-// Change these if you want a launch baseline.
-// Set both to 0 if you want only real Firebase numbers.
+// Launch baseline.
+// Website will display: baseline + real Firebase count.
 const BASELINE_VIEWS = 5500;
 const BASELINE_LOVES = 800;
 
 export const SiteReactions = () => {
-  const [views, setViews] = useState(0);
-  const [loves, setLoves] = useState(0);
+  const [views, setViews] = useState<number>(0);
+  const [loves, setLoves] = useState<number>(0);
   const [loved, setLoved] = useState(false);
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
     const initStats = async () => {
       try {
-        await setDoc(
-          statsRef,
-          {
+        const snap = await getDoc(statsRef);
+
+        // Create document only if it does not exist.
+        // This will NOT reset your old Firebase numbers.
+        if (!snap.exists()) {
+          await setDoc(statsRef, {
             views: 0,
             loves: 0,
-          },
-          { merge: true }
-        );
+          });
+        }
 
         const alreadyViewed = localStorage.getItem("rocky_home_viewed");
 
+        // Count one view per browser/device.
         if (!alreadyViewed) {
           await updateDoc(statsRef, {
             views: increment(1),
@@ -53,11 +57,13 @@ export const SiteReactions = () => {
 
     initStats();
 
+    // Real-time listener.
     const unsubscribe = onSnapshot(
       statsRef,
       (snap) => {
         if (snap.exists()) {
           const data = snap.data();
+
           setViews((data.views as number) || 0);
           setLoves((data.loves as number) || 0);
         }
