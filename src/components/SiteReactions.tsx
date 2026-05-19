@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import {
   doc,
-  getDoc,
   increment,
+  onSnapshot,
   setDoc,
   updateDoc,
 } from "firebase/firestore";
@@ -12,40 +12,28 @@ import { cn } from "@/lib/utils";
 
 const statsRef = doc(db, "siteStats", "homepage");
 
-// Launch baseline / previous audience count.
-// New Firebase views and loves will be added on top of these.
-const BASELINE_VIEWS = 3500;
-const BASELINE_LOVES = 666;
+// Change these if you want a launch baseline.
+// Set both to 0 if you want only real Firebase numbers.
+const BASELINE_VIEWS = 5500;
+const BASELINE_LOVES = 800;
 
 export const SiteReactions = () => {
-  const [views, setViews] = useState<number>(0);
-  const [loves, setLoves] = useState<number>(0);
+  const [views, setViews] = useState(0);
+  const [loves, setLoves] = useState(0);
   const [loved, setLoved] = useState(false);
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    const loadStats = async () => {
+    const initStats = async () => {
       try {
-        const snap = await getDoc(statsRef);
-
-        if (!snap.exists()) {
-          await setDoc(statsRef, {
-            views: 1,
+        await setDoc(
+          statsRef,
+          {
+            views: 0,
             loves: 0,
-          });
-
-          setViews(1);
-          setLoves(0);
-          localStorage.setItem("rocky_home_viewed", "true");
-          setLoved(localStorage.getItem("rocky_loved") === "true");
-          setReady(true);
-          return;
-        }
-
-        const data = snap.data();
-
-        let currentViews = (data.views as number) || 0;
-        const currentLoves = (data.loves as number) || 0;
+          },
+          { merge: true }
+        );
 
         const alreadyViewed = localStorage.getItem("rocky_home_viewed");
 
@@ -54,21 +42,35 @@ export const SiteReactions = () => {
             views: increment(1),
           });
 
-          currentViews += 1;
           localStorage.setItem("rocky_home_viewed", "true");
         }
 
-        setViews(currentViews);
-        setLoves(currentLoves);
         setLoved(localStorage.getItem("rocky_loved") === "true");
       } catch (err) {
-        console.error("Failed to load site stats:", err);
-      } finally {
-        setReady(true);
+        console.error("Failed to initialize site stats:", err);
       }
     };
 
-    loadStats();
+    initStats();
+
+    const unsubscribe = onSnapshot(
+      statsRef,
+      (snap) => {
+        if (snap.exists()) {
+          const data = snap.data();
+          setViews((data.views as number) || 0);
+          setLoves((data.loves as number) || 0);
+        }
+
+        setReady(true);
+      },
+      (err) => {
+        console.error("Failed to listen to site stats:", err);
+        setReady(true);
+      }
+    );
+
+    return () => unsubscribe();
   }, []);
 
   const handleLove = async () => {
@@ -79,7 +81,6 @@ export const SiteReactions = () => {
         loves: increment(1),
       });
 
-      setLoves((prev) => prev + 1);
       setLoved(true);
       localStorage.setItem("rocky_loved", "true");
     } catch (err) {
