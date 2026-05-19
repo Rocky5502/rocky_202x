@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import {
   doc,
-  getDoc,
   increment,
   onSnapshot,
   setDoc,
@@ -13,34 +12,41 @@ import { cn } from "@/lib/utils";
 
 const statsRef = doc(db, "siteStats", "homepage");
 
-// Launch baseline.
-// Website will display: baseline + real Firebase count.
+/**
+ * Launch baseline:
+ * Website displays baseline + real Firebase count.
+ *
+ * Example:
+ * Firestore views = 10  → website shows 5,510 views
+ * Firestore loves = 3   → website shows 803 loved
+ */
 const BASELINE_VIEWS = 5500;
 const BASELINE_LOVES = 800;
 
 export const SiteReactions = () => {
-  const [views, setViews] = useState<number>(0);
-  const [loves, setLoves] = useState<number>(0);
+  const [views, setViews] = useState(0);
+  const [loves, setLoves] = useState(0);
   const [loved, setLoved] = useState(false);
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    const initStats = async () => {
-      try {
-        const snap = await getDoc(statsRef);
+    let mounted = true;
 
-        // Create document only if it does not exist.
-        // This will NOT reset your old Firebase numbers.
-        if (!snap.exists()) {
-          await setDoc(statsRef, {
+    const initializeCounter = async () => {
+      try {
+        // Create document if missing, but never reset existing values.
+        await setDoc(
+          statsRef,
+          {
             views: 0,
             loves: 0,
-          });
-        }
+          },
+          { merge: true }
+        );
 
         const alreadyViewed = localStorage.getItem("rocky_home_viewed");
 
-        // Count one view per browser/device.
+        // One real view per browser/device.
         if (!alreadyViewed) {
           await updateDoc(statsRef, {
             views: increment(1),
@@ -49,38 +55,45 @@ export const SiteReactions = () => {
           localStorage.setItem("rocky_home_viewed", "true");
         }
 
-        setLoved(localStorage.getItem("rocky_loved") === "true");
-      } catch (err) {
-        console.error("Failed to initialize site stats:", err);
+        if (mounted) {
+          setLoved(localStorage.getItem("rocky_loved") === "true");
+        }
+      } catch (error) {
+        console.error("Failed to initialize site counter:", error);
       }
     };
 
-    initStats();
+    initializeCounter();
 
-    // Real-time listener.
+    // Real-time Firebase listener.
     const unsubscribe = onSnapshot(
       statsRef,
-      (snap) => {
-        if (snap.exists()) {
-          const data = snap.data();
+      (snapshot) => {
+        if (!mounted) return;
 
-          setViews((data.views as number) || 0);
-          setLoves((data.loves as number) || 0);
+        if (snapshot.exists()) {
+          const data = snapshot.data();
+
+          setViews(Number(data.views || 0));
+          setLoves(Number(data.loves || 0));
         }
 
         setReady(true);
       },
-      (err) => {
-        console.error("Failed to listen to site stats:", err);
-        setReady(true);
+      (error) => {
+        console.error("Failed to listen to site counter:", error);
+        if (mounted) setReady(true);
       }
     );
 
-    return () => unsubscribe();
+    return () => {
+      mounted = false;
+      unsubscribe();
+    };
   }, []);
 
   const handleLove = async () => {
-    if (loved || !ready) return;
+    if (!ready || loved) return;
 
     try {
       await updateDoc(statsRef, {
@@ -89,8 +102,8 @@ export const SiteReactions = () => {
 
       setLoved(true);
       localStorage.setItem("rocky_loved", "true");
-    } catch (err) {
-      console.error("Failed to update love reaction:", err);
+    } catch (error) {
+      console.error("Failed to update love reaction:", error);
     }
   };
 
@@ -98,7 +111,7 @@ export const SiteReactions = () => {
   const displayLoves = BASELINE_LOVES + loves;
 
   return (
-    <div className="flex flex-wrap items-center gap-3">
+    <div className="flex flex-wrap items-center justify-center gap-3">
       <div className="glass flex items-center gap-2 rounded-full px-4 py-2 text-sm text-foreground/80 transition hover:scale-[1.03]">
         <Eye className="h-4 w-4 text-primary" />
 
@@ -115,7 +128,7 @@ export const SiteReactions = () => {
         disabled={!ready || loved}
         aria-pressed={loved}
         className={cn(
-          "glass group flex items-center gap-2 rounded-full px-4 py-2 text-sm transition",
+          "glass group flex items-center gap-2 rounded-full px-4 py-2 text-sm transition disabled:cursor-default",
           loved
             ? "text-pink-400"
             : "text-foreground/80 hover:scale-[1.03] hover:text-pink-400"
