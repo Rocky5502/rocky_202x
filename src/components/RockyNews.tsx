@@ -22,7 +22,6 @@ const newsItems = [
     },
   ],
 },
-},
   {
     date: "Apr 2026",
     location: "Seoul, South Korea 🇰🇷",
