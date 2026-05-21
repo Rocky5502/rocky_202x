@@ -425,8 +425,8 @@ export const timeline = [
   {
     when: "Ongoing",
     title: "Founders AGI · 文浩AGI",
-    where: "Independent initiative",
-    link: "https://www.linkedin.com/company/foundersagi/?viewAsMember=true",
+    where: "Independent initiative, 'Building safe Artificial General Intelligence for humanity.'",
+    link: "https://founders-agi.lovable.app/",
     desc: "Applied generative intelligence and research entrepreneurship.",
   },
 
