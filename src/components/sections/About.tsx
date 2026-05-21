@@ -5,22 +5,22 @@ const focus = [
   {
     icon: ShieldCheck,
     label: "Reliable AI",
-    text: "Calibration, abstention, and uncertainty quantification for LLM reasoning.",
+    text: "Calibration, abstention, uncertainty propagation, and trustworthy reasoning for LLM systems.",
   },
   {
     icon: Cpu,
-    label: "AI for SE",
-    text: "Retrieval-augmented code generation, repair, and developer assistance.",
+    label: "AI for Software Engineering",
+    text: "Retrieval-augmented code generation, repair, uncertainty-aware coding agents, and developer assistance.",
   },
   {
     icon: Sparkles,
-    label: "Fair Recommenders",
-    text: "Personality-aware, bias-audited LLM recommendation systems.",
+    label: "Fair & Responsible AI",
+    text: "Fairness, bias, personality-aware recommendation, and trustworthy evaluation of LLM-driven systems.",
   },
   {
     icon: Users,
-    label: "Community",
-    text: "Reviewer for NeurIPS, CVPR, ICCV, AAAI, TOSEM. ECIR 2026 Outstanding Reviewer.",
+    label: "Research Community",
+    text: "Reviewer for NeurIPS, CVPR, ICCV, AAAI, ECIR, ACM TOSEM, and ECIR 2026 Outstanding Reviewer.",
   },
 ];
 
@@ -79,10 +79,13 @@ export const About = () => (
           Beyond research, I actively contribute to the international AI and
           software engineering community as a reviewer for{" "}
           <strong>NeurIPS, CVPR, ICCV, AAAI, ECIR</strong>,{" "}
-          <strong>ACM Transactions on Software Engineering and Methodology</strong>{" "}
-          and <strong>Complex &amp; Intelligent Systems</strong>. I was honored
-          with the <strong>Outstanding Reviewer Award at ECIR 2026</strong>, and
-          continue to engage globally through academic leadership, mentoring,
+          <strong>
+            ACM Transactions on Software Engineering and Methodology
+          </strong>
+          , and <strong>Complex &amp; Intelligent Systems</strong>. I was
+          honored with the{" "}
+          <strong>Outstanding Reviewer Award at ECIR 2026</strong>, and continue
+          to engage globally through academic leadership, mentoring,
           international research collaborations, and AI education initiatives.
         </p>
       </div>
