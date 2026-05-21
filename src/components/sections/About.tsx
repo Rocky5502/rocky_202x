@@ -39,23 +39,13 @@ export const About = () => (
           <strong>Rocky 文浩</strong> — a Ph.D. researcher at the{" "}
           <em>School of Computer Science and Engineering, Beihang University</em>,
           supervised by{" "}
-          <a
-            href="https://shi.buaa.edu.cn/06453/en/yjgk/21897/list/index.htm"
-            target="_blank"
-            rel="noreferrer"
-            className="text-cyan-300 underline underline-offset-4 hover:text-cyan-200"
-          >
-            Prof. Li Zhang
-          </a>{" "}
-          and{" "}
-          <a
-            href="https://scse.buaa.edu.cn/info/1389/10618.htm"
-            target="_blank"
-            rel="noreferrer"
-            className="text-cyan-300 underline underline-offset-4 hover:text-cyan-200"
-          >
-            Prof. Xiaoli Lian
-         </a>
+          <span className="font-semibold text-cyan-600 dark:text-cyan-300">
+  Prof. Li Zhang
+</span>{" "}
+and{" "}
+<span className="font-semibold text-cyan-600 dark:text-cyan-300">
+  Prof. Xiaoli Lian
+</span>
           . My research focuses on building{" "}
           <strong>uncertainty-aware and trustworthy AI systems</strong> that can
           reason reliably, recognize their limitations, and support real-world
