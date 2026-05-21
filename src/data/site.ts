@@ -197,7 +197,7 @@ export const projects = [
   {
     name: "Founders AGI · 文浩AGI",
     desc: "Independent research and entrepreneurial initiative exploring applied generative intelligence.",
-    link; "https://founders-agi.lovable.app/",
+    link: "https://founders-agi.lovable.app/",
     tags: ["AGI", "Applied"],
   },
 ];
@@ -428,8 +428,7 @@ export const timeline = [
     title: "Founders AGI · 文浩AGI",
     where: "Independent initiative, ",
     link: "https://founders-agi.lovable.app/",
-    desc: "Applied generative intelligence and research entrepreneurship.
-      'Building safe Artificial General Intelligence for humanity.'",
+    desc: "Applied generative intelligence and research entrepreneurship. 'Building safe Artificial General Intelligence for humanity.'",
   },
 
 ];
