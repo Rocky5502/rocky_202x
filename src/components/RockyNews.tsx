@@ -20,6 +20,28 @@ type NewsItem = {
 
 const newsItems: NewsItem[] = [
   {
+  date: "May 2026",
+  location: "Beijing, China 🇨🇳",
+  tag: "CSC Alumni Feature",
+  title: "Featured as a CSC Alumni Story by China Scholarship Council",
+  summary:
+    "Featured by CSC Alumni in a story highlighting my journey from Nepal to China and my research path in artificial intelligence at Beihang University.",
+  article:
+    "In May 2026, I was honored to be featured by CSC Alumni / China Scholarship Council in a story titled 'From Nepal to China: A Young Scholar Building Cultural Bridges through Artificial Intelligence Innovation and Research.' The feature reflects my academic journey from Nepal to Beihang University, where I completed my master’s degree in Software Engineering and began my Ph.D. research in artificial intelligence, large language models, and trustworthy AI. This story is deeply meaningful to me because it connects research, education, culture, and international friendship — showing how scholarship can become a bridge between countries, communities, and future innovation.",
+  link: "https://mp.weixin.qq.com/s/owOH16o69CrsGUlIp9TDmQ",
+},
+{
+  date: "May 2026",
+  location: "Beijing, China 🇨🇳",
+  tag: "Book Feature",
+  title: "Featured in Beihang International Students Book Chapter",
+  summary:
+    "Featured in the Beihang University book 'Study at Beihang, Light the Dream', launched at the 11th Beihang University International Cultural Festival.",
+  article:
+    "In May 2026, I was proud to be featured in the book 'Study at Beihang, Light the Dream: Inspiring Stories of Outstanding International Students', published by Beihang University Press. The book was launched during the 11th Beihang University International Cultural Festival in Beijing, China. Being included in this book as a Nepalese international student is a very special milestone in my journey. My chapter shares my academic path, research work in large language models, cross-cultural experience in China, and belief that education can connect people across cultures. I am especially proud that my story represents Nepal, Beihang, and the power of international education to light the dreams of future students.",
+  link: "https://ev.buaa.edu.cn/",
+},
+  {
     date: "April 2026",
     location: "Delft, Netherlands 🇳🇱",
     tag: "Reviewer Recognition",
