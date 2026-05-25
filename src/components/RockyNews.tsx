@@ -34,7 +34,7 @@ const newsItems: NewsItem[] = [
   date: "May 2026",
   location: "Beijing, China 🇨🇳",
   tag: "Book Feature",
-  title: "Featured in Beihang International Students Book Chapter",
+  title: "Featured in Beihang University’s Outstanding International Students Book",
   summary:
     "Featured in the Beihang University book 'Study at Beihang, Light the Dream', launched at the 11th Beihang University International Cultural Festival.",
   article:
