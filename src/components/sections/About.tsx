@@ -48,7 +48,7 @@ export const About = () => {
         <div className="space-y-5 text-base leading-relaxed text-foreground/85 md:text-lg">
           <p>
             I am <strong>Chandan Kumar Sah</strong> — professionally known as{" "}
-            <strong>Rocky 文浩</strong> — a Ph.D. researcher at the{" "}
+            <strong>Rocky 文浩</strong> — a Doctoral Researcher at the{" "}
             <em>
               School of Computer Science and Engineering, Beihang University
             </em>
