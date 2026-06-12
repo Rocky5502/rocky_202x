@@ -8,6 +8,18 @@ import {
 } from "lucide-react";
 
 const schools = [
+    {
+    when: "June 2026",
+    title:
+      "Critical Approaches to AI Policy: Digital Politics Summer School 2026",
+    where:
+      "Digital Policy Observatory · CDEP, Loyola University Chicago × DISC, Manchester Metropolitan University · Online",
+    desc:
+      "Interdisciplinary summer school examining critical and global approaches to generative AI policy, including accountability, dignity, sustainability, equity, trust, AI literacy, and engagement with policymakers.",
+    link: "https://digitalsociety.mmu.ac.uk/digital-policy-observatory/",
+    type: "summer",
+  },
+  
   {
     when: "September 2025",
     title: "ACM Europe School on Recommender Systems",
