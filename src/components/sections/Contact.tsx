@@ -58,27 +58,6 @@ const cards: ContactCard[] = [
     actionLabel: "Open GitHub",
   },
   {
-    name: "X",
-    href: links.x,
-    icon: () => (
-      <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor">
-        <path d="M18.244 2H21.5l-7.5 8.57L22.5 22h-6.844l-5.36-7.012L4.2 22H1l8.04-9.183L1.5 2h7.02l4.847 6.4L18.244 2zm-1.2 18h1.873L7.06 4H5.05l11.994 16z" />
-      </svg>
-    ),
-    type: "link",
-    description:
-      "Follow my short updates on AI, research, software engineering, and academic life.",
-    actionLabel: "Open X Profile",
-  },
-  {
-    name: "WeChat",
-    href: "#wechat",
-    icon: MessageCircle,
-    type: "wechat",
-    description:
-      "Add me on WeChat for academic discussion, Beihang connection, or collaboration.",
-  },
-  {
     name: "ResearchGate",
     href: links.researchgate,
     icon: BookOpen,
