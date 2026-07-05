@@ -15,6 +15,9 @@ type ContactItem = {
   icon: ElementType;
 };
 
+const gmailLink =
+  "https://mail.google.com/mail/?view=cm&fs=1&to=sahchandan98@buaa.edu.cn";
+
 const OrcidIcon = ({ className }: { className?: string }) => (
   <svg
     viewBox="0 0 24 24"
@@ -28,19 +31,9 @@ const OrcidIcon = ({ className }: { className?: string }) => (
 
 const contactItems: ContactItem[] = [
   {
-    name: "Email",
-    href: "mailto:sahchandan98@buaa.edu.cn",
-    icon: Mail,
-  },
-  {
     name: "Google Scholar",
     href: "https://scholar.google.com/citations?user=PyH-zqygdCYC&hl=en",
     icon: GraduationCap,
-  },
-  {
-    name: "LinkedIn",
-    href: "https://www.linkedin.com/in/chandan-sah-rocky-%E6%96%87%E6%B5%A9-5803bb1b4/",
-    icon: Linkedin,
   },
   {
     name: "OpenReview",
@@ -52,6 +45,11 @@ const contactItems: ContactItem[] = [
     href: "https://orcid.org/0009-0002-4017-7970",
     icon: OrcidIcon,
   },
+  {
+    name: "LinkedIn",
+    href: "https://www.linkedin.com/in/chandan-sah-rocky-%E6%96%87%E6%B5%A9-5803bb1b4/",
+    icon: Linkedin,
+  },
 ];
 
 export const Contact = () => {
@@ -62,64 +60,47 @@ export const Contact = () => {
       title="Let’s connect."
       subtitle="Open to research collaborations and meaningful conversations about trustworthy and uncertainty-aware AI."
     >
-      <div className="mx-auto max-w-4xl text-center">
-        {/* Compact profile card */}
-        <div className="card-elegant relative mx-auto mb-7 max-w-xl overflow-hidden rounded-3xl border border-white/10 px-5 py-6 md:px-8 md:py-7">
-          <div className="absolute left-1/2 top-0 h-40 w-40 -translate-x-1/2 rounded-full bg-gradient-accent opacity-15 blur-3xl" />
-
-          <div className="relative z-10">
-            <h3 className="font-display text-xl font-semibold md:text-2xl">
-              Chandan Kumar Sah
-              <span className="mx-2 text-muted-foreground">·</span>
-              <span className="text-gradient">Rocky 文浩</span>
-            </h3>
-
-            <p className="mt-2 text-sm leading-6 text-muted-foreground">
-              PhD Researcher in AI and Software Engineering
-              <br />
-              Beihang University · Beijing, China
-            </p>
-
-            <p className="mt-4 text-base font-semibold text-foreground">
-              Building AI systems that know when they do not know.
-            </p>
-
-            <a
-              href="mailto:sahchandan98@buaa.edu.cn"
-              className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-cyan-600 transition hover:text-cyan-500 dark:text-cyan-300 dark:hover:text-cyan-200"
-            >
-              <Mail className="h-4 w-4" />
-              sahchandan98@buaa.edu.cn
-            </a>
-          </div>
+      <div className="mx-auto w-full max-w-5xl text-center">
+        {/* Email button */}
+        <div className="mb-10 flex justify-center">
+          <a
+            href={gmailLink}
+            target="_blank"
+            rel="noreferrer"
+            className="glow inline-flex items-center justify-center rounded-full bg-gradient-accent px-7 py-3.5 text-sm font-semibold text-white transition-all duration-300 hover:scale-105 hover:opacity-90 md:text-base"
+          >
+            <Mail className="mr-2.5 h-5 w-5" />
+            Get in touch
+          </a>
         </div>
 
-        {/* Centered contact links */}
-        <div className="mx-auto flex max-w-3xl flex-wrap justify-center gap-3">
+        {/* Perfectly centered cards */}
+        <div className="flex flex-wrap items-stretch justify-center gap-4">
           {contactItems.map((item) => {
             const Icon = item.icon;
-            const isEmail = item.name === "Email";
 
             return (
               <a
                 key={item.name}
                 href={item.href}
-                target={isEmail ? undefined : "_blank"}
-                rel={isEmail ? undefined : "noreferrer"}
+                target="_blank"
+                rel="noreferrer"
                 aria-label={`Open ${item.name}`}
-                className="card-elegant group flex min-w-[120px] items-center justify-center gap-2 rounded-xl border border-white/10 px-4 py-3 text-sm font-semibold transition-all duration-300 hover:-translate-y-1 hover:border-cyan-300/50 hover:text-cyan-300 hover:shadow-lg hover:shadow-cyan-500/10"
+                className="card-elegant group flex h-[150px] w-[165px] flex-col items-center justify-center gap-4 rounded-2xl border border-white/10 p-5 text-center transition-all duration-300 hover:-translate-y-1 hover:border-cyan-300/50 hover:shadow-xl hover:shadow-cyan-500/10"
               >
-                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-accent text-white transition-transform duration-300 group-hover:scale-105">
-                  <Icon className="h-4 w-4" />
+                <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-accent text-white transition-transform duration-300 group-hover:scale-110">
+                  <Icon className="h-5 w-5" />
                 </span>
 
-                <span>{item.name}</span>
+                <span className="text-sm font-semibold leading-snug text-foreground">
+                  {item.name}
+                </span>
               </a>
             );
           })}
         </div>
 
-        <p className="mt-6 text-xs text-muted-foreground">
+        <p className="mt-7 text-xs text-muted-foreground">
           Academic inquiries and research collaborations are welcome.
         </p>
       </div>
