@@ -84,7 +84,7 @@ export const Contact = () => {
         </div>
 
         {/* Entire card group is centered */}
-       <div className="mx-auto w-full max-w-6xl text-center">
+       <<div className="mx-auto flex w-fit max-w-full flex-wrap items-center justify-center gap-4">">
           {contactItems.map((item) => {
             const Icon = item.icon;
 
