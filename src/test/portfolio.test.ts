@@ -14,6 +14,19 @@ describe("public academic record", () => {
     }
   });
 
+  it("preserves exact official arXiv author order for 2026 research preprints", () => {
+    const titles = [
+      "Beyond Self-Knowledge: Propagating Uncertainty Across Reasoning and Retrieval in LLMs",
+      'Beyond "What to Retrieve": Uncertainty in Retrieval-Augmented Code Generation',
+    ];
+    for (const title of titles) {
+      const paper = publications.find(p => p.title === title);
+      expect(paper?.authors).toBe("Chandan Kumar Sah, Li Zhang, Xiaoli Lian");
+      expect(paper?.type).toBe("Preprint");
+      expect(paper?.url).toMatch(/^https:\/\/arxiv\.org\/abs\/2607\./);
+    }
+  });
+
   it("does not mistake preprints or workshops for regular main-track papers", () => {
     for (const paper of publications) {
       if (paper.type === "Preprint") {
