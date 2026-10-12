@@ -32,4 +32,9 @@ export const researchSupport = {
   disclaimer: "Support is optional and personal. It is not a tax-deductible charitable donation, institutional sponsorship or an investment, and it does not affect scientific findings, authorship, peer review or access to research results.",
   paypalLogo: "https://www.paypalobjects.com/paypal-ui/logos/svg/paypal-mark-color.svg",
   paypalHomepage: "https://www.paypal.com/",
+  googlePayMark: "https://developers.google.com/static/pay/api/images/brand-guidelines/google-pay-mark.png",
+  googlePayHelp: "https://support.google.com/googlepay/answer/12429287?hl=en",
+  googlePayAvailability: "Google Pay personal transfers are region-dependent. An email address alone is not a universal Google Pay payment identifier. Contact me to confirm a supported and verified recipient method before sending any funds.",
+  googlePayStatus: "Recipient details available on request — no direct Google Pay payment link",
+
 } as const;
