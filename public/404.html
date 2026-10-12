@@ -19,9 +19,11 @@
         "collaborate": "connect",
         "work-with-me": "connect",
         "papers": "publications",
-        "research-areas": "research"
+        "research-areas": "research",
+        "rocky-news": "news",
+        "updates": "news"
       };
-      var routes = ["", "publications", "research", "projects", "service", "recognition", "connect"];
+      var routes = ["", "publications", "research", "projects", "service", "recognition", "news", "connect"];
       var route = Object.prototype.hasOwnProperty.call(aliases, relative) ? aliases[relative] : relative;
       if (routes.indexOf(route) < 0) route = "";
       window.location.replace(base + "?from=direct-link#/" + route);
