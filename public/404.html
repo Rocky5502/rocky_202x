@@ -20,10 +20,12 @@
         "work-with-me": "connect",
         "papers": "publications",
         "research-areas": "research",
+        "recognition/awards": "awards",
+        "awards-and-appreciation": "awards",
         "rocky-news": "news",
         "updates": "news"
       };
-      var routes = ["", "publications", "research", "projects", "service", "recognition", "news", "connect"];
+      var routes = ["", "publications", "research", "projects", "service", "recognition", "awards", "news", "connect"];
       var route = Object.prototype.hasOwnProperty.call(aliases, relative) ? aliases[relative] : relative;
       if (routes.indexOf(route) < 0) route = "";
       window.location.replace(base + "?from=direct-link#/" + route);
