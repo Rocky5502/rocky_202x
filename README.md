@@ -116,6 +116,6 @@ The site is hosted as a Vite project on GitHub Pages with `base: "/rocky_202x/"`
 
 ## Content policy
 
-Do not import papers by matching author names alone. Another published researcher named Chandan Kumar Sah has ORCID 0000-0002-9768-4431 and is affiliated with robotics research at the Indian Institute of Science; this site's ORCID is 0009-0002-4017-7970. Verify identities from affiliations and ORCID before any publication import. Academic reviewer appointments may not be independently public; do not disclose confidential review assignments or imply PC membership based on peer review. Distinctions are a selected set copied from the earlier public portfolio and should be confirmed with certificates if the exact award wording is important.
+**This website represents Chandan Kumar Sah (Rocky 文浩), ORCID [0009-0002-4017-7970](https://orcid.org/0009-0002-4017-7970) only.** Do not import publications by name matching alone; verify authorship, affiliation, and the owner's ORCID before adding any record. Academic reviewer appointments may not be independently public; do not disclose confidential review assignments or imply PC membership based on peer review. Distinctions are a selected set copied from the earlier public portfolio and should be confirmed with certificates if the exact award wording is important.
 
 Changes to the `main` branch trigger both verification checks and GitHub Pages deployment. Public code and site content are maintained in the same repository.
