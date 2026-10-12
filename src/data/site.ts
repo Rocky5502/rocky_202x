@@ -60,7 +60,7 @@ export const publications: Publication[] = [
       "The Second International Association for Safe & Ethical AI (IASEAI), February 2026 · Soon to appear in AAAI proceedings",
     year: "2026",
     category: "LLMs",
-    status: "Published"
+    status: "Published",
     contribution: "First author",
     link: "https://ojs.aaai.org/index.php/IASEAI/article/view/43060/50620",
   },
