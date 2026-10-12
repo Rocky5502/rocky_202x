@@ -21,7 +21,7 @@ describe("research agenda", () => {
     expect(screen.getByRole("heading", { name: /Six connected research directions/ })).toBeInTheDocument();
     const headings = researchAreas.map(area => screen.getByRole("heading", { name: area.name }));
     expect(headings).toHaveLength(6);
-    expect(screen.getByRole("link", { name: /Opportunities & support/ })).toBeInTheDocument();
+    expect(screen.getAllByRole("link", { name: "Opportunities" }).length).toBeGreaterThan(0);
   });
 });
 
