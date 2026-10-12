@@ -30,11 +30,11 @@ Update the portrait by replacing `src/assets/portrait.jpg` with your own photo. 
 ## Run locally
 
 ```bash
-npm ci
-npm run dev
-npm run build
-npm run test
-npx tsc --noEmit -p tsconfig.app.json
+bun install
+bun run dev
+bun run build
+bun run test
+bunx tsc --noEmit -p tsconfig.app.json
 ```
 
 The site is hosted as a Vite project on GitHub Pages with `base: "/rocky_202x/"` in `vite.config.ts`. Pushing to `main` triggers `.github/workflows/deploy.yml`.
@@ -49,6 +49,6 @@ The site is hosted as a Vite project on GitHub Pages with `base: "/rocky_202x/"`
 
 ## Content policy
 
-Academic reviewer appointments may not be independently public; do not disclose confidential review assignments or imply PC membership based on peer review. Distinctions are a selected set copied from the earlier public portfolio and should be confirmed with certificates if the exact award wording is important.
+Do not import papers by matching author names alone. Another published researcher named Chandan Kumar Sah has ORCID 0000-0002-9768-4431 and is affiliated with robotics research at the Indian Institute of Science; this site's ORCID is 0009-0002-4017-7970. Verify identities from affiliations and ORCID before any publication import. Academic reviewer appointments may not be independently public; do not disclose confidential review assignments or imply PC membership based on peer review. Distinctions are a selected set copied from the earlier public portfolio and should be confirmed with certificates if the exact award wording is important.
 
 This pull request does not modify the deployed site until merged to `main`.
