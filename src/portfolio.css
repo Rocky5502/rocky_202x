@@ -471,3 +471,43 @@ body { margin: 0; }
   .public-project-card, .public-project-card::after { transition: none; }
   .public-project-card:hover { transform: none; }
 }
+
+/* Academic identity links, acceptance provenance and confidential-safe review activity. */
+.acceptance-status {
+  color: var(--portfolio-accent);
+  font-size: 12px;
+  line-height: 1.7;
+  font-weight: 570;
+  margin-top: 10px !important;
+}
+.acceptance-status a {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 650;
+  text-decoration: underline;
+  text-decoration-color: var(--portfolio-rule);
+  text-underline-offset: 3px;
+}
+.acceptance-status a:hover { text-decoration-color: currentColor; }
+.acceptance-status svg { width: 12px; height: 12px; }
+.review-evidence {
+  border-block: 1px solid var(--portfolio-rule);
+  padding: 23px 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 23px;
+  margin-block: 26px;
+}
+.review-evidence > div { display: flex; flex-direction: column; gap: 8px; }
+.review-value {
+  font: 400 34px/1 Georgia, "Times New Roman", serif;
+  color: var(--portfolio-ink);
+  letter-spacing: -.045em;
+}
+.review-term { font-size: 12px; line-height: 1.6; color: var(--portfolio-muted); max-width: 200px; }
+@media(max-width: 560px) {
+  .review-evidence { gap: 11px; }
+  .review-value { font-size: 28px; }
+  .review-term { font-size: 11px; }
+}
