@@ -67,16 +67,16 @@ The site deliberately does not infer acceptance, scientific validation, or produ
 
 ## Research opportunities and personal support
 
-The **Opportunities & support** page at /#/connect communicates the current doctoral researcher's professional interests without implying existing appointments or readiness for an immediate full-time start:
+The **Opportunities & support** page at `/#/connect` communicates the current doctoral researcher's professional interests without implying existing appointments or readiness for an immediate full-time start:
 
 - Academic collaborations and reproducible research.
 - Visiting researcher placements, visiting scholar programs and research fellowships.
 - Industry research internships, applied AI research and selective remote/part-time software/ML engineering collaborations.
 - Conversations about future postdoctoral and research-scientist opportunities at appropriate stages of the PhD.
 
-Opportunity wording is authored in \`src/data/opportunities.ts\` and is not a guarantee of eligibility or institutional approval.
+Opportunity wording is authored in `src/data/opportunities.ts` and is not a guarantee of eligibility or institutional approval.
 
-The researcher explicitly requested displaying **sahchandan98@gmail.com** as a *public PayPal recipient email* for optional personal support of open, responsible AI research. Academic correspondence continues to use the institutional \`sahchandan98@buaa.edu.cn\` address. The site implements:
+The researcher explicitly requested displaying **sahchandan98@gmail.com** as a *public PayPal recipient email* for optional personal support of open, responsible AI research. Academic correspondence continues to use the institutional `sahchandan98@buaa.edu.cn` address. The site implements:
 
 - A labeled, selectable read-only payment email with a copy-to-clipboard button.
 - A small, unmodified PayPal logo sourced from PayPal's official asset CDN and a link to the generic PayPal homepage.
