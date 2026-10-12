@@ -23,7 +23,7 @@ Edit `src/data/portfolio.ts` for public profile details, publication records, pr
 
 **Google Scholar:** https://scholar.google.com/citations?user=PyH-zqygdCYC&hl=en
 
-Google Scholar does not provide a supported public publications API and may block automated scraping. For this reason the site links to Scholar as the complete record and keeps a manually verified, curated on-site bibliography. `src/data/site.ts` remains as legacy content for reference; the redesigned pages use `src/data/portfolio.ts`.
+Google Scholar does not provide a supported public publications API and may block automated scraping. For this reason the site links to Scholar as the complete record and keeps a manually verified, curated on-site bibliography. The previous one-page data and presentation components were removed to avoid outdated records and unnecessary personal content.
 
 Update the portrait by replacing `src/assets/portrait.jpg` with your own photo. The site deliberately omits personal life information, exact address, background counters and other non-academic biography.
 
