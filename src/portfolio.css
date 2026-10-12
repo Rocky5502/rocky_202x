@@ -800,3 +800,137 @@ body { margin: 0; }
   .not-found-directory nav { grid-template-columns: 1fr; }
   .not-found-actions { align-items: flex-start; flex-direction: column; }
 }
+
+
+/* Five research directions — intentionally asymmetric, editorial 3+2 layout. */
+.area-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 16px; }
+.area-grid .area-card { grid-column: span 2; }
+.area-grid .area-card:nth-child(4),
+.area-grid .area-card:nth-child(5) { grid-column: span 3; }
+.area-card {
+  min-height: 295px;
+  padding: clamp(23px, 2.6vw, 33px);
+  transition: border-color .15s ease, background-color .15s ease;
+}
+.area-card:hover { border-color: var(--portfolio-accent); }
+.area-card::before { display: none; }
+.area-topline { display: flex; align-items: center; justify-content: space-between; gap: 15px; }
+.area-topline svg {
+  color: var(--portfolio-accent);
+  opacity: .84;
+  flex: none;
+}
+.area-card .area-number { font-size: 18px; letter-spacing: -.04em; }
+.area-total {
+  color: var(--portfolio-faint);
+  font: 400 11px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  letter-spacing: 0;
+  margin-left: 3px;
+}
+.area-card h3 {
+  font: 400 clamp(22px, 2.1vw, 26px)/1.18 Georgia, "Times New Roman", serif;
+  letter-spacing: -.025em;
+  margin-top: 28px;
+  min-height: 2.36em;
+}
+.area-card p {
+  font-size: 12px;
+  line-height: 1.82;
+  margin-top: 13px;
+  flex: 1 1 auto;
+}
+.portfolio-shell a.area-card-link {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  align-self: flex-start;
+  color: var(--portfolio-accent);
+  font-size: 11px;
+  font-weight: 650;
+  margin-top: 26px;
+  border-bottom: 1px solid transparent;
+  width: fit-content;
+}
+.portfolio-shell a.area-card-link:hover { border-bottom-color: currentColor; }
+.research-area-index {
+  display: flex;
+  justify-content: flex-start;
+  gap: 22px;
+  color: var(--portfolio-accent);
+  align-items: center;
+  align-self: start;
+}
+.research-area-index svg { color: var(--portfolio-accent); }
+.research-area { grid-template-columns: 133px 1fr; padding-block: 35px; }
+.research-area h3 { font-size: clamp(22px, 2.35vw, 28px); }
+.research-area p { font-size: 14px; max-width: 770px; }
+
+/* Two aligned, factual support methods; no simulated checkout buttons. */
+.support-methods {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 17px;
+  margin-top: 30px;
+  align-items: stretch;
+}
+.support-methods .support-details {
+  margin-top: 0;
+  width: 100%;
+  max-width: none;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  padding: clamp(21px, 2.2vw, 29px);
+}
+.support-methods .support-payment-heading {
+  min-height: 65px;
+  margin-bottom: 18px;
+}
+.support-methods .support-email-row input { font-size: 12px; }
+.support-methods .copy-address-button { padding-inline: 11px; }
+.support-methods .copy-feedback { min-height: 52px; }
+.support-methods .support-paypal-link { margin-top: auto; padding-top: 10px; }
+.support-payment-heading img.google-pay-mark {
+  width: 76px;
+  height: auto;
+  padding: 0;
+  background: transparent;
+  border-radius: 0;
+}
+.portfolio-shell a.support-provider-guidelines {
+  margin-top: 11px;
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  gap: 5px;
+  color: var(--portfolio-muted);
+  font-size: 11px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--portfolio-rule);
+}
+.support-provider-guidelines svg { flex: none; }
+@media(max-width: 1099px) and (min-width: 801px) {
+  .area-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .area-grid .area-card, .area-grid .area-card:nth-child(4), .area-grid .area-card:nth-child(5) { grid-column: auto; }
+}
+@media(max-width: 960px) {
+  .support-methods { grid-template-columns: 1fr; max-width: 650px; }
+}
+@media(max-width: 800px) {
+  .area-grid { grid-template-columns: 1fr; }
+  .area-grid .area-card, .area-grid .area-card:nth-child(4), .area-grid .area-card:nth-child(5) { grid-column: auto; }
+  .area-card { min-height: 0; }
+  .area-card h3 { min-height: 0; margin-top: 17px; }
+  .research-area { grid-template-columns: 91px 1fr; }
+  .research-area-index { gap: 12px; }
+}
+@media(max-width: 540px) {
+  .research-area { grid-template-columns: 55px 1fr; }
+  .research-area-index { flex-direction: column; align-items: flex-start; gap: 7px; }
+  .research-area-index svg { width: 16px; height: 16px; }
+  .support-methods .support-payment-heading { align-items: flex-start; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .area-card { transition: none; }
+}
