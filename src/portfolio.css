@@ -725,3 +725,78 @@ body { margin: 0; }
   .support-email-row input { flex: 1 1 100%; }
   .copy-address-button { width: 100%; justify-content: center; }
 }
+
+
+/* Portfolio routing recovery and expanded six-area research agenda, Oct 2026. */
+.area-grid { align-items: stretch; }
+.area-card {
+  min-height: 215px;
+  padding: 26px 25px 29px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.area-card::before {
+  content: "";
+  display: block;
+  width: 21px;
+  height: 1px;
+  background: var(--portfolio-accent);
+  margin-bottom: 18px;
+}
+.area-card .area-number { font-size: 16px; line-height: 1.25; }
+.area-card h3 {
+  margin-top: 17px;
+  font-size: clamp(20px, 2.1vw, 24px);
+  line-height: 1.28;
+}
+.area-card p { margin-top: 11px; font-size: 12px; line-height: 1.72; }
+.not-found-page .page-heading { padding-bottom: 24px; }
+.not-found-actions {
+  display: flex;
+  gap: 22px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.not-found-directory { margin-top: 70px; max-width: 760px; border-top: 1px solid var(--portfolio-rule); padding-top: 22px; }
+.not-found-directory nav {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 35px;
+  margin-top: 17px;
+}
+.not-found-directory nav a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--portfolio-rule);
+  font-size: 13px;
+  color: var(--portfolio-muted);
+}
+.not-found-directory nav a svg { color: var(--portfolio-accent); flex: none; }
+@media (min-width: 801px) and (max-width: 1040px) {
+  .area-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 1090px) {
+  .desktop-navigation { display: none; }
+  .menu-control { display: inline-grid; }
+  .mobile-navigation {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--portfolio-rule);
+    padding: 8px 21px 18px;
+  }
+  .mobile-nav-item { padding: 12px 4px; border-bottom: 1px solid var(--portfolio-rule); color: var(--portfolio-muted); font-size: 14px; }
+  .mobile-nav-item.active { color: var(--portfolio-accent); }
+}
+@media (max-width: 800px) {
+  .area-grid { grid-template-columns: 1fr; }
+  .area-card { min-height: 0; }
+}
+@media (max-width: 540px) {
+  .not-found-directory nav { grid-template-columns: 1fr; }
+  .not-found-actions { align-items: flex-start; flex-direction: column; }
+}
