@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { Link, NavLink, Route, Routes, useLocation } from "react-router-dom";
+import { Link, NavLink, Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { ArrowRight, ArrowUpRight, BriefcaseBusiness, Check, ClipboardCopy, Github, HeartHandshake, Mail, Menu, Moon, Sun, X } from "lucide-react";
 import portrait from "@/assets/portrait.jpg";
 import {
@@ -206,8 +206,8 @@ function Home() {
       <div className="publication-list">{featured.map((p,i) => <PublicationRow publication={p} key={p.title} index={i} />)}</div>
     </section>
     <section className="content-wrap page-section section-divider">
-      <SectionTitle eyebrow="Current questions" title="Research areas" destination="/research" destinationLabel="Research overview" />
-      <div className="area-grid">{researchAreas.slice(0,3).map(area => <article className="area-card" key={area.index}>
+      <SectionTitle eyebrow="Research agenda" title="Six connected research directions" destination="/research" destinationLabel="Explore the research" />
+      <div className="area-grid">{researchAreas.map(area => <article className="area-card" key={area.index}>
         <span className="area-number">{area.index}</span><h3>{area.name}</h3><p>{area.description}</p>
       </article>)}</div>
     </section>
@@ -382,7 +382,20 @@ function ConnectPage() {
 }
 
 function NotFound() {
-  return <div className="content-wrap interior-page"><PageHeading kicker="404" title="Page not found" subtitle="This address does not match a page on the site." /><Link to="/" className="primary-action">Back to home <ArrowRight size={16}/></Link></div>;
+  return <div className="content-wrap interior-page not-found-page">
+    <PageHeading kicker="Navigation / 404" title="Let's get you to the right page" subtitle="That address isn't available here. The research portfolio has been reorganized into separate pages, so an older bookmark may no longer work." />
+    <div className="not-found-actions">
+      <Link to="/" className="primary-action">Return to homepage <ArrowRight size={16} aria-hidden="true" /></Link>
+      <Link to="/connect" className="secondary-action">Opportunities & support <ArrowRight size={15} aria-hidden="true" /></Link>
+    </div>
+    <div className="not-found-directory">
+      <p className="eyebrow">Browse the portfolio</p>
+      <nav aria-label="Alternative pages">{navigation.filter(item => item.to !== "/").map(item => (
+        <Link key={item.to} to={item.to}>{item.label}<ArrowRight size={15} aria-hidden="true" /></Link>
+      ))}</nav>
+    </div>
+    <p className="small-note">Tip: refresh the website if you've opened an older link from a cached browser tab.</p>
+  </div>;
 }
 
 export default function PortfolioSite() {
@@ -395,6 +408,13 @@ export default function PortfolioSite() {
       <Route path="/service" element={<ServicePage/>} />
       <Route path="/recognition" element={<RecognitionPage/>} />
       <Route path="/connect" element={<ConnectPage/>} />
+      <Route path="/opportunities" element={<Navigate to="/connect" replace />} />
+      <Route path="/collaborate" element={<Navigate to="/connect" replace />} />
+      <Route path="/contact" element={<Navigate to="/connect" replace />} />
+      <Route path="/support" element={<Navigate to="/connect" replace />} />
+      <Route path="/work-with-me" element={<Navigate to="/connect" replace />} />
+      <Route path="/research-areas" element={<Navigate to="/research" replace />} />
+      <Route path="/papers" element={<Navigate to="/publications" replace />} />
       <Route path="*" element={<NotFound/>} />
     </Routes></main><Footer />
   </div>;
