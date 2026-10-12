@@ -12,12 +12,20 @@ Designed for readers of research papers, potential collaborators, hiring committ
 | `/#/` | Research overview, selected publications and contact |
 | `/#/publications` | Papers with topic/type filters and correctly scoped CCF/ICORE venue ratings |
 | `/#/projects` | Curated, tagged and filtered links to publicly accessible research repositories |
-| `/#/research` | Research questions, themes, and a few highlighted open projects |
+| `/#/research` | Six research directions, including Software Engineering for AI and Trustworthy AI |
 | `/#/service` | Reviewing roles, volunteer activities, academic identities |
 | `/#/recognition` | Awards and selected invited / conference talks |
 | `/#/connect` | Visiting research, fellowships, research-oriented roles and optional individual research support |
 
 Hash routes are intentional because GitHub Pages does not rewrite deep route URLs to `index.html`.
+
+### Routing and troubleshooting
+
+**Canonical links** always use the hash syntax (`https://rocky5502.github.io/rocky_202x/#/connect` for Opportunities). Legacy hash route aliases (`/#/opportunities`, `/#/contact`, `/#/support`, `/#/research-areas`) redirect inside the app. The `public/404.html` fallback also redirects ordinary clean URLs such as `/rocky_202x/connect` to their canonical hash routes; missing asset requests remain 404 responses.
+
+GitHub Pages may serve temporarily cached HTML immediately after a deployment, even though the latest hashed JS bundle is in the repository. If a page displays the previous header without the Opportunities navigation, **hard-refresh** or open `https://rocky5502.github.io/rocky_202x/?v=20261012#/connect` once. Do not change URLs to `/rocky_202x/connect` unless the legacy redirect is desired.
+
+`src/test/navigation.test.tsx` tests the real `/#/connect` address, legacy hash aliases, 404 recovery and all six research topics. Both `Verify portfolio` and the Pages deployment should succeed for the same latest commit before considering a release complete.
 
 ## Maintain the content
 
