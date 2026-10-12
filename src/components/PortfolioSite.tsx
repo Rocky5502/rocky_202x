@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link, NavLink, Navigate, Route, Routes, useLocation } from "react-router-dom";
-import { ArrowRight, ArrowUpRight, BriefcaseBusiness, Check, ClipboardCopy, Github, HeartHandshake, Mail, Menu, Moon, Sun, X } from "lucide-react";
+import { ArrowRight, ArrowUpRight, BrainCircuit, BriefcaseBusiness, Check, ClipboardCheck, ClipboardCopy, Code2, Github, HeartHandshake, Mail, Menu, Moon, Scale, ShieldCheck, Sun, X } from "lucide-react";
 import portrait from "@/assets/portrait.jpg";
 import {
   identity, publications, researchAreas, academicService, conferenceRankings, rankingSources,
@@ -9,6 +9,8 @@ import {
 import { publicProjects, publicProjectUrl, type PublicProject } from "@/data/projects";
 import { opportunityTracks, researchSupport } from "@/data/opportunities";
 import "@/portfolio.css";
+
+const researchIcons = [BrainCircuit, Code2, ClipboardCheck, ShieldCheck, Scale] as const;
 
 const navigation = [
   { to: "/", label: "Home", end: true },
@@ -206,10 +208,15 @@ function Home() {
       <div className="publication-list">{featured.map((p,i) => <PublicationRow publication={p} key={p.title} index={i} />)}</div>
     </section>
     <section className="content-wrap page-section section-divider">
-      <SectionTitle eyebrow="Research agenda" title="Six connected research directions" destination="/research" destinationLabel="Explore the research" />
-      <div className="area-grid">{researchAreas.map(area => <article className="area-card" key={area.index}>
-        <span className="area-number">{area.index}</span><h3>{area.name}</h3><p>{area.description}</p>
-      </article>)}</div>
+      <SectionTitle eyebrow="Research agenda" title="Research directions" destination="/research" destinationLabel="Explore the research" />
+      <div className="area-grid">{researchAreas.map((area, index) => {
+        const Icon = researchIcons[index] ?? BrainCircuit;
+        return <article className="area-card" key={area.index}>
+          <div className="area-topline"><span className="area-number">{area.index} <span className="area-total">/ 05</span></span><Icon size={19} strokeWidth={1.35} aria-hidden="true" /></div>
+          <h3>{area.name}</h3><p>{area.description}</p>
+          <Link to="/research" className="area-card-link" aria-label={`Explore research in ${area.name}`}>Read more <ArrowRight size={15} aria-hidden="true" /></Link>
+        </article>;
+      })}</div>
     </section>
     <section className="content-wrap page-section section-divider">
       <SectionTitle eyebrow="Public code" title="Selected research systems" destination="/projects" destinationLabel="All public projects" />
@@ -261,9 +268,13 @@ function ResearchPage() {
     <PageHeading kicker="Research / 02" title="Research & projects" subtitle="A small set of connected questions, rather than a catalog of every experiment in progress." />
     <div className="research-statement"><p>My research asks how to make model uncertainty useful at decision time. Confidence estimates are only useful when they influence whether an agent retrieves evidence, verifies an answer, abstains, or takes a safer path.</p></div>
     <SectionTitle eyebrow="Themes" title="Research directions" />
-    <div className="research-area-list">{researchAreas.map(area => <article key={area.index} className="research-area">
-      <span className="area-number">{area.index}</span><div><h3>{area.name}</h3><p>{area.description}</p></div>
-    </article>)}</div>
+    <div className="research-area-list">{researchAreas.map((area, index) => {
+      const Icon = researchIcons[index] ?? BrainCircuit;
+      return <article key={area.index} className="research-area">
+        <div className="research-area-index"><span className="area-number">{area.index}</span><Icon size={20} strokeWidth={1.3} aria-hidden="true" /></div>
+        <div><h3>{area.name}</h3><p>{area.description}</p></div>
+      </article>;
+    })}</div>
     <div className="spaced-section"><SectionTitle eyebrow="Implementation" title="From questions to reproducible code" destination="/projects" destinationLabel="Browse GitHub projects" /></div>
     <div className="public-project-grid home-project-grid">{publicProjects.filter(p => p.featured).map(project => <ProjectCard key={project.repo} project={project} compact />)}</div>
     <p className="editorial-note">The public code is curated separately from the publication record. Research-in-progress is not represented as an accepted paper.</p>
@@ -316,11 +327,11 @@ function RecognitionPage() {
 
 
 function ConnectPage() {
-  const [copyStatus, setCopyStatus] = useState<"idle" | "copied" | "unavailable">("idle");
-  const copySupportEmail = async () => {
+  const [copyStatus, setCopyStatus] = useState<"idle" | "paypal" | "googlepay" | "unavailable">("idle");
+  const copySupportEmail = async (method: "paypal" | "googlepay") => {
     try {
       await navigator.clipboard.writeText(identity.paypalEmail);
-      setCopyStatus("copied");
+      setCopyStatus(method);
     } catch {
       setCopyStatus("unavailable");
     }
@@ -360,23 +371,42 @@ function ConnectPage() {
         </div>
       </div>
       <p className="support-statement">{researchSupport.description}</p>
-      <div className="support-details">
-        <div className="support-payment-heading">
-          <img src={researchSupport.paypalLogo} alt="" loading="lazy" decoding="async" width={35} height={35} />
-          <div><strong>PayPal</strong><p>Optional personal research support</p></div>
+      <div className="support-methods">
+        <div className="support-details">
+          <div className="support-payment-heading">
+            <img src={researchSupport.paypalLogo} alt="" loading="lazy" decoding="async" width={35} height={35} />
+            <div><strong>PayPal</strong><p>Personal research support · verify recipient</p></div>
+          </div>
+          <label className="support-email-label" htmlFor="paypal-recipient-address">PayPal recipient email</label>
+          <div className="support-email-row">
+            <input id="paypal-recipient-address" type="text" readOnly value={identity.paypalEmail} onFocus={event => event.currentTarget.select()} aria-label="PayPal support email address" />
+            <button type="button" className="copy-address-button" onClick={() => copySupportEmail("paypal")} aria-label="Copy PayPal recipient email address">
+              {copyStatus === "paypal" ? <Check size={15} aria-hidden="true"/> : <ClipboardCopy size={15} aria-hidden="true"/>}
+              {copyStatus === "paypal" ? "Copied" : "Copy email"}
+            </button>
+          </div>
+          <p className="copy-feedback" role="status">{copyStatus === "paypal" ? "PayPal recipient email copied." : copyStatus === "unavailable" ? "Select and copy the email above." : "Verify the recipient inside PayPal before sending any funds."}</p>
+          <ExternalLink className="support-paypal-link" href={researchSupport.paypalHomepage}>Visit PayPal</ExternalLink>
         </div>
-        <label className="support-email-label" htmlFor="paypal-recipient-address">PayPal recipient email</label>
-        <div className="support-email-row">
-          <input id="paypal-recipient-address" type="text" readOnly value={identity.paypalEmail} onFocus={event => event.currentTarget.select()} aria-label="PayPal support email address" />
-          <button type="button" className="copy-address-button" onClick={copySupportEmail} aria-label="Copy PayPal recipient email address">
-            {copyStatus === "copied" ? <Check size={15} aria-hidden="true"/> : <ClipboardCopy size={15} aria-hidden="true"/>}
-            {copyStatus === "copied" ? "Copied" : "Copy email"}
-          </button>
+        <div className="support-details google-pay-details">
+          <div className="support-payment-heading">
+            <img className="google-pay-mark" src={researchSupport.googlePayMark} alt="Google Pay" loading="lazy" decoding="async" width={79} height={42} />
+            <div><strong>Google Pay</strong><p>Contact to arrange a verified transfer</p></div>
+          </div>
+          <label className="support-email-label" htmlFor="googlepay-contact-address">Contact email for payment details</label>
+          <div className="support-email-row">
+            <input id="googlepay-contact-address" type="text" readOnly value={identity.paypalEmail} onFocus={event => event.currentTarget.select()} aria-label="Google Pay contact email address — not a verified payment ID" />
+            <button type="button" className="copy-address-button" onClick={() => copySupportEmail("googlepay")} aria-label="Copy email for Google Pay inquiries">
+              {copyStatus === "googlepay" ? <Check size={15} aria-hidden="true"/> : <ClipboardCopy size={15} aria-hidden="true"/>}
+              {copyStatus === "googlepay" ? "Copied" : "Copy email"}
+            </button>
+          </div>
+          <p className="copy-feedback" role="status">{copyStatus === "googlepay" ? "Contact email copied. This is not a verified Google Pay transfer ID." : copyStatus === "unavailable" ? "Select and copy the email above." : researchSupport.googlePayAvailability}</p>
+          <a className="support-paypal-link" href={"mailto:" + identity.paypalEmail + "?subject=Google%20Pay%20support%20details"}>Ask for verified payment details <ArrowUpRight size={15} aria-hidden="true" /></a>
+          <ExternalLink className="support-provider-guidelines" href={researchSupport.googlePayHelp}>Where Google Pay transfers are supported</ExternalLink>
         </div>
-        <p className="copy-feedback" role="status">{copyStatus === "copied" ? "Email copied to your clipboard." : copyStatus === "unavailable" ? "Automatic copying is unavailable here; please select and copy the email above." : "To contribute, enter this recipient email in PayPal and verify the recipient before confirming any payment."}</p>
-        <ExternalLink className="support-paypal-link" href={researchSupport.paypalHomepage}>Open PayPal website</ExternalLink>
       </div>
-      <p className="support-disclaimer">{researchSupport.disclaimer} The payment address is provided at the researcher's request and has not been verified as an active PayPal account. No embedded checkout or payment tracking is used.</p>
+      <p className="support-disclaimer">{researchSupport.disclaimer} The PayPal recipient and Google Pay transfer arrangements have not been independently verified. An email address is not a universal Google Pay transfer ID. No embedded checkout or payment tracking is used.</p>
     </section>
   </div>;
 }
