@@ -15,6 +15,7 @@ Designed for readers of research papers, potential collaborators, hiring committ
 | `/#/research` | Five research directions, including Software Engineering for AI and Trustworthy AI |
 | `/#/service` | Reviewing roles, volunteer activities, academic identities |
 | `/#/recognition` | Awards and selected invited / conference talks |
+| `/#/news` | Full chronological archive of the original 10 news stories plus author-reported ACM CCS 2026 acceptance |
 | `/#/connect` | Visiting research, fellowships, research-oriented roles and optional individual research support |
 
 Hash routes are intentional because GitHub Pages does not rewrite deep route URLs to `index.html`.
@@ -26,6 +27,16 @@ Hash routes are intentional because GitHub Pages does not rewrite deep route URL
 GitHub Pages may serve temporarily cached HTML immediately after a deployment, even though the latest hashed JS bundle is in the repository. If a page displays the previous header without the Opportunities navigation, **hard-refresh** or open `https://rocky5502.github.io/rocky_202x/?v=20261012#/connect` once. Do not change URLs to `/rocky_202x/connect` unless the legacy redirect is desired.
 
 `src/test/navigation.test.tsx` tests the real `/#/connect` address, legacy hash aliases, 404 recovery and all five research topics. Both `Verify portfolio` and the Pages deployment should succeed for the same latest commit before considering a release complete.
+
+## Historical news archive
+
+The original 2026 site included a `RockyNews` section. On 13 October 2026 it was restored as a dedicated **News** page (`/#/news`, in the header before **Opportunities**) and a three-item homepage preview. The **original 10 items** were recovered from [the last pre-redesign GitHub commit](https://github.com/Rocky5502/rocky_202x/blob/40677b335ea851d0c6a5dd3fcd774c776c23c97c/src/components/RockyNews.tsx). The original descriptions, long-form stories, external links, video links and month-level dates are preserved in `src/data/news.ts`. News chronology uses normalized month keys to support both `Apr 2026` and `April 2026`. **No artificial exact event day was added to historical entries.**
+
+The new **"Auditable Uncertainty Control for Secure LLM Agents — ACM CCS 2026"** entry is dated **October 2026 as a site announcement** (not the unknown acceptance-decision date); the sole-authored acceptance is **researcher-reported, not independently verified against an individual ACM proceedings record**. The conference website is linked, but no paper DOI is invented.
+
+Older articles are retained as part of the owner's original-site archive, **not represented as newly independently corroborated reporting**. Some links lead to organizational homepages rather than independent award announcements; retain the source and provenance distinction. To update stories, edit `src/data/news.ts`, keep source links and exact month dates, and run `src/test/news.test.tsx` along with the mandatory deployment gate.
+
+Old links `/#/rocky-news` and `/#/updates` redirect to `/#/news`; GitHub Pages `public/404.html` also supports `/rocky_202x/rocky-news` and `/rocky_202x/news` for direct navigation.
 
 ## Maintain the content
 
