@@ -15,12 +15,13 @@ Designed for readers of research papers, potential collaborators, hiring committ
 | `/#/research` | Research questions, themes, and a few highlighted open projects |
 | `/#/service` | Reviewing roles, volunteer activities, academic identities |
 | `/#/recognition` | Awards and selected invited / conference talks |
+| `/#/connect` | Visiting research, fellowships, research-oriented roles and optional individual research support |
 
 Hash routes are intentional because GitHub Pages does not rewrite deep route URLs to `index.html`.
 
 ## Maintain the content
 
-Edit `src/data/portfolio.ts` for public profile details, publication records, venue rankings, reviewing, volunteering, awards and talks. Edit `src/data/projects.ts` for the curated public GitHub project directory; each entry is explicitly linked to a public repository and has a non-final release-status label. Each publication has an external reference, a year and a publication type; if publisher proceedings are not public yet, the event website is used and marked explicitly. Add papers only after checking the title, author list, venue, date and link against the publisher or arXiv. Do not classify workshop papers as main-conference papers or preprints as peer-reviewed papers.
+Edit `src/data/portfolio.ts` for public profile details, the institutional contact address, the explicit PayPal recipient email, publication records, venue rankings, reviewing, volunteering, awards and talks. Edit `src/data/projects.ts` for the curated public GitHub project directory; each entry is explicitly linked to a public repository and has a non-final release-status label. Each publication has an external reference, a year and a publication type; if publisher proceedings are not public yet, the event website is used and marked explicitly. Add papers only after checking the title, author list, venue, date and link against the publisher or arXiv. Do not classify workshop papers as main-conference papers or preprints as peer-reviewed papers.
 
 **Google Scholar:** https://scholar.google.com/citations?user=PyH-zqygdCYC&hl=en
 
@@ -63,6 +64,27 @@ The `/#/projects` page is a manually curated subset of the owner's public GitHub
 4. Run `bun run test` and the full build before pushing.
 
 The site deliberately does not infer acceptance, scientific validation, or production readiness from the existence of a GitHub repository.
+
+## Research opportunities and personal support
+
+The **Opportunities & support** page at /#/connect communicates the current doctoral researcher's professional interests without implying existing appointments or readiness for an immediate full-time start:
+
+- Academic collaborations and reproducible research.
+- Visiting researcher placements, visiting scholar programs and research fellowships.
+- Industry research internships, applied AI research and selective remote/part-time software/ML engineering collaborations.
+- Conversations about future postdoctoral and research-scientist opportunities at appropriate stages of the PhD.
+
+Opportunity wording is authored in \`src/data/opportunities.ts\` and is not a guarantee of eligibility or institutional approval.
+
+The researcher explicitly requested displaying **sahchandan98@gmail.com** as a *public PayPal recipient email* for optional personal support of open, responsible AI research. Academic correspondence continues to use the institutional \`sahchandan98@buaa.edu.cn\` address. The site implements:
+
+- A labeled, selectable read-only payment email with a copy-to-clipboard button.
+- A small, unmodified PayPal logo sourced from PayPal's official asset CDN and a link to the generic PayPal homepage.
+- **No payment processor integration, embedded checkout, unverified PayPal.Me account, user analytics or automated receipt claims.**
+- Explicit disclosure that voluntary contributions are personal, not tax-deductible charitable donations or institutional grants, and do not influence research results, authorship or peer review.
+- A confirmation reminder to verify recipient details in PayPal before sending funds.
+
+The PayPal trademark belongs to PayPal; displaying its payment mark identifies the transfer method and does not imply endorsement or verified-account status. Remove the email from the public repository and website if privacy or institutional funding rules change. It will otherwise remain publicly indexed. The site owner should ensure any independent financial support complies with scholarship, institutional and relevant tax/payment requirements.
 
 ## Run locally
 
