@@ -1,0 +1,267 @@
+import { useEffect, useMemo, useState } from "react";
+import { Link, NavLink, Route, Routes, useLocation } from "react-router-dom";
+import { ArrowRight, ArrowUpRight, Github, Mail, Menu, Moon, Sun, X } from "lucide-react";
+import portrait from "@/assets/portrait.jpg";
+import {
+  identity, publications, researchAreas, selectedProjects, academicService,
+  distinctions, selectedTalks, type Publication,
+} from "@/data/portfolio";
+import "@/portfolio.css";
+
+const navigation = [
+  { to: "/", label: "Home", end: true },
+  { to: "/publications", label: "Publications" },
+  { to: "/research", label: "Research" },
+  { to: "/service", label: "Academic service" },
+  { to: "/recognition", label: "Recognition" },
+];
+
+function ExternalLink({ href, children, className = "" }: { href: string; children: React.ReactNode; className?: string }) {
+  return (
+    <a href={href} target="_blank" rel="noopener noreferrer" className={className}>
+      {children}<ArrowUpRight aria-hidden="true" size={15} />
+    </a>
+  );
+}
+
+function ScrollReset() {
+  const { pathname } = useLocation();
+  useEffect(() => { window.scrollTo({ top: 0, behavior: "instant" }); }, [pathname]);
+  return null;
+}
+
+function SiteHeader() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const { pathname } = useLocation();
+  const [theme, setTheme] = useState<"light" | "dark">(() => {
+    if (typeof window === "undefined") return "light";
+    const saved = window.localStorage.getItem("portfolio-theme");
+    return saved === "light" || saved === "dark" ? saved : window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  });
+
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", theme === "dark");
+    window.localStorage.setItem("portfolio-theme", theme);
+  }, [theme]);
+  useEffect(() => { setMenuOpen(false); }, [pathname]);
+
+  return (
+    <header className="site-header">
+      <div className="site-header-inner">
+        <Link className="site-brand" to="/" aria-label="Chandan Kumar Sah, home">
+          <span className="site-monogram" aria-hidden="true">CS</span>
+          <span>Chandan Kumar Sah <span className="brand-suffix">/ Research</span></span>
+        </Link>
+        <nav aria-label="Primary navigation" className="desktop-navigation">
+          {navigation.map(item => (
+            <NavLink end={item.end} to={item.to} key={item.to} className={({ isActive }) => isActive ? "nav-item active" : "nav-item"}>
+              {item.label}
+            </NavLink>
+          ))}
+        </nav>
+        <div className="nav-actions">
+          <button type="button" className="icon-control" onClick={() => setTheme(t => t === "light" ? "dark" : "light")}
+            aria-label={theme === "light" ? "Switch to dark mode" : "Switch to light mode"}>
+            {theme === "light" ? <Moon size={18} /> : <Sun size={18} />}
+          </button>
+          <button type="button" className="icon-control menu-control" onClick={() => setMenuOpen(o => !o)}
+            aria-label={menuOpen ? "Close navigation" : "Open navigation"} aria-expanded={menuOpen}>
+            {menuOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </div>
+      </div>
+      {menuOpen && <nav className="mobile-navigation" aria-label="Mobile navigation">
+        {navigation.map(item => <NavLink end={item.end} to={item.to} key={item.to} className={({isActive}) => isActive ? "mobile-nav-item active" : "mobile-nav-item"}>{item.label}</NavLink>)}
+      </nav>}
+    </header>
+  );
+}
+
+function Footer() {
+  return (
+    <footer className="site-footer">
+      <div className="content-wrap footer-inner">
+        <div>
+          <p className="footer-name">{identity.name}</p>
+          <p className="footer-caption">{identity.position} · {identity.institution}</p>
+        </div>
+        <div className="footer-links">
+          <ExternalLink href={identity.scholar}>Google Scholar</ExternalLink>
+          <ExternalLink href={identity.orcid}>ORCID</ExternalLink>
+          <ExternalLink href={identity.github}>GitHub</ExternalLink>
+          <a href={`mailto:${identity.email}`}>Email</a>
+        </div>
+        <span className="footer-legal">© {new Date().getFullYear()} · Updated October 2026</span>
+      </div>
+    </footer>
+  );
+}
+
+function PageHeading({ kicker, title, subtitle }: { kicker: string; title: string; subtitle: string }) {
+  return <header className="page-heading">
+    <p className="eyebrow">{kicker}</p>
+    <h1>{title}</h1>
+    <p className="page-intro">{subtitle}</p>
+  </header>;
+}
+
+function SectionTitle({ eyebrow, title, destination, destinationLabel }: { eyebrow: string; title: string; destination?: string; destinationLabel?: string }) {
+  return <div className="section-title-row">
+    <div><p className="eyebrow">{eyebrow}</p><h2>{title}</h2></div>
+    {destination && <Link className="inline-link" to={destination}>{destinationLabel ?? "View all"} <ArrowRight size={17} /></Link>}
+  </div>;
+}
+
+function PublicationRow({ publication, index }: { publication: Publication; index?: number }) {
+  return <article className="publication-row">
+    <span className="publication-year">{publication.year}{typeof index === "number" && <span className="publication-index"> / {String(index + 1).padStart(2, "0")}</span>}</span>
+    <div className="publication-body">
+      <div className="metadata-line"><span>{publication.type}</span><span className="meta-dot" />{publication.venue}</div>
+      <h3><a href={publication.url} target="_blank" rel="noopener noreferrer">{publication.title}<ArrowUpRight className="title-arrow" size={16} aria-hidden="true" /></a></h3>
+      <p className="author-line">{publication.authors}</p>
+      <span className="topic-tag">{publication.topic}</span>
+    </div>
+  </article>;
+}
+
+function Home() {
+  const featured = [publications[0], publications[1], publications[6]];
+  return <>
+    <section className="home-hero content-wrap">
+      <div className="hero-copy">
+        <p className="eyebrow">PhD Researcher · Software Engineering & AI</p>
+        <h1>Chandan Kumar Sah<span className="hero-also">Rocky 文浩</span></h1>
+        <p className="hero-lead">Studying when AI systems should trust their evidence—and when they should not.</p>
+        <p className="hero-description">I am a doctoral researcher at {identity.institution}. My work focuses on uncertainty in language models, dependable AI for software engineering, and responsible evaluation of intelligent systems.</p>
+        <div className="hero-actions">
+          <Link className="primary-action" to="/publications">Explore publications <ArrowRight size={16} /></Link>
+          <ExternalLink href={identity.scholar} className="secondary-action">Google Scholar</ExternalLink>
+        </div>
+        <div className="identity-line">
+          <span>{identity.department}</span>
+          <span className="meta-dot" />
+          <a href={`mailto:${identity.email}`}>{identity.email}</a>
+        </div>
+      </div>
+      <figure className="hero-portrait">
+        <img src={portrait} alt="Portrait of Chandan Kumar Sah" width={520} height={620} decoding="async" fetchPriority="high" />
+        <figcaption>Research · Engineering · Public interest</figcaption>
+      </figure>
+    </section>
+    <section className="home-about content-wrap section-divider">
+      <div><p className="eyebrow">Research statement</p><h2>Reliable systems begin with knowing their limits.</h2></div>
+      <div className="home-about-text"><p>Large language models often produce fluent answers without reliable evidence. I investigate uncertainty as a practical signal for retrieval, checking, and decision-making—especially in software engineering, where wrong outputs can have real costs.</p><p>Alongside this work, I explore algorithmic fairness and safety-critical multimodal applications. My aim is to connect careful experiments with systems people can responsibly use.</p><Link className="text-action" to="/research">Research directions <ArrowRight size={17} /></Link></div>
+    </section>
+    <section className="content-wrap page-section section-divider">
+      <SectionTitle eyebrow="Selected writing" title="Recent publications" destination="/publications" destinationLabel="All publications" />
+      <div className="publication-list">{featured.map((p,i) => <PublicationRow publication={p} key={p.title} index={i} />)}</div>
+    </section>
+    <section className="content-wrap page-section section-divider">
+      <SectionTitle eyebrow="Current questions" title="Research areas" destination="/research" destinationLabel="Research overview" />
+      <div className="area-grid">{researchAreas.slice(0,3).map(area => <article className="area-card" key={area.index}>
+        <span className="area-number">{area.index}</span><h3>{area.name}</h3><p>{area.description}</p>
+      </article>)}</div>
+    </section>
+    <section className="content-wrap home-contact section-divider">
+      <div><p className="eyebrow">Get in touch</p><h2>Open to thoughtful research conversations.</h2></div>
+      <div><p>For academic collaboration, paper discussions, and speaking invitations, please use my institutional email.</p><a className="text-action" href={`mailto:${identity.email}`}><Mail size={18} /> {identity.email}</a></div>
+    </section>
+  </>;
+}
+
+function PublicationsPage() {
+  const [query, setQuery] = useState("");
+  const [topic, setTopic] = useState("All topics");
+  const [type, setType] = useState("All types");
+  const topics = ["All topics", ...Array.from(new Set(publications.map(p => p.topic)))];
+  const types = ["All types", ...Array.from(new Set(publications.map(p => p.type)))];
+  const filtered = useMemo(() => publications.filter(p => {
+    const q = query.trim().toLowerCase();
+    return (topic === "All topics" || p.topic === topic)
+      && (type === "All types" || p.type === type)
+      && (!q || [p.title, p.authors, p.venue, String(p.year)].some(s => s.toLowerCase().includes(q)));
+  }).sort((a,b) => b.year - a.year), [query,topic,type]);
+  return <div className="content-wrap interior-page">
+    <PageHeading kicker="Research / 01" title="Publications" subtitle="Peer-reviewed work, book chapters, and clearly labeled preprints. This is a curated record; Google Scholar remains the complete external bibliography." />
+    <div className="toolbar">
+      <label className="search-wrap"><span className="sr-only">Search publications</span><input value={query} onChange={e=>setQuery(e.target.value)} placeholder="Search by title, author, or year…" /></label>
+      <label className="select-wrap"><span className="sr-only">Filter by research topic</span><select value={topic} onChange={e=>setTopic(e.target.value)}>{topics.map(t=><option key={t}>{t}</option>)}</select></label>
+      <label className="select-wrap"><span className="sr-only">Filter by publication type</span><select value={type} onChange={e=>setType(e.target.value)}>{types.map(t=><option key={t}>{t}</option>)}</select></label>
+    </div>
+    <div className="record-header"><span>{filtered.length} publication{filtered.length === 1 ? "" : "s"}</span><ExternalLink href={identity.scholar}>Full profile on Google Scholar</ExternalLink></div>
+    <div className="publication-list">{filtered.map((p,i)=><PublicationRow key={p.title} publication={p} index={i} />)}</div>
+    {filtered.length === 0 && <p className="empty-results">No papers match these filters. Try a broader search.</p>}
+    <p className="editorial-note">Publication types distinguish conference proceedings from workshops and unpublished preprints. Records are manually checked against primary sources rather than inferred from citation counts.</p>
+  </div>;
+}
+
+function ResearchPage() {
+  return <div className="content-wrap interior-page">
+    <PageHeading kicker="Research / 02" title="Research & projects" subtitle="A small set of connected questions, rather than a catalog of every experiment in progress." />
+    <div className="research-statement"><p>My research asks how to make model uncertainty useful at decision time. Confidence estimates are only useful when they influence whether an agent retrieves evidence, verifies an answer, abstains, or takes a safer path.</p></div>
+    <SectionTitle eyebrow="Themes" title="Research directions" />
+    <div className="research-area-list">{researchAreas.map(area => <article key={area.index} className="research-area">
+      <span className="area-number">{area.index}</span><div><h3>{area.name}</h3><p>{area.description}</p></div>
+    </article>)}</div>
+    <div className="spaced-section"><SectionTitle eyebrow="Selected work" title="Projects & systems" /></div>
+    <div className="project-grid">{selectedProjects.map(project => <article className="project-card" key={project.name}>
+      <p className="eyebrow">{project.category}</p><h3>{project.name}</h3><p>{project.summary}</p><ExternalLink href={project.url}>Read the research</ExternalLink>
+    </article>)}</div>
+    <p className="editorial-note">Projects listed here link to public papers. Unreleased experiments and manuscripts under review are intentionally omitted.</p>
+  </div>;
+}
+
+function ServicePage() {
+  return <div className="content-wrap interior-page">
+    <PageHeading kicker="Community / 03" title="Academic service" subtitle="Peer review, conference support, and work that helps the research community function." />
+    <section className="service-section">
+      <SectionTitle eyebrow="Scholarly peer review" title="Reviewer roles" />
+      <p className="service-intro">I contribute to peer review across software engineering, machine learning, computer vision, and information retrieval. Venue names below describe reviewing service, not membership in organizing or program committees.</p>
+      <div className="service-columns">
+        <div><h3>Conferences</h3><ul className="quiet-list">{academicService.conferences.map(v=><li key={v}>{v}</li>)}</ul></div>
+        <div><h3>Journals</h3><ul className="quiet-list">{academicService.journals.map(v=><li key={v}>{v}</li>)}</ul></div>
+      </div>
+      <p className="small-note">Reviewer assignments are often confidential; individual manuscript details and reviewer identities are not disclosed.</p>
+    </section>
+    <section className="service-section section-divider">
+      <SectionTitle eyebrow="Volunteer engagement" title="Community involvement" />
+      <div className="simple-records">{academicService.volunteering.map(v=><article className="simple-record" key={v.organization}><span className="record-year">{v.year}</span><div><h3>{v.role}</h3><p className="record-subtitle">{v.organization}</p><p>{v.description}</p></div></article>)}</div>
+    </section>
+    <section className="service-section section-divider">
+      <SectionTitle eyebrow="External profile" title="Academic identity" />
+      <div className="profile-links"><ExternalLink href={identity.openreview}>OpenReview</ExternalLink><ExternalLink href={identity.orcid}>ORCID</ExternalLink><ExternalLink href={identity.scholar}>Google Scholar</ExternalLink></div>
+    </section>
+  </div>;
+}
+
+function RecognitionPage() {
+  return <div className="content-wrap interior-page">
+    <PageHeading kicker="Community / 04" title="Recognition & talks" subtitle="Selected distinctions and academic presentations, kept separate from the main research profile." />
+    <section className="service-section">
+      <SectionTitle eyebrow="Selected recognition" title="Awards & distinctions" />
+      <div className="simple-records">{distinctions.map(item=><article className="simple-record" key={item.name}><span className="record-year">{item.year}</span><div><h3>{item.name}</h3><p className="record-subtitle">{item.issuer}</p></div></article>)}</div>
+      <p className="small-note">Selected highlights, not a complete personal history or CV.</p>
+    </section>
+    <section className="service-section section-divider">
+      <SectionTitle eyebrow="Research presentations" title="Selected talks" />
+      <div className="simple-records">{selectedTalks.map(t=><article className="simple-record" key={t.title}><span className="record-year">{t.year}</span><div><h3>{t.title}</h3><p className="record-subtitle">{t.event}</p><ExternalLink href={t.url}>Event information</ExternalLink></div></article>)}</div>
+    </section>
+  </div>;
+}
+
+function NotFound() {
+  return <div className="content-wrap interior-page"><PageHeading kicker="404" title="Page not found" subtitle="This address does not match a page on the site." /><Link to="/" className="primary-action">Back to home <ArrowRight size={16}/></Link></div>;
+}
+
+export default function PortfolioSite() {
+  return <div className="portfolio-shell"><a className="skip-link" href="#main-content">Skip to content</a><ScrollReset /><SiteHeader />
+    <main id="main-content"><Routes>
+      <Route path="/" element={<Home/>} />
+      <Route path="/publications" element={<PublicationsPage/>} />
+      <Route path="/research" element={<ResearchPage/>} />
+      <Route path="/service" element={<ServicePage/>} />
+      <Route path="/recognition" element={<RecognitionPage/>} />
+      <Route path="*" element={<NotFound/>} />
+    </Routes></main><Footer />
+  </div>;
+}

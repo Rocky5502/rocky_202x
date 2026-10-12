@@ -1,0 +1,26 @@
+name: Verify portfolio
+
+on:
+  pull_request:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - name: Install dependencies
+        run: bun install
+      - name: Type check
+        run: bunx tsc --noEmit -p tsconfig.app.json
+      - name: Production build
+        run: bun run build
+      - name: Unit tests
+        run: bun run test

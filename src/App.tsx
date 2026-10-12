@@ -1,31 +1,11 @@
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { Toaster } from "@/components/ui/toaster";
-import { TooltipProvider } from "@/components/ui/tooltip";
+import { HashRouter } from "react-router-dom";
+import PortfolioSite from "@/components/PortfolioSite";
 
-import Index from "./pages/Index";
-import NotFound from "./pages/NotFound";
-
-const queryClient = new QueryClient();
-
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-
-      <BrowserRouter basename="/rocky_202x">
-        <Routes>
-          <Route path="/" element={<Index />} />
-
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-
-    </TooltipProvider>
-  </QueryClientProvider>
-);
-
-export default App;
+/**
+ * Hash-based routes are intentional: GitHub Pages does not rewrite
+ * /publications or /service to index.html for a client-side router.
+ * /rocky_202x/#/publications works for direct links and refreshes.
+ */
+export default function App() {
+  return <HashRouter><PortfolioSite /></HashRouter>;
+}
