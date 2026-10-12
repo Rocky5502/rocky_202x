@@ -14,7 +14,8 @@ Designed for readers of research papers, potential collaborators, hiring committ
 | `/#/projects` | Curated, tagged and filtered links to publicly accessible research repositories |
 | `/#/research` | Five research directions, including Software Engineering for AI and Trustworthy AI |
 | `/#/service` | Reviewing roles, volunteer activities, academic identities |
-| `/#/recognition` | Awards and selected invited / conference talks |
+| `/#/recognition` | Compact Awards & Appreciation entry point; selected academic talks |
+| `/#/awards` | Separate year-by-year historical archive of 62 awards, certificates, and academic activities |
 | `/#/news` | Full chronological archive of the original 10 news stories plus author-reported ACM CCS 2026 acceptance |
 | `/#/connect` | Visiting research, fellowships, research-oriented roles and optional individual research support |
 
@@ -27,6 +28,16 @@ Hash routes are intentional because GitHub Pages does not rewrite deep route URL
 GitHub Pages may serve temporarily cached HTML immediately after a deployment, even though the latest hashed JS bundle is in the repository. If a page displays the previous header without the Opportunities navigation, **hard-refresh** or open `https://rocky5502.github.io/rocky_202x/?v=20261012#/connect` once. Do not change URLs to `/rocky_202x/connect` unless the legacy redirect is desired.
 
 `src/test/navigation.test.tsx` tests the real `/#/connect` address, legacy hash aliases, 404 recovery and all five research topics. Both `Verify portfolio` and the Pages deployment should succeed for the same latest commit before considering a release complete.
+
+## Awards & Appreciation (historical archive)
+
+The **Recognition & talks** page intentionally stays minimal: it has one clickable **Awards & Appreciation** gateway linking to `/#/awards`, not the full 62-item collection. No awards wall is inserted into the homepage or primary navigation.
+
+All **62 original entries** were recovered from the owner's [pre-redesign `AwardsGalaxy.tsx`](https://github.com/Rocky5502/rocky_202x/blob/40677b335ea851d0c6a5dd3fcd774c776c23c97c/src/components/AwardsGalaxy.tsx). `src/data/awards.ts` preserves every original entry's title, issuer, location, external URL, original image filename, and historical year group: 2026, 2025, 2024, and 2023–2018. Legacy year buckets are kept without inventing precise dates. The UI distinguishes competitive awards from scholarships, speaking/review service, attendance, and certificates.
+
+**Important provenance:** This is a self-authored historical archive, not independent verification of every entry. The majority of certificate images mentioned by the old code were never committed to GitHub. The historic repository contains only `public/awards/ase2025.png`; the other image paths are missing. The redesigned page therefore uses small category icons, not broken images, substitute stock photos, or fabricated certificates. All original image filenames remain in the data for later restoration.
+
+The private-free, mobile-responsive page supports year tabs, category filtering, title/issuer/place search, and meaningful empty-state recovery. `src/test/awards.test.tsx` enforces archive count and the click-through-only Recognition layout. Legacy and direct links to awards are supported by the router and `public/404.html`.
 
 ## Historical news archive
 
