@@ -90,6 +90,7 @@ function Footer() {
         <div className="footer-links">
           <ExternalLink href={identity.scholar}>Google Scholar</ExternalLink>
           <ExternalLink href={identity.orcid}>ORCID</ExternalLink>
+          <ExternalLink href={identity.linkedin}>LinkedIn</ExternalLink>
           <ExternalLink href={identity.github}>GitHub</ExternalLink>
           <a href={`mailto:${identity.email}`}>Email</a>
         </div>
@@ -118,15 +119,16 @@ function PublicationRow({ publication, index }: { publication: Publication; inde
   return <article className="publication-row">
     <span className="publication-year">{publication.year}{typeof index === "number" && <span className="publication-index"> / {String(index + 1).padStart(2, "0")}</span>}</span>
     <div className="publication-body">
-      <div className="metadata-line"><span>{publication.type}</span><span className="meta-dot" />{publication.venue}</div>
-      <h3><a href={publication.url} target="_blank" rel="noopener noreferrer">{publication.title}<ArrowUpRight className="title-arrow" size={16} aria-hidden="true" /></a></h3>
+      <div className="metadata-line"><span>{publication.type === "Conference" || publication.type === "Workshop" ? "Academic paper" : publication.type === "Journal" ? "Journal article" : publication.type}</span><span className="meta-dot" />{publication.venue}</div>
+      <h3>{publication.linkKind === "venue" ? publication.title : <a href={publication.url} target="_blank" rel="noopener noreferrer">{publication.title}<ArrowUpRight className="title-arrow" size={16} aria-hidden="true" /></a>}</h3>
+      {publication.status && <p className="acceptance-status">{publication.status} · <ExternalLink href={publication.url}>Conference website</ExternalLink></p>}
       <p className="author-line">{publication.authors}</p>
       {publication.rankingVenue && publication.rankingScope && <div className="rank-line" aria-label="Conference venue ranking">
         <span className="rank-label">{publication.rankingScope === "host-only" ? "Host venue" : "Venue"}</span>
         <span className="rank-venue">{conferenceRankings[publication.rankingVenue].label}</span>
         {conferenceRankings[publication.rankingVenue].ccf && <span className="rank-chip">CCF {conferenceRankings[publication.rankingVenue].ccf}</span>}
         <span className="rank-chip">ICORE {conferenceRankings[publication.rankingVenue].icore}</span>
-        {publication.rankingScope === "host-only" && <span className="rank-caveat">Not a ranking of this {publication.type === "Workshop" ? "workshop paper" : "doctoral-symposium paper"}</span>}
+        {publication.rankingScope === "host-only" && <span className="rank-caveat">Host-conference classification only; not an individual-paper rating</span>}
       </div>}
       <span className="topic-tag">{publication.topic}</span>
     </div>
@@ -167,7 +169,7 @@ function ProjectsPage() {
 }
 
 function Home() {
-  const featured = [publications[0], publications[1], publications[6]];
+  const featured = [publications[0], publications[1], publications[2]];
   return <>
     <section className="home-hero content-wrap">
       <div className="hero-copy">
@@ -178,6 +180,7 @@ function Home() {
         <div className="hero-actions">
           <Link className="primary-action" to="/publications">Explore publications <ArrowRight size={16} /></Link>
           <ExternalLink href={identity.scholar} className="secondary-action">Google Scholar</ExternalLink>
+          <ExternalLink href={identity.linkedin} className="secondary-action">LinkedIn</ExternalLink>
         </div>
         <div className="identity-line">
           <span>{identity.department}</span>
@@ -220,15 +223,15 @@ function PublicationsPage() {
   const [topic, setTopic] = useState("All topics");
   const [type, setType] = useState("All types");
   const topics = ["All topics", ...Array.from(new Set(publications.map(p => p.topic)))];
-  const types = ["All types", ...Array.from(new Set(publications.map(p => p.type)))];
+  const types = ["All types", "Academic papers", "Journal articles", "Preprints", "Book chapters"];
   const filtered = useMemo(() => publications.filter(p => {
     const q = query.trim().toLowerCase();
     return (topic === "All topics" || p.topic === topic)
-      && (type === "All types" || p.type === type)
+      && (type === "All types" || (type === "Academic papers" && (p.type === "Conference" || p.type === "Workshop")) || (type === "Journal articles" && p.type === "Journal") || (type === "Preprints" && p.type === "Preprint") || (type === "Book chapters" && p.type === "Book chapter"))
       && (!q || [p.title, p.authors, p.venue, String(p.year)].some(s => s.toLowerCase().includes(q)));
   }).sort((a,b) => b.year - a.year), [query,topic,type]);
   return <div className="content-wrap interior-page">
-    <PageHeading kicker="Research / 01" title="Publications" subtitle="Peer-reviewed work, book chapters, and clearly labeled preprints. This is a curated record; Google Scholar remains the complete external bibliography." />
+    <PageHeading kicker="Research / 01" title="Publications" subtitle="Research papers, journal articles, preprints, and forthcoming work. Publisher links and academic records are provided wherever available." />
     <div className="toolbar">
       <label className="search-wrap"><span className="sr-only">Search publications</span><input value={query} onChange={e=>setQuery(e.target.value)} placeholder="Search by title, author, or year…" /></label>
       <label className="select-wrap"><span className="sr-only">Filter by research topic</span><select value={topic} onChange={e=>setTopic(e.target.value)}>{topics.map(t=><option key={t}>{t}</option>)}</select></label>
@@ -269,11 +272,17 @@ function ServicePage() {
     <section className="service-section">
       <SectionTitle eyebrow="Scholarly peer review" title="Reviewer roles" />
       <p className="service-intro">I contribute to peer review across software engineering, machine learning, computer vision, and information retrieval. Venue names below describe reviewing service, not membership in organizing or program committees.</p>
+      <div className="review-evidence" aria-label="Peer review activity records">
+        <div><span className="review-value">{academicService.reviewRecord.webOfScienceRounds}</span><span className="review-term">Review rounds reported in Web of Science</span></div>
+        <div><span className="review-value">{academicService.reviewRecord.webOfScienceManuscripts}</span><span className="review-term">Distinct manuscripts represented</span></div>
+        <div><span className="review-value">{academicService.reviewRecord.orcidReviewRecords}</span><span className="review-term">Peer-review records on ORCID</span></div>
+      </div>
+      <p className="small-note">These researcher-supplied records may overlap; the counts are not added together. Individual manuscript titles and confidential reviewer reports are deliberately excluded.</p>
       <div className="service-columns">
         <div><h3>Conferences</h3><ul className="quiet-list">{academicService.conferences.map(v=><li key={v}>{v}</li>)}</ul></div>
         <div><h3>Journals</h3><ul className="quiet-list">{academicService.journals.map(v=><li key={v}>{v}</li>)}</ul></div>
       </div>
-      <p className="small-note">Reviewer assignments are often confidential; individual manuscript details and reviewer identities are not disclosed.</p>
+      <p className="small-note">Reviewing venues are listed for professional recognition only. The reported activity counts have not been independently checked in authenticated Web of Science or ORCID accounts.</p>
     </section>
     <section className="service-section section-divider">
       <SectionTitle eyebrow="Volunteer engagement" title="Community involvement" />
@@ -281,7 +290,7 @@ function ServicePage() {
     </section>
     <section className="service-section section-divider">
       <SectionTitle eyebrow="External profile" title="Academic identity" />
-      <div className="profile-links"><ExternalLink href={identity.openreview}>OpenReview</ExternalLink><ExternalLink href={identity.orcid}>ORCID</ExternalLink><ExternalLink href={identity.scholar}>Google Scholar</ExternalLink></div>
+      <div className="profile-links"><ExternalLink href={identity.openreview}>OpenReview</ExternalLink><ExternalLink href={identity.orcid}>ORCID</ExternalLink><ExternalLink href={identity.linkedin}>LinkedIn</ExternalLink><ExternalLink href={identity.scholar}>Google Scholar</ExternalLink></div>
     </section>
   </div>;
 }
