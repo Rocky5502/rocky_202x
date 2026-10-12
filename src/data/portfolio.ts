@@ -12,8 +12,11 @@ export type Publication = {
   type: "Journal" | "Conference" | "Workshop" | "Preprint" | "Book chapter";
   topic: "Reliable AI" | "AI for SE" | "Fairness" | "Multimodal AI" | "Other";
   url: string;
+  /** Link to event rather than individual paper when proceedings are not yet online. */
+  linkKind?: "venue";
+  status?: "Accepted — author-reported; proceedings forthcoming";
   /** Rank is for the named venue, never automatically for workshops or special tracks. */
-  rankingVenue?: "ASE" | "ICCV" | "CVPR" | "CSEET";
+  rankingVenue?: "ASE" | "ICCV" | "CVPR" | "CSEET" | "CCS";
   rankingScope?: "main" | "host-only";
 };
 
@@ -32,6 +35,19 @@ export const identity = {
 } as const;
 
 export const publications: Publication[] = [
+  {
+    title: "Auditable Uncertainty Control for Secure LLM Agents",
+    authors: "Chandan Kumar Sah",
+    year: 2026,
+    venue: "ACM SIGSAC Conference on Computer and Communications Security (CCS 2026), 15–19 November, The Hague, Netherlands",
+    type: "Conference",
+    topic: "Reliable AI",
+    status: "Accepted — author-reported; proceedings forthcoming",
+    linkKind: "venue",
+    rankingVenue: "CCS",
+    rankingScope: "host-only",
+    url: "https://www.sigsac.org/ccs/CCS2026/",
+  },
   {
     title: "Beyond Self-Knowledge: Propagating Uncertainty Across Reasoning and Retrieval in LLMs",
     authors: "Chandan Kumar Sah, Xiaoli Lian, Li Zhang",
@@ -130,11 +146,21 @@ export const academicService = {
   journals: [
     "ACM Transactions on Software Engineering and Methodology (TOSEM)",
     "Complex & Intelligent Systems",
-    "IEEE Transactions on Neural Networks and Learning Systems",
+    "Expert Systems",
+    "International Journal of Human-Computer Interaction",
   ],
+  reviewRecord: {
+    webOfScienceRounds: 7,
+    webOfScienceManuscripts: 5,
+    orcidReviewRecords: 2,
+    summary: "7 review-round records associated with 5 manuscripts in Web of Science, plus 2 ORCID review records. These may overlap and are not summed.",
+    source: "Researcher-provided Web of Science and ORCID summaries (2025–2026); not independently accessible without account access.",
+  },
   volunteering: [
     { role: "Student Volunteer", organization: "ASE 2025", year: "2025", description: "40th IEEE/ACM International Conference on Automated Software Engineering." },
-    { role: "Academic community contribution", organization: "International Association for Safe & Ethical AI", year: "2025–", description: "Participation in research community activities and discussions." },
+    { role: "Conference Volunteer", organization: "International Association for Safe & Ethical AI (IASEAI’26)", year: "2026", description: "Volunteer service supporting the 2026 IASEAI conference in Paris. Role reported by the researcher." },
+    { role: "Student Ambassador", organization: "Beihang University", year: "2023–present", description: "International academic community engagement and student outreach." },
+    { role: "Academic & Innovation Department Lead", organization: "Beihang International Graduate Student Union", year: "2023–2025", description: "Graduate student leadership and academic community activities." },
   ],
 };
 
@@ -142,6 +168,8 @@ export const distinctions = [
   { name: "Outstanding Reviewer", issuer: "ECIR", year: "2026" },
   { name: "Student Research Competition — Second Place (Graduate)", issuer: "ASE", year: "2025" },
   { name: "Excellent International Graduate", issuer: "Beihang University", year: "2025" },
+  { name: "Excellent Paper & Poster", issuer: "Tsinghua Shenzhen / Asian Universities Alliance Postgraduate Forum", year: "2025" },
+  { name: "Fellowship", issuer: "Asia Pacific Next Generation Camp", year: "2026" },
   { name: "Belt and Road Ambassador Scholarship — First Prize", issuer: "Embassy of Nepal / OCCFC", year: "2025" },
 ];
 
@@ -163,6 +191,7 @@ export const conferenceRankings: Record<NonNullable<Publication["rankingVenue"]>
   icore: "A*" | "A" | "B" | "C";
   source: string;
 }> = {
+  CCS: { label: "ACM CCS", ccf: "A", icore: "A*", source: "https://portal.core.edu.au/conf-ranks/?by=all&search=CCS" },
   ASE: { label: "ASE", ccf: "A", icore: "A*", source: "https://portal.core.edu.au/conf-ranks/?search=Automated+Software+Engineering" },
   ICCV: { label: "ICCV", ccf: "A", icore: "A*", source: "https://portal.core.edu.au/conf-ranks/638/" },
   CVPR: { label: "CVPR", ccf: "A", icore: "A*", source: "https://portal.core.edu.au/conf-ranks/604/" },
