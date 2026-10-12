@@ -3,16 +3,18 @@ import { Link, NavLink, Route, Routes, useLocation } from "react-router-dom";
 import { ArrowRight, ArrowUpRight, Github, Mail, Menu, Moon, Sun, X } from "lucide-react";
 import portrait from "@/assets/portrait.jpg";
 import {
-  identity, publications, researchAreas, selectedProjects, academicService,
+  identity, publications, researchAreas, academicService, conferenceRankings, rankingSources,
   distinctions, selectedTalks, type Publication,
 } from "@/data/portfolio";
+import { publicProjects, publicProjectUrl, type PublicProject } from "@/data/projects";
 import "@/portfolio.css";
 
 const navigation = [
   { to: "/", label: "Home", end: true },
   { to: "/publications", label: "Publications" },
+  { to: "/projects", label: "Projects" },
   { to: "/research", label: "Research" },
-  { to: "/service", label: "Academic service" },
+  { to: "/service", label: "Service" },
   { to: "/recognition", label: "Recognition" },
 ];
 
@@ -119,9 +121,49 @@ function PublicationRow({ publication, index }: { publication: Publication; inde
       <div className="metadata-line"><span>{publication.type}</span><span className="meta-dot" />{publication.venue}</div>
       <h3><a href={publication.url} target="_blank" rel="noopener noreferrer">{publication.title}<ArrowUpRight className="title-arrow" size={16} aria-hidden="true" /></a></h3>
       <p className="author-line">{publication.authors}</p>
+      {publication.rankingVenue && publication.rankingScope && <div className="rank-line" aria-label="Conference venue ranking">
+        <span className="rank-label">{publication.rankingScope === "host-only" ? "Host venue" : "Venue"}</span>
+        <span className="rank-venue">{conferenceRankings[publication.rankingVenue].label}</span>
+        {conferenceRankings[publication.rankingVenue].ccf && <span className="rank-chip">CCF {conferenceRankings[publication.rankingVenue].ccf}</span>}
+        <span className="rank-chip">ICORE {conferenceRankings[publication.rankingVenue].icore}</span>
+        {publication.rankingScope === "host-only" && <span className="rank-caveat">Not a ranking of this {publication.type === "Workshop" ? "workshop paper" : "doctoral-symposium paper"}</span>}
+      </div>}
       <span className="topic-tag">{publication.topic}</span>
     </div>
   </article>;
+}
+
+function ProjectCard({ project, compact = false }: { project: PublicProject; compact?: boolean }) {
+  return <article className={compact ? "public-project-card compact" : "public-project-card"}>
+    <div className="project-card-top">
+      <span className="project-symbol" aria-hidden="true">{project.icon}</span>
+      <span className="project-status">{project.stage}</span>
+    </div>
+    <p className="eyebrow">{project.category}</p>
+    <h3>{project.name}</h3>
+    <p className="project-description">{project.description}</p>
+    {!compact && <p className="project-question">{project.question}</p>}
+    <div className="project-tags">{project.tags.slice(0, compact ? 2 : 3).map(t => <span key={t}>{t}</span>)}</div>
+    <ExternalLink href={publicProjectUrl(project.repo)} className="project-repo-link"><Github size={15} /> View public repository</ExternalLink>
+  </article>;
+}
+
+function ProjectsPage() {
+  const categories = ["All projects", "Software engineering", "Uncertainty & reasoning", "Trustworthy AI"] as const;
+  const [selected, setSelected] = useState<string>("All projects");
+  const visible = selected === "All projects" ? publicProjects : publicProjects.filter(p => p.category === selected);
+  return <div className="content-wrap interior-page">
+    <PageHeading kicker="Engineering / 03" title="Open research projects" subtitle="A selected collection of public research artifacts and experimental systems. Every project links to an actual GitHub repository." />
+    <div className="research-motif" aria-label="Research process: uncertainty leads to evidence, then verification and control">
+      <span>01 <strong>Uncertainty</strong></span><ArrowRight size={16} aria-hidden="true" /><span>02 <strong>Evidence</strong></span><ArrowRight size={16} aria-hidden="true" /><span>03 <strong>Verification</strong></span><ArrowRight size={16} aria-hidden="true" /><span>04 <strong>Control</strong></span>
+    </div>
+    <div className="project-controls" role="group" aria-label="Filter projects by research topic">
+      {categories.map(category => <button key={category} type="button" className={category === selected ? "project-filter selected" : "project-filter"} onClick={() => setSelected(category)} aria-pressed={category === selected}>{category}</button>)}
+    </div>
+    <div className="project-overview"><span>{visible.length} public repositories</span><ExternalLink href={identity.github}>View complete GitHub profile</ExternalLink></div>
+    <div className="public-project-grid">{visible.map(project => <ProjectCard project={project} key={project.repo} />)}</div>
+    <p className="editorial-note">This page features selected public repositories only. “In development” does not imply validated results, an accepted paper, or a released product. Private projects and confidential submissions are not listed.</p>
+  </div>;
 }
 
 function Home() {
@@ -162,6 +204,10 @@ function Home() {
         <span className="area-number">{area.index}</span><h3>{area.name}</h3><p>{area.description}</p>
       </article>)}</div>
     </section>
+    <section className="content-wrap page-section section-divider">
+      <SectionTitle eyebrow="Public code" title="Selected research systems" destination="/projects" destinationLabel="All public projects" />
+      <div className="public-project-grid home-project-grid">{publicProjects.filter(p => p.featured).map(project => <ProjectCard key={project.repo} project={project} compact />)}</div>
+    </section>
     <section className="content-wrap home-contact section-divider">
       <div><p className="eyebrow">Get in touch</p><h2>Open to thoughtful research conversations.</h2></div>
       <div><p>For academic collaboration, paper discussions, and speaking invitations, please use my institutional email.</p><a className="text-action" href={`mailto:${identity.email}`}><Mail size={18} /> {identity.email}</a></div>
@@ -191,7 +237,15 @@ function PublicationsPage() {
     <div className="record-header"><span>{filtered.length} publication{filtered.length === 1 ? "" : "s"}</span><ExternalLink href={identity.scholar}>Full profile on Google Scholar</ExternalLink></div>
     <div className="publication-list">{filtered.map((p,i)=><PublicationRow key={p.title} publication={p} index={i} />)}</div>
     {filtered.length === 0 && <p className="empty-results">No papers match these filters. Try a broader search.</p>}
-    <p className="editorial-note">Publication types distinguish conference proceedings from workshops and unpublished preprints. Records are manually checked against primary sources rather than inferred from citation counts.</p>
+    <aside className="ranking-note">
+      <h2>About venue rankings</h2>
+      <p>CCF (7th edition, 2026) and ICORE 2026 classify <strong>venues</strong>, not individual articles.
+        A Doctoral Symposium or workshop paper does not inherit the host conference's A/A* rating.
+        For those entries, host venue ranks are displayed <strong>for context only</strong>.
+        Unverified or unlisted venues have no rank shown; no rating is inferred.</p>
+      <div className="ranking-sources"><ExternalLink href={rankingSources.ccf}>CCF official list (2026)</ExternalLink><ExternalLink href={rankingSources.icore}>ICORE conference database (2026)</ExternalLink></div>
+    </aside>
+    <p className="editorial-note">Published conference, workshop, and journal articles are distinguished from preprints and book chapters. No unconfirmed acceptance claims or guessed ranks are added.</p>
   </div>;
 }
 
@@ -203,11 +257,9 @@ function ResearchPage() {
     <div className="research-area-list">{researchAreas.map(area => <article key={area.index} className="research-area">
       <span className="area-number">{area.index}</span><div><h3>{area.name}</h3><p>{area.description}</p></div>
     </article>)}</div>
-    <div className="spaced-section"><SectionTitle eyebrow="Selected work" title="Projects & systems" /></div>
-    <div className="project-grid">{selectedProjects.map(project => <article className="project-card" key={project.name}>
-      <p className="eyebrow">{project.category}</p><h3>{project.name}</h3><p>{project.summary}</p><ExternalLink href={project.url}>Read the research</ExternalLink>
-    </article>)}</div>
-    <p className="editorial-note">Projects listed here link to public papers. Unreleased experiments and manuscripts under review are intentionally omitted.</p>
+    <div className="spaced-section"><SectionTitle eyebrow="Implementation" title="From questions to reproducible code" destination="/projects" destinationLabel="Browse GitHub projects" /></div>
+    <div className="public-project-grid home-project-grid">{publicProjects.filter(p => p.featured).map(project => <ProjectCard key={project.repo} project={project} compact />)}</div>
+    <p className="editorial-note">The public code is curated separately from the publication record. Research-in-progress is not represented as an accepted paper.</p>
   </div>;
 }
 
@@ -258,6 +310,7 @@ export default function PortfolioSite() {
     <main id="main-content"><Routes>
       <Route path="/" element={<Home/>} />
       <Route path="/publications" element={<PublicationsPage/>} />
+      <Route path="/projects" element={<ProjectsPage/>} />
       <Route path="/research" element={<ResearchPage/>} />
       <Route path="/service" element={<ServicePage/>} />
       <Route path="/recognition" element={<RecognitionPage/>} />
