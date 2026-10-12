@@ -12,6 +12,9 @@ export type Publication = {
   type: "Journal" | "Conference" | "Workshop" | "Preprint" | "Book chapter";
   topic: "Reliable AI" | "AI for SE" | "Fairness" | "Multimodal AI" | "Other";
   url: string;
+  /** Rank is for the named venue, never automatically for workshops or special tracks. */
+  rankingVenue?: "ASE" | "ICCV" | "CVPR" | "CSEET";
+  rankingScope?: "main" | "host-only";
 };
 
 export const identity = {
@@ -57,24 +60,28 @@ export const publications: Publication[] = [
     title: "Understanding Uncertainty in LLMs",
     authors: "Chandan Kumar Sah",
     year: 2025, venue: "ASE 2025 — Doctoral Symposium", type: "Conference", topic: "Reliable AI",
+    rankingVenue: "ASE", rankingScope: "host-only",
     url: "https://ieeexplore.ieee.org/abstract/document/11334526",
   },
   {
     title: "PerFairX: Is There a Balance Between Fairness and Personality in Large Language Model Recommendations?",
     authors: "Chandan Kumar Sah, Xiaoli Lian",
     year: 2025, venue: "ICCV Workshops 2025", type: "Workshop", topic: "Fairness",
+    rankingVenue: "ICCV", rankingScope: "host-only",
     url: "https://openaccess.thecvf.com/content/ICCV2025W/MCL/html/Sah_PerFairX_Is_There_a_Balance_Between_Fairness_and_Personality_in_ICCVW_2025_paper.html",
   },
   {
     title: "SafeRoute: Enhancing Traffic Scene Understanding via a Unified Deep Learning and Multimodal LLM",
     authors: "Ankit Kumar Shaw, Chandan Kumar Sah, Xiaoli Lian, Arsalan Shahid Baig, Tuopu Wen, Kun Jiang, Mengmeng Yang, Diange Yang, Li Zhang",
     year: 2025, venue: "ICCV Workshops 2025", type: "Workshop", topic: "Multimodal AI",
+    rankingVenue: "ICCV", rankingScope: "host-only",
     url: "https://openaccess.thecvf.com/content/ICCV2025W/WDFM-AD/html/Shaw_SafeRoute_Enhancing_Traffic_Scene_Understanding_via_a_Unified_Deep_Learning_ICCVW_2025_paper.html",
   },
   {
     title: "CleanMAP: Distilling Multimodal LLMs for Confidence-Driven Crowdsourced HD Map Updates",
     authors: "Ankit Kumar Shaw, Kun Jiang, Tuopu Wen, Chandan Kumar Sah, Yining Shi, Mengmeng Yang, Diange Yang, Xiaoli Lian",
     year: 2025, venue: "CVPR Workshops 2025", type: "Workshop", topic: "Multimodal AI",
+    rankingVenue: "CVPR", rankingScope: "host-only",
     url: "https://openaccess.thecvf.com/content/CVPR2025W/WDFM-AD/html/Shaw_CleanMAP_Distilling_Multimodal_LLMs_for_Confidence-Driven_Crowdsourced_HD_Map_Updates_CVPRW_2025_paper.html",
   },
   {
@@ -93,6 +100,7 @@ export const publications: Publication[] = [
     title: "Navigating the AI Frontier: A Critical Literature Review on Integrating Artificial Intelligence into Software Engineering Education",
     authors: "Chandan Kumar Sah, Xiaoli Lian, Muhammad Mirajul Islam, Md Kamrul Islam",
     year: 2024, venue: "CSEE&T 2024", type: "Conference", topic: "AI for SE",
+    rankingVenue: "CSEET", rankingScope: "main",
     url: "https://ieeexplore.ieee.org/abstract/document/10663054",
   },
   {
@@ -142,3 +150,25 @@ export const selectedTalks = [
   { title: "Understanding Uncertainty in LLMs", event: "ASE", year: "2025", url: "https://conf.researchr.org/home/ase-2025" },
   { title: "FairEval: Evaluating Fairness in LLM-Based Recommendations with Personality Awareness", event: "Asian Universities Alliance Postgraduate Forum", year: "2025", url: "https://www.sigs.tsinghua.edu.cn/en/2026/0114/c1303a288207/page.htm" },
 ];
+
+/**
+ * Conference venue rankings, checked 12 Oct 2026.
+ * Source: CCF 7th list (2026) and ICORE 2026.
+ * A venue ranking is not a rating of an individual paper.
+ * CCF explicitly excludes workshops, symposium short papers and doctoral tracks.
+ */
+export const conferenceRankings: Record<NonNullable<Publication["rankingVenue"]>, {
+  label: string;
+  ccf?: "A" | "B" | "C";
+  icore: "A*" | "A" | "B" | "C";
+  source: string;
+}> = {
+  ASE: { label: "ASE", ccf: "A", icore: "A*", source: "https://portal.core.edu.au/conf-ranks/?search=Automated+Software+Engineering" },
+  ICCV: { label: "ICCV", ccf: "A", icore: "A*", source: "https://portal.core.edu.au/conf-ranks/638/" },
+  CVPR: { label: "CVPR", ccf: "A", icore: "A*", source: "https://portal.core.edu.au/conf-ranks/604/" },
+  CSEET: { label: "CSEE&T", icore: "C", source: "https://portal.core.edu.au/conf-ranks/380/" },
+};
+export const rankingSources = {
+  ccf: "https://www.ccf.org.cn/Academic_Evaluation/By_category/",
+  icore: "https://portal.core.edu.au/conf-ranks/",
+} as const;
