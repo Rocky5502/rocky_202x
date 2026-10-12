@@ -20,7 +20,7 @@ Hash routes are intentional because GitHub Pages does not rewrite deep route URL
 
 ## Maintain the content
 
-Edit `src/data/portfolio.ts` for public profile details, publication records, venue rankings, reviewing, volunteering, awards and talks. Edit `src/data/projects.ts` for the curated public GitHub project directory; each entry is explicitly linked to a public repository and has a non-final release-status label. Each publication has an external **primary source**, a year and a publication type. Add papers only after checking the title, author list, venue, date and link against the publisher or arXiv. Do not classify workshop papers as main-conference papers or preprints as peer-reviewed papers.
+Edit `src/data/portfolio.ts` for public profile details, publication records, venue rankings, reviewing, volunteering, awards and talks. Edit `src/data/projects.ts` for the curated public GitHub project directory; each entry is explicitly linked to a public repository and has a non-final release-status label. Each publication has an external reference, a year and a publication type; if publisher proceedings are not public yet, the event website is used and marked explicitly. Add papers only after checking the title, author list, venue, date and link against the publisher or arXiv. Do not classify workshop papers as main-conference papers or preprints as peer-reviewed papers.
 
 **Google Scholar:** https://scholar.google.com/citations?user=PyH-zqygdCYC&hl=en
 
@@ -31,8 +31,9 @@ The portrait is intentionally rendered at a compact width (238 px max on large s
 
 ## Publication venue rankings (checked 2026-10-12)
 
-The website uses the **7th CCF recommended venue directory (2026)** and **ICORE 2026** for conference venue labels.
+The website uses the **7th CCF recommended venue directory (2026)** and **ICORE 2026** for conference venue labels. Venue ranks are informational, not individual paper grades.
 
+- **ACM CCS:** CCF A, ICORE A*. "Auditable Uncertainty Control for Secure LLM Agents" is listed as accepted **on author report only**, with solo authorship, and links to the event rather than a nonexistent publisher paper page. The public 2026 conference program did not independently corroborate the exact paper title at the time of checking.
 - **ASE:** CCF A, ICORE A* (the published paper is from the *Doctoral Symposium*; the host grade does NOT transfer to the track).
 - **ICCV and CVPR:** CCF A, ICORE A* (the listed papers are from **workshops**, NOT the main conference).
 - **CSEE&T / CSEET:** ICORE C; CCF not assigned because an official CCF classification was not verified.
@@ -43,6 +44,15 @@ CCF: https://www.ccf.org.cn/Academic_Evaluation/By_category/
 ICORE: https://portal.core.edu.au/conf-ranks/
 
 **Ethical rank policy:** These are *venue* classifications, not individual paper quality scores. Never represent doctoral-symposium or workshop publications as ranked main-conference publications. Only add a rating after checking the exact publication type and source.
+
+## Academic identity and service sources
+
+- [LinkedIn](https://www.linkedin.com/in/chandan-sah-rocky-%E6%96%87%E6%B5%A9-5803bb1b4/): selected publicly indexed academic service, volunteering, and recognitions; do not import private life details or unverified organizational claims.
+- [Public ORCID](https://orcid.org/0009-0002-4017-7970): persistent researcher identifier. The `/my-orcid` edit link requires login and is NOT a public permalink.
+- [Web of Science Researcher Profiles](https://clarivate.com/academia-government/scientific-and-academic-research/research-discovery-and-referencing/web-of-science/wos-researcher-profiles/): verified review history may be exported by the account owner.
+- Reviewer counts supplied by the researcher: **7 Web of Science review-round records covering 5 manuscripts** and **2 ORCID peer-review records**. These records can overlap, should not be added, and are not independently auditable from the public website. No manuscript titles or confidential report content are published.
+- Added IASEAI 2026 volunteer contribution as researcher-reported and selected academic service from the indexed LinkedIn profile.
+- Grokipedia is not an authoritative publisher or identity registry and its page was inaccessible; do not use it as evidence for paper acceptance, review appointments, or institutional roles.
 
 ## Current public research code
 
