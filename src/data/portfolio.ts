@@ -42,12 +42,6 @@ export const publications: Publication[] = [
     url: "https://arxiv.org/abs/2607.24884",
   },
   {
-    title: "Exact Feasibility Certification and Optimal Responsibility Allocation for Multi-Robot CBF Safety Filters",
-    authors: "Chandan Kumar Sah, Jishnu Keshavan",
-    year: 2026, venue: "arXiv:2609.14935", type: "Preprint", topic: "Reliable AI",
-    url: "https://arxiv.org/abs/2609.14935",
-  },
-  {
     title: "Uncertainty and Fairness Awareness in LLM-Based Recommendation Systems",
     authors: "Chandan Kumar Sah, Xiaoli Lian, Li Zhang, Tony Xu, Syed Shazaib Shah",
     year: 2026, venue: "IASEAI 2026", type: "Conference", topic: "Fairness",
