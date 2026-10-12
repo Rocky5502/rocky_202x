@@ -32,11 +32,24 @@ describe("public academic record", () => {
   });
 
   it("preserves checked ICORE 2026 and CCF 2026 reference grades", () => {
+    expect(conferenceRankings.CCS).toMatchObject({ ccf: "A", icore: "A*" });
     expect(conferenceRankings.ASE).toMatchObject({ ccf: "A", icore: "A*" });
     expect(conferenceRankings.CVPR).toMatchObject({ ccf: "A", icore: "A*" });
     expect(conferenceRankings.ICCV).toMatchObject({ ccf: "A", icore: "A*" });
     expect(conferenceRankings.CSEET).toMatchObject({ icore: "C" });
     expect(conferenceRankings.CSEET.ccf).toBeUndefined();
+  });
+});
+
+describe("authenticated identity and reported service", () => {
+  it("keeps author-reported acceptance distinct from public publication evidence", () => {
+    const ccs = publications.find(p => p.title === "Auditable Uncertainty Control for Secure LLM Agents");
+    expect(ccs).toBeDefined();
+    expect(ccs?.authors).toBe("Chandan Kumar Sah");
+    expect(ccs?.status).toContain("author-reported");
+    expect(ccs?.linkKind).toBe("venue");
+    expect(ccs?.rankingScope).toBe("host-only");
+    expect(ccs?.year).toBe(2026);
   });
 });
 
