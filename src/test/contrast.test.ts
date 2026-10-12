@@ -14,7 +14,8 @@ const ratio = (text: string, background: string) => {
   const bottom = Math.min(luminance(text), luminance(background));
   return (top + 0.05) / (bottom + 0.05);
 };
-const sheet = readFileSync(new URL("../portfolio.css", import.meta.url), "utf8");
+// Vitest transforms import.meta.url to a virtual module URL; read from the workspace root.
+const sheet = readFileSync("src/portfolio.css", "utf8");
 
 function palette(theme: "light" | "dark") {
   const declaration = theme === "light" ? ":root" : ":root.dark";
