@@ -72,9 +72,12 @@ describe("professional opportunities and optional research support", () => {
   it("uses the exact recipient email supplied by the owner without inventing a payment account URL", () => {
     expect(identity.paypalEmail).toBe("sahchandan98@gmail.com");
     expect(identity.email).toBe("sahchandan98@buaa.edu.cn");
+    expect(identity.orcid).toBe("https://orcid.org/0009-0002-4017-7970");
     expect(identity.paypalEmail).not.toBe(identity.email);
     expect(researchSupport.paypalLogo).toMatch(/^https:\/\/www\.paypalobjects\.com\//);
     expect(researchSupport.paypalHomepage).toBe("https://www.paypal.com/");
+    expect(researchSupport.googlePayMark).toBe("https://developers.google.com/static/pay/api/images/brand-guidelines/google-pay-mark.png");
+    expect(researchSupport.googlePayAvailability).toContain("An email address alone is not a universal Google Pay payment identifier");
     expect(researchSupport.disclaimer).toContain("not a tax-deductible");
   });
 
