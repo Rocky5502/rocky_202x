@@ -156,11 +156,6 @@ export const researchAreas = [
     name: "Fairness & responsible recommendation",
     description: "Understanding the trade-offs among personalization, behavioral fairness, bias and reliability in AI-assisted recommendations.",
   },
-  {
-    index: "06",
-    name: "Safety-critical multimodal systems",
-    description: "Evaluating how multimodal models can support dependable reasoning in transportation, autonomous systems and other high-stakes settings.",
-  },
 ];
 
 export const selectedProjects = [
