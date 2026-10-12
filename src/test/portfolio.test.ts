@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { publications, conferenceRankings } from "@/data/portfolio";
+import { publications, conferenceRankings, identity } from "@/data/portfolio";
+import { opportunityTracks, researchSupport } from "@/data/opportunities";
 import { publicProjects, publicProjectUrl } from "@/data/projects";
 
 describe("public academic record", () => {
@@ -62,6 +63,29 @@ describe("public project curation", () => {
       expect(project.name).toBeTruthy();
       expect(project.description.length).toBeGreaterThan(25);
       expect(["Research artifact", "In development"]).toContain(project.stage);
+    }
+  });
+});
+
+
+describe("professional opportunities and optional research support", () => {
+  it("uses the exact recipient email supplied by the owner without inventing a payment account URL", () => {
+    expect(identity.paypalEmail).toBe("sahchandan98@gmail.com");
+    expect(identity.email).toBe("sahchandan98@buaa.edu.cn");
+    expect(identity.paypalEmail).not.toBe(identity.email);
+    expect(researchSupport.paypalLogo).toMatch(/^https:\/\/www\.paypalobjects\.com\//);
+    expect(researchSupport.paypalHomepage).toBe("https://www.paypal.com/");
+    expect(researchSupport.disclaimer).toContain("not a tax-deductible");
+  });
+
+  it("distinguishes current collaborations from future postdoctoral opportunities", () => {
+    expect(opportunityTracks.length).toBe(4);
+    expect(new Set(opportunityTracks.map(track => track.title)).size).toBe(opportunityTracks.length);
+    expect(opportunityTracks.some(track => track.title.includes("Visiting"))).toBe(true);
+    expect(opportunityTracks.some(track => track.title.includes("Industry"))).toBe(true);
+    expect(opportunityTracks.some(track => track.title.includes("Future"))).toBe(true);
+    for (const track of opportunityTracks) {
+      expect(track.summary.length).toBeGreaterThan(45);
     }
   });
 });
