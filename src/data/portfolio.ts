@@ -27,6 +27,9 @@ export const identity = {
   institution: "Beihang University",
   department: "Software Engineering Institute",
   email: "sahchandan98@buaa.edu.cn",
+  // Public-facing PayPal recipient email requested by the site owner.
+  // This is not a verified PayPal account or a payment link.
+  paypalEmail: "sahchandan98@gmail.com",
   scholar: "https://scholar.google.com/citations?user=PyH-zqygdCYC&hl=en",
   orcid: "https://orcid.org/0009-0002-4017-7970",
   github: "https://github.com/Rocky5502",
