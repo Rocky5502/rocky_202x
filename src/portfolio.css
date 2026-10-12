@@ -5,7 +5,7 @@
   --portfolio-panel: #ffffff;
   --portfolio-ink: #20272a;
   --portfolio-muted: #626b70;
-  --portfolio-faint: #80898c;
+  --portfolio-faint: #606b6f;
   --portfolio-rule: #dddeda;
   --portfolio-accent: #8c5139;
   --portfolio-accent-hover: #6b3825;
@@ -933,4 +933,15 @@ body { margin: 0; }
 }
 @media(prefers-reduced-motion:reduce) {
   .area-card { transition: none; }
+}
+
+/* WCAG 2.2 AA: light secondary text now >= 4.5:1 on standard, white and soft panels.
+   Keep original academic palette; improve contrast rather than adding saturated effects. */
+.portfolio-shell button, .portfolio-shell a { -webkit-tap-highlight-color: transparent; }
+.portfolio-shell :is(button, a, input, select):focus-visible {
+  outline: 2px solid var(--portfolio-accent);
+  outline-offset: 3px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-shell { transition: none; }
 }
