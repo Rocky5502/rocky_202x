@@ -12,7 +12,7 @@ Designed for readers of research papers, potential collaborators, hiring committ
 | `/#/` | Research overview, selected publications and contact |
 | `/#/publications` | Papers with topic/type filters and correctly scoped CCF/ICORE venue ratings |
 | `/#/projects` | Curated, tagged and filtered links to publicly accessible research repositories |
-| `/#/research` | Six research directions, including Software Engineering for AI and Trustworthy AI |
+| `/#/research` | Five research directions, including Software Engineering for AI and Trustworthy AI |
 | `/#/service` | Reviewing roles, volunteer activities, academic identities |
 | `/#/recognition` | Awards and selected invited / conference talks |
 | `/#/connect` | Visiting research, fellowships, research-oriented roles and optional individual research support |
@@ -25,7 +25,7 @@ Hash routes are intentional because GitHub Pages does not rewrite deep route URL
 
 GitHub Pages may serve temporarily cached HTML immediately after a deployment, even though the latest hashed JS bundle is in the repository. If a page displays the previous header without the Opportunities navigation, **hard-refresh** or open `https://rocky5502.github.io/rocky_202x/?v=20261012#/connect` once. Do not change URLs to `/rocky_202x/connect` unless the legacy redirect is desired.
 
-`src/test/navigation.test.tsx` tests the real `/#/connect` address, legacy hash aliases, 404 recovery and all six research topics. Both `Verify portfolio` and the Pages deployment should succeed for the same latest commit before considering a release complete.
+`src/test/navigation.test.tsx` tests the real `/#/connect` address, legacy hash aliases, 404 recovery and all five research topics. Both `Verify portfolio` and the Pages deployment should succeed for the same latest commit before considering a release complete.
 
 ## Maintain the content
 
@@ -84,15 +84,18 @@ The **Opportunities & support** page at `/#/connect` communicates the current do
 
 Opportunity wording is authored in `src/data/opportunities.ts` and is not a guarantee of eligibility or institutional approval.
 
-The researcher explicitly requested displaying **sahchandan98@gmail.com** as a *public PayPal recipient email* for optional personal support of open, responsible AI research. Academic correspondence continues to use the institutional `sahchandan98@buaa.edu.cn` address. The site implements:
+The researcher explicitly requested displaying **sahchandan98@gmail.com** as a *public PayPal recipient email and contact address for Google Pay inquiries* for optional personal support of open, responsible AI research. Academic correspondence continues to use the institutional `sahchandan98@buaa.edu.cn` address. The site implements:
 
 - A labeled, selectable read-only payment email with a copy-to-clipboard button.
 - A small, unmodified PayPal logo sourced from PayPal's official asset CDN and a link to the generic PayPal homepage.
-- **No payment processor integration, embedded checkout, unverified PayPal.Me account, user analytics or automated receipt claims.**
+- An unmodified Google Pay mark from Google's developer-branding resources, shown only alongside a request for verified receiving details; the same Gmail address is a **contact address**, not a verified Google Pay payee identifier.
+- Official Google support states personal money transfers depend on country and supported payment rails. Email-address transfers are not universally supported: https://support.google.com/googlepay/answer/12429287?hl=en.
+- Google Pay branding: https://developers.google.com/pay/api/web/guides/brand-guidelines.
+- **No payment processor integration, embedded checkout, unverified PayPal.Me or Google Pay payment identifier, user analytics or automated receipt claims.**
 - Explicit disclosure that voluntary contributions are personal, not tax-deductible charitable donations or institutional grants, and do not influence research results, authorship or peer review.
 - A confirmation reminder to verify recipient details in PayPal before sending funds.
 
-The PayPal trademark belongs to PayPal; displaying its payment mark identifies the transfer method and does not imply endorsement or verified-account status. Remove the email from the public repository and website if privacy or institutional funding rules change. It will otherwise remain publicly indexed. The site owner should ensure any independent financial support complies with scholarship, institutional and relevant tax/payment requirements.
+The PayPal trademark belongs to PayPal, and the Google Pay mark belongs to Google. Displaying the marks does not imply endorsement, a verified recipient, or active checkout integration. Remove the email from the public repository and website if privacy or institutional funding rules change. It will otherwise remain publicly indexed. The site owner should ensure any independent financial support complies with scholarship, institutional and relevant tax/payment requirements.
 
 ## Run locally
 
