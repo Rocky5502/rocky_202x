@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from "vitest";
-import { render, screen, within } from "@testing-library/react";
+import { fireEvent, render, screen, within } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { researchAreas } from "@/data/portfolio";
 import App from "@/App";
@@ -22,6 +22,40 @@ describe("research agenda", () => {
     const headings = researchAreas.map(area => screen.getByRole("heading", { name: area.name }));
     expect(headings).toHaveLength(5);
     expect(screen.getAllByRole("link", { name: "Opportunities" }).length).toBeGreaterThan(0);
+  });
+});
+
+describe("navigation usability", () => {
+  it("updates document titles and descriptions for each section", () => {
+    const titleBefore = document.title;
+    const { unmount } = render(<MemoryRouter initialEntries={["/research"]}><PortfolioSite /></MemoryRouter>);
+    expect(document.title).toBe("Research Directions | Chandan Kumar Sah");
+    unmount();
+    render(<MemoryRouter initialEntries={["/publications"]}><PortfolioSite /></MemoryRouter>);
+    expect(document.title).toBe("Publications | Chandan Kumar Sah");
+    expect(document.title).not.toBe(titleBefore);
+  });
+
+  it("opens the mobile menu by keyboard and closes it with Escape, restoring focus", () => {
+    render(<MemoryRouter initialEntries={["/"]}><PortfolioSite /></MemoryRouter>);
+    const trigger = screen.getByRole("button", { name: "Open navigation" });
+    trigger.focus();
+    fireEvent.click(trigger);
+    const mobile = screen.getByRole("navigation", { name: "Mobile navigation" });
+    expect(mobile).toBeInTheDocument();
+    expect(within(mobile).getByRole("link", { name: "Home" })).toHaveFocus();
+    const close = screen.getByRole("button", { name: "Close navigation" });
+    expect(close).toHaveAttribute("aria-expanded", "true");
+    fireEvent.keyDown(document, { key: "Escape" });
+    expect(screen.queryByRole("navigation", { name: "Mobile navigation" })).not.toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Open navigation" })).toHaveFocus();
+  });
+
+  it("does not show an unrelated personal ORCID in researcher identity", () => {
+    const { unmount } = render(<MemoryRouter initialEntries={["/service"]}><PortfolioSite /></MemoryRouter>);
+    const orcidLinks = screen.getAllByRole("link", { name: "ORCID" });
+    expect(orcidLinks.every(link => link.getAttribute("href") === "https://orcid.org/0009-0002-4017-7970")).toBe(true);
+    unmount();
   });
 });
 
