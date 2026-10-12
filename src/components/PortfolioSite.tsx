@@ -4,10 +4,11 @@ import { ArrowRight, ArrowUpRight, BrainCircuit, BriefcaseBusiness, Check, Clipb
 import portrait from "@/assets/portrait.jpg";
 import {
   identity, publications, researchAreas, academicService, conferenceRankings, rankingSources,
-  distinctions, selectedTalks, type Publication,
+  selectedTalks, type Publication,
 } from "@/data/portfolio";
 import { publicProjects, publicProjectUrl, type PublicProject } from "@/data/projects";
 import { NewsPage, NewsPreview } from "@/components/NewsComponents";
+import { AwardsInvitation, AwardsPage } from "@/components/AwardsComponents";
 import { opportunityTracks, researchSupport } from "@/data/opportunities";
 import "@/portfolio.css";
 
@@ -55,7 +56,11 @@ const routeMetadata: Record<string, { title: string; description: string }> = {
   },
   "/recognition": {
     title: "Recognition & Talks | Chandan Kumar Sah",
-    description: "Selected academic awards, research distinctions, and scholarly presentations.",
+    description: "Academic recognition, a dedicated year-by-year awards archive, and selected scholarly presentations.",
+  },
+  "/awards": {
+    title: "Awards & Appreciation | Chandan Kumar Sah",
+    description: "A historical year-by-year archive of academic distinctions, scholarships, certificates, and participation records.",
   },
   "/news": {
     title: "News & Milestones | Chandan Kumar Sah",
@@ -376,11 +381,9 @@ function ServicePage() {
 
 function RecognitionPage() {
   return <div className="content-wrap interior-page">
-    <PageHeading kicker="Community / 04" title="Recognition & talks" subtitle="Selected distinctions and academic presentations, kept separate from the main research profile." />
-    <section className="service-section">
-      <SectionTitle eyebrow="Selected recognition" title="Awards & distinctions" />
-      <div className="simple-records">{distinctions.map(item=><article className="simple-record" key={item.name}><span className="record-year">{item.year}</span><div><h3>{item.name}</h3><p className="record-subtitle">{item.issuer}</p></div></article>)}</div>
-      <p className="small-note">Selected highlights, not a complete personal history or CV.</p>
+    <PageHeading kicker="Community / 04" title="Recognition & talks" subtitle="A focused overview of professional recognition and selected academic presentations. Browse the awards archive only if you would like more detail." />
+    <section className="service-section recognition-gateway-section">
+      <AwardsInvitation />
     </section>
     <section className="service-section section-divider">
       <SectionTitle eyebrow="Research presentations" title="Selected talks" />
@@ -501,6 +504,8 @@ export default function PortfolioSite() {
       <Route path="/research" element={<ResearchPage/>} />
       <Route path="/service" element={<ServicePage/>} />
       <Route path="/recognition" element={<RecognitionPage/>} />
+      <Route path="/awards" element={<AwardsPage/>} />
+      <Route path="/recognition/awards" element={<Navigate to="/awards" replace />} />
       <Route path="/news" element={<NewsPage/>} />
       <Route path="/connect" element={<ConnectPage/>} />
       <Route path="/opportunities" element={<Navigate to="/connect" replace />} />
