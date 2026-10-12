@@ -33,6 +33,8 @@ Edit `src/data/portfolio.ts` for public profile details, the institutional conta
 
 **Google Scholar:** https://scholar.google.com/citations?user=PyH-zqygdCYC&hl=en
 
+**Verification ledger:** [docs/BIBLIOGRAPHY_PROVENANCE.md](docs/BIBLIOGRAPHY_PROVENANCE.md) records which publisher bylines and publication types were verified and which sources still require follow-up. Two July 2026 arXiv records were corrected in October 2026 to use the publisher-listed order Chandan Kumar Sah, Li Zhang, Xiaoli Lian.
+
 Google Scholar does not provide a supported public publications API and may block automated scraping. For this reason the site links to Scholar as the complete record and keeps a manually verified, curated on-site bibliography. The previous one-page data and presentation components were removed to avoid outdated records and unnecessary personal content.
 
 The portrait is intentionally rendered at a compact width (238 px max on large screens, smaller on mobile). To replace it, edit `src/assets/portrait.jpg`. The site deliberately omits personal life information, exact address, background counters and other non-academic biography.
@@ -107,7 +109,7 @@ bun run test
 bunx tsc --noEmit -p tsconfig.app.json
 ```
 
-The site is hosted as a Vite project on GitHub Pages with `base: "/rocky_202x/"` in `vite.config.ts`. Pushing to `main` triggers `.github/workflows/deploy.yml`.
+The site is hosted as a Vite project on GitHub Pages with `base: "/rocky_202x/"` in `vite.config.ts`. Pushing to `main` triggers `.github/workflows/deploy.yml`, which **must pass TypeScript typechecking and all unit/integration regression tests before the production bundle can deploy**. The separate `verify.yml` workflow provides additional confirmation on pushes and pull requests.
 
 ## Design and accessibility
 
@@ -115,6 +117,8 @@ The site is hosted as a Vite project on GitHub Pages with `base: "/rocky_202x/"`
 - Persistent light/dark preference stored in the browser
 - Separate routes, keyboard-accessible navigation and filter controls, mobile menu, visible focus states
 - Semantic publication records, external links, reduced-motion handling
+- Route-specific browser titles and metadata, mobile navigation that supports Escape and restores focus, and accessible contrast for small labels
+- Automated test guard for WCAG AA 4.5:1 normal-text contrast across light/dark surfaces
 - No tracking or backend required by the redesigned pages
 
 ## Content policy
