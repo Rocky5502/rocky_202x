@@ -131,10 +131,36 @@ export const publications: Publication[] = [
 ];
 
 export const researchAreas = [
-  { index: "01", name: "Uncertainty in language models", description: "What do language models know, and how can uncertainty guide retrieval, verification, and abstention?" },
-  { index: "02", name: "AI for software engineering", description: "Building dependable code-generation systems around repository context, evidence quality, and testing." },
-  { index: "03", name: "Fair and responsible recommendation", description: "Studying trade-offs between personalization, robustness, and demographic equity." },
-  { index: "04", name: "Safety in autonomous systems", description: "Combining multimodal reasoning and formal safety questions with evidence-driven evaluation." },
+  {
+    index: "01",
+    name: "Uncertainty in language models",
+    description: "Estimating, calibrating and propagating uncertainty so language models can retrieve evidence, verify answers and abstain when appropriate.",
+  },
+  {
+    index: "02",
+    name: "AI for software engineering",
+    description: "Using language models and agents to support repository-level code generation, retrieval, testing and developer workflows.",
+  },
+  {
+    index: "03",
+    name: "Software engineering for AI",
+    description: "Applying testing, evaluation, reproducibility and lifecycle assurance to make AI-based software systems more dependable.",
+  },
+  {
+    index: "04",
+    name: "Trustworthy AI & agent safety",
+    description: "Studying robustness, prompt-injection resistance, calibrated trust and risk-aware decisions in autonomous and multi-agent AI systems.",
+  },
+  {
+    index: "05",
+    name: "Fairness & responsible recommendation",
+    description: "Understanding the trade-offs among personalization, behavioral fairness, bias and reliability in AI-assisted recommendations.",
+  },
+  {
+    index: "06",
+    name: "Safety-critical multimodal systems",
+    description: "Evaluating how multimodal models can support dependable reasoning in transportation, autonomous systems and other high-stakes settings.",
+  },
 ];
 
 export const selectedProjects = [
