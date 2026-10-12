@@ -53,13 +53,13 @@ export const publications: Publication[] = [
   },
   {
     title: "Beyond Self-Knowledge: Propagating Uncertainty Across Reasoning and Retrieval in LLMs",
-    authors: "Chandan Kumar Sah, Xiaoli Lian, Li Zhang",
+    authors: "Chandan Kumar Sah, Li Zhang, Xiaoli Lian",
     year: 2026, venue: "arXiv:2607.25600", type: "Preprint", topic: "Reliable AI",
     url: "https://arxiv.org/abs/2607.25600",
   },
   {
     title: 'Beyond "What to Retrieve": Uncertainty in Retrieval-Augmented Code Generation',
-    authors: "Chandan Kumar Sah, Xiaoli Lian, Li Zhang",
+    authors: "Chandan Kumar Sah, Li Zhang, Xiaoli Lian",
     year: 2026, venue: "arXiv:2607.24884", type: "Preprint", topic: "AI for SE",
     url: "https://arxiv.org/abs/2607.24884",
   },
