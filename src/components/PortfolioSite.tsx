@@ -1,12 +1,13 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link, NavLink, Route, Routes, useLocation } from "react-router-dom";
-import { ArrowRight, ArrowUpRight, Github, Mail, Menu, Moon, Sun, X } from "lucide-react";
+import { ArrowRight, ArrowUpRight, BriefcaseBusiness, Check, ClipboardCopy, Github, HeartHandshake, Mail, Menu, Moon, Sun, X } from "lucide-react";
 import portrait from "@/assets/portrait.jpg";
 import {
   identity, publications, researchAreas, academicService, conferenceRankings, rankingSources,
   distinctions, selectedTalks, type Publication,
 } from "@/data/portfolio";
 import { publicProjects, publicProjectUrl, type PublicProject } from "@/data/projects";
+import { opportunityTracks, researchSupport } from "@/data/opportunities";
 import "@/portfolio.css";
 
 const navigation = [
@@ -16,6 +17,7 @@ const navigation = [
   { to: "/research", label: "Research" },
   { to: "/service", label: "Service" },
   { to: "/recognition", label: "Recognition" },
+  { to: "/connect", label: "Opportunities" },
 ];
 
 function ExternalLink({ href, children, className = "" }: { href: string; children: React.ReactNode; className?: string }) {
@@ -92,6 +94,7 @@ function Footer() {
           <ExternalLink href={identity.orcid}>ORCID</ExternalLink>
           <ExternalLink href={identity.linkedin}>LinkedIn</ExternalLink>
           <ExternalLink href={identity.github}>GitHub</ExternalLink>
+          <Link to="/connect">Opportunities</Link>
           <a href={`mailto:${identity.email}`}>Email</a>
         </div>
         <span className="footer-legal">© {new Date().getFullYear()} · Updated October 2026</span>
@@ -177,6 +180,7 @@ function Home() {
         <h1>Chandan Kumar Sah<span className="hero-also">Rocky 文浩</span></h1>
         <p className="hero-lead">Studying when AI systems should trust their evidence—and when they should not.</p>
         <p className="hero-description">I am a doctoral researcher at {identity.institution}. My work focuses on uncertainty in language models, dependable AI for software engineering, and responsible evaluation of intelligent systems.</p>
+        <Link className="availability-inline" to="/connect"><span className="availability-dot" aria-hidden="true" />Open to research collaborations, visiting opportunities and fellowships <ArrowRight size={14} aria-hidden="true" /></Link>
         <div className="hero-actions">
           <Link className="primary-action" to="/publications">Explore publications <ArrowRight size={16} /></Link>
           <ExternalLink href={identity.scholar} className="secondary-action">Google Scholar</ExternalLink>
@@ -212,8 +216,8 @@ function Home() {
       <div className="public-project-grid home-project-grid">{publicProjects.filter(p => p.featured).map(project => <ProjectCard key={project.repo} project={project} compact />)}</div>
     </section>
     <section className="content-wrap home-contact section-divider">
-      <div><p className="eyebrow">Get in touch</p><h2>Open to thoughtful research conversations.</h2></div>
-      <div><p>For academic collaboration, paper discussions, and speaking invitations, please use my institutional email.</p><a className="text-action" href={`mailto:${identity.email}`}><Mail size={18} /> {identity.email}</a></div>
+      <div><p className="eyebrow">Academic & industry opportunities</p><h2>Building reliable AI for a better future.</h2></div>
+      <div><p>I welcome academic collaborations, visiting researcher opportunities, fellowships, and research-focused industry conversations. I am also interested in future postdoctoral opportunities as I progress through my PhD.</p><Link className="text-action" to="/connect"><BriefcaseBusiness size={17} /> Opportunities and ways to connect <ArrowRight size={17} /></Link><a className="text-action" href={`mailto:${identity.email}`}><Mail size={18} /> {identity.email}</a></div>
     </section>
   </>;
 }
@@ -310,6 +314,73 @@ function RecognitionPage() {
   </div>;
 }
 
+
+function ConnectPage() {
+  const [copyStatus, setCopyStatus] = useState<"idle" | "copied" | "unavailable">("idle");
+  const copySupportEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(identity.paypalEmail);
+      setCopyStatus("copied");
+    } catch {
+      setCopyStatus("unavailable");
+    }
+  };
+  return <div className="content-wrap interior-page connect-page">
+    <PageHeading
+      kicker="Collaboration / 05"
+      title="Opportunities & support"
+      subtitle="I welcome thoughtful academic and industry collaborations that advance reliable, useful AI. My priority remains my ongoing doctoral research."
+    />
+    <section className="connect-overview" aria-label="Availability for academic and industry collaboration">
+      <span className="availability-dot" aria-hidden="true" />
+      <div><strong>Open to conversations</strong><p>Academic research · Visiting appointments · Fellowships · AI research & engineering</p></div>
+    </section>
+    <section className="service-section connect-section">
+      <SectionTitle eyebrow="Professional interests" title="How we could work together" />
+      <p className="service-intro">My interests center on uncertainty-aware language models, AI safety, software-engineering agents, trustworthy evaluation and open research infrastructure. I am particularly interested in projects that turn sound methods into tools people can use.</p>
+      <div className="opportunity-list">{opportunityTracks.map((track, index) =>
+        <article className="opportunity-item" key={track.title}>
+          <span className="opportunity-index">{String(index + 1).padStart(2, "0")}</span>
+          <div><h3>{track.title}</h3><p className="opportunity-area">{track.area}</p><p className="opportunity-summary">{track.summary}</p></div>
+        </article>
+      )}</div>
+      <div className="connect-actions">
+        <a className="primary-action" href={"mailto:" + identity.email + "?subject=Academic%20research%20opportunity"}><Mail size={16} aria-hidden="true"/> Discuss an opportunity <ArrowRight size={16} aria-hidden="true" /></a>
+        <ExternalLink className="secondary-action" href={identity.linkedin}>View LinkedIn</ExternalLink>
+        <ExternalLink className="secondary-action" href={identity.scholar}>Research record</ExternalLink>
+      </div>
+      <p className="small-note">Visiting, fellowship and employment arrangements depend on institutional permissions, funding and eligibility. Expressions of interest do not imply an immediate start date or a current appointment.</p>
+    </section>
+    <section className="service-section section-divider support-section" aria-labelledby="support-research-heading">
+      <div className="support-intro">
+        <span className="support-symbol" aria-hidden="true"><HeartHandshake size={23}/></span>
+        <div>
+          <p className="eyebrow">Voluntary academic support</p>
+          <h2 id="support-research-heading">{researchSupport.title}</h2>
+        </div>
+      </div>
+      <p className="support-statement">{researchSupport.description}</p>
+      <div className="support-details">
+        <div className="support-payment-heading">
+          <img src={researchSupport.paypalLogo} alt="" loading="lazy" decoding="async" width={35} height={35} />
+          <div><strong>PayPal</strong><p>Optional personal research support</p></div>
+        </div>
+        <label className="support-email-label" htmlFor="paypal-recipient-address">PayPal recipient email</label>
+        <div className="support-email-row">
+          <input id="paypal-recipient-address" type="text" readOnly value={identity.paypalEmail} onFocus={event => event.currentTarget.select()} aria-label="PayPal support email address" />
+          <button type="button" className="copy-address-button" onClick={copySupportEmail} aria-label="Copy PayPal recipient email address">
+            {copyStatus === "copied" ? <Check size={15} aria-hidden="true"/> : <ClipboardCopy size={15} aria-hidden="true"/>}
+            {copyStatus === "copied" ? "Copied" : "Copy email"}
+          </button>
+        </div>
+        <p className="copy-feedback" role="status">{copyStatus === "copied" ? "Email copied to your clipboard." : copyStatus === "unavailable" ? "Automatic copying is unavailable here; please select and copy the email above." : "To contribute, enter this recipient email in PayPal and verify the recipient before confirming any payment."}</p>
+        <ExternalLink className="support-paypal-link" href={researchSupport.paypalHomepage}>Open PayPal website</ExternalLink>
+      </div>
+      <p className="support-disclaimer">{researchSupport.disclaimer} The payment address is provided at the researcher's request and has not been verified as an active PayPal account. No embedded checkout or payment tracking is used.</p>
+    </section>
+  </div>;
+}
+
 function NotFound() {
   return <div className="content-wrap interior-page"><PageHeading kicker="404" title="Page not found" subtitle="This address does not match a page on the site." /><Link to="/" className="primary-action">Back to home <ArrowRight size={16}/></Link></div>;
 }
@@ -323,6 +394,7 @@ export default function PortfolioSite() {
       <Route path="/research" element={<ResearchPage/>} />
       <Route path="/service" element={<ServicePage/>} />
       <Route path="/recognition" element={<RecognitionPage/>} />
+      <Route path="/connect" element={<ConnectPage/>} />
       <Route path="*" element={<NotFound/>} />
     </Routes></main><Footer />
   </div>;
