@@ -7,6 +7,7 @@ import {
   distinctions, selectedTalks, type Publication,
 } from "@/data/portfolio";
 import { publicProjects, publicProjectUrl, type PublicProject } from "@/data/projects";
+import { NewsPage, NewsPreview } from "@/components/NewsComponents";
 import { opportunityTracks, researchSupport } from "@/data/opportunities";
 import "@/portfolio.css";
 
@@ -19,6 +20,7 @@ const navigation = [
   { to: "/research", label: "Research" },
   { to: "/service", label: "Service" },
   { to: "/recognition", label: "Recognition" },
+  { to: "/news", label: "News" },
   { to: "/connect", label: "Opportunities" },
 ];
 
@@ -54,6 +56,10 @@ const routeMetadata: Record<string, { title: string; description: string }> = {
   "/recognition": {
     title: "Recognition & Talks | Chandan Kumar Sah",
     description: "Selected academic awards, research distinctions, and scholarly presentations.",
+  },
+  "/news": {
+    title: "News & Milestones | Chandan Kumar Sah",
+    description: "Chronological academic news, research milestones, scholarly recognition, and the latest publication announcements.",
   },
   "/connect": {
     title: "Opportunities & Support | Chandan Kumar Sah",
@@ -152,6 +158,7 @@ function Footer() {
           <ExternalLink href={identity.orcid}>ORCID</ExternalLink>
           <ExternalLink href={identity.linkedin}>LinkedIn</ExternalLink>
           <ExternalLink href={identity.github}>GitHub</ExternalLink>
+          <Link to="/news">News</Link>
           <Link to="/connect">Opportunities</Link>
           <a href={`mailto:${identity.email}`}>Email</a>
         </div>
@@ -259,6 +266,7 @@ function Home() {
       <div><p className="eyebrow">Research statement</p><h2>Reliable systems begin with knowing their limits.</h2></div>
       <div className="home-about-text"><p>Large language models often produce fluent answers without reliable evidence. I investigate uncertainty as a practical signal for retrieval, checking, and decision-making—especially in software engineering, where wrong outputs can have real costs.</p><p>Alongside this work, I explore algorithmic fairness and safety-critical multimodal applications. My aim is to connect careful experiments with systems people can responsibly use.</p><Link className="text-action" to="/research">Research directions <ArrowRight size={17} /></Link></div>
     </section>
+    <NewsPreview />
     <section className="content-wrap page-section section-divider">
       <SectionTitle eyebrow="Selected writing" title="Recent publications" destination="/publications" destinationLabel="All publications" />
       <div className="publication-list">{featured.map((p,i) => <PublicationRow publication={p} key={p.title} index={i} />)}</div>
@@ -493,12 +501,15 @@ export default function PortfolioSite() {
       <Route path="/research" element={<ResearchPage/>} />
       <Route path="/service" element={<ServicePage/>} />
       <Route path="/recognition" element={<RecognitionPage/>} />
+      <Route path="/news" element={<NewsPage/>} />
       <Route path="/connect" element={<ConnectPage/>} />
       <Route path="/opportunities" element={<Navigate to="/connect" replace />} />
       <Route path="/collaborate" element={<Navigate to="/connect" replace />} />
       <Route path="/contact" element={<Navigate to="/connect" replace />} />
       <Route path="/support" element={<Navigate to="/connect" replace />} />
       <Route path="/work-with-me" element={<Navigate to="/connect" replace />} />
+      <Route path="/rocky-news" element={<Navigate to="/news" replace />} />
+      <Route path="/updates" element={<Navigate to="/news" replace />} />
       <Route path="/research-areas" element={<Navigate to="/research" replace />} />
       <Route path="/papers" element={<Navigate to="/publications" replace />} />
       <Route path="*" element={<NotFound/>} />
