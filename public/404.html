@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex" />
+  <title>Redirecting to Chandan Kumar Sah's academic website</title>
+  <script>
+    // GitHub Pages does not rewrite path routes for a Vite HashRouter.
+    // Recover human-facing direct paths while keeping missing assets as 404s.
+    (function () {
+      var base = "/rocky_202x/";
+      var relative = window.location.pathname.replace(/^\/rocky_202x\/?/, "").replace(/\/+$/, "");
+      if (/\.[a-z0-9]+$/i.test(relative)) return;
+      var aliases = {
+        "opportunities": "connect",
+        "contact": "connect",
+        "support": "connect",
+        "collaborate": "connect",
+        "work-with-me": "connect",
+        "papers": "publications",
+        "research-areas": "research"
+      };
+      var routes = ["", "publications", "research", "projects", "service", "recognition", "connect"];
+      var route = Object.prototype.hasOwnProperty.call(aliases, relative) ? aliases[relative] : relative;
+      if (routes.indexOf(route) < 0) route = "";
+      window.location.replace(base + "?from=direct-link#/" + route);
+    })();
+  </script>
+  <style>
+    body { background: #faf9f6; color: #20272a; font: 16px/1.7 system-ui, sans-serif; padding: 12vh 8vw; }
+    h1 { font: 400 clamp(32px, 5vw, 52px)/1.2 Georgia, serif; }
+    a { color: #8c5139; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Continue to the academic portfolio</h1>
+    <p>This website uses hash-based page addresses. If you aren't redirected,
+       <a href="/rocky_202x/#/">return to the homepage</a> or
+       <a href="/rocky_202x/#/connect">open Opportunities &amp; support</a>.</p>
+  </main>
+</body>
+</html>
