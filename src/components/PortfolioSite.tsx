@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Link, NavLink, Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { ArrowRight, ArrowUpRight, BrainCircuit, BriefcaseBusiness, Check, ClipboardCheck, ClipboardCopy, Code2, Github, HeartHandshake, Mail, Menu, Moon, Scale, ShieldCheck, Sun, X } from "lucide-react";
 import portrait from "@/assets/portrait.jpg";
@@ -30,14 +30,58 @@ function ExternalLink({ href, children, className = "" }: { href: string; childr
   );
 }
 
-function ScrollReset() {
+const routeMetadata: Record<string, { title: string; description: string }> = {
+  "/": {
+    title: "Chandan Kumar Sah | Research in Reliable AI & Software Engineering",
+    description: "Doctoral researcher at Beihang University studying uncertainty-aware language models, dependable AI and software engineering.",
+  },
+  "/publications": {
+    title: "Publications | Chandan Kumar Sah",
+    description: "Verified academic publications, preprints and forthcoming research, with source links and carefully scoped conference rankings.",
+  },
+  "/research": {
+    title: "Research Directions | Chandan Kumar Sah",
+    description: "Research in LLM uncertainty, AI for software engineering, software engineering for AI, trustworthy agent safety and fairness.",
+  },
+  "/projects": {
+    title: "Open Research Projects | Chandan Kumar Sah",
+    description: "Explore open research code for dependable AI agents, software testing, uncertainty and repository-level code generation.",
+  },
+  "/service": {
+    title: "Academic Service | Chandan Kumar Sah",
+    description: "Scholarly peer review, academic volunteer activities, and research community contributions.",
+  },
+  "/recognition": {
+    title: "Recognition & Talks | Chandan Kumar Sah",
+    description: "Selected academic awards, research distinctions, and scholarly presentations.",
+  },
+  "/connect": {
+    title: "Opportunities & Support | Chandan Kumar Sah",
+    description: "Academic and industry research collaboration, visiting opportunities, fellowships and optional independent research support.",
+  },
+};
+const fallbackMetadata = {
+  title: "Page not found | Chandan Kumar Sah",
+  description: "Browse the academic research portfolio of Chandan Kumar Sah.",
+};
+
+function RouteEffects() {
   const { pathname } = useLocation();
-  useEffect(() => { window.scrollTo({ top: 0, behavior: "instant" }); }, [pathname]);
+  useEffect(() => {
+    const details = routeMetadata[pathname] ?? fallbackMetadata;
+    document.title = details.title;
+    document.querySelector<HTMLMetaElement>('meta[name="description"]')?.setAttribute("content", details.description);
+    document.querySelector<HTMLMetaElement>('meta[property="og:title"]')?.setAttribute("content", details.title);
+    document.querySelector<HTMLMetaElement>('meta[property="og:description"]')?.setAttribute("content", details.description);
+    window.scrollTo({ top: 0, behavior: "instant" });
+  }, [pathname]);
   return null;
 }
 
 function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const firstMenuLinkRef = useRef<HTMLAnchorElement>(null);
   const { pathname } = useLocation();
   const [theme, setTheme] = useState<"light" | "dark">(() => {
     if (typeof window === "undefined") return "light";
@@ -50,6 +94,18 @@ function SiteHeader() {
     window.localStorage.setItem("portfolio-theme", theme);
   }, [theme]);
   useEffect(() => { setMenuOpen(false); }, [pathname]);
+  useEffect(() => {
+    if (!menuOpen) return;
+    firstMenuLinkRef.current?.focus();
+    const onEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setMenuOpen(false);
+        menuButtonRef.current?.focus();
+      }
+    };
+    document.addEventListener("keydown", onEscape);
+    return () => document.removeEventListener("keydown", onEscape);
+  }, [menuOpen]);
 
   return (
     <header className="site-header">
@@ -70,14 +126,14 @@ function SiteHeader() {
             aria-label={theme === "light" ? "Switch to dark mode" : "Switch to light mode"}>
             {theme === "light" ? <Moon size={18} /> : <Sun size={18} />}
           </button>
-          <button type="button" className="icon-control menu-control" onClick={() => setMenuOpen(o => !o)}
-            aria-label={menuOpen ? "Close navigation" : "Open navigation"} aria-expanded={menuOpen}>
+          <button ref={menuButtonRef} type="button" className="icon-control menu-control" onClick={() => setMenuOpen(o => !o)}
+            aria-label={menuOpen ? "Close navigation" : "Open navigation"} aria-expanded={menuOpen} aria-controls="portfolio-mobile-navigation">
             {menuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
       </div>
-      {menuOpen && <nav className="mobile-navigation" aria-label="Mobile navigation">
-        {navigation.map(item => <NavLink end={item.end} to={item.to} key={item.to} className={({isActive}) => isActive ? "mobile-nav-item active" : "mobile-nav-item"}>{item.label}</NavLink>)}
+      {menuOpen && <nav id="portfolio-mobile-navigation" className="mobile-navigation" aria-label="Mobile navigation">
+        {navigation.map((item, index) => <NavLink ref={index === 0 ? firstMenuLinkRef : undefined} end={item.end} to={item.to} key={item.to} onClick={() => setMenuOpen(false)} className={({isActive}) => isActive ? "mobile-nav-item active" : "mobile-nav-item"}>{item.label}</NavLink>)}
       </nav>}
     </header>
   );
@@ -99,7 +155,7 @@ function Footer() {
           <Link to="/connect">Opportunities</Link>
           <a href={`mailto:${identity.email}`}>Email</a>
         </div>
-        <span className="footer-legal">© {new Date().getFullYear()} · Updated October 2026</span>
+        <span className="footer-legal">© {new Date().getFullYear()} · Research and personal views are my own</span>
       </div>
     </footer>
   );
@@ -429,7 +485,7 @@ function NotFound() {
 }
 
 export default function PortfolioSite() {
-  return <div className="portfolio-shell"><a className="skip-link" href="#main-content">Skip to content</a><ScrollReset /><SiteHeader />
+  return <div className="portfolio-shell"><a className="skip-link" href="#main-content">Skip to content</a><RouteEffects /><SiteHeader />
     <main id="main-content"><Routes>
       <Route path="/" element={<Home/>} />
       <Route path="/publications" element={<PublicationsPage/>} />
