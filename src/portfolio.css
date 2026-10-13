@@ -1906,7 +1906,7 @@ html[lang="zh-CN"] .award-archive-card h3 { overflow-wrap: anywhere; }
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 9px;
   padding: 0;
   margin: 14px 0 0;
 }
@@ -1923,18 +1923,6 @@ html[lang="zh-CN"] .award-archive-card h3 { overflow-wrap: anywhere; }
   flex: none;
   color: var(--portfolio-accent);
   margin-top: 1px;
-}
-.portrait-highlight-list sup {
-  vertical-align: super;
-  font-size: 9px;
-  color: var(--portfolio-accent);
-}
-.portrait-highlights-note {
-  color: var(--portfolio-faint);
-  line-height: 1.65;
-  font-size: 9px;
-  margin-top: 13px !important;
-  overflow-wrap: anywhere;
 }
 .portfolio-shell a.portrait-highlights-link {
   display: inline-flex;
