@@ -83,7 +83,13 @@ async function auditA11y(page, route) {
     ok(new URL(page.url()).hash === "#/cv/education", "Skip link preserves the active HashRouter route");
     ok(await page.evaluate(() => document.activeElement?.id === "main-content"), "Skip link moves focus to main content");
     await page.goto(url("/cv"), {waitUntil: "networkidle"});
-    ok(await page.locator("a.cv-layer-card").count() === 3, "CV overview has exactly three entry cards");
+    ok(await page.locator("a.cv-layer-card").count() === 4, "CV overview has four interactive section cards");
+    ok(await page.locator('a.cv-layer-card[href="#/recognition"]').count() === 1, "CV Recognition section reuses the existing Recognition route");
+    await page.locator('a.cv-layer-card[href="#/recognition"]').click();
+    ok(new URL(page.url()).hash === "#/recognition", "CV Recognition card navigates to existing Recognition page");
+    ok(await page.getByRole("link", {name: "Explore the Awards & Appreciation archive"}).count() === 1, "Recognition keeps Awards & Appreciation click-through");
+    ok(await page.getByRole("heading", {name: "Selected talks"}).count() === 1, "Recognition keeps selected academic talks");
+    await page.goto(url("/cv"), {waitUntil: "networkidle"});
     ok(await page.locator(".cv-education-row").count() === 0, "CV overview does not expose degree details");
     await page.screenshot({path: path.join(directory, "cv-overview-desktop.png"), fullPage: true});
     await auditA11y(page, "cv-overview");
