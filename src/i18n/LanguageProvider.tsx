@@ -1,4 +1,4 @@
-import { createContext, useContext, useLayoutEffect, useMemo, useState, type ReactNode } from "react";
+import { createContext, useCallback, useContext, useEffect, useLayoutEffect, useMemo, useState, type ReactNode } from "react";
 import { zhTranslations } from "./zh";
 
 export type SiteLanguage = "en" | "zh-CN";
@@ -9,6 +9,19 @@ const LanguageContext = createContext<LanguageContextValue>({
   tr: (value: string) => value,
 });
 const STORAGE_KEY = "portfolio-language";
+
+/** An explicit shareable URL language wins over a visitor's saved preference. */
+export function languageFromSearch(search: string): SiteLanguage | null {
+  const requested = new URLSearchParams(search).get("lang");
+  return requested === "zh-CN" || requested === "en" ? requested : null;
+}
+
+/** Keep the current route hash and any independent URL parameters untouched. */
+export function languageSharePath(href: string, next: SiteLanguage): string {
+  const url = new URL(href);
+  url.searchParams.set("lang", next);
+  return url.pathname + url.search + url.hash;
+}
 const textMemory = new WeakMap<Text, { original: string; rendered: string }>();
 const attributeMemory = new WeakMap<Element, Map<string, { original: string; rendered: string }>>();
 const attributes = ["aria-label", "aria-description", "placeholder", "title", "alt", "value"] as const;
@@ -78,12 +91,32 @@ function localizeNode(node: Node, language: SiteLanguage) {
 }
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, changeLanguage] = useState<SiteLanguage>(() => {
+  const [language, setLanguage] = useState<SiteLanguage>(() => {
     if (typeof window === "undefined") return "en";
+    const requested = languageFromSearch(window.location.search);
+    if (requested) return requested;
     try {
       return window.localStorage.getItem(STORAGE_KEY) === "zh-CN" ? "zh-CN" : "en";
     } catch { return "en"; }
   });
+
+  const changeLanguage = useCallback((next: SiteLanguage) => {
+    setLanguage(next);
+    if (typeof window !== "undefined") {
+      const path = languageSharePath(window.location.href, next);
+      window.history.replaceState(window.history.state, "", path);
+    }
+  }, []);
+
+  useEffect(() => {
+    // Browser back/forward can change an explicit locale in the URL.
+    const syncUrlLanguage = () => {
+      const requested = languageFromSearch(window.location.search);
+      if (requested) setLanguage(requested);
+    };
+    window.addEventListener("popstate", syncUrlLanguage);
+    return () => window.removeEventListener("popstate", syncUrlLanguage);
+  }, []);
 
   useLayoutEffect(() => {
     document.documentElement.lang = language;
@@ -103,7 +136,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
   const value = useMemo<LanguageContextValue>(() => ({
     language, changeLanguage, tr: (text: string) => translateText(text, language),
-  }), [language]);
+  }), [language, changeLanguage]);
 
   return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>;
 }
