@@ -24,5 +24,10 @@ jobs:
         run: bunx tsc --noEmit -p tsconfig.app.json
       - name: Production build
         run: bun run build
+      - name: Enforce deployed portrait image budget
+        run: |
+          python3 -m venv .image-env
+          .image-env/bin/python -m pip install -q --disable-pip-version-check Pillow==11.3.0
+          .image-env/bin/python scripts/optimize-build-images.py
       - name: Unit tests
         run: bun run test
