@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Link, NavLink, Navigate, Route, Routes, useLocation } from "react-router-dom";
-import { ArrowRight, ArrowUpRight, BrainCircuit, BriefcaseBusiness, Check, ClipboardCheck, ClipboardCopy, Code2, Github, HeartHandshake, Mail, Menu, Moon, Scale, ShieldCheck, Sun, X } from "lucide-react";
+import { ArrowRight, ArrowUpRight, BrainCircuit, BriefcaseBusiness, Check, ClipboardCheck, ClipboardCopy, Code2, Github, HeartHandshake, ChevronDown, Mail, Menu, Moon, Scale, ShieldCheck, Sun, X } from "lucide-react";
 import portrait from "@/assets/portrait.jpg";
 import {
   identity, publications, researchAreas, academicService, conferenceRankings, rankingSources,
@@ -460,16 +460,19 @@ function ConnectPage() {
       </div>
       <p className="small-note">Visiting, fellowship and employment arrangements depend on institutional permissions, funding and eligibility. Expressions of interest do not imply an immediate start date or a current appointment.</p>
     </section>
-    <section className="service-section section-divider support-section" aria-labelledby="support-research-heading">
-      <div className="support-intro">
-        <span className="support-symbol" aria-hidden="true"><HeartHandshake size={23}/></span>
-        <div>
-          <p className="eyebrow">Voluntary academic support</p>
-          <h2 id="support-research-heading">{researchSupport.title}</h2>
-        </div>
-      </div>
-      <p className="support-statement">{researchSupport.description}</p>
-      <div className="support-methods">
+    <section className="support-section" aria-labelledby="support-research-heading">
+      <details className="support-disclosure">
+        <summary className="support-compact-toggle">
+          <span className="support-compact-icon" aria-hidden="true"><HeartHandshake size={19} strokeWidth={1.6}/></span>
+          <span className="support-compact-label">
+            <span className="eyebrow">Voluntary academic support</span>
+            <strong id="support-research-heading">{researchSupport.title}</strong>
+          </span>
+          <ChevronDown size={17} aria-hidden="true" className="support-toggle-chevron"/>
+        </summary>
+        <div className="support-expanded-content">
+          <p className="support-statement">{researchSupport.description}</p>
+          <div className="support-methods">
         <div className="support-details">
           <div className="support-payment-heading">
             <img src={researchSupport.paypalLogo} alt="" loading="lazy" decoding="async" width={35} height={35} />
@@ -504,7 +507,9 @@ function ConnectPage() {
           <ExternalLink className="support-provider-guidelines" href={researchSupport.googlePayHelp}>Where Google Pay transfers are supported</ExternalLink>
         </div>
       </div>
-      <p className="support-disclaimer">{researchSupport.disclaimer} The PayPal recipient and Google Pay transfer arrangements have not been independently verified. An email address is not a universal Google Pay transfer ID. No embedded checkout or payment tracking is used.</p>
+          <p className="support-disclaimer">{researchSupport.disclaimer} The PayPal recipient and Google Pay transfer arrangements have not been independently verified. An email address is not a universal Google Pay transfer ID. No embedded checkout or payment tracking is used.</p>
+        </div>
+      </details>
     </section>
   </div>;
 }
