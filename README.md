@@ -43,10 +43,11 @@ GitHub Pages may serve temporarily cached HTML immediately after a deployment, e
 
 The homepage introduction identifies the researcher as **from Nepal 🇳🇵, living in China since April 2018** (researcher-provided timeline), supported by Chinese Government Scholarship(s), and currently undertaking doctoral work at Beihang University. It avoids subjective rankings such as “highly talented” or “top 0.1%.”
 
-Five understated highlights appear **directly beneath the portrait** (not in the top navigation), with small Lucide icons, an academic typographic hierarchy and a direct link to the existing Recognition page. The underlying 62-record archive is not duplicated:
+Six understated highlights appear **directly beneath the portrait** (not in the top navigation), with small Lucide icons, an academic typographic hierarchy and a direct link to the existing Recognition page. The underlying 62-record archive is not duplicated:
 
 - **Outstanding Reviewer — ECIR 2026**, recorded in the original archive; the conference's public reviewer-awards announcement lists “Chandan Kumar,” a name requiring care in identification.
-- **Senior Program Committee — ECIR 2027**: **researcher-reported**; the public organiser page does not currently establish individual Senior PC membership, so the portrait explicitly says independent confirmation is pending.
+- **Senior Program Committee — ECIR 2027**: researcher-provided professional-service record; independent public appointment confirmation has not yet been linked. At the owner's request, the compact portrait does not display an editorial footnote.
+- **Second Place (Graduate category) — ACM Student Research Competition at ASE 2025**, as recorded in the pre-redesign awards archive and academic distinctions list.
 - **Excellent Paper Award — Asian Universities Alliance (AUA) Postgraduate Forum**, matching the archived *Excellent Paper* distinction, **not** an incorrectly inflated “Best Paper Award.”
 - **Scholarship history — two Chinese Government Scholarship entries (master's and PhD) plus a separate Belt and Road bachelor's scholarship.** Do not describe these three different award types as “three Chinese Government Scholarships” without primary documentation.
 - **Excellent International Graduate — Beihang University (2025)**, archived as an owner-provided historical distinction.
@@ -55,7 +56,7 @@ The section preserves the researcher's original award data, notes source provena
 
 ## Short introduction and Web of Science
 
-The homepage now includes a short academic biography: **“Originally from Nepal, I am a Chinese Government Scholarship recipient pursuing doctoral research at Beihang University in Beijing, China.”** This is a researcher-provided historical scholarship claim, consistent with the original academic certificate archive. It must not be presented as a separately authenticated scholarship registry record. The **CV overview** also includes a restrained, single-line origin/scholarship descriptor.
+The homepage now includes a concise **third-person** academic biography: **“Chandan Kumar Sah is a doctoral researcher at Beihang University in Beijing and a recipient of the Chinese Government Scholarship.”** It also identifies Nepal as his country of origin and April 2018 as the beginning of his time in China. This is a researcher-provided historical scholarship claim, consistent with the original academic certificate archive. It must not be presented as a separately authenticated scholarship registry record. The **CV overview** also includes a restrained, single-line origin/scholarship descriptor.
 
 The owner provided the URL `https://www.webofscience.com/wos/author/author-search?state=%7B%7D`. This is a **generic Web of Science Author Search portal**, not a unique researcher profile, ResearcherID or a connected Clarivate account. The site links it in the **Academic Service → Academic identity** area, **CV overview**, and footer, always labeled **Web of Science Author Search / Web of Science 作者检索** and never used as a verified individual's bibliographic citation. To upgrade the link, request the owner's exact public Web of Science Researcher Profile URL or ResearcherID and verify that it matches the Beihang University researcher and their correct ORCID (`0009-0002-4017-7970`). Do **not** accidentally associate a similarly named author. Neither personal review counts nor records are automatically imported from this link.
 
