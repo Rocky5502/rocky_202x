@@ -1890,3 +1890,74 @@ html[lang="zh-CN"] .award-archive-card h3 { overflow-wrap: anywhere; }
 @media (prefers-reduced-motion: reduce) {
   .support-toggle-chevron { transition: none; }
 }
+
+
+/* Compact, editorial recognition under the photo. No inflated badge claims. */
+.home-hero .hero-portrait::before { display: none; }
+.hero-portrait .portrait-caption { padding-top: 10px; }
+.portrait-highlights {
+  border-top: 1px solid var(--portfolio-rule);
+  margin-top: 17px;
+  padding-top: 16px;
+  min-width: 0;
+}
+.portrait-highlights > .eyebrow { font-size: 9px; letter-spacing: .11em; }
+.portrait-highlight-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 0;
+  margin: 14px 0 0;
+}
+.portrait-highlight-list > li {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  color: var(--portfolio-ink);
+  font-size: 11px;
+  line-height: 1.55;
+  font-weight: 550;
+}
+.portrait-highlight-list > li > svg {
+  flex: none;
+  color: var(--portfolio-accent);
+  margin-top: 1px;
+}
+.portrait-highlight-list sup {
+  vertical-align: super;
+  font-size: 9px;
+  color: var(--portfolio-accent);
+}
+.portrait-highlights-note {
+  color: var(--portfolio-faint);
+  line-height: 1.65;
+  font-size: 9px;
+  margin-top: 13px !important;
+  overflow-wrap: anywhere;
+}
+.portfolio-shell a.portrait-highlights-link {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  color: var(--portfolio-accent);
+  font-size: 10px;
+  line-height: 1.5;
+  font-weight: 650;
+  margin-top: 13px;
+}
+@media (max-width: 800px) {
+  .portrait-highlight-list { gap: 8px; }
+  .portrait-highlight-list > li { font-size: 10px; gap: 7px; }
+}
+@media (max-width: 620px) {
+  .home-hero .hero-portrait {
+    width: min(100%, 320px);
+    max-width: 320px;
+    margin-inline: 0;
+  }
+  .hero-portrait img { max-width: 165px; max-height: 205px; }
+  .hero-portrait .portrait-caption { max-width: 165px; text-align: left; }
+  .portrait-highlights { margin-top: 16px; }
+  .portrait-highlight-list > li { font-size: 11px; }
+}
