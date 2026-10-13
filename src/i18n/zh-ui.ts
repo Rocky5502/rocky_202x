@@ -9,6 +9,7 @@ export const zhUi: Record<string,string> = {
   "News": "最新动态",
   "Opportunities": "合作机会",
   "CV & Skills": "学术履历与技能",
+  "CV": "简历",
   "Email": "电子邮件",
   "/ Research": "/ 科研",
   "Switch website to Simplified Chinese": "切换网站语言为简体中文",
