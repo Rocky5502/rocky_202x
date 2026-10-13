@@ -190,6 +190,7 @@ function Footer() {
           <ExternalLink href={identity.orcid}>ORCID</ExternalLink>
           <ExternalLink href={identity.linkedin}>LinkedIn</ExternalLink>
           <ExternalLink href={identity.github}>GitHub</ExternalLink>
+          <ExternalLink href={identity.webOfScienceSearch}>Web of Science Author Search</ExternalLink>
           <Link to="/news">News</Link>
           <Link to="/connect">Opportunities</Link>
           <Link to="/cv">CV & Skills</Link>
@@ -277,7 +278,7 @@ function Home() {
         <p className="eyebrow">PhD Researcher · Software Engineering & AI</p>
         <h1>Chandan Kumar Sah<span className="hero-also">Rocky 文浩</span></h1>
         <p className="hero-lead">Studying when AI systems should trust their evidence—and when they should not.</p>
-        <p className="hero-description">I am a doctoral researcher at {identity.institution}. My work focuses on uncertainty in language models, dependable AI for software engineering, and responsible evaluation of intelligent systems.</p>
+        <p className="hero-description">Originally from {identity.countryOfOrigin}, I am a {identity.scholarship} pursuing doctoral research at {identity.institution} in Beijing, China. My work focuses on uncertainty in language models, reliable AI for software engineering, and trustworthy intelligent systems.</p>
         <Link className="availability-inline" to="/connect"><span className="availability-dot" aria-hidden="true" />Open to research collaborations, visiting opportunities and fellowships <ArrowRight size={14} aria-hidden="true" /></Link>
         <div className="hero-actions">
           <Link className="primary-action" to="/publications">Explore publications <ArrowRight size={16} /></Link>
@@ -403,7 +404,8 @@ function ServicePage() {
     </section>
     <section className="service-section section-divider">
       <SectionTitle eyebrow="External profile" title="Academic identity" />
-      <div className="profile-links"><ExternalLink href={identity.openreview}>OpenReview</ExternalLink><ExternalLink href={identity.orcid}>ORCID</ExternalLink><ExternalLink href={identity.linkedin}>LinkedIn</ExternalLink><ExternalLink href={identity.scholar}>Google Scholar</ExternalLink></div>
+      <div className="profile-links"><ExternalLink href={identity.openreview}>OpenReview</ExternalLink><ExternalLink href={identity.orcid}>ORCID</ExternalLink><ExternalLink href={identity.linkedin}>LinkedIn</ExternalLink><ExternalLink href={identity.scholar}>Google Scholar</ExternalLink><ExternalLink href={identity.webOfScienceSearch}>Web of Science Author Search</ExternalLink></div>
+      <p className="small-note">This opens the general Web of Science author-search portal, not a uniquely verified researcher profile. Please use the affiliation and ORCID to identify the correct person.</p>
     </section>
   </div>;
 }
