@@ -68,13 +68,15 @@ describe("professional Simplified Chinese localization", () => {
   it("translates Nepal scholarship biography and the Web of Science link without changing its target", async () => {
     const { unmount } = renderAt("/");
     fireEvent.click(screen.getByRole("button", { name: "Switch website to Simplified Chinese" }));
-    await waitFor(() => expect(screen.getByText(/我来自尼泊尔 🇳🇵，自2018年4月起在中国学习和生活/)).toBeInTheDocument());
+    await waitFor(() => expect(screen.getByText(/Chandan Kumar Sah（Rocky 文浩）现为北京航空航天大学博士研究生/)).toBeInTheDocument());
     const highlights = document.querySelector(".portrait-highlight-list");
-    expect(highlights?.querySelectorAll("li")).toHaveLength(5);
+    expect(highlights?.querySelectorAll("li")).toHaveLength(6);
     expect(highlights).toHaveTextContent("ECIR 2026 优秀审稿人");
+    expect(highlights).toHaveTextContent("ASE 2025 ACM 学生研究竞赛研究生组二等奖（第二名）");
+    expect(highlights).not.toHaveTextContent("†");
     expect(highlights).toHaveTextContent("亚洲大学联盟研究生论坛优秀论文奖");
     expect(highlights).toHaveTextContent("两次中国政府奖学金");
-    expect(screen.getByText(/ECIR 2027 任职信息由本人提供/)).toBeInTheDocument();
+    expect(document.querySelector(".portrait-highlights-note")).toBeNull();
     unmount();
 
     renderAt("/service");
