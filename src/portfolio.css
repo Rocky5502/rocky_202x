@@ -1533,10 +1533,9 @@ body { margin: 0; }
 .cv-section-head > svg { color: var(--portfolio-accent); flex: none; margin-bottom: 4px; }
 .cv-section-head h2 { font: 400 clamp(30px, 3.3vw, 41px)/1.18 Georgia, "Times New Roman", serif; letter-spacing: -.04em; margin-top: 7px; }
 .cv-education-list { border-top: 1px solid var(--portfolio-rule); }
-.cv-education-row { display: grid; grid-template-columns: 166px minmax(0, 1fr); gap: 26px; border-bottom: 1px solid var(--portfolio-rule); padding: 25px 0 29px; }
+.cv-education-row { display: grid; grid-template-columns: 70px minmax(0, 1fr); gap: 22px; border-bottom: 1px solid var(--portfolio-rule); padding: 25px 0 29px; }
 .cv-education-aside { display: flex; flex-direction: column; gap: 8px; align-items: flex-start; }
 .cv-education-aside span:first-child { font: 400 19px/1.1 Georgia, "Times New Roman", serif; color: var(--portfolio-accent); }
-.cv-education-aside span:last-child { color: var(--portfolio-faint); font-size: 11px; line-height: 1.7; }
 .cv-education-detail h3 { font: 400 clamp(22px, 2.2vw, 27px)/1.3 Georgia, "Times New Roman", serif; letter-spacing: -.02em; }
 .cv-degree-field { font-size: 13px; color: var(--portfolio-ink); font-weight: 580; margin-top: 6px !important; }
 .cv-institution { display: flex; flex-wrap: wrap; gap: 4px 9px; align-items: baseline; margin-top: 8px; font-size: 12px; color: var(--portfolio-muted); }
@@ -1582,8 +1581,7 @@ body { margin: 0; }
 @media (max-width: 650px) {
   .cv-skills-grid { grid-template-columns: 1fr; }
   .cv-skill-card { padding: 23px; }
-  .cv-education-row { grid-template-columns: 68px minmax(0,1fr); gap: 15px; }
-  .cv-education-aside span:last-child { font-size: 10px; overflow-wrap: anywhere; }
+  .cv-education-row { grid-template-columns: 45px minmax(0,1fr); gap: 12px; }
   .cv-spoken-list { grid-template-columns: repeat(2, minmax(0,1fr)); }
   .cv-endnote { flex-direction: column; align-items: start; }
 }
