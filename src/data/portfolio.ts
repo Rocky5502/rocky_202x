@@ -30,6 +30,11 @@ export const identity = {
   // Public-facing PayPal recipient email requested by the site owner.
   // This is not a verified PayPal account or a payment link.
   paypalEmail: "sahchandan98@gmail.com",
+  // The supplied Web of Science URL is a generic author-search landing page,
+  // NOT a verified researcher profile (no unique researcher ID provided).
+  webOfScienceSearch: "https://www.webofscience.com/wos/author/author-search?state=%7B%7D",
+  countryOfOrigin: "Nepal",
+  scholarship: "Chinese Government Scholarship recipient",
   scholar: "https://scholar.google.com/citations?user=PyH-zqygdCYC&hl=en",
   orcid: "https://orcid.org/0009-0002-4017-7970",
   github: "https://github.com/Rocky5502",
