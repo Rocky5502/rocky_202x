@@ -247,5 +247,7 @@ export const zhContent: Record<string,string> = {
   "Honours · Awards · Academic talks": "学术荣誉 · 奖项 · 学术报告",
   "Explore selected academic presentations and the separate, year-by-year Awards & Appreciation archive.": "浏览代表性学术报告，并进入按年份整理的独立荣誉与表彰档案。",
   "Talks & awards archive": "学术报告与荣誉档案",
-  "The CV is intentionally layered. Detailed education, technical skills and language information appear on their own pages; Recognition links to the existing talks and awards gateway.": "学术履历采用分层设计：教育、技能及语言的详细信息分别展示；“荣誉”入口沿用现有的学术报告与获奖档案页面。"
+  "The CV is intentionally layered. Detailed education, technical skills and language information appear on their own pages; Recognition links to the existing talks and awards gateway.": "学术履历采用分层设计：教育、技能及语言的详细信息分别展示；“荣誉”入口沿用现有的学术报告与获奖档案页面。",
+  "← Back to CV": "← 返回简历",
+  "Explore an academic CV with Education, Research and Technical Skills, Languages, and Recognition with awards and talks.": "探索包含教育经历、科研与技术能力、语言和荣誉（奖项与学术报告）的学术履历。"
 };
