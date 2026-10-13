@@ -68,7 +68,15 @@ describe("professional Simplified Chinese localization", () => {
   it("translates Nepal scholarship biography and the Web of Science link without changing its target", async () => {
     const { unmount } = renderAt("/");
     fireEvent.click(screen.getByRole("button", { name: "Switch website to Simplified Chinese" }));
-    await waitFor(() => expect(screen.getByText(/Chandan Kumar Sah（Rocky 文浩）现为北京航空航天大学博士研究生/)).toBeInTheDocument());
+    await waitFor(() => expect(screen.getByText(/来自尼泊尔 🇳🇵，自2018年4月起在中国学习和生活/)).toBeInTheDocument());
+    expect(document.querySelector(".hero-description")).not.toHaveTextContent("Chandan Kumar Sah");
+    expect(screen.getByText("以不确定性分析、证据与核验推动可信人工智能研究。")).toBeInTheDocument();
+    const record = document.querySelector(".portrait-research-record");
+    expect(record).not.toBeNull();
+    expect(record).toHaveAttribute("href", "/publications");
+    expect(record).toHaveTextContent("13");
+    expect(record).toHaveTextContent("已收录科研成果");
+    expect(record).toHaveTextContent("含预印本、书籍章节及待刊成果");
     const highlights = document.querySelector(".portrait-highlight-list");
     expect(highlights?.querySelectorAll("li")).toHaveLength(6);
     expect(highlights).toHaveTextContent("ECIR 2026 优秀审稿人");
