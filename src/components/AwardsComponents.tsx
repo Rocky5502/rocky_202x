@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
+import { useLanguage } from "@/i18n/LanguageProvider";
 import {
   ArrowLeft, ArrowRight, ArrowUpRight, Award, BookOpen, GraduationCap,
   Medal, Presentation, Search, TicketCheck
@@ -47,6 +48,7 @@ function AwardCard({ item }: { item: AwardRecord }) {
 }
 
 export function AwardsPage() {
+  const { tr } = useLanguage();
   const [year, setYear] = useState<"All years" | AwardYear>("All years");
   const [category, setCategory] = useState<"All categories" | AwardCategory>("All categories");
   const [query, setQuery] = useState("");
@@ -56,9 +58,9 @@ export function AwardsPage() {
     return awardsArchive.filter(item =>
       (year === "All years" || item.yearGroup === year) &&
       (category === "All categories" || item.category === category) &&
-      (!q || [item.title, item.issuedBy, item.location, item.category].some(s => s.toLocaleLowerCase().includes(q)))
+      (!q || [item.title, item.issuedBy, item.location, item.category].some(s => s.toLocaleLowerCase().includes(q) || tr(s).toLocaleLowerCase().includes(q)))
     );
-  }, [year, category, query]);
+  }, [year, category, query, tr]);
 
   const visibleYears = awardYears.filter(group => visible.some(item => item.yearGroup === group));
 
@@ -93,8 +95,8 @@ export function AwardsPage() {
         <label className="awards-category-control">
           <span className="sr-only">Filter archive by category</span>
           <select value={category} onChange={e => setCategory(e.target.value as typeof category)}>
-            <option>All categories</option>
-            {awardCategories.map(cat => <option key={cat}>{cat}</option>)}
+            <option value="All categories">All categories</option>
+            {awardCategories.map(cat => <option key={cat} value={cat}>{cat}</option>)}
           </select>
         </label>
       </div>
