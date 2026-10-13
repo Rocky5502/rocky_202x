@@ -16,7 +16,10 @@ Designed for readers of research papers, potential collaborators, hiring committ
 | `/#/service` | Reviewing roles, volunteer activities, academic identities |
 | `/#/recognition` | Compact Awards & Appreciation entry point; selected academic talks |
 | `/#/awards` | Separate year-by-year historical archive of 62 awards, certificates, and academic activities |
-| `/#/cv` | Compact academic CV: original education history, ten research skills, programming languages, spoken languages, evidence links |
+| `/#/cv` | CV overview only: three clickable layers, not a long all-in-one list |
+| `/#/cv/education` | Three university degrees, four original summer/winter schools, and separate short programmes |
+| `/#/cv/skills` | Ten public-evidence-linked AI and software engineering research competencies |
+| `/#/cv/languages` | Programming languages and self-reported spoken languages |
 | `/#/news` | Full chronological archive of the original 10 news stories plus author-reported ACM CCS 2026 acceptance |
 | `/#/connect` | Visiting research, fellowships, research-oriented roles and optional individual research support |
 
@@ -32,15 +35,21 @@ GitHub Pages may serve temporarily cached HTML immediately after a deployment, e
 
 ## Web CV & research skills
 
-The `/#/cv` page is a concise **academic CV & Skills** entry in the main navigation, placed after **Opportunities** in the top navigation. It is not a fabricated ranking of "top 0.1%" students. Relevant academic CV guidance: [Harvard GSAS CV guide](https://careerservices.fas.harvard.edu/resources/gsas-cv-cover-letter-guide-2/) and [Harvard SEAS CV/resume guidance](https://seas.harvard.edu/office-student-career-development/resources-graduate-students-postdocs/resumes-cvs-portfolios).
+The `/#/cv` page is a concise **academic CV & Skills** entry in the main navigation, placed after **Opportunities**. It now acts as a **three-card overview**; visitors choose Education, Research & Technical Skills, or Programming & Languages before any detailed content loads. It is not a fabricated ranking of "top 0.1%" students. Relevant academic CV guidance: [Harvard GSAS CV guide](https://careerservices.fas.harvard.edu/resources/gsas-cv-cover-letter-guide-2/) and [Harvard SEAS CV/resume guidance](https://seas.harvard.edu/office-student-career-development/resources-graduate-students-postdocs/resumes-cvs-portfolios).
 
-The page restores three education records from the historical `src/data/site.ts` at [the original snapshot](https://github.com/Rocky5502/rocky_202x/blob/40677b335ea851d0c6a5dd3fcd774c776c23c97c/src/data/site.ts): ongoing Beihang PhD, preceding Beihang M.Eng, and Sichuan University B.Eng. The 2022/2018 year markers in the previous page are NOT treated as verified graduation dates; no transcripts were provided. The current PhD is listed as in progress.
+The nested Education page (`/#/cv/education`) restores three education records from the historical `src/data/site.ts` at [the original snapshot](https://github.com/Rocky5502/rocky_202x/blob/40677b335ea851d0c6a5dd3fcd774c776c23c97c/src/data/site.ts): ongoing Beihang PhD, preceding Beihang M.Eng, and Sichuan University B.Eng. The 2022/2018 year markers in the previous page are NOT treated as verified graduation dates; no transcripts were provided. The current PhD is listed as in progress.
 
-**Ten skills** were curated against specific, public project READMEs as of 13 October 2026: LLM evaluation, calibration, open-weight model integrations, repository-level code generation, software testing, agent security, GPU experiment preparation, neuro-symbolic verification, reproducible experimentation, and research software engineering. Each card links to a public repository. The label "research plan/tooling" means the configuration/code exists but **not** that every benchmark or GPU run has completed. Llama is noted as an access-dependent configured family, not verified experimental results.
+The dedicated Skills page (`/#/cv/skills`) preserves **ten skills** curated against specific, public project READMEs as of 13 October 2026: LLM evaluation, calibration, open-weight model integrations, repository-level code generation, software testing, agent security, GPU experiment preparation, neuro-symbolic verification, reproducible experimentation, and research software engineering. Each card links to a public repository. The label "research plan/tooling" means the configuration/code exists but **not** that every benchmark or GPU run has completed. Llama is noted as an access-dependent configured family, not verified experimental results.
 
-The programming languages Python and TypeScript are backed by public source; Java, C++, C and R are researcher-listed without proficiency levels. Spoken languages Nepali, English, Chinese, Hindi, Urdu and French are user-supplied, with no invented fluency certificate or CEFR score. Update these only after confirmation. Technical skills and education are maintained in `src/data/cv.ts`. Tests in `src/test/cv.test.tsx` protect the education data, skill evidence, language lists and new route. The page is a web CV and **not** a generated official PDF/transcript.
+The Languages page (`/#/cv/languages`) lists programming and spoken languages separately. The programming languages Python and TypeScript are backed by public source; Java, C++, C and R are researcher-listed without proficiency levels. Spoken languages Nepali, English, Chinese, Hindi, Urdu and French are user-supplied, with no invented fluency certificate or CEFR score. Update these only after confirmation. Technical skills and education are maintained in `src/data/cv.ts`. Tests in `src/test/cv.test.tsx` protect the education data, skill evidence, language lists and new route. The page is a web CV and **not** a generated official PDF/transcript.
 
-Direct URLs `/#/skills`, `/#/resume` and `/#/education` redirect to `/#/cv`; the GitHub Pages 404 fallback handles equivalent clean paths.
+**Summer and winter schools were restored from the original `AwardsGalaxy.tsx` historical award/certificate entries, not invented:** 2025 ACM Europe School on Recommender Systems (TU Wien, Vienna; [official site](https://recsys-lab.at/rsss2025/)), 2025 International Software Engineering Winter School on Hybrid and Generative Intelligence (University of Bern; [official site](https://telegraf.inf.unibe.ch/)), 2025 AI Photonics International Summer School (Beihang, Hangzhou; [official course](https://biss.buaa.edu.cn/info/1036/1107.htm)), and 2024 International Terahertz Summer School (from an archived **oral-presentation award**, *not* a completion-certificate claim). The historical Oxford Saïd/UNESCO short-program entry is preserved as **professional learning**, not a degree or summer school.
+
+University/organizer pages establish events and school descriptions, but not the researcher's personal attendance or completion. Personal participation is attributed to the owner's pre-redesign archive and not independently verified. The prior historical certificate images were mostly unavailable. `researchSchools` and `additionalLearning` live in `src/data/cv.ts`. No artificial degree dates or course completion claims were created.
+
+Deep links use `/#/cv/education`, `/#/cv/skills` and `/#/cv/languages`. Legacy `/#/education` and `/#/skills` now redirect to the corresponding **inner page**; `/#/resume` returns to the overview. The GitHub Pages 404 fallback covers clean direct paths.
+
+`src/test/cv.test.tsx` verifies progressive disclosure, school provenance, accurate categories, nested routes and original skills/language records.
 
 ## Awards & Appreciation (historical archive)
 
