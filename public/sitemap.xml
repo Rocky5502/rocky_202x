@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- HashRouter page fragments cannot be indexed as separate sitemap URLs.
+       Only the real crawlable homepage is listed. -->
+  <url>
+    <loc>https://rocky5502.github.io/rocky_202x/</loc>
+  </url>
+</urlset>
