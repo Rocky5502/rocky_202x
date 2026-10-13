@@ -20,7 +20,7 @@ Designed for readers of research papers, potential collaborators, hiring committ
 | `/#/service` | Reviewing roles, volunteer activities, academic identities |
 | `/#/recognition` | Compact Awards & Appreciation entry point; selected academic talks |
 | `/#/awards` | Separate year-by-year historical archive of 62 awards, certificates, and academic activities |
-| `/#/cv` | CV overview only: three clickable layers, not a long all-in-one list |
+| `/#/cv` | CV overview with four clickable cards: Education, Research Skills, Languages and Recognition (links to existing Recognition page) |
 | `/#/cv/education` | Three university degrees, four original summer/winter schools, and separate short programmes |
 | `/#/cv/skills` | Ten public-evidence-linked AI and software engineering research competencies |
 | `/#/cv/languages` | Programming languages and self-reported spoken languages |
@@ -65,7 +65,7 @@ The Chinese experience includes researcher-authored translations of the **five r
 
 ## Web CV & research skills
 
-The `/#/cv` page is a concise **academic CV & Skills** entry in the main navigation, placed after **Opportunities**. It now acts as a **three-card overview**; visitors choose Education, Research & Technical Skills, or Programming & Languages before any detailed content loads. It is not a fabricated ranking of "top 0.1%" students. Relevant academic CV guidance: [Harvard GSAS CV guide](https://careerservices.fas.harvard.edu/resources/gsas-cv-cover-letter-guide-2/) and [Harvard SEAS CV/resume guidance](https://seas.harvard.edu/office-student-career-development/resources-graduate-students-postdocs/resumes-cvs-portfolios).
+The `/#/cv` page is a concise **academic CV & Skills** entry in the main navigation, placed after **Opportunities**. It now acts as a **four-card overview**; visitors choose Education, Research & Technical Skills, Programming & Languages, or Recognition. The Recognition card reuses the existing `/#/recognition` page with its Awards & Appreciation gateway and selected talks; it does not duplicate the 62-record archive. It is not a fabricated ranking of "top 0.1%" students. Relevant academic CV guidance: [Harvard GSAS CV guide](https://careerservices.fas.harvard.edu/resources/gsas-cv-cover-letter-guide-2/) and [Harvard SEAS CV/resume guidance](https://seas.harvard.edu/office-student-career-development/resources-graduate-students-postdocs/resumes-cvs-portfolios).
 
 The nested Education page (`/#/cv/education`) restores three education records from the historical `src/data/site.ts` at [the original snapshot](https://github.com/Rocky5502/rocky_202x/blob/40677b335ea851d0c6a5dd3fcd774c776c23c97c/src/data/site.ts): ongoing Beihang PhD, preceding Beihang M.Eng, and Sichuan University B.Eng. The 2022/2018 year markers in the previous page are NOT treated as verified graduation dates; no transcripts were provided. The current PhD is listed as in progress.
 
