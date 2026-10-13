@@ -102,6 +102,9 @@ async function auditA11y(page, route) {
     await page.getByRole("link", {name: /Education.*3 degrees/i}).click();
     ok(new URL(page.url()).hash === "#/cv/education", "CV Education entry navigates correctly");
     ok(await page.locator(".cv-education-row").count() === 3, "Education displays the three degrees");
+    const degreeCopy = await page.locator(".cv-education-list").innerText();
+    ok(!/2025|2022|2018|\\bpresent\\b|Previous degree/i.test(degreeCopy), "University degree timeline hides all date and period labels");
+    ok(degreeCopy.includes("Ph.D. · In progress"), "Date-free doctorate still shows ongoing enrollment");
     ok(await page.locator(".cv-school-card").count() === 4, "Education displays four original schools");
     await auditA11y(page, "cv-education");
 
