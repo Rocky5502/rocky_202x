@@ -22,9 +22,9 @@ const navigation = [
   { to: "/research", label: "Research" },
   { to: "/service", label: "Service" },
   { to: "/recognition", label: "Recognition" },
-  { to: "/cv", label: "CV & Skills" },
   { to: "/news", label: "News" },
   { to: "/connect", label: "Opportunities" },
+  { to: "/cv", label: "CV & Skills" },
 ];
 
 function ExternalLink({ href, children, className = "" }: { href: string; children: React.ReactNode; className?: string }) {
@@ -169,9 +169,9 @@ function Footer() {
           <ExternalLink href={identity.orcid}>ORCID</ExternalLink>
           <ExternalLink href={identity.linkedin}>LinkedIn</ExternalLink>
           <ExternalLink href={identity.github}>GitHub</ExternalLink>
-          <Link to="/cv">CV & Skills</Link>
           <Link to="/news">News</Link>
           <Link to="/connect">Opportunities</Link>
+          <Link to="/cv">CV & Skills</Link>
           <a href={`mailto:${identity.email}`}>Email</a>
         </div>
         <span className="footer-legal">© {new Date().getFullYear()} · Research and personal views are my own</span>
