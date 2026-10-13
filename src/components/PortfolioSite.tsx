@@ -343,7 +343,7 @@ function PublicationsPage() {
     <div className="toolbar">
       <label className="search-wrap"><span className="sr-only">Search publications</span><input value={query} onChange={e=>setQuery(e.target.value)} placeholder="Search by title, author, or year…" /></label>
       <label className="select-wrap"><span className="sr-only">Filter by research topic</span><select value={topic} onChange={e=>setTopic(e.target.value)}>{topics.map(t=><option key={t} value={t}>{t}</option>)}</select></label>
-      <label className="select-wrap"><span className="sr-only">Filter by publication type</span><select value={type} onChange={e=>setType(e.target.value)}>{types.map(t=><option key={t}>{t}</option>)}</select></label>
+      <label className="select-wrap"><span className="sr-only">Filter by publication type</span><select value={type} onChange={e=>setType(e.target.value)}>{types.map(t=><option key={t} value={t}>{t}</option>)}</select></label>
     </div>
     <div className="record-header"><span>{filtered.length} publication{filtered.length === 1 ? "" : "s"}</span><ExternalLink href={identity.scholar}>Full profile on Google Scholar</ExternalLink></div>
     <div className="publication-list">{filtered.map((p,i)=><PublicationRow key={p.title} publication={p} index={i} />)}</div>
