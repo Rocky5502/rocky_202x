@@ -132,6 +132,63 @@ async function auditA11y(page, route) {
     await page.screenshot({path: path.join(directory, "cv-mobile-dark.png"), fullPage: true});
     await auditA11y(page, "cv-mobile-dark");
 
+    // Validate real i18n behavior, including refresh, data filters and mobile layout.
+    const languageButton = page.getByRole("button", {name: "Switch website to Simplified Chinese"});
+    await languageButton.click();
+    await page.waitForFunction(() => document.documentElement.lang === "zh-CN");
+    ok(await page.getByRole("heading", {name: "学术履历与技能"}).count() === 1, "CV title switches into natural Simplified Chinese");
+    ok(await page.getByRole("button", {name: "切换网站语言为英语"}).count() === 1, "Language switch labels its next action accessibly in Mandarin");
+    ok(await page.evaluate(() => localStorage.getItem("portfolio-language") === "zh-CN"), "Mandarin preference saved");
+    await page.screenshot({path: path.join(directory, "cv-mobile-zh-dark.png"), fullPage: true});
+    await auditA11y(page, "cv-mobile-zh-dark");
+
+    const cnRoutes = [
+      ["/research","研究方向与项目"], ["/publications","学术成果"],
+      ["/projects","开源科研项目"], ["/service","学术服务"],
+      ["/recognition","荣誉与学术交流"], ["/awards","荣誉与表彰"],
+      ["/news","新闻与科研里程碑"], ["/connect","合作机会与科研支持"],
+      ["/cv","学术履历与技能"], ["/cv/education","教育经历"],
+      ["/cv/skills","科研与技术能力"], ["/cv/languages","编程语言与交流语言"]
+    ];
+    for (const [route, expected] of cnRoutes) {
+      await page.goto(url(route), {waitUntil: "networkidle"});
+      const actual = await page.locator("main h1").first().textContent();
+      ok(actual.trim() === expected, "Mandarin heading for " + route + ": " + actual.trim());
+      ok(await page.evaluate(() => document.documentElement.lang) === "zh-CN", "Mandarin preference persists across " + route);
+    }
+    await page.goto(url("/news"), {waitUntil: "networkidle"});
+    ok(await page.locator(".news-entry").count() === 11, "All eleven news items remain in the Chinese version");
+    ok(await page.locator(".news-entry h3").first().textContent() !== "Auditable Uncertainty Control for Secure LLM Agents — ACM CCS 2026", "News headline translated");
+    await page.locator(".news-story-details summary").first().click();
+    ok((await page.locator(".news-story-body p").first().textContent()).includes("ACM"), "Full CCS article has its Mandarin editorial translation");
+
+    await page.goto(url("/awards"), {waitUntil: "networkidle"});
+    ok(await page.locator(".award-archive-card").count() === 62, "All 62 awards survive Mandarin localization");
+    await page.getByRole("combobox", {name: "按类别筛选档案"}).selectOption("Scholarships & fellowships");
+    const scholarshipCount = await page.locator(".award-archive-card").count();
+    ok(scholarshipCount > 0 && scholarshipCount < 62, "Chinese award category filter retains its stable data key");
+    await page.getByRole("searchbox", {name: "搜索荣誉档案"}).fill("中国政府");
+    ok(await page.locator(".award-archive-card").count() >= 1, "Award search finds translated Chinese titles");
+    await page.screenshot({path: path.join(directory, "awards-mobile-zh.png"), fullPage: true});
+
+    for (const width of [320,390,768,1024,1440]) {
+      await page.setViewportSize({width,height:844});
+      for (const route of ["/","/cv","/cv/education","/cv/skills","/awards","/news","/connect"]) {
+        await page.goto(url(route), {waitUntil:"domcontentloaded"});
+        await page.locator("main h1").first().waitFor();
+        const dims = await dimensions(page);
+        ok(dims.scroll <= dims.inner + 2, "Mandarin " + route + " avoids horizontal overflow at " + width + "px");
+      }
+    }
+    await page.setViewportSize({width:390,height:844});
+    await page.goto(url("/research"), {waitUntil:"networkidle"});
+    ok(await page.evaluate(() => localStorage.getItem("portfolio-language")) === "zh-CN", "Language preserved on reload");
+    ok((await page.title()).startsWith("研究方向"), "Chinese document title and SEO metadata update");
+    await page.getByRole("button", {name:"切换网站语言为英语"}).click();
+    await page.waitForFunction(() => document.documentElement.lang === "en");
+    ok(await page.locator("main h1").textContent() === "Research & projects", "English source restored without losing navigation state");
+    ok(await page.evaluate(() => localStorage.getItem("portfolio-language")) === "en", "Returning to English persists");
+
     ok(scriptErrors.length === 0, "No uncaught browser JavaScript errors: " + scriptErrors.slice(0, 3).join(" | "));
     ok(brokenOwnAssets.length === 0, "No 404/500 responses for first-party assets: " + brokenOwnAssets.slice(0, 3).join(" | "));
   } finally {
