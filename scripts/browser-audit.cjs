@@ -71,6 +71,9 @@ async function auditA11y(page, route) {
       ok(info.title.includes("Chandan Kumar Sah"), route + " has route-specific document title");
     }
     await page.goto(url("/"), {waitUntil: "networkidle"});
+    const primaryNavigation = page.getByRole("navigation", {name: "Primary navigation"});
+    ok(await primaryNavigation.getByRole("link").count() === 8, "Top navigation contains eight entries after removing Recognition");
+    ok(await primaryNavigation.getByRole("link", {name: "Recognition", exact: true}).count() === 0, "Recognition does not appear in the top desktop navigation");
     ok(await page.getByText(/Originally from Nepal, I am a Chinese Government Scholarship recipient/).count() === 1, "Homepage displays concise Nepal and Chinese Government Scholarship introduction");
     await page.screenshot({path: path.join(directory, "home-desktop.png"), fullPage: true});
     await auditA11y(page, "home-desktop");
@@ -87,6 +90,8 @@ async function auditA11y(page, route) {
     ok(await page.locator('a.cv-layer-card[href="#/recognition"]').count() === 1, "CV Recognition section reuses the existing Recognition route");
     await page.locator('a.cv-layer-card[href="#/recognition"]').click();
     ok(new URL(page.url()).hash === "#/recognition", "CV Recognition card navigates to existing Recognition page");
+    const backToCv = page.getByRole("navigation", {name: "Recognition breadcrumb"}).getByRole("link", {name: /Back to CV/});
+    ok(await backToCv.getAttribute("href") === "#/cv", "Recognition breadcrumb provides a route back to CV");
     ok(await page.getByRole("link", {name: "Explore the Awards & Appreciation archive"}).count() === 1, "Recognition keeps Awards & Appreciation click-through");
     ok(await page.getByRole("heading", {name: "Selected talks"}).count() === 1, "Recognition keeps selected academic talks");
     await page.goto(url("/cv"), {waitUntil: "networkidle"});
@@ -138,6 +143,7 @@ async function auditA11y(page, route) {
     const menu = page.getByRole("button", {name: "Open navigation"});
     await menu.click();
     ok(await page.getByRole("navigation", {name: "Mobile navigation"}).isVisible(), "Mobile menu opens");
+    ok(await page.getByRole("navigation", {name: "Mobile navigation"}).getByRole("link", {name: "Recognition", exact: true}).count() === 0, "Recognition absent from mobile menu");
     await page.keyboard.press("Escape");
     ok(await page.getByRole("navigation", {name: "Mobile navigation"}).count() === 0, "Escape closes mobile menu");
     ok(await menu.evaluate(node => document.activeElement === node), "Escape returns keyboard focus to menu button");
