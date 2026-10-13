@@ -122,7 +122,7 @@ async function auditA11y(page, route) {
     ok(await page.getByRole("navigation", {name: "Mobile navigation"}).count() === 0, "Escape closes mobile menu");
     ok(await menu.evaluate(node => document.activeElement === node), "Escape returns keyboard focus to menu button");
     await menu.click();
-    await page.getByRole("navigation", {name: "Mobile navigation"}).getByRole("link", {name: "CV & Skills"}).click();
+    await page.getByRole("navigation", {name: "Mobile navigation"}).getByRole("link", {name: "CV", exact: true}).click();
     ok(new URL(page.url()).hash === "#/cv", "Mobile navigation opens CV");
     ok(await page.getByRole("navigation", {name: "Mobile navigation"}).count() === 0, "Mobile menu closes after route selection");
 
