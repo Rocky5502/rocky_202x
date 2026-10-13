@@ -49,7 +49,7 @@ Both new additions have manually authored native Simplified Chinese text in `src
 
 ## Navigation and keyboard accessibility
 
-The main header intentionally ends with **News → Opportunities → CV**. Only the **top navigation label** is abbreviated; the page heading remains **CV & Skills** and the existing Education, Skills and Languages subpages stay unchanged. In Mandarin the compact top label is **简历**, while the page retains its more descriptive Chinese heading.
+The main header intentionally removes **Recognition** and ends with **News → Opportunities → CV**. Recognition remains a fourth card inside the CV overview and its own page provides a direct return-to-CV breadcrumb. Only the **top navigation label** is abbreviated; the page heading remains **CV & Skills** and the existing Education, Skills and Languages subpages stay unchanged. In Mandarin the compact top label is **简历**, while the page retains its more descriptive Chinese heading.
 
 The visually prominent-on-focus **Skip to content** link moves keyboard focus to the main landmark without navigating to `#main-content`, because replacing a hash route fragment would break React Router navigation. This is covered by unit and real Chromium keyboard tests.
 
