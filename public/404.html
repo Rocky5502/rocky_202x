@@ -22,13 +22,14 @@
         "research-areas": "research",
         "recognition/awards": "awards",
         "awards-and-appreciation": "awards",
-        "skills": "cv",
+        "skills": "cv/skills",
         "resume": "cv",
-        "education": "cv",
+        "education": "cv/education",
+        "languages": "cv/languages",
         "rocky-news": "news",
         "updates": "news"
       };
-      var routes = ["", "publications", "research", "projects", "service", "recognition", "awards", "cv", "news", "connect"];
+      var routes = ["", "publications", "research", "projects", "service", "recognition", "awards", "cv", "cv/education", "cv/skills", "cv/languages", "news", "connect"];
       var route = Object.prototype.hasOwnProperty.call(aliases, relative) ? aliases[relative] : relative;
       if (routes.indexOf(route) < 0) route = "";
       window.location.replace(base + "?from=direct-link#/" + route);
