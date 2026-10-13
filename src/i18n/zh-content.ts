@@ -236,7 +236,7 @@ export const zhContent: Record<string,string> = {
   "Hindi": "印地语",
   "Urdu": "乌尔都语",
   "French": "法语",
-  "Chandan Kumar Sah is a doctoral researcher at Beihang University in Beijing and a recipient of the Chinese Government Scholarship. Originally from Nepal 🇳🇵, he has been based in China since April 2018. His research focuses on uncertainty in language models, reliable AI for software engineering, and trustworthy intelligent systems.": "Chandan Kumar Sah（Rocky 文浩）现为北京航空航天大学博士研究生，曾获中国政府奖学金资助。他来自尼泊尔 🇳🇵，自2018年4月起在中国学习和生活，研究方向涵盖大语言模型不确定性、面向软件工程的可靠人工智能以及可信智能系统。",
+  "Originally from Nepal 🇳🇵 and based in China since April 2018, he is a Chinese Government Scholarship recipient and doctoral researcher at Beihang University in Beijing. His research examines uncertainty in language models, reliable AI for software engineering, and trustworthy intelligent systems.": "来自尼泊尔 🇳🇵，自2018年4月起在中国学习和生活，曾获中国政府奖学金资助，目前在北京航空航天大学攻读博士学位。其研究聚焦大语言模型不确定性、面向软件工程的可靠人工智能与可信智能系统。",
   "From Nepal · Chinese Government Scholarship recipient": "来自尼泊尔 · 中国政府奖学金获得者",
   "Web of Science Author Search": "Web of Science 作者检索",
   "This opens the general Web of Science author-search portal, not a uniquely verified researcher profile. Please use the affiliation and ORCID to identify the correct person.": "此链接打开 Web of Science 作者检索入口，并非已经核验的个人学者主页。请结合所在机构及 ORCID 核对研究者身份。",
@@ -259,5 +259,7 @@ export const zhContent: Record<string,string> = {
   "Scholarships · 2 CSC + Belt and Road": "奖学金 · 两次中国政府奖学金及“一带一路”奖学金",
   "Excellent International Graduate · Beihang": "北京航空航天大学优秀国际毕业生",
   "Recognition details": "查看荣誉详情",
-  "Researcher-reported": "研究者自述"
+  "Researcher-reported": "研究者自述",
+  "Listed research outputs": "已收录科研成果",
+  "Includes preprints, a book chapter & forthcoming work": "含预印本、书籍章节及待刊成果"
 };
