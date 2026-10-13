@@ -1786,3 +1786,109 @@ html[lang="zh-CN"] .award-archive-card h3 { overflow-wrap: anywhere; }
 
 /* Switch dark/light palettes atomically to avoid brief low-contrast text during transitions. */
 .portfolio-shell { transition: none; }
+
+
+/* Optional support is secondary to academic collaboration. Keep it in the
+   Opportunities page's bottom-right corner, never floating over content. */
+.connect-page .support-section {
+  display: flex;
+  justify-content: flex-end;
+  padding: 18px 0 6px;
+  margin-top: 2px;
+  border-top: 1px solid var(--portfolio-rule);
+}
+.portfolio-shell .support-disclosure {
+  width: min(100%, 370px);
+  border: 1px solid var(--portfolio-rule);
+  background: var(--portfolio-panel);
+  color: var(--portfolio-ink);
+}
+.portfolio-shell .support-disclosure[open] {
+  width: min(100%, 790px);
+}
+.portfolio-shell .support-compact-toggle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  list-style: none;
+  min-height: 67px;
+  padding: 11px 15px;
+}
+.support-compact-toggle::-webkit-details-marker { display: none; }
+.support-compact-toggle::marker { content: ""; }
+.support-compact-icon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 37px;
+  height: 37px;
+  color: var(--portfolio-accent);
+  background: var(--portfolio-soft);
+  border: 1px solid var(--portfolio-rule);
+}
+.support-compact-label { min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+.support-compact-label .eyebrow {
+  font-size: 9px;
+  letter-spacing: .08em;
+  margin: 0;
+  line-height: 1.4;
+}
+.support-compact-label strong {
+  font-size: 12px;
+  font-weight: 650;
+  line-height: 1.55;
+  letter-spacing: 0;
+}
+.support-toggle-chevron {
+  margin-left: auto;
+  flex: none;
+  color: var(--portfolio-accent);
+  transition: transform .16s ease;
+}
+.support-disclosure[open] .support-toggle-chevron { transform: rotate(180deg); }
+.portfolio-shell .support-compact-toggle:hover { background: var(--portfolio-soft); }
+.portfolio-shell .support-compact-toggle:focus-visible {
+  outline: 2px solid var(--portfolio-accent);
+  outline-offset: 3px;
+}
+.support-expanded-content {
+  border-top: 1px solid var(--portfolio-rule);
+  padding: 0 clamp(16px, 2.5vw, 24px) 22px;
+}
+.support-expanded-content .support-statement {
+  font-size: 12px;
+  margin-top: 16px !important;
+  line-height: 1.75;
+}
+.portfolio-shell .support-disclosure[open] .support-methods {
+  margin-top: 17px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  max-width: none;
+  gap: 12px;
+}
+.support-disclosure .support-methods .support-details { padding: 16px; }
+.support-disclosure .support-methods .support-payment-heading {
+  min-height: 50px;
+  margin-bottom: 14px;
+}
+.support-disclosure .support-payment-heading strong { font-size: 13px; }
+.support-disclosure .support-methods .copy-feedback { min-height: 0; }
+.support-disclosure .support-disclaimer {
+  max-width: none;
+  font-size: 10px;
+  line-height: 1.7;
+  margin-top: 16px !important;
+}
+@media (max-width: 740px) {
+  .portfolio-shell .support-disclosure[open] .support-methods { grid-template-columns: 1fr; }
+}
+@media (max-width: 540px) {
+  .connect-page .support-section { padding-top: 16px; }
+  .portfolio-shell .support-disclosure { width: 100%; }
+  .portfolio-shell .support-disclosure[open] { width: 100%; }
+  .support-expanded-content { padding-inline: 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .support-toggle-chevron { transition: none; }
+}
