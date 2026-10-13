@@ -253,7 +253,7 @@ export const zhContent: Record<string,string> = {
   "Selected academic highlights": "代表性学术荣誉",
   "Selected highlights": "学术亮点",
   "Outstanding Reviewer · ECIR 2026": "ECIR 2026 优秀审稿人",
-  "Senior PC · ECIR 2027 ": "ECIR 2027 高级程序委员会成员 ",
+  "Senior PC · ECIR 2027": "ECIR 2027 高级程序委员会成员 ",
   "Excellent Paper · AUA Postgraduate Forum": "亚洲大学联盟研究生论坛优秀论文奖",
   "Scholarships · 2 CSC + Belt and Road": "奖学金 · 两次中国政府奖学金及“一带一路”奖学金",
   "Excellent International Graduate · Beihang": "北京航空航天大学优秀国际毕业生",
