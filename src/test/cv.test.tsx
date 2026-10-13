@@ -15,8 +15,8 @@ describe("layered academic CV", () => {
   it("restores the three original education records without guessing graduation dates", () => {
     expect(education).toHaveLength(3);
     expect(education.map(e => e.institution)).toEqual(["Beihang University", "Beihang University", "Sichuan University"]);
-    expect(education[0].period).toBe("2025–present");
-    expect(education.slice(1).every(e => e.period === "Previous degree")).toBe(true);
+    expect(education.every(e => !("period" in e))).toBe(true);
+    expect(education[0].degree).toContain("In progress");
     expect(education.slice(1).every(e => e.sourceNote.includes("not been verified as a graduation date"))).toBe(true);
   });
 
@@ -80,6 +80,12 @@ describe("layered academic CV", () => {
     expect(screen.getByRole("heading", { name: "Summer & winter schools" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Other short programmes" })).toBeInTheDocument();
     expect(screen.getByText("Sichuan University")).toBeInTheDocument();
+    const degreeList = document.querySelector(".cv-education-list");
+    expect(degreeList).not.toBeNull();
+    expect(degreeList).not.toHaveTextContent("2025");
+    expect(degreeList).not.toHaveTextContent("present");
+    expect(degreeList).not.toHaveTextContent("Previous degree");
+    expect(within(degreeList as HTMLElement).getByText("Ph.D. · In progress")).toBeInTheDocument();
     expect(screen.getByText("International Software Engineering Winter School on Hybrid and Generative Intelligence")).toBeInTheDocument();
     expect(screen.getByText("ACM Europe School on Recommender Systems")).toBeInTheDocument();
     expect(screen.getByText("AI Photonics International Summer School")).toBeInTheDocument();
