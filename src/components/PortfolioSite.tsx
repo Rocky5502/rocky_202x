@@ -277,7 +277,7 @@ function Home() {
         <p className="eyebrow">PhD Researcher · Software Engineering & AI</p>
         <h1>Chandan Kumar Sah<span className="hero-also">Rocky 文浩</span></h1>
         <p className="hero-lead">Studying when AI systems should trust their evidence—and when they should not.</p>
-        <p className="hero-description">Originally from Nepal 🇳🇵, I have lived in China since April 2018. I am a Chinese Government Scholarship recipient and doctoral researcher at Beihang University in Beijing, studying uncertainty in language models, reliable AI for software engineering, and trustworthy intelligent systems.</p>
+        <p className="hero-description">Chandan Kumar Sah is a doctoral researcher at Beihang University in Beijing and a recipient of the Chinese Government Scholarship. Originally from Nepal 🇳🇵, he has been based in China since April 2018. His research focuses on uncertainty in language models, reliable AI for software engineering, and trustworthy intelligent systems.</p>
         <Link className="availability-inline" to="/connect"><span className="availability-dot" aria-hidden="true" />Open to research collaborations, visiting opportunities and fellowships <ArrowRight size={14} aria-hidden="true" /></Link>
         <div className="hero-actions">
           <Link className="primary-action" to="/publications">Explore publications <ArrowRight size={16} /></Link>
@@ -298,6 +298,7 @@ function Home() {
           <ul className="portrait-highlight-list">
             <li><Award aria-hidden="true" size={15} strokeWidth={1.6}/><span>Outstanding Reviewer · ECIR 2026</span></li>
             <li><UsersRound aria-hidden="true" size={15} strokeWidth={1.6}/><span>Senior PC · ECIR 2027 <sup aria-label="Researcher-reported">†</sup></span></li>
+            <li><Medal aria-hidden="true" size={15} strokeWidth={1.6}/><span>2nd Place (Graduate) · ACM SRC, ASE 2025</span></li>
             <li><BookOpenCheck aria-hidden="true" size={15} strokeWidth={1.6}/><span>Excellent Paper · AUA Postgraduate Forum</span></li>
             <li><GraduationCap aria-hidden="true" size={15} strokeWidth={1.6}/><span>Scholarships · 2 CSC + Belt and Road</span></li>
             <li><Medal aria-hidden="true" size={15} strokeWidth={1.6}/><span>Excellent International Graduate · Beihang</span></li>
