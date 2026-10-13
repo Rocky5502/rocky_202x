@@ -54,6 +54,7 @@ describe("professional Simplified Chinese localization", () => {
     await waitFor(() => expect(document.documentElement.lang).toBe("zh-CN"));
     await waitFor(() => expect(screen.getByRole("heading", { name: "研究方向与项目" })).toBeInTheDocument());
     expect(screen.getByRole("link", { name: "学术成果" })).toHaveAttribute("href", "/publications");
+    expect(screen.getByRole("navigation", { name: "主导航" }).querySelector('a[href="/cv"]')).toHaveTextContent("简历");
     expect(document.title).toBe("研究方向｜Chandan Kumar Sah");
     expect(window.localStorage.getItem("portfolio-language")).toBe("zh-CN");
 
