@@ -160,6 +160,8 @@ The **Opportunities & support** page at `/#/connect` communicates the current do
 
 Opportunity wording is authored in `src/data/opportunities.ts` and is not a guarantee of eligibility or institutional approval.
 
+The optional **“Support open, responsible AI research”** content is deliberately **collapsed by default** in a small, bottom-right, in-page native HTML `<details>` disclosure (not a persistent overlay, floating solicitation, or separate top-level page). Desktop shows a compact ≤370px card at the bottom of Opportunities; mobile retains a full-width but restrained summary. Clicking or keyboard-opening it reveals PayPal and Google Pay inquiries, the original full research-support explanation, and payment-verification disclosures. The support block remains subordinate to academic collaboration and is covered by unit, English/Chinese browser interaction, expanded accessibility and 320/390px overflow tests.
+
 The researcher explicitly requested displaying **sahchandan98@gmail.com** as a *public PayPal recipient email and contact address for Google Pay inquiries* for optional personal support of open, responsible AI research. Academic correspondence continues to use the institutional `sahchandan98@buaa.edu.cn` address. The site implements:
 
 - A labeled, selectable read-only payment email with a copy-to-clipboard button.
