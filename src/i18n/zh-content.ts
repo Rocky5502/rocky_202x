@@ -236,7 +236,7 @@ export const zhContent: Record<string,string> = {
   "Hindi": "印地语",
   "Urdu": "乌尔都语",
   "French": "法语",
-  "Originally from Nepal, I am a Chinese Government Scholarship recipient pursuing doctoral research at Beihang University in Beijing, China. My work focuses on uncertainty in language models, reliable AI for software engineering, and trustworthy intelligent systems.": "我来自尼泊尔，获得中国政府奖学金资助，目前在北京航空航天大学攻读博士学位，研究大语言模型不确定性、面向软件工程的可信人工智能以及智能系统的可靠与安全。",
+  "Originally from Nepal 🇳🇵, I have lived in China since April 2018. I am a Chinese Government Scholarship recipient and doctoral researcher at Beihang University in Beijing, studying uncertainty in language models, reliable AI for software engineering, and trustworthy intelligent systems.": "我来自尼泊尔 🇳🇵，自2018年4月起在中国学习和生活。作为中国政府奖学金获得者，我目前在北京航空航天大学攻读博士学位，研究大语言模型不确定性、面向软件工程的可靠人工智能及可信智能系统。",
   "From Nepal · Chinese Government Scholarship recipient": "来自尼泊尔 · 中国政府奖学金获得者",
   "Web of Science Author Search": "Web of Science 作者检索",
   "This opens the general Web of Science author-search portal, not a uniquely verified researcher profile. Please use the affiliation and ORCID to identify the correct person.": "此链接打开 Web of Science 作者检索入口，并非已经核验的个人学者主页。请结合所在机构及 ORCID 核对研究者身份。",
@@ -249,5 +249,15 @@ export const zhContent: Record<string,string> = {
   "← Back to CV": "← 返回简历",
   "Explore an academic CV with Education, Research and Technical Skills, Languages, and Recognition with awards and talks.": "探索包含教育经历、科研与技术能力、语言和荣誉（奖项与学术报告）的学术履历。",
   "Voluntary academic support": "自愿性科研支持",
-  "PayPal support email address": "PayPal 科研支持联系邮箱"
+  "PayPal support email address": "PayPal 科研支持联系邮箱",
+  "Selected academic highlights": "代表性学术荣誉",
+  "Selected highlights": "学术亮点",
+  "Outstanding Reviewer · ECIR 2026": "ECIR 2026 优秀审稿人",
+  "Senior PC · ECIR 2027 ": "ECIR 2027 高级程序委员会成员 ",
+  "Excellent Paper · AUA Postgraduate Forum": "亚洲大学联盟研究生论坛优秀论文奖",
+  "Scholarships · 2 CSC + Belt and Road": "奖学金 · 两次中国政府奖学金及“一带一路”奖学金",
+  "Excellent International Graduate · Beihang": "北京航空航天大学优秀国际毕业生",
+  "ECIR 2027 role is researcher-reported; independent confirmation pending.": "ECIR 2027 任职信息由本人提供，尚待主办方独立核实。",
+  "Recognition details": "查看荣誉详情",
+  "Researcher-reported": "研究者自述"
 };
