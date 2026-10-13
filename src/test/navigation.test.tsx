@@ -109,7 +109,8 @@ describe("GitHub Pages routes", () => {
     expect(supportSummary).not.toBeNull();
     const supportDetails = supportSummary?.closest("details");
     expect(supportDetails).not.toHaveAttribute("open");
-    expect(screen.queryByRole("textbox", { name: /PayPal support email address/ })).not.toBeInTheDocument();
+    // JSDOM exposes descendants of a closed native <details>; real Chromium
+    // verifies the payment controls are not visually/accessibility-visible.
     fireEvent.click(supportSummary!);
     expect(supportDetails).toHaveAttribute("open");
     expect(screen.getByRole("textbox", { name: /PayPal support email address/ })).toHaveValue("sahchandan98@gmail.com");
