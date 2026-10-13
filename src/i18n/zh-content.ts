@@ -237,5 +237,10 @@ export const zhContent: Record<string,string> = {
   "Chinese": "中文（普通话）",
   "Hindi": "印地语",
   "Urdu": "乌尔都语",
-  "French": "法语"
+  "French": "法语",
+  "Originally from Nepal, I am a Chinese Government Scholarship recipient pursuing doctoral research at Beihang University in Beijing, China. My work focuses on uncertainty in language models, reliable AI for software engineering, and trustworthy intelligent systems.": "我来自尼泊尔，获得中国政府奖学金资助，目前在北京航空航天大学攻读博士学位，研究大语言模型不确定性、面向软件工程的可信人工智能以及智能系统的可靠与安全。",
+  "From Nepal · Chinese Government Scholarship recipient": "来自尼泊尔 · 中国政府奖学金获得者",
+  "Web of Science Author Search": "Web of Science 作者检索",
+  "This opens the general Web of Science author-search portal, not a uniquely verified researcher profile. Please use the affiliation and ORCID to identify the correct person.": "此链接打开 Web of Science 作者检索入口，并非已经核验的个人学者主页。请结合所在机构及 ORCID 核对研究者身份。",
+  "Web of Science author search portal, not a verified personal author profile": "Web of Science 作者检索入口，非已核验的个人学者主页"
 };
