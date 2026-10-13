@@ -192,6 +192,20 @@ async function auditA11y(page, route) {
     ok(await page.locator("main h1").textContent() === "Research & projects", "English source restored without losing navigation state");
     ok(await page.evaluate(() => localStorage.getItem("portfolio-language")) === "en", "Returning to English persists");
 
+    // A shareable link must beat prior preferences and preserve hash routes.
+    await page.goto(BASE + "?campaign=academic&lang=zh-CN#/cv/education", {waitUntil:"networkidle"});
+    ok(await page.evaluate(() => document.documentElement.lang === "zh-CN"), "Explicit shared Chinese deep link overrides saved English");
+    ok((await page.locator("main h1").textContent()).trim() === "教育经历", "Shared Chinese URL opens the requested CV education route");
+    await page.getByRole("button", {name:"切换网站语言为英语"}).click();
+    ok(await page.evaluate(() => document.documentElement.lang === "en"), "Shared link can switch back to English");
+    ok(new URL(page.url()).searchParams.get("campaign") === "academic", "Language switch preserves unrelated query parameters");
+    ok(new URL(page.url()).searchParams.get("lang") === "en", "Language switch writes an explicit shareable English URL");
+    ok(new URL(page.url()).hash === "#/cv/education", "Language switch preserves the deep route hash");
+    await page.goto(BASE + "?lang=zh-CN#/news", {waitUntil:"networkidle"});
+    ok(await page.evaluate(() => document.documentElement.lang === "zh-CN"), "Chinese share URL reloads correctly");
+    ok((await page.locator("main h1").textContent()).trim() === "新闻与科研里程碑", "Chinese news deep link retains full translation");
+
+
     ok(scriptErrors.length === 0, "No uncaught browser JavaScript errors: " + scriptErrors.slice(0, 3).join(" | "));
     ok(brokenOwnAssets.length === 0, "No 404/500 responses for first-party assets: " + brokenOwnAssets.slice(0, 3).join(" | "));
   } finally {
