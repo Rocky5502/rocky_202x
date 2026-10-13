@@ -30,8 +30,18 @@ describe("academic introduction and Web of Science search", () => {
 
   it("presents the short Nepal and Chinese Government Scholarship introduction", () => {
     render(<MemoryRouter initialEntries={["/"]}><PortfolioSite /></MemoryRouter>);
-    expect(screen.getByText(/Originally from Nepal, I am a Chinese Government Scholarship recipient/)).toBeInTheDocument();
-    expect(screen.getByText(/doctoral research at Beihang University/)).toBeInTheDocument();
+    expect(screen.getByText(/Originally from Nepal 🇳🇵, I have lived in China since April 2018/)).toBeInTheDocument();
+    expect(screen.getByText(/doctoral researcher at Beihang University in Beijing/)).toBeInTheDocument();
+    const highlightList = document.querySelector(".portrait-highlight-list");
+    expect(highlightList).not.toBeNull();
+    expect(highlightList?.querySelectorAll("li")).toHaveLength(5);
+    expect(highlightList).toHaveTextContent("Outstanding Reviewer · ECIR 2026");
+    expect(highlightList).toHaveTextContent("Senior PC · ECIR 2027");
+    expect(highlightList).toHaveTextContent("Excellent Paper · AUA Postgraduate Forum");
+    expect(highlightList).toHaveTextContent("Scholarships · 2 CSC + Belt and Road");
+    expect(highlightList).toHaveTextContent("Excellent International Graduate · Beihang");
+    expect(screen.getByText(/ECIR 2027 role is researcher-reported; independent confirmation pending/)).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Recognition details" })).toHaveAttribute("href", "/recognition");
   });
 
   it("links Web of Science as an author search rather than an unsupported individual researcher record", () => {
