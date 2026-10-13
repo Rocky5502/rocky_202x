@@ -62,11 +62,13 @@ describe("layered academic CV", () => {
     const nav = screen.getByRole("navigation", { name: "Primary navigation" });
     const order = within(nav).getAllByRole("link").map(x => x.textContent);
     expect(order.slice(-3)).toEqual(["News","Opportunities","CV"]);
+    expect(order).not.toContain("Recognition");
   });
 
   it("keeps Recognition accessible as a genuine separate destination with its existing awards gateway", () => {
     renderAt("/recognition");
     expect(screen.getByRole("heading", { name: "Recognition & talks" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "← Back to CV" })).toHaveAttribute("href", "/cv");
     expect(screen.getByRole("link", { name: "Explore the Awards & Appreciation archive" })).toHaveAttribute("href", "/awards");
     expect(screen.getByRole("heading", { name: "Selected talks" })).toBeInTheDocument();
   });
