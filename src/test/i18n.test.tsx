@@ -65,6 +65,20 @@ describe("professional Simplified Chinese localization", () => {
     expect(screen.getByRole("link", { name: "Publications" })).toHaveAttribute("href", "/publications");
   });
 
+  it("translates Nepal scholarship biography and the Web of Science link without changing its target", async () => {
+    const { unmount } = renderAt("/");
+    fireEvent.click(screen.getByRole("button", { name: "Switch website to Simplified Chinese" }));
+    await waitFor(() => expect(screen.getByText(/我来自尼泊尔，获得中国政府奖学金资助/)).toBeInTheDocument());
+    unmount();
+
+    renderAt("/service");
+    await waitFor(() => expect(screen.getAllByRole("link", { name: "Web of Science 作者检索" }).length).toBeGreaterThan(0));
+    const links = screen.getAllByRole("link", { name: "Web of Science 作者检索" });
+    expect(links.every(link => link.getAttribute("href") ===
+      "https://www.webofscience.com/wos/author/author-search?state=%7B%7D")).toBe(true);
+    expect(screen.getByText(/并非已经核验的个人学者主页/)).toBeInTheDocument();
+  });
+
   it("translates education and awards while preserving search and stable category values", async () => {
     const { unmount } = renderAt("/cv/education");
     fireEvent.click(screen.getByRole("button", { name: "Switch website to Simplified Chinese" }));
