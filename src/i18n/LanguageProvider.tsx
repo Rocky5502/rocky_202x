@@ -3,7 +3,11 @@ import { zhTranslations } from "./zh";
 
 export type SiteLanguage = "en" | "zh-CN";
 type LanguageContextValue = { language: SiteLanguage; changeLanguage: (value: SiteLanguage) => void; tr: (value: string) => string };
-const LanguageContext = createContext<LanguageContextValue | null>(null);
+const LanguageContext = createContext<LanguageContextValue>({
+  language: "en",
+  changeLanguage: () => {},
+  tr: (value: string) => value,
+});
 const STORAGE_KEY = "portfolio-language";
 const textMemory = new WeakMap<Text, { original: string; rendered: string }>();
 const attributeMemory = new WeakMap<Element, Map<string, { original: string; rendered: string }>>();
@@ -105,7 +109,6 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 }
 
 export function useLanguage(): LanguageContextValue {
-  const value = useContext(LanguageContext);
-  if (!value) throw new Error("useLanguage must be used inside LanguageProvider");
-  return value;
+  // English fallback keeps standalone archive and story components testable.
+  return useContext(LanguageContext);
 }
