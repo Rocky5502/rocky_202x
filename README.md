@@ -39,6 +39,12 @@ GitHub Pages may serve temporarily cached HTML immediately after a deployment, e
 
 `src/test/navigation.test.tsx` tests the real `/#/connect` address, legacy hash aliases, 404 recovery and all five research topics. Both `Verify portfolio` and the Pages deployment should succeed for the same latest commit before considering a release complete.
 
+## Navigation and keyboard accessibility
+
+The main header intentionally ends with **News → Opportunities → CV**. Only the **top navigation label** is abbreviated; the page heading remains **CV & Skills** and the existing Education, Skills and Languages subpages stay unchanged. In Mandarin the compact top label is **简历**, while the page retains its more descriptive Chinese heading.
+
+The visually prominent-on-focus **Skip to content** link moves keyboard focus to the main landmark without navigating to `#main-content`, because replacing a hash route fragment would break React Router navigation. This is covered by unit and real Chromium keyboard tests.
+
 ## English / 简体中文 bilingual website
 
 The academic portfolio supports **English** (default) and **Simplified Chinese (zh-CN, standard Mandarin)** through a compact `中文 / EN` toggle next to the light/dark control. Translation works across the existing sections and hash-based URLs, with no external translation service, cookies or extra user tracking. The selected language is saved locally under `portfolio-language` and preserved on refresh and navigation. Visitors can also share an exact bilingual destination using `https://rocky5502.github.io/rocky_202x/?lang=zh-CN#/research` or `?lang=en#/cv`; an explicit URL language overrides the previous local preference, and toggling keeps route fragments and unrelated query parameters intact. The document language (`<html lang>`), metadata, screen-reader labels and placeholders follow the selection. Changing language preserves the reader's position.
