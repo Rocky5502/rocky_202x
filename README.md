@@ -39,6 +39,14 @@ GitHub Pages may serve temporarily cached HTML immediately after a deployment, e
 
 `src/test/navigation.test.tsx` tests the real `/#/connect` address, legacy hash aliases, 404 recovery and all five research topics. Both `Verify portfolio` and the Pages deployment should succeed for the same latest commit before considering a release complete.
 
+## Short introduction and Web of Science
+
+The homepage now includes a short academic biography: **“Originally from Nepal, I am a Chinese Government Scholarship recipient pursuing doctoral research at Beihang University in Beijing, China.”** This is a researcher-provided historical scholarship claim, consistent with the original academic certificate archive. It must not be presented as a separately authenticated scholarship registry record. The **CV overview** also includes a restrained, single-line origin/scholarship descriptor.
+
+The owner provided the URL `https://www.webofscience.com/wos/author/author-search?state=%7B%7D`. This is a **generic Web of Science Author Search portal**, not a unique researcher profile, ResearcherID or a connected Clarivate account. The site links it in the **Academic Service → Academic identity** area, **CV overview**, and footer, always labeled **Web of Science Author Search / Web of Science 作者检索** and never used as a verified individual's bibliographic citation. To upgrade the link, request the owner's exact public Web of Science Researcher Profile URL or ResearcherID and verify that it matches the Beihang University researcher and their correct ORCID (`0009-0002-4017-7970`). Do **not** accidentally associate a similarly named author. Neither personal review counts nor records are automatically imported from this link.
+
+Both new additions have manually authored native Simplified Chinese text in `src/i18n/zh-content.ts`, with English and Chinese regression tests and Chromium route tests in `scripts/browser-audit.cjs`.
+
 ## Navigation and keyboard accessibility
 
 The main header intentionally ends with **News → Opportunities → CV**. Only the **top navigation label** is abbreviated; the page heading remains **CV & Skills** and the existing Education, Skills and Languages subpages stay unchanged. In Mandarin the compact top label is **简历**, while the page retains its more descriptive Chinese heading.
