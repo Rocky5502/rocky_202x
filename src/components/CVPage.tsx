@@ -1,7 +1,7 @@
 import {
   ArrowLeft, ArrowRight, ArrowUpRight, BookOpen, BrainCircuit, ChartNoAxesCombined,
-  CheckCheck, Code2, Cpu, FileText, GitBranch, GraduationCap, ShieldCheck,
-  FlaskConical, Terminal, Workflow, Languages, BriefcaseBusiness,
+  CheckCheck, Code2, Cpu, GitBranch, GraduationCap, ShieldCheck,
+  FlaskConical, Terminal, Workflow, Languages,
   Snowflake, Sun, School, Landmark, type LucideIcon
 } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -172,7 +172,7 @@ function SkillCard({ skill }: { skill: Skill }) {
     <div className="cv-skill-heading"><span className="cv-skill-icon" aria-hidden="true"><Icon size={20} strokeWidth={1.5}/></span><span className="cv-skill-index">{skill.id} / 10</span></div>
     <h3>{skill.name}</h3><p>{skill.summary}</p>
     <div className="cv-skill-tags">{skill.methods.map(method => <span key={method}>{method}</span>)}</div>
-    <a href={\`https://github.com/Rocky5502/\${encodeURIComponent(skill.evidenceRepo)}\`} className="cv-evidence-link" target="_blank" rel="noopener noreferrer">
+    <a href={`https://github.com/Rocky5502/${encodeURIComponent(skill.evidenceRepo)}`} className="cv-evidence-link" target="_blank" rel="noopener noreferrer">
       <span>{skill.evidence} · {skill.evidenceType === "Public implementation" ? "Public code" : "Research tooling / plan"}</span>
       <ArrowUpRight size={15} aria-hidden="true"/>
     </a>
