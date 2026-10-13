@@ -44,6 +44,16 @@ describe("academic introduction and Web of Science search", () => {
 });
 
 describe("navigation usability", () => {
+  it("keeps Recognition off the top menu but available from the four-card CV overview", () => {
+    render(<MemoryRouter initialEntries={["/cv"]}><PortfolioSite /></MemoryRouter>);
+    const primary = screen.getByRole("navigation", { name: "Primary navigation" });
+    expect(within(primary).queryByRole("link", { name: "Recognition" })).not.toBeInTheDocument();
+    expect(within(primary).getByRole("link", { name: "CV" })).toHaveAttribute("href", "/cv");
+    const card = document.querySelector<HTMLAnchorElement>('a.cv-layer-card[href="/recognition"]');
+    expect(card).not.toBeNull();
+    expect(card).toHaveTextContent("Recognition");
+  });
+
   it("updates document titles and descriptions for each section", () => {
     const titleBefore = document.title;
     const { unmount } = render(<MemoryRouter initialEntries={["/research"]}><PortfolioSite /></MemoryRouter>);
@@ -61,6 +71,7 @@ describe("navigation usability", () => {
     fireEvent.click(trigger);
     const mobile = screen.getByRole("navigation", { name: "Mobile navigation" });
     expect(mobile).toBeInTheDocument();
+    expect(within(mobile).queryByRole("link", { name: "Recognition" })).not.toBeInTheDocument();
     expect(within(mobile).getByRole("link", { name: "Home" })).toHaveFocus();
     const close = screen.getByRole("button", { name: "Close navigation" });
     expect(close).toHaveAttribute("aria-expanded", "true");
