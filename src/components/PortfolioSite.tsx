@@ -22,7 +22,6 @@ const navigation = [
   { to: "/projects", label: "Projects" },
   { to: "/research", label: "Research" },
   { to: "/service", label: "Service" },
-  { to: "/recognition", label: "Recognition" },
   { to: "/news", label: "News" },
   { to: "/connect", label: "Opportunities" },
   { to: "/cv", label: "CV" },
@@ -67,7 +66,7 @@ const routeMetadata: Record<string, { title: string; description: string }> = {
   },
   "/cv": {
     title: "CV & Skills Overview | Chandan Kumar Sah",
-    description: "Explore an academic web CV organized into Education, Research and Technical Skills, and Languages.",
+    description: "Explore an academic CV with Education, Research and Technical Skills, Languages, and Recognition with awards and talks.",
   },
   "/cv/education": {
     title: "Education & Research Schools | Chandan Kumar Sah",
@@ -412,6 +411,7 @@ function ServicePage() {
 
 function RecognitionPage() {
   return <div className="content-wrap interior-page">
+    <nav className="cv-breadcrumb" aria-label="Recognition breadcrumb"><Link to="/cv">← Back to CV</Link><span aria-hidden="true">/</span><span aria-current="page">Recognition & talks</span></nav>
     <PageHeading kicker="Community / 04" title="Recognition & talks" subtitle="A focused overview of professional recognition and selected academic presentations. Browse the awards archive only if you would like more detail." />
     <section className="service-section recognition-gateway-section">
       <AwardsInvitation />
