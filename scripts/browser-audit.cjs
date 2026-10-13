@@ -74,7 +74,12 @@ async function auditA11y(page, route) {
     const primaryNavigation = page.getByRole("navigation", {name: "Primary navigation"});
     ok(await primaryNavigation.getByRole("link").count() === 8, "Top navigation contains eight entries after removing Recognition");
     ok(await primaryNavigation.getByRole("link", {name: "Recognition", exact: true}).count() === 0, "Recognition does not appear in the top desktop navigation");
-    ok(await page.getByText(/Originally from Nepal, I am a Chinese Government Scholarship recipient/).count() === 1, "Homepage displays concise Nepal and Chinese Government Scholarship introduction");
+    ok(await page.getByText(/Originally from Nepal 🇳🇵, I have lived in China since April 2018/).count() === 1, "Homepage includes Nepal origin and April 2018 China arrival");
+    ok(await page.locator(".portrait-highlight-list li").count() === 5, "Portrait displays exactly five compact academic highlights");
+    ok(await page.locator(".portrait-highlight-list").innerText().then(t=>t.includes("Excellent Paper · AUA Postgraduate Forum")), "AUA highlight preserves actual Excellent Paper designation");
+    ok(await page.locator(".portrait-highlight-list").innerText().then(t=>t.includes("Scholarships · 2 CSC + Belt and Road")), "Scholarships are not mislabeled as three identical CSC grants");
+    ok(await page.getByText(/ECIR 2027 role is researcher-reported; independent confirmation pending/).count() === 1, "Senior PC highlight carries explicit unverifiable-role provenance");
+    ok(await page.getByRole("link",{name:"Recognition details"}).getAttribute("href") === "#/recognition", "Portrait highlights link to existing Recognition page");
     await page.screenshot({path: path.join(directory, "home-desktop.png"), fullPage: true});
     await auditA11y(page, "home-desktop");
 
@@ -201,7 +206,9 @@ async function auditA11y(page, route) {
     ok(await page.getByRole("button", {name: "切换网站语言为英语"}).count() === 1, "Language switch labels its next action accessibly in Mandarin");
     ok(await page.evaluate(() => localStorage.getItem("portfolio-language") === "zh-CN"), "Mandarin preference saved");
     await page.goto(url("/"), {waitUntil:"networkidle"});
-    ok(await page.getByText(/我来自尼泊尔，获得中国政府奖学金资助/).count() === 1, "Home scholarship introduction localized in Mandarin");
+    ok(await page.getByText(/我来自尼泊尔 🇳🇵，自2018年4月起在中国学习和生活/).count() === 1, "Home Nepal and China-since-2018 introduction localized in Mandarin");
+    ok(await page.locator(".portrait-highlight-list li").count() === 5, "Mandarin homepage preserves five academic highlights");
+    ok(await page.locator(".portrait-highlight-list").innerText().then(t=>t.includes("亚洲大学联盟研究生论坛优秀论文奖")), "Mandarin award highlight correctly describes AUA Excellent Paper distinction");
     await page.goto(url("/connect"), {waitUntil:"networkidle"});
     ok(await page.locator(".support-disclosure").evaluate(node => !node.open), "Mandarin research support remains discreet by default");
     ok((await page.locator(".support-disclosure summary").textContent()).includes("支持开放、负责任的人工智能研究"), "Compact support title translated into mainland Mandarin");
