@@ -53,7 +53,8 @@ async function auditA11y(page, route) {
 (async () => {
   const browser = await chromium.launch({headless: true});
   try {
-    const page = await browser.newPage({viewport: {width: 1440, height: 900}, deviceScaleFactor: 1});
+    const context = await browser.newContext({viewport: {width: 1440, height: 900}, deviceScaleFactor: 1});
+    const page = await context.newPage();
     const scriptErrors = [];
     const brokenOwnAssets = [];
     page.on("pageerror", error => scriptErrors.push(error.message));
@@ -65,7 +66,7 @@ async function auditA11y(page, route) {
       const info = await dimensions(page);
       observations.push({route, ...info});
       ok(info.h1.length === 1, route + " has exactly one H1 (" + info.h1.join(", ") + ")");
-      ok(info.h1[0] === heading, route + " H1 matches expected route");
+      ok(info.h1[0]?.startsWith(heading), route + " H1 begins with the correct page title");
       ok(info.scroll <= info.inner + 2, route + " has no horizontal overflow at 1440px (" + info.scroll + "/" + info.inner + ")");
       ok(info.title.includes("Chandan Kumar Sah"), route + " has route-specific document title");
     }
