@@ -1612,6 +1612,7 @@ body { margin: 0; }
 .cv-profile-line > div:first-child .eyebrow { margin-bottom: 5px; }
 .cv-profile-line strong { font: 400 24px/1.3 Georgia, "Times New Roman", serif; }
 .cv-profile-line > div:first-child > span { color: var(--portfolio-muted); font-size: 12px; }
+.cv-profile-line .cv-origin-note { font-size: 12px; line-height: 1.6; color: var(--portfolio-muted); margin-top: 8px !important; max-width: 420px; }
 .cv-profile-links { display: flex; gap: 9px 21px; flex-wrap: wrap; align-self: center; }
 .portfolio-shell .cv-profile-links a {
   display: inline-flex; gap: 4px; align-items: center;
