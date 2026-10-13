@@ -337,7 +337,7 @@ function PublicationsPage() {
     const q = query.trim().toLowerCase();
     return (topic === "All topics" || p.topic === topic)
       && (type === "All types" || (type === "Academic papers" && (p.type === "Conference" || p.type === "Workshop")) || (type === "Journal articles" && p.type === "Journal") || (type === "Preprints" && p.type === "Preprint") || (type === "Book chapters" && p.type === "Book chapter"))
-      && (!q || [p.title, p.authors, p.venue, String(p.year)].some(s => s.toLowerCase().includes(q) || tr(s).toLowerCase().includes(q)));
+      && (!q || [p.title, p.authors, p.venue, p.topic, p.type, String(p.year)].some(s => s.toLowerCase().includes(q) || tr(s).toLowerCase().includes(q)));
   }).sort((a,b) => b.year - a.year), [query,topic,type,tr]);
   return <div className="content-wrap interior-page">
     <PageHeading kicker="Research / 01" title="Publications" subtitle="Research papers, journal articles, preprints, and forthcoming work. Publisher links and academic records are provided wherever available." />
