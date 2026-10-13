@@ -4,7 +4,7 @@ Updated 13 October 2026. Review against [the engineering master prompt](ACADEMIC
 
 ## Implemented and subject to CI verification
 
-- **Menu and information architecture:** The top menu ends **News → Opportunities → CV**. The bilingual heading and nested CV pages remain **CV & Skills** (English) and 学术履历与技能 (Chinese); the Chinese top menu item is **简历**.
+- **Menu and information architecture:** The top menu excludes Recognition and ends **News → Opportunities → CV**. Recognition remains accessible via the fourth CV overview card and its own return-to-CV breadcrumb. The bilingual heading and nested CV pages remain **CV & Skills** (English) and 学术履历与技能 (Chinese); the Chinese top menu item is **简历**.
 - **Bilingual sharing:** EN / 简体中文 toggle, persistent preference and explicit `?lang=en` or `?lang=zh-CN` deep links; route hash and other query parameters preserved. All original 11 News entries and 62 Awards remain.
 - **Keyboard skip link:** Focus now moves to the `<main>` landmark without overwriting the `#/…` HashRouter fragment. Protected by React unit tests and the Playwright/Chromium keyboard audit.
 - **Academic identity:** One ORCID (0009-0002-4017-7970). Do not replace individual papers with similarly named scholars, inflate conference-workshop rankings or label the author-reported CCS 2026 acceptance as independently publisher-verified.
