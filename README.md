@@ -16,6 +16,7 @@ Designed for readers of research papers, potential collaborators, hiring committ
 | `/#/service` | Reviewing roles, volunteer activities, academic identities |
 | `/#/recognition` | Compact Awards & Appreciation entry point; selected academic talks |
 | `/#/awards` | Separate year-by-year historical archive of 62 awards, certificates, and academic activities |
+| `/#/cv` | Compact academic CV: original education history, ten research skills, programming languages, spoken languages, evidence links |
 | `/#/news` | Full chronological archive of the original 10 news stories plus author-reported ACM CCS 2026 acceptance |
 | `/#/connect` | Visiting research, fellowships, research-oriented roles and optional individual research support |
 
@@ -28,6 +29,18 @@ Hash routes are intentional because GitHub Pages does not rewrite deep route URL
 GitHub Pages may serve temporarily cached HTML immediately after a deployment, even though the latest hashed JS bundle is in the repository. If a page displays the previous header without the Opportunities navigation, **hard-refresh** or open `https://rocky5502.github.io/rocky_202x/?v=20261012#/connect` once. Do not change URLs to `/rocky_202x/connect` unless the legacy redirect is desired.
 
 `src/test/navigation.test.tsx` tests the real `/#/connect` address, legacy hash aliases, 404 recovery and all five research topics. Both `Verify portfolio` and the Pages deployment should succeed for the same latest commit before considering a release complete.
+
+## Web CV & research skills
+
+The `/#/cv` page is a concise **academic CV & Skills** entry in the main navigation, placed before **News** and **Opportunities**. It is not a fabricated ranking of "top 0.1%" students. Relevant academic CV guidance: [Harvard GSAS CV guide](https://careerservices.fas.harvard.edu/resources/gsas-cv-cover-letter-guide-2/) and [Harvard SEAS CV/resume guidance](https://seas.harvard.edu/office-student-career-development/resources-graduate-students-postdocs/resumes-cvs-portfolios).
+
+The page restores three education records from the historical `src/data/site.ts` at [the original snapshot](https://github.com/Rocky5502/rocky_202x/blob/40677b335ea851d0c6a5dd3fcd774c776c23c97c/src/data/site.ts): ongoing Beihang PhD, preceding Beihang M.Eng, and Sichuan University B.Eng. The 2022/2018 year markers in the previous page are NOT treated as verified graduation dates; no transcripts were provided. The current PhD is listed as in progress.
+
+**Ten skills** were curated against specific, public project READMEs as of 13 October 2026: LLM evaluation, calibration, open-weight model integrations, repository-level code generation, software testing, agent security, GPU experiment preparation, neuro-symbolic verification, reproducible experimentation, and research software engineering. Each card links to a public repository. The label "research plan/tooling" means the configuration/code exists but **not** that every benchmark or GPU run has completed. Llama is noted as an access-dependent configured family, not verified experimental results.
+
+The programming languages Python and TypeScript are backed by public source; Java, C++, C and R are researcher-listed without proficiency levels. Spoken languages Nepali, English, Chinese, Hindi, Urdu and French are user-supplied, with no invented fluency certificate or CEFR score. Update these only after confirmation. Technical skills and education are maintained in `src/data/cv.ts`. Tests in `src/test/cv.test.tsx` protect the education data, skill evidence, language lists and new route. The page is a web CV and **not** a generated official PDF/transcript.
+
+Direct URLs `/#/skills`, `/#/resume` and `/#/education` redirect to `/#/cv`; the GitHub Pages 404 fallback handles equivalent clean paths.
 
 ## Awards & Appreciation (historical archive)
 
