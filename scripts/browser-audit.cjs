@@ -74,6 +74,13 @@ async function auditA11y(page, route) {
     await page.screenshot({path: path.join(directory, "home-desktop.png"), fullPage: true});
     await auditA11y(page, "home-desktop");
 
+    // Skip-link must not replace the HashRouter route with #main-content.
+    await page.goto(url("/cv/education"), {waitUntil: "networkidle"});
+    await page.keyboard.press("Tab");
+    ok(await page.evaluate(() => document.activeElement?.classList.contains("skip-link") === true), "Keyboard Tab reaches the skip-to-content link");
+    await page.keyboard.press("Enter");
+    ok(new URL(page.url()).hash === "#/cv/education", "Skip link preserves the active HashRouter route");
+    ok(await page.evaluate(() => document.activeElement?.id === "main-content"), "Skip link moves focus to main content");
     await page.goto(url("/cv"), {waitUntil: "networkidle"});
     ok(await page.locator("a.cv-layer-card").count() === 3, "CV overview has exactly three entry cards");
     ok(await page.locator(".cv-education-row").count() === 0, "CV overview does not expose degree details");
