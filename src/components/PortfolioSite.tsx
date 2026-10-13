@@ -295,7 +295,7 @@ function Home() {
         <figcaption className="portrait-caption">Research · Engineering · Public interest</figcaption>
         <div className="portrait-highlights" aria-label="Selected academic highlights">
           <p className="eyebrow">Selected highlights</p>
-          <Link className="portrait-research-record" to="/publications" aria-label={`View ${publications.length} listed research outputs`}>
+          <Link className="portrait-research-record" to="/publications">
             <span className="portrait-research-symbol" aria-hidden="true"><BookOpenCheck size={19} strokeWidth={1.45}/></span>
             <span className="portrait-research-number">{publications.length}</span>
             <span className="portrait-research-description">
