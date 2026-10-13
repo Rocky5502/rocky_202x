@@ -1594,3 +1594,143 @@ body { margin: 0; }
 @media (prefers-reduced-motion: reduce) {
   .cv-skill-card, .portfolio-shell .cv-destinations > a { transition: none; }
 }
+
+
+/* CV information architecture v2: progressive disclosure, three purposeful layers. */
+.cv-overview .cv-heading { padding-bottom: clamp(28px, 3vw, 42px); }
+.cv-profile-line {
+  display: flex;
+  justify-content: space-between;
+  gap: 22px;
+  flex-wrap: wrap;
+  padding: 22px 25px;
+  border: 1px solid var(--portfolio-rule);
+  background: var(--portfolio-soft);
+  margin-bottom: 53px;
+}
+.cv-profile-line > div:first-child { display: flex; flex-direction: column; gap: 3px; }
+.cv-profile-line > div:first-child .eyebrow { margin-bottom: 5px; }
+.cv-profile-line strong { font: 400 24px/1.3 Georgia, "Times New Roman", serif; }
+.cv-profile-line > div:first-child > span { color: var(--portfolio-muted); font-size: 12px; }
+.cv-profile-links { display: flex; gap: 9px 21px; flex-wrap: wrap; align-self: center; }
+.portfolio-shell .cv-profile-links a {
+  display: inline-flex; gap: 4px; align-items: center;
+  color: var(--portfolio-accent); font-size: 11px; font-weight: 650;
+  border-bottom: 1px solid var(--portfolio-rule);
+}
+.cv-overview-section { padding-bottom: 56px; }
+.cv-layer-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 15px; }
+.portfolio-shell a.cv-layer-card {
+  display: flex; flex-direction: column;
+  min-width: 0; min-height: 352px; padding: 28px 25px 25px;
+  border: 1px solid var(--portfolio-rule);
+  color: var(--portfolio-ink);
+  background: var(--portfolio-panel);
+  transition: border-color .16s ease, background-color .16s ease;
+}
+.portfolio-shell a.cv-layer-card:hover { border-color: var(--portfolio-accent); background: var(--portfolio-soft); color: var(--portfolio-ink); }
+.cv-layer-top { display: flex; align-items: start; justify-content: space-between; gap: 12px; }
+.cv-layer-icon {
+  width: 49px; height: 49px; flex: none;
+  display: grid; place-items: center;
+  background: var(--portfolio-soft); border: 1px solid var(--portfolio-rule);
+  color: var(--portfolio-accent);
+}
+.cv-layer-top > span:last-child { font: 400 13px/1.5 Georgia, "Times New Roman", serif; color: var(--portfolio-faint); }
+.cv-layer-meta {
+  display: block; margin-top: 30px;
+  color: var(--portfolio-accent); text-transform: uppercase; font-size: 9px;
+  font-weight: 650; letter-spacing: .09em; line-height: 1.6;
+}
+.cv-layer-card h3 {
+  font: 400 clamp(23px, 2.6vw, 29px)/1.2 Georgia, "Times New Roman", serif;
+  letter-spacing: -.025em; margin-top: 9px;
+}
+.cv-layer-card > p { margin-top: 16px !important; color: var(--portfolio-muted); font-size: 12px; line-height: 1.8; flex: 1; }
+.cv-layer-bottom {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 15px; color: var(--portfolio-accent); font-size: 11px; font-weight: 650;
+  padding-top: 20px; margin-top: 23px; border-top: 1px solid var(--portfolio-rule);
+}
+.cv-overview-footer { padding-bottom: 40px; }
+.cv-breadcrumb {
+  display: flex; align-items: center; flex-wrap: wrap;
+  gap: 11px; margin-bottom: 28px; color: var(--portfolio-faint); font-size: 12px;
+}
+.portfolio-shell .cv-breadcrumb a { display: inline-flex; align-items: center; gap: 6px; color: var(--portfolio-accent); font-weight: 600; }
+.cv-inner-navigation {
+  display: flex; flex-wrap: wrap; gap: 7px; padding-bottom: 30px;
+}
+.portfolio-shell .cv-inner-navigation a {
+  color: var(--portfolio-muted); border: 1px solid var(--portfolio-rule);
+  background: var(--portfolio-panel); padding: 9px 13px;
+  line-height: 1.5; font-size: 12px; font-weight: 600;
+}
+.portfolio-shell .cv-inner-navigation a[aria-current="page"] {
+  border-color: var(--portfolio-accent);
+  background: var(--portfolio-soft);
+  color: var(--portfolio-accent);
+}
+.cv-education-page .cv-section:first-of-type,
+.cv-skills-page .cv-section:first-of-type,
+.cv-languages-page .cv-section:first-of-type { padding-top: 37px; }
+.cv-schools-year { padding-top: 18px; }
+.cv-schools-year + .cv-schools-year { padding-top: 43px; }
+.cv-schools-year-heading {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 13px;
+  color: var(--portfolio-ink);
+  border-bottom: 1px solid var(--portfolio-rule); padding-bottom: 12px; margin-bottom: 15px !important;
+  font: 400 clamp(26px, 3vw, 33px)/1.3 Georgia, "Times New Roman", serif;
+}
+.cv-schools-year-heading > span { font: 400 11px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: var(--portfolio-muted); }
+.cv-schools-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 14px; }
+.cv-school-card {
+  display: flex; flex-direction: column; min-width: 0;
+  padding: 26px 26px 23px;
+  border: 1px solid var(--portfolio-rule); background: var(--portfolio-panel);
+}
+.cv-school-top { display: flex; align-items: center; gap: 10px; }
+.cv-school-icon {
+  width: 39px; height: 39px; display: grid; place-items: center;
+  color: var(--portfolio-accent);
+  background: var(--portfolio-soft); border: 1px solid var(--portfolio-rule); flex: none;
+}
+.cv-school-type { color: var(--portfolio-accent); font-size: 10px; font-weight: 650; }
+.cv-school-year { margin-left: auto; color: var(--portfolio-faint); font-size: 11px; }
+.cv-school-card h3 {
+  margin-top: 21px; font: 400 clamp(22px, 2.3vw, 26px)/1.25 Georgia, "Times New Roman", serif;
+  letter-spacing: -.025em;
+}
+.cv-school-org { font-size: 12px; line-height: 1.7; color: var(--portfolio-ink); margin-top: 9px !important; }
+.cv-school-focus { font-size: 12px; line-height: 1.8; color: var(--portfolio-muted); margin-top: 14px !important; flex: 1; }
+.portfolio-shell .cv-school-card > a {
+  display: inline-flex; align-self: start; align-items: center; gap: 6px;
+  color: var(--portfolio-accent); font-size: 11px; font-weight: 650;
+  border-top: 1px solid var(--portfolio-rule); margin-top: 21px; padding-top: 16px;
+}
+.cv-short-programme {
+  display: grid; grid-template-columns: 110px minmax(0,1fr);
+  border-top: 1px solid var(--portfolio-rule); padding: 24px 0; gap: 20px;
+}
+.cv-short-year { color: var(--portfolio-accent); font: 400 19px/1.4 Georgia, "Times New Roman", serif; }
+.cv-short-programme h3 { font: 400 24px/1.2 Georgia, "Times New Roman", serif; }
+.cv-short-programme p { color: var(--portfolio-muted); font-size: 12px; margin-top: 8px !important; line-height: 1.7; }
+.portfolio-shell .cv-short-programme a { display: inline-flex; gap: 5px; align-items: center; margin-top: 12px; color: var(--portfolio-accent); font-weight: 600; font-size: 11px; }
+@media (max-width: 950px) {
+  .cv-layer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .portfolio-shell a.cv-layer-card { min-height: 315px; }
+}
+@media (max-width: 670px) {
+  .cv-layer-grid { grid-template-columns: 1fr; }
+  .portfolio-shell a.cv-layer-card { min-height: 0; }
+  .cv-layer-meta { margin-top: 21px; }
+  .cv-layer-card > p { margin-top: 12px !important; }
+  .cv-profile-line { margin-bottom: 39px; }
+  .cv-schools-grid { grid-template-columns: 1fr; }
+  .cv-school-card { padding: 22px; }
+  .cv-short-programme { grid-template-columns: 58px minmax(0,1fr); gap: 12px; }
+  .cv-inner-navigation a { flex: 1 1 auto; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-shell a.cv-layer-card { transition: none; }
+}
