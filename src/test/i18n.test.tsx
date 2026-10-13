@@ -2,7 +2,7 @@ import { beforeEach, describe, expect, it } from "vitest";
 import { fireEvent, render, screen, waitFor, within } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import PortfolioSite from "@/components/PortfolioSite";
-import { translateText } from "@/i18n/LanguageProvider";
+import { translateText, languageFromSearch, languageSharePath } from "@/i18n/LanguageProvider";
 import { zhTranslations } from "@/i18n/zh";
 import { newsItems } from "@/data/news";
 import { awardsArchive } from "@/data/awards";
@@ -12,6 +12,7 @@ import { publicProjects } from "@/data/projects";
 
 beforeEach(() => {
   window.localStorage.removeItem("portfolio-language");
+  window.history.replaceState({}, "", "/rocky_202x/");
   document.documentElement.lang = "en";
 });
 
@@ -89,6 +90,31 @@ describe("professional Simplified Chinese localization", () => {
     await waitFor(() => expect(screen.getAllByRole("article").length).toBeLessThan(before));
     expect(screen.getAllByRole("article").length).toBeGreaterThan(0);
     expect(search).toHaveValue("公平性");
+  });
+
+  it("accepts shareable locale URLs and preserves the hash and unrelated query parameters", () => {
+    expect(languageFromSearch("?lang=zh-CN")).toBe("zh-CN");
+    expect(languageFromSearch("?audit=1&lang=en")).toBe("en");
+    expect(languageFromSearch("?lang=unsupported")).toBeNull();
+    expect(languageFromSearch("")).toBeNull();
+    const route = "https://rocky5502.github.io/rocky_202x/?v=20261013#/cv/education";
+    expect(languageSharePath(route, "zh-CN")).toBe("/rocky_202x/?v=20261013&lang=zh-CN#/cv/education");
+    expect(languageSharePath(route, "en")).toBe("/rocky_202x/?v=20261013&lang=en#/cv/education");
+  });
+
+  it("prioritizes an explicit Mandarin link over English preference and keeps route in share URL", async () => {
+    window.localStorage.setItem("portfolio-language", "en");
+    window.history.replaceState({}, "", "/rocky_202x/?campaign=academic&lang=zh-CN#/research");
+    renderAt("/research");
+    await waitFor(() => expect(screen.getByRole("heading", { name: "研究方向与项目" })).toBeInTheDocument());
+    expect(document.documentElement.lang).toBe("zh-CN");
+    expect(window.localStorage.getItem("portfolio-language")).toBe("zh-CN");
+    fireEvent.click(screen.getByRole("button", { name: "切换网站语言为英语" }));
+    await waitFor(() => expect(screen.getByRole("heading", { name: "Research & projects" })).toBeInTheDocument());
+    expect(window.location.search).toContain("campaign=academic");
+    expect(window.location.search).toContain("lang=en");
+    expect(window.location.hash).toBe("#/research");
+    expect(window.localStorage.getItem("portfolio-language")).toBe("en");
   });
 
   it("preserves exact English sources and identifiers through translation", () => {
