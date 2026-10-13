@@ -60,6 +60,18 @@ describe("navigation usability", () => {
 });
 
 describe("GitHub Pages routes", () => {
+  it("keyboard skip-to-content preserves hash-router navigation and focuses main", () => {
+    window.history.replaceState({}, "", "/rocky_202x/#/cv/education");
+    render(<App />);
+    const skip = screen.getByRole("link", { name: "Skip to content" });
+    expect(skip).toHaveAttribute("href", "#main-content");
+    fireEvent.click(skip);
+    expect(window.location.hash).toBe("#/cv/education");
+    expect(screen.getByRole("main")).toHaveFocus();
+    expect(screen.getByRole("heading", { name: "Education", level: 1 })).toBeInTheDocument();
+  });
+
+
   it("renders the actual #/connect address without a 404", () => {
     window.history.replaceState({}, "", "/rocky_202x/#/connect");
     render(<App />);
