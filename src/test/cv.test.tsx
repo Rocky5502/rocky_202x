@@ -45,13 +45,15 @@ describe("layered academic CV", () => {
     expect(spokenLanguages).toEqual(["Nepali","English","Chinese","Hindi","Urdu","French"]);
   });
 
-  it("shows only three clear entry cards on /cv, not the entire CV", () => {
+  it("shows four clean entry cards on /cv without duplicating the Recognition or Awards archives", () => {
     renderAt("/cv");
     expect(screen.getByRole("heading", { name: "CV & Skills" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Choose a section" })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /01 \/ 03.*Education/ })).toHaveAttribute("href", "/cv/education");
-    expect(screen.getByRole("link", { name: /02 \/ 03.*Research & technical skills/ })).toHaveAttribute("href", "/cv/skills");
-    expect(screen.getByRole("link", { name: /03 \/ 03.*Programming & languages/ })).toHaveAttribute("href", "/cv/languages");
+    expect(screen.getByRole("link", { name: /01 \/ 04.*Education/ })).toHaveAttribute("href", "/cv/education");
+    expect(screen.getByRole("link", { name: /02 \/ 04.*Research & technical skills/ })).toHaveAttribute("href", "/cv/skills");
+    expect(screen.getByRole("link", { name: /03 \/ 04.*Programming & languages/ })).toHaveAttribute("href", "/cv/languages");
+    expect(screen.queryByRole("heading", { name: "Selected talks" })).not.toBeInTheDocument();
+    expect(screen.queryByRole("link", { name: "Explore the Awards & Appreciation archive" })).not.toBeInTheDocument();
     expect(screen.queryByRole("heading", { name: "University degrees" })).not.toBeInTheDocument();
     expect(screen.queryByRole("heading", { name: "Summer & winter schools" })).not.toBeInTheDocument();
     expect(screen.queryByRole("heading", { name: "10 research & engineering competencies" })).not.toBeInTheDocument();
@@ -59,6 +61,13 @@ describe("layered academic CV", () => {
     const nav = screen.getByRole("navigation", { name: "Primary navigation" });
     const order = within(nav).getAllByRole("link").map(x => x.textContent);
     expect(order.slice(-3)).toEqual(["News","Opportunities","CV"]);
+  });
+
+  it("keeps Recognition accessible as a genuine separate destination with its existing awards gateway", () => {
+    renderAt("/recognition");
+    expect(screen.getByRole("heading", { name: "Recognition & talks" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Explore the Awards & Appreciation archive" })).toHaveAttribute("href", "/awards");
+    expect(screen.getByRole("heading", { name: "Selected talks" })).toBeInTheDocument();
   });
 
   it("renders degrees, schools and separate training only after clicking Education", () => {
