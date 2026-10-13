@@ -7,6 +7,8 @@ Designed for readers of research papers, potential collaborators, hiring committ
 
 **Quality audit:** [Browser, accessibility, mobile, routing & performance checks](docs/WEBSITE_QUALITY_AUDIT.md) — including reproducible GitHub Actions screenshots and measured production-image optimization.
 
+**Engineering roadmap:** [Academic website senior-engineering master prompt](docs/ACADEMIC_WEBSITE_ENGINEERING_MASTER_PROMPT.md) — evidence-first priorities, release gates and bilingual UX rules.
+
 ## Pages
 
 | Route | Content |
@@ -27,6 +29,8 @@ Designed for readers of research papers, potential collaborators, hiring committ
 
 Hash routes are intentional because GitHub Pages does not rewrite deep route URLs to `index.html`.
 
+The [XML sitemap](public/sitemap.xml) intentionally indexes **only the canonical homepage**, because hash-router fragments are not separate crawlable URLs. A true independently indexable multilingual publication/CV site would require static pre-rendering or server-rewritten paths; sitemap entries for `/#/research` or `/#/cv` would incorrectly suggest each fragment is indexed independently. `public/robots.txt` advertises the sitemap.
+
 ### Routing and troubleshooting
 
 **Canonical links** always use the hash syntax (`https://rocky5502.github.io/rocky_202x/#/connect` for Opportunities). Legacy hash route aliases (`/#/opportunities`, `/#/contact`, `/#/support`, `/#/research-areas`) redirect inside the app. The `public/404.html` fallback also redirects ordinary clean URLs such as `/rocky_202x/connect` to their canonical hash routes; missing asset requests remain 404 responses.
@@ -37,7 +41,7 @@ GitHub Pages may serve temporarily cached HTML immediately after a deployment, e
 
 ## English / 简体中文 bilingual website
 
-The academic portfolio supports **English** (default) and **Simplified Chinese (zh-CN, standard Mandarin)** through a compact `中文 / EN` toggle next to the light/dark control. Translation works across the existing sections and hash-based URLs, with no external translation service, cookies or extra user tracking. The selected language is saved locally under `portfolio-language` and preserved on refresh and navigation. The document language (`<html lang>`), metadata, screen-reader labels and placeholders follow the selection. Changing language preserves the reader's position.
+The academic portfolio supports **English** (default) and **Simplified Chinese (zh-CN, standard Mandarin)** through a compact `中文 / EN` toggle next to the light/dark control. Translation works across the existing sections and hash-based URLs, with no external translation service, cookies or extra user tracking. The selected language is saved locally under `portfolio-language` and preserved on refresh and navigation. Visitors can also share an exact bilingual destination using `https://rocky5502.github.io/rocky_202x/?lang=zh-CN#/research` or `?lang=en#/cv`; an explicit URL language overrides the previous local preference, and toggling keeps route fragments and unrelated query parameters intact. The document language (`<html lang>`), metadata, screen-reader labels and placeholders follow the selection. Changing language preserves the reader's position.
 
 The Chinese experience includes researcher-authored translations of the **five research directions**, **nine curated public projects**, **ten CV competencies**, the layered Education/Skills/Languages sections, the original **eleven News stories including full articles**, and titles for all **62 Awards records**. Source English records remain untouched; personal and institutional names, official paper titles, DOI/ORCID IDs and URLs retain their canonical spellings. Award organization names and published paper titles may intentionally appear in English when they are official names.
 
