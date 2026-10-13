@@ -68,7 +68,13 @@ describe("professional Simplified Chinese localization", () => {
   it("translates Nepal scholarship biography and the Web of Science link without changing its target", async () => {
     const { unmount } = renderAt("/");
     fireEvent.click(screen.getByRole("button", { name: "Switch website to Simplified Chinese" }));
-    await waitFor(() => expect(screen.getByText(/我来自尼泊尔，获得中国政府奖学金资助/)).toBeInTheDocument());
+    await waitFor(() => expect(screen.getByText(/我来自尼泊尔 🇳🇵，自2018年4月起在中国学习和生活/)).toBeInTheDocument());
+    const highlights = document.querySelector(".portrait-highlight-list");
+    expect(highlights?.querySelectorAll("li")).toHaveLength(5);
+    expect(highlights).toHaveTextContent("ECIR 2026 优秀审稿人");
+    expect(highlights).toHaveTextContent("亚洲大学联盟研究生论坛优秀论文奖");
+    expect(highlights).toHaveTextContent("两次中国政府奖学金");
+    expect(screen.getByText(/ECIR 2027 任职信息由本人提供/)).toBeInTheDocument();
     unmount();
 
     renderAt("/service");
