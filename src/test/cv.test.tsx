@@ -41,8 +41,9 @@ describe("curated academic web CV", () => {
     const nav = screen.getByRole("navigation", { name: "Primary navigation" });
     expect(within(nav).getByRole("link", { name: "CV & Skills" })).toHaveAttribute("href", "/cv");
     const links = within(nav).getAllByRole("link").map(node => node.textContent);
-    expect(links.indexOf("CV & Skills")).toBeLessThan(links.indexOf("News"));
     expect(links.indexOf("News")).toBeLessThan(links.indexOf("Opportunities"));
+    expect(links.indexOf("Opportunities")).toBeLessThan(links.indexOf("CV & Skills"));
+    expect(links[links.length - 1]).toBe("CV & Skills");
   });
 
   it("redirects older skill and resume links to the academic CV", async () => {
