@@ -39,6 +39,20 @@ GitHub Pages may serve temporarily cached HTML immediately after a deployment, e
 
 `src/test/navigation.test.tsx` tests the real `/#/connect` address, legacy hash aliases, 404 recovery and all five research topics. Both `Verify portfolio` and the Pages deployment should succeed for the same latest commit before considering a release complete.
 
+## Portrait highlights and international introduction
+
+The homepage introduction identifies the researcher as **from Nepal 🇳🇵, living in China since April 2018** (researcher-provided timeline), supported by Chinese Government Scholarship(s), and currently undertaking doctoral work at Beihang University. It avoids subjective rankings such as “highly talented” or “top 0.1%.”
+
+Five understated highlights appear **directly beneath the portrait** (not in the top navigation), with small Lucide icons, an academic typographic hierarchy and a direct link to the existing Recognition page. The underlying 62-record archive is not duplicated:
+
+- **Outstanding Reviewer — ECIR 2026**, recorded in the original archive; the conference's public reviewer-awards announcement lists “Chandan Kumar,” a name requiring care in identification.
+- **Senior Program Committee — ECIR 2027**: **researcher-reported**; the public organiser page does not currently establish individual Senior PC membership, so the portrait explicitly says independent confirmation is pending.
+- **Excellent Paper Award — Asian Universities Alliance (AUA) Postgraduate Forum**, matching the archived *Excellent Paper* distinction, **not** an incorrectly inflated “Best Paper Award.”
+- **Scholarship history — two Chinese Government Scholarship entries (master's and PhD) plus a separate Belt and Road bachelor's scholarship.** Do not describe these three different award types as “three Chinese Government Scholarships” without primary documentation.
+- **Excellent International Graduate — Beihang University (2025)**, archived as an owner-provided historical distinction.
+
+The section preserves the researcher's original award data, notes source provenance, and uses authored Simplified Chinese (`src/i18n/zh-content.ts`) rather than remote machine-translation APIs. It is not a substitute for independently verifying individual appointment and award certificates.
+
 ## Short introduction and Web of Science
 
 The homepage now includes a short academic biography: **“Originally from Nepal, I am a Chinese Government Scholarship recipient pursuing doctoral research at Beihang University in Beijing, China.”** This is a researcher-provided historical scholarship claim, consistent with the original academic certificate archive. It must not be presented as a separately authenticated scholarship registry record. The **CV overview** also includes a restrained, single-line origin/scholarship descriptor.
