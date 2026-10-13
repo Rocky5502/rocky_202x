@@ -25,7 +25,7 @@ const navigation = [
   { to: "/recognition", label: "Recognition" },
   { to: "/news", label: "News" },
   { to: "/connect", label: "Opportunities" },
-  { to: "/cv", label: "CV & Skills" },
+  { to: "/cv", label: "CV" },
 ];
 
 function ExternalLink({ href, children, className = "" }: { href: string; children: React.ReactNode; className?: string }) {
