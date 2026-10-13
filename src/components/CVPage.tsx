@@ -2,7 +2,7 @@ import {
   ArrowLeft, ArrowRight, ArrowUpRight, BookOpen, BrainCircuit, ChartNoAxesCombined,
   CheckCheck, Code2, Cpu, GitBranch, GraduationCap, ShieldCheck,
   FlaskConical, Terminal, Workflow, Languages,
-  Snowflake, Sun, School, Landmark, type LucideIcon
+  Snowflake, Sun, School, Landmark, Award, type LucideIcon
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { identity } from "@/data/portfolio";
@@ -35,6 +35,12 @@ const cvSections = [
     label: "Programming & languages", meta: "Computing · International communication",
     description: "Programming languages and spoken languages, carefully separated from unsupported proficiency or certification claims.",
     stat: "6 programming · 6 spoken",
+  },
+  {
+    to: "/recognition", icon: Award, index: "04",
+    label: "Recognition", meta: "Honours · Awards · Academic talks",
+    description: "Explore selected academic presentations and the separate, year-by-year Awards & Appreciation archive.",
+    stat: "Talks & awards archive",
   },
 ] as const;
 
@@ -73,7 +79,7 @@ function CVLinkedItem({ to, icon: Icon, label, note }: {
 export default function CVPage() {
   return <div className="content-wrap interior-page cv-page cv-overview">
     <CVHeader title="CV & Skills"
-      subtitle="A concise academic profile, organized into focused sections. Choose the part that is most useful—education, research skills, or languages."/>
+      subtitle="A concise academic profile. Explore education, research skills, languages, or recognition through separate sections."/>
     <div className="cv-profile-line">
       <div><p className="eyebrow">Current position</p><strong>Doctoral Researcher</strong><span>Software Engineering & AI · Beihang University</span><p className="cv-origin-note">From Nepal · Chinese Government Scholarship recipient</p></div>
       <div className="cv-profile-links">
@@ -89,14 +95,14 @@ export default function CVPage() {
       <div className="cv-layer-grid">{cvSections.map(item => {
         const Icon = item.icon;
         return <Link className="cv-layer-card" to={item.to} key={item.to}>
-          <div className="cv-layer-top"><span className="cv-layer-icon"><Icon size={24} strokeWidth={1.4} aria-hidden="true"/></span><span>{item.index} / 03</span></div>
+          <div className="cv-layer-top"><span className="cv-layer-icon"><Icon size={24} strokeWidth={1.4} aria-hidden="true"/></span><span>{item.index} / 04</span></div>
           <span className="cv-layer-meta">{item.meta}</span>
           <h3>{item.label}</h3>
           <p>{item.description}</p>
           <div className="cv-layer-bottom"><span>{item.stat}</span><ArrowRight size={18} aria-hidden="true"/></div>
         </Link>;
       })}</div>
-      <p className="cv-editor-note">The CV is intentionally layered. Detailed education, certificates, technical methods and language lists only appear after choosing a section—not on this overview page.</p>
+      <p className="cv-editor-note">The CV is intentionally layered. Detailed education, technical skills and language information appear on their own pages; Recognition links to the existing talks and awards gateway.</p>
     </section>
 
     <section className="cv-section cv-overview-footer" aria-labelledby="cv-related-heading">
