@@ -242,5 +242,10 @@ export const zhContent: Record<string,string> = {
   "From Nepal · Chinese Government Scholarship recipient": "来自尼泊尔 · 中国政府奖学金获得者",
   "Web of Science Author Search": "Web of Science 作者检索",
   "This opens the general Web of Science author-search portal, not a uniquely verified researcher profile. Please use the affiliation and ORCID to identify the correct person.": "此链接打开 Web of Science 作者检索入口，并非已经核验的个人学者主页。请结合所在机构及 ORCID 核对研究者身份。",
-  "Web of Science author search portal, not a verified personal author profile": "Web of Science 作者检索入口，非已核验的个人学者主页"
+  "Web of Science author search portal, not a verified personal author profile": "Web of Science 作者检索入口，非已核验的个人学者主页",
+  "A concise academic profile. Explore education, research skills, languages, or recognition through separate sections.": "简洁的学术履历概览。教育经历、科研技能、语言能力与学术荣誉分别呈现，方便按需浏览。",
+  "Honours · Awards · Academic talks": "学术荣誉 · 奖项 · 学术报告",
+  "Explore selected academic presentations and the separate, year-by-year Awards & Appreciation archive.": "浏览代表性学术报告，并进入按年份整理的独立荣誉与表彰档案。",
+  "Talks & awards archive": "学术报告与荣誉档案",
+  "The CV is intentionally layered. Detailed education, technical skills and language information appear on their own pages; Recognition links to the existing talks and awards gateway.": "学术履历采用分层设计：教育、技能及语言的详细信息分别展示；“荣誉”入口沿用现有的学术报告与获奖档案页面。"
 };
