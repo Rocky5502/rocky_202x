@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from "vitest";
 import { fireEvent, render, screen, within } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
-import { researchAreas } from "@/data/portfolio";
+import { publications, researchAreas } from "@/data/portfolio";
 import App from "@/App";
 import PortfolioSite from "@/components/PortfolioSite";
 
@@ -30,8 +30,20 @@ describe("academic introduction and Web of Science search", () => {
 
   it("presents the short Nepal and Chinese Government Scholarship introduction", () => {
     render(<MemoryRouter initialEntries={["/"]}><PortfolioSite /></MemoryRouter>);
-    expect(screen.getByText(/Chandan Kumar Sah is a doctoral researcher at Beihang University in Beijing/)).toBeInTheDocument();
-    expect(screen.getByText(/he has been based in China since April 2018/)).toBeInTheDocument();
+    expect(screen.getByText(/Originally from Nepal 🇳🇵 and based in China since April 2018/)).toBeInTheDocument();
+    expect(screen.getByText(/His research examines uncertainty in language models/)).toBeInTheDocument();
+    expect(document.querySelector(".hero-description")).not.toHaveTextContent("Chandan Kumar Sah");
+    expect(screen.getByText("Advancing reliable AI through uncertainty, evidence, and verification.")).toBeInTheDocument();
+    const record = document.querySelector(".portrait-research-record");
+    expect(record).not.toBeNull();
+    expect(record).toHaveAttribute("href", "/publications");
+    expect(record).toHaveTextContent(String(publications.length));
+    expect(record).toHaveTextContent("Listed research outputs");
+    expect(record).toHaveTextContent("Includes preprints, a book chapter & forthcoming work");
+    expect(publications).toHaveLength(13);
+    expect(publications.some(p => p.type === "Preprint")).toBe(true);
+    expect(publications.some(p => p.type === "Book chapter")).toBe(true);
+    expect(publications.some(p => p.status?.includes("author-reported"))).toBe(true);
     const highlightList = document.querySelector(".portrait-highlight-list");
     expect(highlightList).not.toBeNull();
     expect(highlightList?.querySelectorAll("li")).toHaveLength(6);
