@@ -12,3 +12,5 @@ Allow: /
 
 User-agent: *
 Allow: /
+
+Sitemap: https://rocky5502.github.io/rocky_202x/sitemap.xml
