@@ -74,7 +74,12 @@ async function auditA11y(page, route) {
     const primaryNavigation = page.getByRole("navigation", {name: "Primary navigation"});
     ok(await primaryNavigation.getByRole("link").count() === 8, "Top navigation contains eight entries after removing Recognition");
     ok(await primaryNavigation.getByRole("link", {name: "Recognition", exact: true}).count() === 0, "Recognition does not appear in the top desktop navigation");
-    ok(await page.getByText(/Chandan Kumar Sah is a doctoral researcher at Beihang University in Beijing/).count() === 1, "Homepage uses a formal third-person biography");
+    ok(await page.getByText(/Originally from Nepal 🇳🇵 and based in China since April 2018/).count() === 1, "Homepage introduces researcher's background in formal third person without repeating name");
+    ok(!(await page.locator(".hero-description").innerText()).includes("Chandan Kumar Sah"), "Name appears in H1, not redundantly in the introduction");
+    ok(await page.getByText("Advancing reliable AI through uncertainty, evidence, and verification.").count() === 1, "Homepage has new research-led headline");
+    ok((await page.locator(".portrait-research-number").innerText()).trim() === "13", "Research record reports thirteen currently catalogued outputs, not invented 15+ papers");
+    ok(await page.locator(".portrait-research-record").getAttribute("href") === "#/publications", "Research-output summary links to source-backed publication records");
+    ok((await page.locator(".portrait-research-record").innerText()).includes("Includes preprints, a book chapter & forthcoming work"), "Research-output category disclosure prevents treating every entry as a published paper");
     ok(await page.locator(".portrait-highlight-list li").count() === 6, "Portrait displays six compact academic highlights");
     ok((await page.locator(".portrait-highlight-list").innerText()).includes("2nd Place (Graduate) · ACM SRC, ASE 2025"), "ACM ASE 2025 Graduate SRC second-place award is present");
     ok(await page.locator(".portrait-highlight-list").innerText().then(t=>t.includes("Excellent Paper · AUA Postgraduate Forum")), "AUA highlight preserves actual Excellent Paper designation");
@@ -208,7 +213,10 @@ async function auditA11y(page, route) {
     ok(await page.getByRole("button", {name: "切换网站语言为英语"}).count() === 1, "Language switch labels its next action accessibly in Mandarin");
     ok(await page.evaluate(() => localStorage.getItem("portfolio-language") === "zh-CN"), "Mandarin preference saved");
     await page.goto(url("/"), {waitUntil:"networkidle"});
-    ok(await page.getByText(/Chandan Kumar Sah（Rocky 文浩）现为北京航空航天大学博士研究生/).count() === 1, "Mandarin home biography is formal third-person prose");
+    ok(await page.getByText(/来自尼泊尔 🇳🇵，自2018年4月起在中国学习和生活/).count() === 1, "Mandarin homepage uses formal name-free third-person biography");
+    ok(!(await page.locator(".hero-description").innerText()).includes("Chandan Kumar Sah"), "Mandarin biography does not redundantly repeat the H1 name");
+    ok((await page.locator(".portrait-research-record").innerText()).includes("已收录科研成果"), "Research portfolio label has authored Mandarin translation");
+    ok((await page.locator(".portrait-research-record").innerText()).includes("含预印本、书籍章节及待刊成果"), "Mandarin research-output disclosure preserves evidence scope");
     ok(await page.locator(".portrait-highlight-list li").count() === 6, "Mandarin homepage preserves six academic highlights");
     ok((await page.locator(".portrait-highlight-list").innerText()).includes("ASE 2025 ACM 学生研究竞赛研究生组二等奖（第二名）"), "Mandarin ACM SRC ranking is correctly localized");
     ok(await page.locator(".portrait-highlight-list").innerText().then(t=>t.includes("亚洲大学联盟研究生论坛优秀论文奖")), "Mandarin award highlight correctly describes AUA Excellent Paper distinction");
