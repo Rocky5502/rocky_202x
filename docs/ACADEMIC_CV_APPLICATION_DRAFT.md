@@ -1,7 +1,7 @@
 # Academic CV — application draft (verification required)
 
 > **STATUS: DRAFT — DO NOT SUBMIT AS A VERIFIED CV.**
-> This is a working document for visiting researcher, fellowship, postdoctoral and research scientist applications. The academic website remains the canonical public summary. Unverified degree dates, acceptance records, private reviewing counts, school certificates and language proficiency require owner confirmation. Do not convert this file directly into a public PDF until the checklist below is resolved.
+> This is a working document for visiting researcher, fellowship, postdoctoral and research scientist applications. The academic website remains the canonical public summary. Unverified degree credentials, acceptance records, private reviewing counts, school certificates and language proficiency require owner confirmation. Do not convert this file directly into a public PDF until the checklist below is resolved.
 
 ## Chandan Kumar Sah (Rocky 文浩)
 **Doctoral Researcher — Software Engineering & AI**  
@@ -16,9 +16,11 @@ GitHub: https://github.com/Rocky5502
 Doctoral researcher investigating uncertainty-aware language models, trustworthy AI agents, retrieval-augmented code generation and evaluation-oriented software engineering. Research interests include uncertainty quantification and calibration, reliable LLM evaluation, AI for software engineering, software engineering for AI, security of agentic systems, and algorithmic fairness.
 
 ### Education
-- **Ph.D., Software Engineering & Artificial Intelligence — In progress**, Beihang University, Beijing, China. **2025–present.** Advisor: **[CONFIRM: legal spelling of advisor name and permission to list]**. Anticipated completion: **[VERIFY before including]**.
-- **Master of Engineering, Computer Science & Engineering**, Beihang University, Beijing, China. **[VERIFY start and graduation month/year from official record]**.
-- **Bachelor of Engineering, Software Engineering**, Sichuan University, Chengdu, China. **[VERIFY start and graduation month/year from official record]**.
+- **Ph.D., Software Engineering & Artificial Intelligence — In progress**, Beihang University, Beijing, China. Advisor: **[CONFIRM exact name and permission to list, if appropriate]**.
+- **Master of Engineering, Computer Science & Engineering**, Beihang University, Beijing, China.
+- **Bachelor of Engineering, Software Engineering**, Sichuan University, Chengdu, China.
+
+*Education dates are intentionally omitted at the researcher's request. Research-school years and publication dates remain separate historical metadata.*
 
 ### Selected publications and research outputs
 
@@ -62,9 +64,9 @@ Nepali, English, Mandarin Chinese, Hindi, Urdu and French — **researcher-liste
 
 ## Owner verification checklist before export
 
-- [ ] Official Bachelor's degree award year, month and exact programme title.
-- [ ] Official Master's degree award year, month and exact programme title.
-- [ ] PhD official start date, doctoral supervisor(s), research institute and expected completion date, if appropriate to disclose.
+- [ ] Exact Bachelor's degree title and conferral documented privately (without displaying dates).
+- [ ] Exact Master's degree title and conferral documented privately (without displaying dates).
+- [ ] PhD enrollment, doctoral supervisor(s), and research institute verified; omit all degree dates in published CV.
 - [ ] Complete institution-approved affiliation and legal name spelling.
 - [ ] Official paper titles, author order, page numbers, DOI and journal/conference scope.
 - [ ] ACM CCS paper official acceptance notice and public proceedings URL before upgrading its status.
