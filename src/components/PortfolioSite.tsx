@@ -104,8 +104,9 @@ function RouteEffects() {
     document.querySelector<HTMLMetaElement>('meta[name="description"]')?.setAttribute("content", tr(details.description));
     document.querySelector<HTMLMetaElement>('meta[property="og:title"]')?.setAttribute("content", tr(details.title));
     document.querySelector<HTMLMetaElement>('meta[property="og:description"]')?.setAttribute("content", tr(details.description));
-    window.scrollTo({ top: 0, behavior: "instant" });
   }, [pathname, tr]);
+  // Keep reading position when switching language; reset only on navigation.
+  useEffect(() => { window.scrollTo({ top: 0, behavior: "instant" }); }, [pathname]);
   return null;
 }
 
