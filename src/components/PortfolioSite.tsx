@@ -278,7 +278,7 @@ function Home() {
         <p className="eyebrow">PhD Researcher · Software Engineering & AI</p>
         <h1>Chandan Kumar Sah<span className="hero-also">Rocky 文浩</span></h1>
         <p className="hero-lead">Studying when AI systems should trust their evidence—and when they should not.</p>
-        <p className="hero-description">Originally from {identity.countryOfOrigin}, I am a {identity.scholarship} pursuing doctoral research at {identity.institution} in Beijing, China. My work focuses on uncertainty in language models, reliable AI for software engineering, and trustworthy intelligent systems.</p>
+        <p className="hero-description">Originally from Nepal, I am a Chinese Government Scholarship recipient pursuing doctoral research at Beihang University in Beijing, China. My work focuses on uncertainty in language models, reliable AI for software engineering, and trustworthy intelligent systems.</p>
         <Link className="availability-inline" to="/connect"><span className="availability-dot" aria-hidden="true" />Open to research collaborations, visiting opportunities and fellowships <ArrowRight size={14} aria-hidden="true" /></Link>
         <div className="hero-actions">
           <Link className="primary-action" to="/publications">Explore publications <ArrowRight size={16} /></Link>
