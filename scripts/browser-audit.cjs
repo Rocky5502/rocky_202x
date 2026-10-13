@@ -128,6 +128,8 @@ async function auditA11y(page, route) {
 
     const darkMode = page.getByRole("button", {name: "Switch to dark mode"});
     await darkMode.click();
+    // Wait for browser paint and any requested colour/font transitions before axe.
+    await page.waitForTimeout(300);
     ok(await page.locator("html.dark").count() === 1, "Dark mode toggle applies theme");
     await page.screenshot({path: path.join(directory, "cv-mobile-dark.png"), fullPage: true});
     await auditA11y(page, "cv-mobile-dark");
@@ -136,6 +138,7 @@ async function auditA11y(page, route) {
     const languageButton = page.getByRole("button", {name: "Switch website to Simplified Chinese"});
     await languageButton.click();
     await page.waitForFunction(() => document.documentElement.lang === "zh-CN");
+    await page.waitForTimeout(300);
     ok(await page.getByRole("heading", {name: "学术履历与技能"}).count() === 1, "CV title switches into natural Simplified Chinese");
     ok(await page.getByRole("button", {name: "切换网站语言为英语"}).count() === 1, "Language switch labels its next action accessibly in Mandarin");
     ok(await page.evaluate(() => localStorage.getItem("portfolio-language") === "zh-CN"), "Mandarin preference saved");
