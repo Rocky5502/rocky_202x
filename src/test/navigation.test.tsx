@@ -105,6 +105,13 @@ describe("GitHub Pages routes", () => {
     window.history.replaceState({}, "", "/rocky_202x/#/connect");
     render(<App />);
     expect(screen.getByRole("heading", { name: "Opportunities & support" })).toBeInTheDocument();
+    const supportSummary = screen.getByText("Support open, responsible AI research").closest("summary");
+    expect(supportSummary).not.toBeNull();
+    const supportDetails = supportSummary?.closest("details");
+    expect(supportDetails).not.toHaveAttribute("open");
+    expect(screen.queryByRole("textbox", { name: /PayPal support email address/ })).not.toBeInTheDocument();
+    fireEvent.click(supportSummary!);
+    expect(supportDetails).toHaveAttribute("open");
     expect(screen.getByRole("textbox", { name: /PayPal support email address/ })).toHaveValue("sahchandan98@gmail.com");
     expect(screen.getByRole("textbox", { name: /Google Pay contact email address/ })).toHaveValue("sahchandan98@gmail.com");
     expect(screen.getByText(/An email address is not a universal Google Pay transfer ID/i)).toBeInTheDocument();
