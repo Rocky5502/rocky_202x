@@ -525,8 +525,8 @@ function NotFound() {
 }
 
 function PortfolioLayout() {
-  return <div className="portfolio-shell"><a className="skip-link" href="#main-content">Skip to content</a><RouteEffects /><SiteHeader />
-    <main id="main-content"><Routes>
+  return <div className="portfolio-shell"><a className="skip-link" href="#main-content" onClick={event => { event.preventDefault(); document.getElementById("main-content")?.focus(); }}>Skip to content</a><RouteEffects /><SiteHeader />
+    <main id="main-content" tabIndex={-1}><Routes>
       <Route path="/" element={<Home/>} />
       <Route path="/publications" element={<PublicationsPage/>} />
       <Route path="/projects" element={<ProjectsPage/>} />
