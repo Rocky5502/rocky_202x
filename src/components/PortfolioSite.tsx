@@ -9,6 +9,7 @@ import {
 import { publicProjects, publicProjectUrl, type PublicProject } from "@/data/projects";
 import { NewsPage, NewsPreview } from "@/components/NewsComponents";
 import { AwardsInvitation, AwardsPage } from "@/components/AwardsComponents";
+import CVPage from "@/components/CVPage";
 import { opportunityTracks, researchSupport } from "@/data/opportunities";
 import "@/portfolio.css";
 
@@ -21,6 +22,7 @@ const navigation = [
   { to: "/research", label: "Research" },
   { to: "/service", label: "Service" },
   { to: "/recognition", label: "Recognition" },
+  { to: "/cv", label: "CV & Skills" },
   { to: "/news", label: "News" },
   { to: "/connect", label: "Opportunities" },
 ];
@@ -61,6 +63,10 @@ const routeMetadata: Record<string, { title: string; description: string }> = {
   "/awards": {
     title: "Awards & Appreciation | Chandan Kumar Sah",
     description: "A historical year-by-year archive of academic distinctions, scholarships, certificates, and participation records.",
+  },
+  "/cv": {
+    title: "Academic CV & Research Skills | Chandan Kumar Sah",
+    description: "Education, research methods, ten documented AI and software engineering competencies, open-weight model ecosystems, programming and communication languages.",
   },
   "/news": {
     title: "News & Milestones | Chandan Kumar Sah",
@@ -163,6 +169,7 @@ function Footer() {
           <ExternalLink href={identity.orcid}>ORCID</ExternalLink>
           <ExternalLink href={identity.linkedin}>LinkedIn</ExternalLink>
           <ExternalLink href={identity.github}>GitHub</ExternalLink>
+          <Link to="/cv">CV & Skills</Link>
           <Link to="/news">News</Link>
           <Link to="/connect">Opportunities</Link>
           <a href={`mailto:${identity.email}`}>Email</a>
@@ -505,6 +512,7 @@ export default function PortfolioSite() {
       <Route path="/service" element={<ServicePage/>} />
       <Route path="/recognition" element={<RecognitionPage/>} />
       <Route path="/awards" element={<AwardsPage/>} />
+      <Route path="/cv" element={<CVPage/>} />
       <Route path="/recognition/awards" element={<Navigate to="/awards" replace />} />
       <Route path="/news" element={<NewsPage/>} />
       <Route path="/connect" element={<ConnectPage/>} />
@@ -517,6 +525,9 @@ export default function PortfolioSite() {
       <Route path="/updates" element={<Navigate to="/news" replace />} />
       <Route path="/research-areas" element={<Navigate to="/research" replace />} />
       <Route path="/papers" element={<Navigate to="/publications" replace />} />
+      <Route path="/skills" element={<Navigate to="/cv" replace />} />
+      <Route path="/resume" element={<Navigate to="/cv" replace />} />
+      <Route path="/education" element={<Navigate to="/cv" replace />} />
       <Route path="*" element={<NotFound/>} />
     </Routes></main><Footer />
   </div>;
