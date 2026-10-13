@@ -52,6 +52,7 @@ describe("layered academic CV", () => {
     expect(screen.getByRole("link", { name: /01 \/ 04.*Education/ })).toHaveAttribute("href", "/cv/education");
     expect(screen.getByRole("link", { name: /02 \/ 04.*Research & technical skills/ })).toHaveAttribute("href", "/cv/skills");
     expect(screen.getByRole("link", { name: /03 \/ 04.*Programming & languages/ })).toHaveAttribute("href", "/cv/languages");
+    expect(screen.getByRole("link", { name: /04 \/ 04.*Recognition/ })).toHaveAttribute("href", "/recognition");
     expect(screen.queryByRole("heading", { name: "Selected talks" })).not.toBeInTheDocument();
     expect(screen.queryByRole("link", { name: "Explore the Awards & Appreciation archive" })).not.toBeInTheDocument();
     expect(screen.queryByRole("heading", { name: "University degrees" })).not.toBeInTheDocument();
