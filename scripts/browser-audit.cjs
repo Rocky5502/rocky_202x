@@ -119,8 +119,22 @@ async function auditA11y(page, route) {
     ok(await page.locator(".news-entry").count() > 0 && await page.locator(".news-entry").count() < 11, "News year filter works");
 
     await page.goto(url("/connect"), {waitUntil: "networkidle"});
-    ok(await page.getByRole("textbox", {name: "PayPal support email address"}).inputValue() === "sahchandan98@gmail.com", "PayPal contact shown correctly");
-    await auditA11y(page, "opportunities");
+    const support = page.locator(".support-disclosure");
+    ok(await support.count() === 1, "Optional support appears as one small disclosure, not a full-width fundraising panel");
+    ok(await support.evaluate(node => !node.open), "Support details are collapsed by default");
+    ok(await support.evaluate(node => node.getBoundingClientRect().width <= 375), "Collapsed support remains compact on desktop");
+    ok(await support.evaluate(node => Math.abs(node.getBoundingClientRect().right - node.parentElement.getBoundingClientRect().right) < 3), "Support aligns with lower right of Opportunities content");
+    ok(await page.getByRole("textbox", {name: "PayPal support email address"}).count() === 0, "Payment fields are hidden until explicitly expanded");
+    await auditA11y(page, "opportunities-collapsed");
+    await support.locator("summary").click();
+    ok(await support.evaluate(node => node.open), "Support expands using native disclosure interaction");
+    ok(await page.getByRole("textbox", {name: "PayPal support email address"}).inputValue() === "sahchandan98@gmail.com", "PayPal contact remains accurate after expansion");
+    ok(await page.getByRole("textbox", {name: /Google Pay contact email address/}).inputValue() === "sahchandan98@gmail.com", "Google Pay inquiry email remains accurate after expansion");
+    ok(await page.getByText(/An email address is not a universal Google Pay transfer ID/).isVisible(), "Expanded support preserves recipient-verification warning");
+    await auditA11y(page, "opportunities-expanded");
+    await page.screenshot({path: path.join(directory, "opportunities-support-desktop.png"), fullPage: true});
+    await support.locator("summary").click();
+    ok(await support.evaluate(node => !node.open), "Support closes cleanly again");
 
     await page.goto(url("/service"), {waitUntil:"networkidle"});
     const wosLinks = page.getByRole("link", {name:"Web of Science Author Search"});
@@ -136,6 +150,21 @@ async function auditA11y(page, route) {
         const info = await dimensions(page);
         ok(info.scroll <= info.inner + 2, route + " has no horizontal overflow at " + width + "px (" + info.scroll + "/" + info.inner + ")");
       }
+    }
+    for (const width of [320, 390]) {
+      await page.setViewportSize({width, height: 844});
+      await page.goto(url("/connect"), {waitUntil: "networkidle"});
+      const compact = page.locator(".support-disclosure");
+      ok(await compact.evaluate(node => !node.open), "Compact support defaults closed at " + width + "px");
+      await compact.locator("summary").focus();
+      await page.keyboard.press("Enter");
+      ok(await compact.evaluate(node => node.open), "Keyboard Enter opens support at " + width + "px");
+      const size = await dimensions(page);
+      ok(size.scroll <= size.inner + 2, "Expanded support has no horizontal overflow at " + width + "px");
+      await auditA11y(page, "support-mobile-expanded-" + width);
+      if (width === 390) await page.screenshot({path:path.join(directory,"opportunities-support-mobile.png"),fullPage:true});
+      await page.keyboard.press("Enter");
+      ok(await compact.evaluate(node => !node.open), "Keyboard Enter closes support at " + width + "px");
     }
     await page.setViewportSize({width: 390, height: 844});
     await page.goto(url("/"), {waitUntil: "networkidle"});
@@ -170,6 +199,13 @@ async function auditA11y(page, route) {
     ok(await page.evaluate(() => localStorage.getItem("portfolio-language") === "zh-CN"), "Mandarin preference saved");
     await page.goto(url("/"), {waitUntil:"networkidle"});
     ok(await page.getByText(/我来自尼泊尔，获得中国政府奖学金资助/).count() === 1, "Home scholarship introduction localized in Mandarin");
+    await page.goto(url("/connect"), {waitUntil:"networkidle"});
+    ok(await page.locator(".support-disclosure").evaluate(node => !node.open), "Mandarin research support remains discreet by default");
+    ok((await page.locator(".support-disclosure summary").textContent()).includes("支持开放、负责任的人工智能研究"), "Compact support title translated into mainland Mandarin");
+    await page.locator(".support-disclosure summary").click();
+    ok(await page.locator(".support-disclosure").evaluate(node => node.open), "Chinese support expands on demand");
+    ok(await page.getByRole("textbox",{name:"PayPal support email address"}).count() === 0, "Chinese PayPal accessibility label replaces English label");
+    await page.locator(".support-disclosure summary").click();
     await page.goto(url("/cv"), {waitUntil:"networkidle"});
     await page.screenshot({path: path.join(directory, "cv-mobile-zh-dark.png"), fullPage: true});
     await auditA11y(page, "cv-mobile-zh-dark");
