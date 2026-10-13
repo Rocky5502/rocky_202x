@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Link, NavLink, Navigate, Route, Routes, useLocation } from "react-router-dom";
-import { ArrowRight, ArrowUpRight, BrainCircuit, BriefcaseBusiness, Check, ClipboardCheck, ClipboardCopy, Code2, Github, HeartHandshake, ChevronDown, Mail, Menu, Moon, Scale, ShieldCheck, Sun, X } from "lucide-react";
+import { ArrowRight, ArrowUpRight, BrainCircuit, BriefcaseBusiness, Check, ClipboardCheck, ClipboardCopy, Code2, Github, HeartHandshake, ChevronDown, Award, BookOpenCheck, GraduationCap, Medal, UsersRound, Mail, Menu, Moon, Scale, ShieldCheck, Sun, X } from "lucide-react";
 import portrait from "@/assets/portrait.jpg";
 import {
   identity, publications, researchAreas, academicService, conferenceRankings, rankingSources,
@@ -277,7 +277,7 @@ function Home() {
         <p className="eyebrow">PhD Researcher · Software Engineering & AI</p>
         <h1>Chandan Kumar Sah<span className="hero-also">Rocky 文浩</span></h1>
         <p className="hero-lead">Studying when AI systems should trust their evidence—and when they should not.</p>
-        <p className="hero-description">Originally from Nepal, I am a Chinese Government Scholarship recipient pursuing doctoral research at Beihang University in Beijing, China. My work focuses on uncertainty in language models, reliable AI for software engineering, and trustworthy intelligent systems.</p>
+        <p className="hero-description">Originally from Nepal 🇳🇵, I have lived in China since April 2018. I am a Chinese Government Scholarship recipient and doctoral researcher at Beihang University in Beijing, studying uncertainty in language models, reliable AI for software engineering, and trustworthy intelligent systems.</p>
         <Link className="availability-inline" to="/connect"><span className="availability-dot" aria-hidden="true" />Open to research collaborations, visiting opportunities and fellowships <ArrowRight size={14} aria-hidden="true" /></Link>
         <div className="hero-actions">
           <Link className="primary-action" to="/publications">Explore publications <ArrowRight size={16} /></Link>
@@ -292,7 +292,19 @@ function Home() {
       </div>
       <figure className="hero-portrait">
         <img src={portrait} alt="Portrait of Chandan Kumar Sah" width={520} height={620} decoding="async" loading="eager" />
-        <figcaption>Research · Engineering · Public interest</figcaption>
+        <figcaption className="portrait-caption">Research · Engineering · Public interest</figcaption>
+        <div className="portrait-highlights" aria-label="Selected academic highlights">
+          <p className="eyebrow">Selected highlights</p>
+          <ul className="portrait-highlight-list">
+            <li><Award aria-hidden="true" size={15} strokeWidth={1.6}/><span>Outstanding Reviewer · ECIR 2026</span></li>
+            <li><UsersRound aria-hidden="true" size={15} strokeWidth={1.6}/><span>Senior PC · ECIR 2027 <sup aria-label="Researcher-reported">†</sup></span></li>
+            <li><BookOpenCheck aria-hidden="true" size={15} strokeWidth={1.6}/><span>Excellent Paper · AUA Postgraduate Forum</span></li>
+            <li><GraduationCap aria-hidden="true" size={15} strokeWidth={1.6}/><span>Scholarships · 2 CSC + Belt and Road</span></li>
+            <li><Medal aria-hidden="true" size={15} strokeWidth={1.6}/><span>Excellent International Graduate · Beihang</span></li>
+          </ul>
+          <p className="portrait-highlights-note"><span aria-hidden="true">† </span>ECIR 2027 role is researcher-reported; independent confirmation pending.</p>
+          <Link to="/recognition" className="portrait-highlights-link">Recognition details <ArrowRight size={13} aria-hidden="true"/></Link>
+        </div>
       </figure>
     </section>
     <section className="home-about content-wrap section-divider">
