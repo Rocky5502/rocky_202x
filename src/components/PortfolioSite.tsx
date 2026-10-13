@@ -282,7 +282,7 @@ function Home() {
         </div>
       </div>
       <figure className="hero-portrait">
-        <img src={portrait} alt="Portrait of Chandan Kumar Sah" width={520} height={620} decoding="async" fetchPriority="high" />
+        <img src={portrait} alt="Portrait of Chandan Kumar Sah" width={520} height={620} decoding="async" loading="eager" />
         <figcaption>Research · Engineering · Public interest</figcaption>
       </figure>
     </section>
