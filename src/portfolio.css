@@ -1734,3 +1734,51 @@ body { margin: 0; }
 @media (prefers-reduced-motion: reduce) {
   .portfolio-shell a.cv-layer-card { transition: none; }
 }
+
+
+/* English / 简体中文 language switch — native script-aware typography. */
+.language-switch {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 35px; min-width: 46px; padding: 0 9px;
+  border: 1px solid var(--portfolio-rule);
+  background: var(--portfolio-panel); color: var(--portfolio-ink);
+  cursor: pointer; font: 650 12px/1.3 -apple-system, BlinkMacSystemFont,
+  "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+  letter-spacing: .01em; white-space: nowrap;
+}
+.language-switch:hover { color: var(--portfolio-accent); border-color: var(--portfolio-accent); }
+html[lang="zh-CN"] .portfolio-shell {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC",
+    "Microsoft YaHei", "Noto Sans CJK SC", "Source Han Sans SC",
+    "Segoe UI", Arial, sans-serif;
+}
+html[lang="zh-CN"] .portfolio-shell :is(h1,h2,h3),
+html[lang="zh-CN"] .portfolio-shell :is(.hero-lead,.cv-layer-card h3,.cv-school-card h3,
+  .research-statement p,.award-archive-card h3,.news-entry h3,.news-preview-card h3,
+  .site-brand,.cv-education-detail h3) {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC",
+    "Microsoft YaHei", "Noto Sans CJK SC", "Source Han Sans SC", sans-serif;
+  letter-spacing: -.025em;
+}
+html[lang="zh-CN"] .nav-item { font-size: 12px; letter-spacing: 0; }
+html[lang="zh-CN"] .page-intro { line-height: 1.9; }
+html[lang="zh-CN"] .cv-layer-card > p,
+html[lang="zh-CN"] .news-entry-summary,
+html[lang="zh-CN"] .award-archive-card h3 { overflow-wrap: anywhere; }
+@media (max-width: 1450px) {
+  html[lang="zh-CN"] .desktop-navigation { display: none; }
+  html[lang="zh-CN"] .menu-control { display: inline-grid; }
+  html[lang="zh-CN"] .mobile-navigation {
+    display: flex; flex-direction: column;
+    border-top: 1px solid var(--portfolio-rule);
+    padding: 8px 21px 18px;
+  }
+  html[lang="zh-CN"] .mobile-nav-item {
+    padding: 12px 4px; border-bottom: 1px solid var(--portfolio-rule);
+    color: var(--portfolio-muted); font-size: 14px;
+  }
+  html[lang="zh-CN"] .mobile-nav-item.active { color: var(--portfolio-accent); }
+}
+@media (max-width: 540px) {
+  .language-switch { min-width: 41px; height: 35px; padding-inline: 7px; }
+}
