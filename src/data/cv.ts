@@ -48,6 +48,83 @@ export const education: EducationRecord[] = [
   },
 ];
 
+/**
+ * Schools and short programmes from the ORIGINAL 2026 award / certificate
+ * archive. Organizer webpages verify the EVENT, not the owner's attendance.
+ * Certificates were cited by the old website but most image assets are absent.
+ */
+export type ResearchSchool = {
+  name: string;
+  year: 2025 | 2024;
+  type: "Summer school" | "Winter school" | "Research school";
+  organization: string;
+  location: string;
+  focus: string;
+  eventUrl: string;
+  originalArchiveTitle: string;
+  context: string;
+};
+
+export const researchSchools: ResearchSchool[] = [
+  {
+    name: "International Software Engineering Winter School on Hybrid and Generative Intelligence",
+    year: 2025,
+    type: "Winter school",
+    organization: "University of Bern · InnoGuard",
+    location: "Bern, Switzerland",
+    focus: "Software engineering, hybrid intelligence, generative AI, and LLM research methods.",
+    eventUrl: "https://telegraf.inf.unibe.ch/",
+    originalArchiveTitle: "SEG Winter School on Hybrid and Generative Intelligence",
+    context: "Included in the original certificate archive; personal participation is an archived researcher-provided record.",
+  },
+  {
+    name: "ACM Europe School on Recommender Systems",
+    year: 2025,
+    type: "Summer school",
+    organization: "ACM Europe · TU Wien",
+    location: "Vienna, Austria",
+    focus: "Recommender-system algorithms, evaluation methodologies, and research practice.",
+    eventUrl: "https://recsys-lab.at/rsss2025/",
+    originalArchiveTitle: "ACM Europe School on Recommender Systems 2025",
+    context: "Listed in the original award and certificate archive. Organizer confirms the event.",
+  },
+  {
+    name: "AI Photonics International Summer School",
+    year: 2025,
+    type: "Summer school",
+    organization: "Beihang International Summer School",
+    location: "Hangzhou, China",
+    focus: "AI for photonics, learning systems, sensing, and intelligent computing.",
+    eventUrl: "https://biss.buaa.edu.cn/info/1036/1107.htm",
+    originalArchiveTitle: "AI Photonics Summer School Completion Certificate",
+    context: "The original archive lists a completion certificate; the image is not available in the public repository.",
+  },
+  {
+    name: "International Terahertz Summer School",
+    year: 2024,
+    type: "Summer school",
+    organization: "1st International Terahertz Summer School",
+    location: "Hangzhou, China",
+    focus: "Terahertz research and scientific presentation.",
+    eventUrl: "https://www.buaa.edu.cn/",
+    originalArchiveTitle: "Best Oral Presentation Award – Terahertz Summer School",
+    context: "The original archive records a best-oral-presentation distinction; this is not labeled as a course-completion certificate.",
+  },
+];
+
+/** Not a summer/winter school: preserve its separate training classification. */
+export const additionalLearning = [
+  {
+    name: "AI and Digital Transformation in Government",
+    year: 2025,
+    type: "Professional learning",
+    organization: "Oxford Saïd Business School / UNESCO (as stated in original archive)",
+    location: "Oxford, United Kingdom",
+    eventUrl: "https://www.sbs.ox.ac.uk/",
+    context: "Researcher-provided historical certificate record; the general institution homepage does not independently verify personal completion.",
+  },
+] as const;
+
 export type Skill = {
   id: string;
   name: string;
