@@ -1782,3 +1782,7 @@ html[lang="zh-CN"] .award-archive-card h3 { overflow-wrap: anywhere; }
 @media (max-width: 540px) {
   .language-switch { min-width: 41px; height: 35px; padding-inline: 7px; }
 }
+
+
+/* Switch dark/light palettes atomically to avoid brief low-contrast text during transitions. */
+.portfolio-shell { transition: none; }
