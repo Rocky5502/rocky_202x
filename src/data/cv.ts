@@ -73,7 +73,7 @@ export const researchSchools: ResearchSchool[] = [
     organization: "University of Bern · InnoGuard",
     location: "Bern, Switzerland",
     focus: "Software engineering, hybrid intelligence, generative AI, and LLM research methods.",
-    eventUrl: "https://telegraf.inf.unibe.ch/",
+    eventUrl: "https://innoguard-winter-school-2025.inf.unibe.ch/",
     originalArchiveTitle: "SEG Winter School on Hybrid and Generative Intelligence",
     context: "Included in the original certificate archive; personal participation is an archived researcher-provided record.",
   },
