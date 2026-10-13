@@ -79,6 +79,18 @@ describe("professional Simplified Chinese localization", () => {
     expect((category as HTMLSelectElement).value).toBe("Scholarships & fellowships");
   });
 
+  it("searches the unchanged English publication records using Chinese topic terms", async () => {
+    renderAt("/publications");
+    fireEvent.click(screen.getByRole("button", { name: "Switch website to Simplified Chinese" }));
+    await waitFor(() => expect(screen.getByRole("heading", { name: "学术成果" })).toBeInTheDocument());
+    const before = screen.getAllByRole("article").length;
+    const search = screen.getByRole("textbox", { name: "搜索学术成果" });
+    fireEvent.change(search, { target: { value: "公平性" } });
+    await waitFor(() => expect(screen.getAllByRole("article").length).toBeLessThan(before));
+    expect(screen.getAllByRole("article").length).toBeGreaterThan(0);
+    expect(search).toHaveValue("公平性");
+  });
+
   it("preserves exact English sources and identifiers through translation", () => {
     expect(translateText("0009-0002-4017-7970", "zh-CN")).toBe("0009-0002-4017-7970");
     expect(translateText("sahchandan98@gmail.com", "zh-CN")).toBe("sahchandan98@gmail.com");
