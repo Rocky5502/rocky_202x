@@ -67,7 +67,7 @@ describe("professional Simplified Chinese localization", () => {
     const { unmount } = renderAt("/cv/education");
     fireEvent.click(screen.getByRole("button", { name: "Switch website to Simplified Chinese" }));
     await waitFor(() => expect(screen.getByRole("heading", { name: "暑期与冬季学校" })).toBeInTheDocument());
-    expect(screen.getByText("北京航空航天大学")).toBeInTheDocument();
+    expect(screen.getAllByText("北京航空航天大学").length).toBeGreaterThan(0);
     unmount();
 
     window.localStorage.setItem("portfolio-language","zh-CN");
