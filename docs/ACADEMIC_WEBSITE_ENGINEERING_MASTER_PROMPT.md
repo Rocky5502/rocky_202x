@@ -14,7 +14,7 @@ Act as a coordinated team of: academic CV editor, AI/SE principal investigator, 
 
 ## Design and editorial commitments
 - Professional academic editorial style: typography, whitespace, restrained earth-tone accents, lucid bilingual copy; no excessive hero animations, particle graphics, emoji walls, floating badges, or self-congratulatory counters.
-- Preserve **all existing routes and content**. Main header ends with **News → Opportunities → CV & Skills**. Awards appear only after a click from Recognition; the CV overview shows three layers rather than all its contents.
+- Preserve **all existing routes and content**. Main header ends with **News → Opportunities → CV** (short navigation label only; the destination page remains titled **CV & Skills**). Awards appear only after a click from Recognition; the CV overview shows three layers rather than all its contents.
 - English and natural mainland **Simplified Chinese (zh-CN, 普通话)** must be available without any paid APIs, calls to translation services, trackers, or invented translations of official English titles. Personal names, DOI, ORCID, email, GitHub URLs and official article titles remain canonical. Localized search must work using stable original IDs and values, not by silently changing data keys.
 - Retain language preference across visits; support **shareable locale-specific URLs** such as `?lang=zh-CN#/research` and `?lang=en#/cv`. Do not discard tracking-free query parameters or change/hash-break bookmarked routes. Keep `<html lang>` and descriptions synchronized.
 - Mobile, desktop, light/dark, keyboard navigation, assistive technology, and reduced-motion visitors are first-class.
