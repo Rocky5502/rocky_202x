@@ -1,0 +1,88 @@
+import { beforeEach, describe, expect, it } from "vitest";
+import { fireEvent, render, screen, waitFor, within } from "@testing-library/react";
+import { MemoryRouter } from "react-router-dom";
+import PortfolioSite from "@/components/PortfolioSite";
+import { translateText } from "@/i18n/LanguageProvider";
+import { zhTranslations } from "@/i18n/zh";
+import { newsItems } from "@/data/news";
+import { awardsArchive } from "@/data/awards";
+import { researchAreas } from "@/data/portfolio";
+import { researchSkills } from "@/data/cv";
+import { publicProjects } from "@/data/projects";
+
+beforeEach(() => {
+  window.localStorage.removeItem("portfolio-language");
+  document.documentElement.lang = "en";
+});
+
+const renderAt = (path: string) => render(<MemoryRouter initialEntries={[path]}><PortfolioSite/></MemoryRouter>);
+
+describe("professional Simplified Chinese localization", () => {
+  it("covers the five primary research themes and ten research skills", () => {
+    for (const area of researchAreas) {
+      expect(translateText(area.name, "zh-CN")).not.toBe(area.name);
+      expect(translateText(area.description, "zh-CN")).not.toBe(area.description);
+    }
+    for (const skill of researchSkills) {
+      expect(translateText(skill.name, "zh-CN")).not.toBe(skill.name);
+      expect(translateText(skill.summary, "zh-CN")).not.toBe(skill.summary);
+    }
+    for (const project of publicProjects) {
+      expect(translateText(project.description, "zh-CN")).not.toBe(project.description);
+      expect(translateText(project.question, "zh-CN")).not.toBe(project.question);
+    }
+  });
+
+  it("provides authored Chinese for all original news narratives and award titles", () => {
+    expect(newsItems).toHaveLength(11);
+    expect(awardsArchive).toHaveLength(62);
+    for (const story of newsItems) {
+      expect(zhTranslations[story.title], story.title).toBeTruthy();
+      expect(zhTranslations[story.summary], story.title + " summary").toBeTruthy();
+      expect(zhTranslations[story.article], story.title + " full article").toBeTruthy();
+    }
+    for (const award of awardsArchive) expect(zhTranslations[award.title], award.title).toBeTruthy();
+  });
+
+  it("switches navigation, metadata and document language and reverses without changing links", async () => {
+    renderAt("/research");
+    expect(document.documentElement.lang).toBe("en");
+    expect(screen.getByRole("heading", { name: "Research & projects" })).toBeInTheDocument();
+    const button = screen.getByRole("button", { name: "Switch website to Simplified Chinese" });
+    fireEvent.click(button);
+    await waitFor(() => expect(document.documentElement.lang).toBe("zh-CN"));
+    await waitFor(() => expect(screen.getByRole("heading", { name: "研究方向与项目" })).toBeInTheDocument());
+    expect(screen.getByRole("link", { name: "学术成果" })).toHaveAttribute("href", "/publications");
+    expect(document.title).toBe("研究方向｜Chandan Kumar Sah");
+    expect(window.localStorage.getItem("portfolio-language")).toBe("zh-CN");
+
+    fireEvent.click(screen.getByRole("button", { name: "切换网站语言为英语" }));
+    await waitFor(() => expect(screen.getByRole("heading", { name: "Research & projects" })).toBeInTheDocument());
+    expect(document.documentElement.lang).toBe("en");
+    expect(window.localStorage.getItem("portfolio-language")).toBe("en");
+    expect(screen.getByRole("link", { name: "Publications" })).toHaveAttribute("href", "/publications");
+  });
+
+  it("translates education and awards while preserving search and stable category values", async () => {
+    const { unmount } = renderAt("/cv/education");
+    fireEvent.click(screen.getByRole("button", { name: "Switch website to Simplified Chinese" }));
+    await waitFor(() => expect(screen.getByRole("heading", { name: "暑期与冬季学校" })).toBeInTheDocument());
+    expect(screen.getByText("北京航空航天大学")).toBeInTheDocument();
+    unmount();
+
+    window.localStorage.setItem("portfolio-language","zh-CN");
+    renderAt("/awards");
+    await waitFor(() => expect(screen.getByRole("heading", { name: "荣誉与表彰" })).toBeInTheDocument());
+    const category = screen.getByRole("combobox", { name: "按类别筛选档案" });
+    fireEvent.change(category, { target: { value: "Scholarships & fellowships" } });
+    await waitFor(() => expect(screen.queryByText("62 条记录")).not.toBeInTheDocument());
+    expect((category as HTMLSelectElement).value).toBe("Scholarships & fellowships");
+  });
+
+  it("preserves exact English sources and identifiers through translation", () => {
+    expect(translateText("0009-0002-4017-7970", "zh-CN")).toBe("0009-0002-4017-7970");
+    expect(translateText("sahchandan98@gmail.com", "zh-CN")).toBe("sahchandan98@gmail.com");
+    expect(translateText("ACM CCS", "zh-CN")).toBe("ACM CCS");
+    expect(translateText("News", "en")).toBe("News");
+  });
+});
