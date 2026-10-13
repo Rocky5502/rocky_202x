@@ -1596,7 +1596,7 @@ body { margin: 0; }
 }
 
 
-/* CV information architecture v2: progressive disclosure, three purposeful layers. */
+/* CV information architecture v3: four purposeful progressive-disclosure choices. */
 .cv-overview .cv-heading { padding-bottom: clamp(28px, 3vw, 42px); }
 .cv-profile-line {
   display: flex;
@@ -1620,7 +1620,7 @@ body { margin: 0; }
   border-bottom: 1px solid var(--portfolio-rule);
 }
 .cv-overview-section { padding-bottom: 56px; }
-.cv-layer-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 15px; }
+.cv-layer-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 15px; }
 .portfolio-shell a.cv-layer-card {
   display: flex; flex-direction: column;
   min-width: 0; min-height: 352px; padding: 28px 25px 25px;
@@ -1718,7 +1718,6 @@ body { margin: 0; }
 .cv-short-programme p { color: var(--portfolio-muted); font-size: 12px; margin-top: 8px !important; line-height: 1.7; }
 .portfolio-shell .cv-short-programme a { display: inline-flex; gap: 5px; align-items: center; margin-top: 12px; color: var(--portfolio-accent); font-weight: 600; font-size: 11px; }
 @media (max-width: 950px) {
-  .cv-layer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .portfolio-shell a.cv-layer-card { min-height: 315px; }
 }
 @media (max-width: 670px) {
