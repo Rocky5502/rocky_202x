@@ -142,14 +142,14 @@ export function CVEducationPage() {
     <section className="cv-section" aria-labelledby="cv-degrees-heading">
       <div className="cv-section-head"><div><p className="eyebrow">Formal academic education</p><h2 id="cv-degrees-heading">University degrees</h2></div><GraduationCap size={23} strokeWidth={1.35} aria-hidden="true"/></div>
       <div className="cv-education-list">{education.map((entry,i) => <article className="cv-education-row" key={entry.degree}>
-        <div className="cv-education-aside"><span>{String(i+1).padStart(2,"0")}</span><span>{entry.period}</span></div>
+        <div className="cv-education-aside"><span>{String(i+1).padStart(2,"0")}</span></div>
         <div className="cv-education-detail">
           <h3>{entry.degree}</h3><p className="cv-degree-field">{entry.field}</p>
           <div className="cv-institution"><a href={entry.institutionUrl} target="_blank" rel="noopener noreferrer">{entry.institution} <ArrowUpRight size={14} aria-hidden="true"/></a><span>· {entry.location}</span></div>
           <p className="cv-education-description">{entry.description}</p>
         </div>
       </article>)}</div>
-      <p className="cv-editor-note">Degrees were recovered from the former portfolio. The old site used 2022 and 2018 as year markers; they are not independently verified degree-conferral dates. The PhD is in progress.</p>
+      <p className="cv-editor-note">University degrees are listed without dates. The PhD remains in progress; degree titles and institutions are based on the original academic portfolio.</p>
     </section>
 
     <section className="cv-section" aria-labelledby="cv-schools-heading">
