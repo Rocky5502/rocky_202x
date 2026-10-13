@@ -10,7 +10,6 @@ export type EducationRecord = {
   field: string;
   institution: string;
   location: string;
-  period: string;
   sourceNote: string;
   description: string;
   institutionUrl: string;
@@ -21,7 +20,6 @@ export const education: EducationRecord[] = [
     field: "Software Engineering & Artificial Intelligence",
     institution: "Beihang University",
     location: "Beijing, China",
-    period: "2025–present",
     sourceNote: "Doctoral study, as stated in the original academic website.",
     description: "Uncertainty-aware language models, trustworthy AI agents, and dependable software engineering.",
     institutionUrl: "https://scse.buaa.edu.cn/",
@@ -31,7 +29,6 @@ export const education: EducationRecord[] = [
     field: "Computer Science & Engineering",
     institution: "Beihang University",
     location: "Beijing, China",
-    period: "Previous degree",
     sourceNote: "Original portfolio carried the year 2022; this has not been verified as a graduation date.",
     description: "Research foundations in AI, software engineering, fairness-aware recommendation and multimodal systems.",
     institutionUrl: "https://scse.buaa.edu.cn/",
@@ -41,7 +38,6 @@ export const education: EducationRecord[] = [
     field: "Software Engineering",
     institution: "Sichuan University",
     location: "Chengdu, China",
-    period: "Previous degree",
     sourceNote: "Original portfolio carried the year 2018; this has not been verified as a graduation date.",
     description: "Software engineering, programming, algorithms and applied machine learning.",
     institutionUrl: "https://www.scu.edu.cn/",
