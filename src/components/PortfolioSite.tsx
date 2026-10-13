@@ -10,6 +10,7 @@ import { publicProjects, publicProjectUrl, type PublicProject } from "@/data/pro
 import { NewsPage, NewsPreview } from "@/components/NewsComponents";
 import { AwardsInvitation, AwardsPage } from "@/components/AwardsComponents";
 import CVPage, { CVEducationPage, CVSkillsPage, CVLanguagesPage } from "@/components/CVPage";
+import { LanguageProvider, useLanguage } from "@/i18n/LanguageProvider";
 import { opportunityTracks, researchSupport } from "@/data/opportunities";
 import "@/portfolio.css";
 
@@ -96,18 +97,20 @@ const fallbackMetadata = {
 
 function RouteEffects() {
   const { pathname } = useLocation();
+  const { tr } = useLanguage();
   useEffect(() => {
     const details = routeMetadata[pathname] ?? fallbackMetadata;
-    document.title = details.title;
-    document.querySelector<HTMLMetaElement>('meta[name="description"]')?.setAttribute("content", details.description);
-    document.querySelector<HTMLMetaElement>('meta[property="og:title"]')?.setAttribute("content", details.title);
-    document.querySelector<HTMLMetaElement>('meta[property="og:description"]')?.setAttribute("content", details.description);
+    document.title = tr(details.title);
+    document.querySelector<HTMLMetaElement>('meta[name="description"]')?.setAttribute("content", tr(details.description));
+    document.querySelector<HTMLMetaElement>('meta[property="og:title"]')?.setAttribute("content", tr(details.title));
+    document.querySelector<HTMLMetaElement>('meta[property="og:description"]')?.setAttribute("content", tr(details.description));
     window.scrollTo({ top: 0, behavior: "instant" });
-  }, [pathname]);
+  }, [pathname, tr]);
   return null;
 }
 
 function SiteHeader() {
+  const { language, changeLanguage } = useLanguage();
   const [menuOpen, setMenuOpen] = useState(false);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const firstMenuLinkRef = useRef<HTMLAnchorElement>(null);
@@ -151,6 +154,11 @@ function SiteHeader() {
           ))}
         </nav>
         <div className="nav-actions">
+          <button type="button" className="language-switch" onClick={() => changeLanguage(language === "en" ? "zh-CN" : "en")}
+            aria-label={language === "en" ? "Switch website to Simplified Chinese" : "Switch website to English"}
+            title={language === "en" ? "简体中文" : "English"}>
+            <span aria-hidden="true">{language === "en" ? "中文" : "EN"}</span>
+          </button>
           <button type="button" className="icon-control" onClick={() => setTheme(t => t === "light" ? "dark" : "light")}
             aria-label={theme === "light" ? "Switch to dark mode" : "Switch to light mode"}>
             {theme === "light" ? <Moon size={18} /> : <Sun size={18} />}
@@ -514,7 +522,7 @@ function NotFound() {
   </div>;
 }
 
-export default function PortfolioSite() {
+function PortfolioLayout() {
   return <div className="portfolio-shell"><a className="skip-link" href="#main-content">Skip to content</a><RouteEffects /><SiteHeader />
     <main id="main-content"><Routes>
       <Route path="/" element={<Home/>} />
@@ -547,4 +555,9 @@ export default function PortfolioSite() {
       <Route path="*" element={<NotFound/>} />
     </Routes></main><Footer />
   </div>;
+}
+
+/** Keep the language context mounted across navigation and theme changes. */
+export default function PortfolioSite() {
+  return <LanguageProvider><PortfolioLayout /></LanguageProvider>;
 }
