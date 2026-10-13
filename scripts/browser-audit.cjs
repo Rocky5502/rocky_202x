@@ -71,6 +71,7 @@ async function auditA11y(page, route) {
       ok(info.title.includes("Chandan Kumar Sah"), route + " has route-specific document title");
     }
     await page.goto(url("/"), {waitUntil: "networkidle"});
+    ok(await page.getByText(/Originally from Nepal, I am a Chinese Government Scholarship recipient/).count() === 1, "Homepage displays concise Nepal and Chinese Government Scholarship introduction");
     await page.screenshot({path: path.join(directory, "home-desktop.png"), fullPage: true});
     await auditA11y(page, "home-desktop");
 
@@ -109,6 +110,12 @@ async function auditA11y(page, route) {
     await page.goto(url("/connect"), {waitUntil: "networkidle"});
     ok(await page.getByRole("textbox", {name: "PayPal support email address"}).inputValue() === "sahchandan98@gmail.com", "PayPal contact shown correctly");
     await auditA11y(page, "opportunities");
+
+    await page.goto(url("/service"), {waitUntil:"networkidle"});
+    const wosLinks = page.getByRole("link", {name:"Web of Science Author Search"});
+    ok(await wosLinks.count() >= 1, "Academic service provides Web of Science author search");
+    ok((await wosLinks.first().getAttribute("href")) === "https://www.webofscience.com/wos/author/author-search?state=%7B%7D", "Web of Science link preserves owner-provided search URL");
+    ok(await page.getByText(/not a uniquely verified researcher profile/).count() === 1, "WoS search is not misrepresented as verified individual profile");
 
     for (const width of [320, 375, 390, 768, 1024]) {
       await page.setViewportSize({width, height: 844});
@@ -149,6 +156,9 @@ async function auditA11y(page, route) {
     ok(await page.getByRole("heading", {name: "学术履历与技能"}).count() === 1, "CV title switches into natural Simplified Chinese");
     ok(await page.getByRole("button", {name: "切换网站语言为英语"}).count() === 1, "Language switch labels its next action accessibly in Mandarin");
     ok(await page.evaluate(() => localStorage.getItem("portfolio-language") === "zh-CN"), "Mandarin preference saved");
+    await page.goto(url("/"), {waitUntil:"networkidle"});
+    ok(await page.getByText(/我来自尼泊尔，获得中国政府奖学金资助/).count() === 1, "Home scholarship introduction localized in Mandarin");
+    await page.goto(url("/cv"), {waitUntil:"networkidle"});
     await page.screenshot({path: path.join(directory, "cv-mobile-zh-dark.png"), fullPage: true});
     await auditA11y(page, "cv-mobile-zh-dark");
 
