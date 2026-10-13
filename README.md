@@ -32,7 +32,7 @@ GitHub Pages may serve temporarily cached HTML immediately after a deployment, e
 
 ## Web CV & research skills
 
-The `/#/cv` page is a concise **academic CV & Skills** entry in the main navigation, placed before **News** and **Opportunities**. It is not a fabricated ranking of "top 0.1%" students. Relevant academic CV guidance: [Harvard GSAS CV guide](https://careerservices.fas.harvard.edu/resources/gsas-cv-cover-letter-guide-2/) and [Harvard SEAS CV/resume guidance](https://seas.harvard.edu/office-student-career-development/resources-graduate-students-postdocs/resumes-cvs-portfolios).
+The `/#/cv` page is a concise **academic CV & Skills** entry in the main navigation, placed after **Opportunities** in the top navigation. It is not a fabricated ranking of "top 0.1%" students. Relevant academic CV guidance: [Harvard GSAS CV guide](https://careerservices.fas.harvard.edu/resources/gsas-cv-cover-letter-guide-2/) and [Harvard SEAS CV/resume guidance](https://seas.harvard.edu/office-student-career-development/resources-graduate-students-postdocs/resumes-cvs-portfolios).
 
 The page restores three education records from the historical `src/data/site.ts` at [the original snapshot](https://github.com/Rocky5502/rocky_202x/blob/40677b335ea851d0c6a5dd3fcd774c776c23c97c/src/data/site.ts): ongoing Beihang PhD, preceding Beihang M.Eng, and Sichuan University B.Eng. The 2022/2018 year markers in the previous page are NOT treated as verified graduation dates; no transcripts were provided. The current PhD is listed as in progress.
 
