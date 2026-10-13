@@ -75,11 +75,12 @@ export default function CVPage() {
     <CVHeader title="CV & Skills"
       subtitle="A concise academic profile, organized into focused sections. Choose the part that is most useful—education, research skills, or languages."/>
     <div className="cv-profile-line">
-      <div><p className="eyebrow">Current position</p><strong>Doctoral Researcher</strong><span>Software Engineering & AI · Beihang University</span></div>
+      <div><p className="eyebrow">Current position</p><strong>Doctoral Researcher</strong><span>Software Engineering & AI · Beihang University</span><p className="cv-origin-note">From Nepal · Chinese Government Scholarship recipient</p></div>
       <div className="cv-profile-links">
         <a href={identity.scholar} target="_blank" rel="noopener noreferrer">Google Scholar <ArrowUpRight size={14} aria-hidden="true"/></a>
         <a href={identity.orcid} target="_blank" rel="noopener noreferrer">ORCID <ArrowUpRight size={14} aria-hidden="true"/></a>
         <a href={identity.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn <ArrowUpRight size={14} aria-hidden="true"/></a>
+        <a href={identity.webOfScienceSearch} target="_blank" rel="noopener noreferrer" title="Web of Science author search portal, not a verified personal author profile">Web of Science Author Search <ArrowUpRight size={14} aria-hidden="true"/></a>
       </div>
     </div>
 
