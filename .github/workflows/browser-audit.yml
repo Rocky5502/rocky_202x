@@ -1,0 +1,57 @@
+name: Chromium browser audit
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: browser-audit-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  browser-audit:
+    name: Route, mobile and WCAG browser QA
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - name: Install app dependencies
+        run: bun install
+      - name: Build production site
+        run: bun run build
+      - name: Install pinned browser-audit tools in an isolated folder
+        run: |
+          mkdir -p .audit
+          npm install --prefix .audit --no-audit --no-fund --no-package-lock --no-save playwright@1.56.1 @axe-core/playwright@4.10.2
+      - name: Install Chromium for browser testing
+        run: ./.audit/node_modules/.bin/playwright install --with-deps chromium
+      - name: Start built site and wait for its route
+        run: |
+          bunx vite preview --host 127.0.0.1 --port 4173 > /tmp/portfolio-preview.log 2>&1 &
+          for i in $(seq 1 40); do
+            if curl --fail --silent --output /dev/null http://127.0.0.1:4173/rocky_202x/; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/portfolio-preview.log
+          exit 1
+      - name: Audit routes, responsive layout, interactions, accessibility
+        env:
+          NODE_PATH: ${{ github.workspace }}/.audit/node_modules
+        run: node scripts/browser-audit.cjs
+      - name: Preserve screenshots and audit report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: browser-audit-${{ github.sha }}
+          path: artifacts/browser-audit
+          if-no-files-found: warn
+          retention-days: 7
