@@ -25,6 +25,24 @@ describe("research agenda", () => {
   });
 });
 
+describe("academic introduction and Web of Science search", () => {
+  const authorSearch = "https://www.webofscience.com/wos/author/author-search?state=%7B%7D";
+
+  it("presents the short Nepal and Chinese Government Scholarship introduction", () => {
+    render(<MemoryRouter initialEntries={["/"]}><PortfolioSite /></MemoryRouter>);
+    expect(screen.getByText(/Originally from Nepal, I am a Chinese Government Scholarship recipient/)).toBeInTheDocument();
+    expect(screen.getByText(/doctoral research at Beihang University/)).toBeInTheDocument();
+  });
+
+  it("links Web of Science as an author search rather than an unsupported individual researcher record", () => {
+    render(<MemoryRouter initialEntries={["/service"]}><PortfolioSite /></MemoryRouter>);
+    const links = screen.getAllByRole("link", { name: "Web of Science Author Search" });
+    expect(links.length).toBeGreaterThanOrEqual(1);
+    expect(links.every(link => link.getAttribute("href") === authorSearch)).toBe(true);
+    expect(screen.getByText(/not a uniquely verified researcher profile/)).toBeInTheDocument();
+  });
+});
+
 describe("navigation usability", () => {
   it("updates document titles and descriptions for each section", () => {
     const titleBefore = document.title;
