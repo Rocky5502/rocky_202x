@@ -5,6 +5,8 @@ Designed for readers of research papers, potential collaborators, hiring committ
 
 **Live website:** https://rocky5502.github.io/rocky_202x/
 
+**Quality audit:** [Browser, accessibility, mobile, routing & performance checks](docs/WEBSITE_QUALITY_AUDIT.md) — including reproducible GitHub Actions screenshots and measured production-image optimization.
+
 ## Pages
 
 | Route | Content |
