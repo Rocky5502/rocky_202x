@@ -276,8 +276,8 @@ function Home() {
       <div className="hero-copy">
         <p className="eyebrow">PhD Researcher · Software Engineering & AI</p>
         <h1>Chandan Kumar Sah<span className="hero-also">Rocky 文浩</span></h1>
-        <p className="hero-lead">Studying when AI systems should trust their evidence—and when they should not.</p>
-        <p className="hero-description">Chandan Kumar Sah is a doctoral researcher at Beihang University in Beijing and a recipient of the Chinese Government Scholarship. Originally from Nepal 🇳🇵, he has been based in China since April 2018. His research focuses on uncertainty in language models, reliable AI for software engineering, and trustworthy intelligent systems.</p>
+        <p className="hero-lead">Advancing reliable AI through uncertainty, evidence, and verification.</p>
+        <p className="hero-description">Originally from Nepal 🇳🇵 and based in China since April 2018, he is a Chinese Government Scholarship recipient and doctoral researcher at Beihang University in Beijing. His research examines uncertainty in language models, reliable AI for software engineering, and trustworthy intelligent systems.</p>
         <Link className="availability-inline" to="/connect"><span className="availability-dot" aria-hidden="true" />Open to research collaborations, visiting opportunities and fellowships <ArrowRight size={14} aria-hidden="true" /></Link>
         <div className="hero-actions">
           <Link className="primary-action" to="/publications">Explore publications <ArrowRight size={16} /></Link>
@@ -295,6 +295,15 @@ function Home() {
         <figcaption className="portrait-caption">Research · Engineering · Public interest</figcaption>
         <div className="portrait-highlights" aria-label="Selected academic highlights">
           <p className="eyebrow">Selected highlights</p>
+          <Link className="portrait-research-record" to="/publications" aria-label={`View ${publications.length} listed research outputs`}>
+            <span className="portrait-research-symbol" aria-hidden="true"><BookOpenCheck size={19} strokeWidth={1.45}/></span>
+            <span className="portrait-research-number">{publications.length}</span>
+            <span className="portrait-research-description">
+              <strong>Listed research outputs</strong>
+              <small>Includes preprints, a book chapter & forthcoming work</small>
+            </span>
+            <ArrowRight aria-hidden="true" size={15}/>
+          </Link>
           <ul className="portrait-highlight-list">
             <li><Award aria-hidden="true" size={15} strokeWidth={1.6}/><span>Outstanding Reviewer · ECIR 2026</span></li>
             <li><UsersRound aria-hidden="true" size={15} strokeWidth={1.6}/><span>Senior PC · ECIR 2027</span></li>
@@ -309,7 +318,7 @@ function Home() {
     </section>
     <section className="home-about content-wrap section-divider">
       <div><p className="eyebrow">Research statement</p><h2>Reliable systems begin with knowing their limits.</h2></div>
-      <div className="home-about-text"><p>Large language models often produce fluent answers without reliable evidence. I investigate uncertainty as a practical signal for retrieval, checking, and decision-making—especially in software engineering, where wrong outputs can have real costs.</p><p>Alongside this work, I explore algorithmic fairness and safety-critical multimodal applications. My aim is to connect careful experiments with systems people can responsibly use.</p><Link className="text-action" to="/research">Research directions <ArrowRight size={17} /></Link></div>
+      <div className="home-about-text"><p>The central research question is how uncertainty can guide evidence retrieval, verification, and decision-making in language-model systems—particularly in software engineering, where incorrect outputs can have significant consequences.</p><p>Related research examines algorithmic fairness, agent safety, and multimodal applications, connecting reproducible empirical evaluation with dependable software systems.</p><Link className="text-action" to="/research">Research directions <ArrowRight size={17} /></Link></div>
     </section>
     <NewsPreview />
     <section className="content-wrap page-section section-divider">
