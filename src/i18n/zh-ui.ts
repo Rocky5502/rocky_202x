@@ -38,7 +38,7 @@ export const zhUi: Record<string,string> = {
   "Awards & Appreciation | Chandan Kumar Sah": "荣誉与表彰｜Chandan Kumar Sah",
   "A historical year-by-year archive of academic distinctions, scholarships, certificates, and participation records.": "按年份整理的学术荣誉、奖学金、证书及参与记录档案。",
   "CV & Skills Overview | Chandan Kumar Sah": "学术履历与技能概览｜Chandan Kumar Sah",
-  "Explore an academic CV with Education, Research and Technical Skills, Languages, and Recognition with awards and talks.": "了解教育经历、科研与技术能力、编程及交流语言。",
+  "Explore an academic CV with Education, Research and Technical Skills, Languages, and Recognition with awards and talks.": "了解教育经历、科研与技术能力、语言及荣誉与学术报告。",
   "Education & Research Schools | Chandan Kumar Sah": "教育经历与国际研修｜Chandan Kumar Sah",
   "Academic degrees, summer and winter research schools, and additional professional learning from the historical CV.": "学历教育、暑期与冬季学校，以及其他专业研修经历。",
   "AI & Software Engineering Skills | Chandan Kumar Sah": "人工智能与软件工程技能｜Chandan Kumar Sah",
