@@ -9,7 +9,7 @@ import {
 import { publicProjects, publicProjectUrl, type PublicProject } from "@/data/projects";
 import { NewsPage, NewsPreview } from "@/components/NewsComponents";
 import { AwardsInvitation, AwardsPage } from "@/components/AwardsComponents";
-import CVPage from "@/components/CVPage";
+import CVPage, { CVEducationPage, CVSkillsPage, CVLanguagesPage } from "@/components/CVPage";
 import { opportunityTracks, researchSupport } from "@/data/opportunities";
 import "@/portfolio.css";
 
@@ -65,8 +65,20 @@ const routeMetadata: Record<string, { title: string; description: string }> = {
     description: "A historical year-by-year archive of academic distinctions, scholarships, certificates, and participation records.",
   },
   "/cv": {
-    title: "Academic CV & Research Skills | Chandan Kumar Sah",
-    description: "Education, research methods, ten documented AI and software engineering competencies, open-weight model ecosystems, programming and communication languages.",
+    title: "CV & Skills Overview | Chandan Kumar Sah",
+    description: "Explore an academic web CV organized into Education, Research and Technical Skills, and Languages.",
+  },
+  "/cv/education": {
+    title: "Education & Research Schools | Chandan Kumar Sah",
+    description: "Academic degrees, summer and winter research schools, and additional professional learning from the historical CV.",
+  },
+  "/cv/skills": {
+    title: "AI & Software Engineering Skills | Chandan Kumar Sah",
+    description: "Ten technical research competencies with links to public AI and software engineering research artifacts.",
+  },
+  "/cv/languages": {
+    title: "Programming & Languages | Chandan Kumar Sah",
+    description: "Programming and international communication languages from a source-conscious academic CV.",
   },
   "/news": {
     title: "News & Milestones | Chandan Kumar Sah",
@@ -513,6 +525,9 @@ export default function PortfolioSite() {
       <Route path="/recognition" element={<RecognitionPage/>} />
       <Route path="/awards" element={<AwardsPage/>} />
       <Route path="/cv" element={<CVPage/>} />
+      <Route path="/cv/education" element={<CVEducationPage/>} />
+      <Route path="/cv/skills" element={<CVSkillsPage/>} />
+      <Route path="/cv/languages" element={<CVLanguagesPage/>} />
       <Route path="/recognition/awards" element={<Navigate to="/awards" replace />} />
       <Route path="/news" element={<NewsPage/>} />
       <Route path="/connect" element={<ConnectPage/>} />
@@ -525,9 +540,10 @@ export default function PortfolioSite() {
       <Route path="/updates" element={<Navigate to="/news" replace />} />
       <Route path="/research-areas" element={<Navigate to="/research" replace />} />
       <Route path="/papers" element={<Navigate to="/publications" replace />} />
-      <Route path="/skills" element={<Navigate to="/cv" replace />} />
+      <Route path="/skills" element={<Navigate to="/cv/skills" replace />} />
       <Route path="/resume" element={<Navigate to="/cv" replace />} />
-      <Route path="/education" element={<Navigate to="/cv" replace />} />
+      <Route path="/education" element={<Navigate to="/cv/education" replace />} />
+      <Route path="/languages" element={<Navigate to="/cv/languages" replace />} />
       <Route path="*" element={<NotFound/>} />
     </Routes></main><Footer />
   </div>;
