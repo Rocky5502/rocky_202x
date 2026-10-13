@@ -249,5 +249,7 @@ export const zhContent: Record<string,string> = {
   "Talks & awards archive": "学术报告与荣誉档案",
   "The CV is intentionally layered. Detailed education, technical skills and language information appear on their own pages; Recognition links to the existing talks and awards gateway.": "学术履历采用分层设计：教育、技能及语言的详细信息分别展示；“荣誉”入口沿用现有的学术报告与获奖档案页面。",
   "← Back to CV": "← 返回简历",
-  "Explore an academic CV with Education, Research and Technical Skills, Languages, and Recognition with awards and talks.": "探索包含教育经历、科研与技术能力、语言和荣誉（奖项与学术报告）的学术履历。"
+  "Explore an academic CV with Education, Research and Technical Skills, Languages, and Recognition with awards and talks.": "探索包含教育经历、科研与技术能力、语言和荣誉（奖项与学术报告）的学术履历。",
+  "Voluntary academic support": "自愿性科研支持",
+  "PayPal support email address": "PayPal 科研支持联系邮箱"
 };
