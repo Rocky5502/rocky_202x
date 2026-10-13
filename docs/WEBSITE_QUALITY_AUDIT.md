@@ -15,13 +15,16 @@ This report distinguishes checks on the *built site in a real Chromium browser* 
 5. **External accuracy:** The Bern International Software Engineering Winter School 2025 is linked to the programme’s [actual university-hosted event site](https://innoguard-winter-school-2025.inf.unibe.ch/), rather than a generic university research-group website. The school itself can be confirmed from the organizer; an owner-specific attendance certificate is still archive-sourced.
 6. **React warnings:** The portrait uses standard React 18-compatible loading attributes; the unsupported `fetchPriority` prop was removed to avoid runtime warnings from the current React version.
 7. **No made-up evidence:** User-reported CCS acceptance, award archives, peer-review records, model experiment plans, school attendance and spoken-language proficiency continue to be distinguished from independently verified primary-source claims.
+8. **Multilingual Mandarin:** A static English / 简体中文 toggle changes the document language, metadata, navigation, research content, awards, complete historical news articles, and the layered CV. Local preference persists across reloads; English can be restored exactly. Interactive filters keep their underlying option values even when labels are localized.
+9. **Bilingual Chromium audit:** The real-browser suite checks Chinese headings on every route, translated archive and record counts, Chinese award searches, persistent selection on refresh, screen-reader labels, and mobile horizontal overflow from **320–1440 px**. The 13 October 2026 run at [GitHub Actions](https://github.com/Rocky5502/rocky_202x/actions/runs/38337573776) recorded **178 PASS, zero FAIL, zero reported axe violations**. This is automated WCAG rule coverage, not a complete manual accessibility certification.
+
 
 ## How to reproduce
 
 The lightweight suite runs on **every push**:
 - [Verify portfolio](../.github/workflows/verify.yml): typecheck, build, optimized-portrait budget, unit/regression tests.
 - [Deploy Vite site to Pages](../.github/workflows/deploy.yml): typecheck, unit tests, production build, optimize portrait, publish.
-- [Chromium browser audit](../.github/workflows/browser-audit.yml): Chromium viewport and navigation checks, keyboard/mobile behaviors, axe WCAG scans, link-route assertions, payment contact visibility, JavaScript/asset errors, plus screenshot artifacts.
+- [Chromium browser audit](../.github/workflows/browser-audit.yml): Chromium viewport and navigation checks, keyboard/mobile behaviors, axe WCAG scans, link-route assertions, payment contact visibility, JavaScript/asset errors, plus English and Mandarin screenshot artifacts and bilingual interaction assertions.
 
 The browser suite runs via `scripts/browser-audit.cjs` against a **locally served production preview**, not the deployed URL. Browser installation uses pinned Playwright/axe versions in an isolated `.audit` folder, and retains artifacts for seven days (the GitHub Actions artifact includes screenshots of desktop homepage, CV overview and mobile views, plus `audit.json`).
 
