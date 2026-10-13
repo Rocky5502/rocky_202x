@@ -79,6 +79,18 @@ describe("professional Simplified Chinese localization", () => {
     expect(screen.getByText(/并非已经核验的个人学者主页/)).toBeInTheDocument();
   });
 
+  it("provides a Simplified Chinese Recognition tile inside CV without duplicating the archive", async () => {
+    renderAt("/cv");
+    fireEvent.click(screen.getByRole("button", { name: "Switch website to Simplified Chinese" }));
+    await waitFor(() => expect(screen.getByRole("heading", { name: "学术履历与技能" })).toBeInTheDocument());
+    const recognitionTile = document.querySelector<HTMLAnchorElement>('a.cv-layer-card[href="/recognition"]');
+    expect(recognitionTile).not.toBeNull();
+    expect(recognitionTile).toHaveTextContent("荣誉与交流");
+    expect(recognitionTile).toHaveTextContent("学术报告与荣誉档案");
+    expect(document.querySelectorAll("a.cv-layer-card")).toHaveLength(4);
+    expect(screen.queryByRole("heading", { name: "代表性学术报告" })).not.toBeInTheDocument();
+  });
+
   it("translates education and awards while preserving search and stable category values", async () => {
     const { unmount } = renderAt("/cv/education");
     fireEvent.click(screen.getByRole("button", { name: "Switch website to Simplified Chinese" }));
