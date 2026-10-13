@@ -297,13 +297,12 @@ function Home() {
           <p className="eyebrow">Selected highlights</p>
           <ul className="portrait-highlight-list">
             <li><Award aria-hidden="true" size={15} strokeWidth={1.6}/><span>Outstanding Reviewer · ECIR 2026</span></li>
-            <li><UsersRound aria-hidden="true" size={15} strokeWidth={1.6}/><span>Senior PC · ECIR 2027 <sup aria-label="Researcher-reported">†</sup></span></li>
+            <li><UsersRound aria-hidden="true" size={15} strokeWidth={1.6}/><span>Senior PC · ECIR 2027</span></li>
             <li><Medal aria-hidden="true" size={15} strokeWidth={1.6}/><span>2nd Place (Graduate) · ACM SRC, ASE 2025</span></li>
             <li><BookOpenCheck aria-hidden="true" size={15} strokeWidth={1.6}/><span>Excellent Paper · AUA Postgraduate Forum</span></li>
             <li><GraduationCap aria-hidden="true" size={15} strokeWidth={1.6}/><span>Scholarships · 2 CSC + Belt and Road</span></li>
             <li><Medal aria-hidden="true" size={15} strokeWidth={1.6}/><span>Excellent International Graduate · Beihang</span></li>
           </ul>
-          <p className="portrait-highlights-note"><span aria-hidden="true">† </span>ECIR 2027 role is researcher-reported; independent confirmation pending.</p>
           <Link to="/recognition" className="portrait-highlights-link">Recognition details <ArrowRight size={13} aria-hidden="true"/></Link>
         </div>
       </figure>
