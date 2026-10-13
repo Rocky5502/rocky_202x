@@ -326,6 +326,7 @@ function Home() {
 }
 
 function PublicationsPage() {
+  const { tr } = useLanguage();
   const [query, setQuery] = useState("");
   const [topic, setTopic] = useState("All topics");
   const [type, setType] = useState("All types");
@@ -335,13 +336,13 @@ function PublicationsPage() {
     const q = query.trim().toLowerCase();
     return (topic === "All topics" || p.topic === topic)
       && (type === "All types" || (type === "Academic papers" && (p.type === "Conference" || p.type === "Workshop")) || (type === "Journal articles" && p.type === "Journal") || (type === "Preprints" && p.type === "Preprint") || (type === "Book chapters" && p.type === "Book chapter"))
-      && (!q || [p.title, p.authors, p.venue, String(p.year)].some(s => s.toLowerCase().includes(q)));
-  }).sort((a,b) => b.year - a.year), [query,topic,type]);
+      && (!q || [p.title, p.authors, p.venue, String(p.year)].some(s => s.toLowerCase().includes(q) || tr(s).toLowerCase().includes(q)));
+  }).sort((a,b) => b.year - a.year), [query,topic,type,tr]);
   return <div className="content-wrap interior-page">
     <PageHeading kicker="Research / 01" title="Publications" subtitle="Research papers, journal articles, preprints, and forthcoming work. Publisher links and academic records are provided wherever available." />
     <div className="toolbar">
       <label className="search-wrap"><span className="sr-only">Search publications</span><input value={query} onChange={e=>setQuery(e.target.value)} placeholder="Search by title, author, or year…" /></label>
-      <label className="select-wrap"><span className="sr-only">Filter by research topic</span><select value={topic} onChange={e=>setTopic(e.target.value)}>{topics.map(t=><option key={t}>{t}</option>)}</select></label>
+      <label className="select-wrap"><span className="sr-only">Filter by research topic</span><select value={topic} onChange={e=>setTopic(e.target.value)}>{topics.map(t=><option key={t} value={t}>{t}</option>)}</select></label>
       <label className="select-wrap"><span className="sr-only">Filter by publication type</span><select value={type} onChange={e=>setType(e.target.value)}>{types.map(t=><option key={t}>{t}</option>)}</select></label>
     </div>
     <div className="record-header"><span>{filtered.length} publication{filtered.length === 1 ? "" : "s"}</span><ExternalLink href={identity.scholar}>Full profile on Google Scholar</ExternalLink></div>
