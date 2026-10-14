@@ -74,9 +74,10 @@ describe("professional Simplified Chinese localization", () => {
     const record = document.querySelector(".portrait-research-record");
     expect(record).not.toBeNull();
     expect(record).toHaveAttribute("href", "/publications");
-    expect(record).toHaveTextContent("13");
-    expect(record).toHaveTextContent("已收录科研成果");
-    expect(record).toHaveTextContent("含预印本、书籍章节及待刊成果");
+    expect(record).toHaveTextContent("13+");
+    expect(record).toHaveTextContent("科研成果");
+    expect(record).not.toHaveTextContent("预印本");
+    expect(record?.querySelector("small")).toBeNull();
     const highlights = document.querySelector(".portrait-highlight-list");
     expect(highlights?.querySelectorAll("li")).toHaveLength(6);
     expect(highlights).toHaveTextContent("ECIR 2026 优秀审稿人");
