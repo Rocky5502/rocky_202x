@@ -38,10 +38,10 @@ export function translateText(value: string, language: SiteLanguage): string {
     const trail = value.match(/\s*$/)?.[0] ?? "";
     return lead + translated + trail;
   }
-  const matched = normalized.match(/^(\d+) (public repositories|dated stories|records shown|records|entries|entry|programmes)$/);
+  const matched = normalized.match(/^(\d+) (public repositories|research previews|dated stories|records shown|records|entries|entry|programmes)$/);
   if (matched) {
     const words: Record<string, string> = {
-      "public repositories": "个公开代码仓库", "dated stories": "条按日期归档的动态",
+      "public repositories": "个公开代码仓库", "research previews": "项研究预览", "dated stories": "条按日期归档的动态",
       "records shown": "条记录", records: "条记录", entries: "条动态", entry: "条动态",
       programmes: "个项目",
     };
