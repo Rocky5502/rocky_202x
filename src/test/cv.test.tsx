@@ -64,7 +64,7 @@ describe("layered academic CV", () => {
     expect(screen.queryByText("Sichuan University")).not.toBeInTheDocument();
     const nav = screen.getByRole("navigation", { name: "Primary navigation" });
     const order = within(nav).getAllByRole("link").map(x => x.textContent);
-    expect(order.slice(-3)).toEqual(["News","Opportunities","CV"]);
+    expect(order.slice(-4)).toEqual(["News","Notes","Opportunities","CV"]);
     expect(order).not.toContain("Recognition");
     expect(order).not.toContain("Projects");
   });
