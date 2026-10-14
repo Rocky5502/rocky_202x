@@ -87,7 +87,7 @@ async function auditA11y(page, route) {
     });
     ok(await page.evaluate(() => !document.documentElement.dataset.cspProbe), "Chromium CSP blocks simulated inline script injection");
     const primaryNavigation = page.getByRole("navigation", {name: "Primary navigation"});
-    ok(await primaryNavigation.getByRole("link").count() === 7, "Top navigation contains seven entries after moving Recognition and Projects into CV");
+    ok(await primaryNavigation.getByRole("link").count() === 8, "Top navigation contains eight entries including the new Notes article");
     ok(await primaryNavigation.getByRole("link", {name: "Recognition", exact: true}).count() === 0, "Recognition does not appear in the top desktop navigation");
     ok(await primaryNavigation.getByRole("link", {name: "Projects", exact: true}).count() === 0, "Projects does not appear in the top desktop navigation");
     ok(await page.getByText(/Originally from Nepal 🇳🇵 and based in China since April 2018/).count() === 1, "Homepage introduces researcher's background in formal third person without repeating name");
