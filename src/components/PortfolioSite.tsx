@@ -19,7 +19,6 @@ const researchIcons = [BrainCircuit, Code2, ClipboardCheck, ShieldCheck, Scale] 
 const navigation = [
   { to: "/", label: "Home", end: true },
   { to: "/publications", label: "Publications" },
-  { to: "/projects", label: "Projects" },
   { to: "/research", label: "Research" },
   { to: "/service", label: "Service" },
   { to: "/news", label: "News" },
@@ -66,7 +65,7 @@ const routeMetadata: Record<string, { title: string; description: string }> = {
   },
   "/cv": {
     title: "CV & Skills Overview | Chandan Kumar Sah",
-    description: "Explore an academic CV with Education, Research and Technical Skills, Languages, and Recognition with awards and talks.",
+    description: "An academic CV with Education, Research & Technical Skills, Languages, Recognition, and Open Research Projects.",
   },
   "/cv/education": {
     title: "Education & Research Schools | Chandan Kumar Sah",
@@ -256,6 +255,7 @@ function ProjectsPage() {
   const [selected, setSelected] = useState<string>("All projects");
   const visible = selected === "All projects" ? publicProjects : publicProjects.filter(p => p.category === selected);
   return <div className="content-wrap interior-page">
+    <nav className="cv-breadcrumb" aria-label="Projects breadcrumb"><Link to="/cv">← Back to CV</Link><span aria-hidden="true">/</span><span aria-current="page">Projects</span></nav>
     <PageHeading kicker="Engineering / 03" title="Open research projects" subtitle="A selected collection of public research artifacts and experimental systems. Every project links to an actual GitHub repository." />
     <div className="research-motif" aria-label="Research process: uncertainty leads to evidence, then verification and control">
       <span>01 <strong>Uncertainty</strong></span><ArrowRight size={16} aria-hidden="true" /><span>02 <strong>Evidence</strong></span><ArrowRight size={16} aria-hidden="true" /><span>03 <strong>Verification</strong></span><ArrowRight size={16} aria-hidden="true" /><span>04 <strong>Control</strong></span>
