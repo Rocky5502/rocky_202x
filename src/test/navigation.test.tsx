@@ -177,6 +177,12 @@ describe("GitHub Pages routes", () => {
     expect(screen.getByRole("textbox", { name: /PayPal support email address/ })).toHaveValue("sahchandan98@gmail.com");
     expect(screen.getByRole("textbox", { name: /Google Pay contact email address/ })).toHaveValue("sahchandan98@gmail.com");
     expect(screen.getByText(/An email address is not a universal Google Pay transfer ID/i)).toBeInTheDocument();
+    const wechatQr = screen.getByRole("img", { name: "WeChat Pay receiving QR code supplied by the researcher" });
+    expect(wechatQr.tagName.toLowerCase()).toBe("svg");
+    expect(wechatQr).toHaveAttribute("viewBox", "0 0 45 45");
+    expect(wechatQr.querySelector("path")?.getAttribute("d")?.length).toBeGreaterThan(1500);
+    expect(screen.getByText("Rocky 文浩 (***R)")).toBeInTheDocument();
+    expect(screen.getByText(/Check the recipient shown inside WeChat Pay/)).toBeInTheDocument();
     expect(screen.queryByRole("heading", { name: "Page not found" })).not.toBeInTheDocument();
   });
 
