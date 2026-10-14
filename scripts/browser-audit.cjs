@@ -71,6 +71,20 @@ async function auditA11y(page, route) {
       ok(info.title.includes("Chandan Kumar Sah"), route + " has route-specific document title");
     }
     await page.goto(url("/"), {waitUntil: "networkidle"});
+    const policy = await page.locator('meta[http-equiv="Content-Security-Policy"]').getAttribute("content");
+    ok(!!policy && policy.includes("connect-src 'none'") && policy.includes("object-src 'none'"), "Production browser policy blocks network APIs and embedded objects");
+    ok(!!policy && /script-src 'self' 'sha256-[A-Za-z0-9+/=]+'/.test(policy), "Inline structured data is hash-pinned, not broadly executable");
+    ok(!policy.split("; ").find(part => part.startsWith("script-src "))?.includes("'unsafe-inline'"), "Production CSP rejects arbitrary inline JavaScript");
+    ok(await page.locator('meta[name="referrer"]').getAttribute("content") === "no-referrer", "External visitors' browsing path is not leaked via Referrer header");
+    const externalSafety = await page.locator('a[target="_blank"]').evaluateAll(links => links.every(node => node.rel.includes("noopener") && node.rel.includes("noreferrer")));
+    ok(externalSafety, "All externally opened homepage links are protected against tabnabbing");
+    await page.evaluate(() => {
+      const script = document.createElement("script");
+      script.textContent = "document.documentElement.dataset.cspProbe = 'unsafe'";
+      document.body.appendChild(script);
+      script.remove();
+    });
+    ok(await page.evaluate(() => !document.documentElement.dataset.cspProbe), "Chromium CSP blocks simulated inline script injection");
     const primaryNavigation = page.getByRole("navigation", {name: "Primary navigation"});
     ok(await primaryNavigation.getByRole("link").count() === 8, "Top navigation contains eight entries after removing Recognition");
     ok(await primaryNavigation.getByRole("link", {name: "Recognition", exact: true}).count() === 0, "Recognition does not appear in the top desktop navigation");
