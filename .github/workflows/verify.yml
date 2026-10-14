@@ -24,6 +24,8 @@ jobs:
         run: bunx tsc --noEmit -p tsconfig.app.json
       - name: Production build
         run: bun run build
+      - name: Enforce production Content Security Policy
+        run: node scripts/harden-dist.cjs
       - name: Enforce deployed portrait image budget
         run: |
           python3 -m venv .image-env
