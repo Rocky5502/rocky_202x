@@ -6,7 +6,7 @@ import {
   identity, publications, researchAreas, academicService, conferenceRankings, rankingSources,
   selectedTalks, type Publication,
 } from "@/data/portfolio";
-import { publicProjects, publicProjectUrl, type PublicProject } from "@/data/projects";
+import { publicProjects, publicProjectUrl, ongoingProjects, type PublicProject, type OngoingProject } from "@/data/projects";
 import { NewsPage, NewsPreview } from "@/components/NewsComponents";
 import { AwardsInvitation, AwardsPage } from "@/components/AwardsComponents";
 import CVPage, { CVEducationPage, CVSkillsPage, CVLanguagesPage } from "@/components/CVPage";
@@ -246,7 +246,24 @@ function ProjectCard({ project, compact = false }: { project: PublicProject; com
     <p className="project-description">{project.description}</p>
     {!compact && <p className="project-question">{project.question}</p>}
     <div className="project-tags">{project.tags.slice(0, compact ? 2 : 3).map(t => <span key={t}>{t}</span>)}</div>
-    <ExternalLink href={publicProjectUrl(project.repo)} className="project-repo-link"><Github size={15} /> View public repository</ExternalLink>
+    {project.release === "coming-soon"
+      ? <span className="project-release-label"><Github size={15} aria-hidden="true" /> Code release coming soon</span>
+      : <ExternalLink href={publicProjectUrl(project.repo)} className="project-repo-link"><Github size={15} /> View public repository</ExternalLink>}
+  </article>;
+}
+
+function OngoingProjectCard({ project }: { project: OngoingProject }) {
+  return <article className="public-project-card ongoing-project-card">
+    <div className="project-card-top">
+      <span className="project-symbol" aria-hidden="true">{project.icon}</span>
+      <span className="project-status">{project.stage}</span>
+    </div>
+    <p className="eyebrow">{project.category}</p>
+    <h3>{project.name}</h3>
+    <p className="project-description">{project.description}</p>
+    <p className="project-question">{project.question}</p>
+    <div className="project-tags">{project.tags.map(tag => <span key={tag}>{tag}</span>)}</div>
+    <span className="project-release-label"><Github size={15} aria-hidden="true" /> Code coming soon</span>
   </article>;
 }
 
@@ -254,18 +271,28 @@ function ProjectsPage() {
   const categories = ["All projects", "Software engineering", "Uncertainty & reasoning", "Trustworthy AI"] as const;
   const [selected, setSelected] = useState<string>("All projects");
   const visible = selected === "All projects" ? publicProjects : publicProjects.filter(p => p.category === selected);
+  const ongoingVisible = selected === "All projects" ? ongoingProjects : ongoingProjects.filter(p => p.category === selected);
   return <div className="content-wrap interior-page">
     <nav className="cv-breadcrumb" aria-label="Projects breadcrumb"><Link to="/cv">← Back to CV</Link><span aria-hidden="true">/</span><span aria-current="page">Projects</span></nav>
-    <PageHeading kicker="Engineering / 03" title="Open research projects" subtitle="A selected collection of public research artifacts and experimental systems. Every project links to an actual GitHub repository." />
+    <PageHeading kicker="Engineering / 03" title="Research projects" subtitle="Selected open research repositories and ongoing investigations. Public code and private research previews are identified separately." />
     <div className="research-motif" aria-label="Research process: uncertainty leads to evidence, then verification and control">
       <span>01 <strong>Uncertainty</strong></span><ArrowRight size={16} aria-hidden="true" /><span>02 <strong>Evidence</strong></span><ArrowRight size={16} aria-hidden="true" /><span>03 <strong>Verification</strong></span><ArrowRight size={16} aria-hidden="true" /><span>04 <strong>Control</strong></span>
     </div>
     <div className="project-controls" role="group" aria-label="Filter projects by research topic">
       {categories.map(category => <button key={category} type="button" className={category === selected ? "project-filter selected" : "project-filter"} onClick={() => setSelected(category)} aria-pressed={category === selected}>{category}</button>)}
     </div>
-    <div className="project-overview"><span>{visible.length} public repositories</span><ExternalLink href={identity.github}>View complete GitHub profile</ExternalLink></div>
-    <div className="public-project-grid">{visible.map(project => <ProjectCard project={project} key={project.repo} />)}</div>
-    <p className="editorial-note">This page features selected public repositories only. “In development” does not imply validated results, an accepted paper, or a released product. Private projects and confidential submissions are not listed.</p>
+    <div className="project-overview"><span>{visible.length} public repositories · {ongoingVisible.length} research previews</span><ExternalLink href={identity.github}>View complete GitHub profile</ExternalLink></div>
+    <section className="project-directory-section" aria-labelledby="public-research-heading">
+      <h2 id="public-research-heading">Public research & code</h2>
+      <p>Selected public repositories. OpenCoder's curated code release is marked coming soon rather than advertised as a ready artifact.</p>
+      <div className="public-project-grid">{visible.map(project => <ProjectCard project={project} key={project.repo} />)}</div>
+    </section>
+    {ongoingVisible.length > 0 && <section className="project-directory-section ongoing-research-section" aria-labelledby="private-research-heading">
+      <h2 id="private-research-heading">Ongoing research · private</h2>
+      <p>Selected research directions under active development. Code, manuscripts, and internal experiments are not publicly available through this page.</p>
+      <div className="public-project-grid">{ongoingVisible.map(project => <OngoingProjectCard project={project} key={project.name} />)}</div>
+    </section>}
+    <p className="editorial-note">A public repository does not imply scientific validation or publication. Private research previews describe questions under investigation, not confirmed findings, accepted papers, or released software. No private repository links are exposed.</p>
   </div>;
 }
 
