@@ -194,6 +194,8 @@ The researcher explicitly requested displaying **sahchandan98@gmail.com** as a *
 - Explicit disclosure that voluntary contributions are personal, not tax-deductible charitable donations or institutional grants, and do not influence research results, authorship or peer review.
 - A confirmation reminder to verify recipient details in PayPal before sending funds.
 
+**WeChat Pay:** The owner supplied a personal receiving QR screenshot on 14 October 2026. Its decoded `wxp://` payment payload was reconstructed as a static 45×45 vector matrix in `src/data/wechatQr.ts`; the regenerated code was successfully decoded to the same payment payload as the original screenshot. No external image host, payment API, JavaScript checkout, or account-verification API is involved. The QR is displayed only after expanding the small voluntary-support disclosure. The website shows the screenshot's masked recipient label **Rocky 文浩 (***R)** and instructs users to verify the recipient in WeChat before sending funds. QR scan equivalence does **not** verify the payment account or confirm regional availability. Chinese localization and Chromium keyboard/mobile/accessibility checks cover the QR display.
+
 The PayPal trademark belongs to PayPal, and the Google Pay mark belongs to Google. Displaying the marks does not imply endorsement, a verified recipient, or active checkout integration. Remove the email from the public repository and website if privacy or institutional funding rules change. It will otherwise remain publicly indexed. The site owner should ensure any independent financial support complies with scholarship, institutional and relevant tax/payment requirements.
 
 ## Run locally
