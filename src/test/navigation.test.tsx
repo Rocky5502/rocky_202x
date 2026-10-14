@@ -37,9 +37,10 @@ describe("academic introduction and Web of Science search", () => {
     const record = document.querySelector(".portrait-research-record");
     expect(record).not.toBeNull();
     expect(record).toHaveAttribute("href", "/publications");
-    expect(record).toHaveTextContent(String(publications.length));
-    expect(record).toHaveTextContent("Listed research outputs");
-    expect(record).toHaveTextContent("Includes preprints, a book chapter & forthcoming work");
+    expect(record).toHaveTextContent(`${publications.length}+`);
+    expect(record).toHaveTextContent("Research works");
+    expect(record).not.toHaveTextContent("preprints");
+    expect(record?.querySelector("small")).toBeNull();
     expect(publications).toHaveLength(13);
     expect(publications.some(p => p.type === "Preprint")).toBe(true);
     expect(publications.some(p => p.type === "Book chapter")).toBe(true);
