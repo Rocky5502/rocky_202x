@@ -176,12 +176,18 @@ async function auditA11y(page, route) {
     ok(await support.evaluate(node => node.getBoundingClientRect().width <= 375), "Collapsed support remains compact on desktop");
     ok(await support.evaluate(node => Math.abs(node.getBoundingClientRect().right - node.parentElement.getBoundingClientRect().right) < 3), "Support aligns with lower right of Opportunities content");
     ok(await page.getByRole("textbox", {name: "PayPal support email address"}).count() === 0, "Payment fields are hidden until explicitly expanded");
+    ok(await page.getByRole("img",{name:"WeChat Pay receiving QR code supplied by the researcher"}).count() === 0, "WeChat QR remains hidden in collapsed support disclosure");
     await auditA11y(page, "opportunities-collapsed");
     await support.locator("summary").click();
     ok(await support.evaluate(node => node.open), "Support expands using native disclosure interaction");
     ok(await page.getByRole("textbox", {name: "PayPal support email address"}).inputValue() === "sahchandan98@gmail.com", "PayPal contact remains accurate after expansion");
     ok(await page.getByRole("textbox", {name: /Google Pay contact email address/}).inputValue() === "sahchandan98@gmail.com", "Google Pay inquiry email remains accurate after expansion");
     ok(await page.getByText(/An email address is not a universal Google Pay transfer ID/).isVisible(), "Expanded support preserves recipient-verification warning");
+    const wechatQr = page.getByRole("img",{name:"WeChat Pay receiving QR code supplied by the researcher"});
+    ok(await wechatQr.isVisible(), "WeChat personal receiving code appears when user expands support");
+    ok(await wechatQr.getAttribute("viewBox") === "0 0 45 45", "WeChat QR vector has correct module geometry");
+    ok(await page.getByText("Rocky 文浩 (***R)").isVisible(), "Recipient identity is shown alongside QR");
+    ok(await page.getByText(/Check the recipient shown inside WeChat Pay/).isVisible(), "WeChat transfer includes explicit recipient verification");
     await auditA11y(page, "opportunities-expanded");
     await page.screenshot({path: path.join(directory, "opportunities-support-desktop.png"), fullPage: true});
     await support.locator("summary").click();
@@ -262,6 +268,8 @@ async function auditA11y(page, route) {
     ok((await page.locator(".support-disclosure summary").textContent()).includes("支持开放、负责任的人工智能研究"), "Compact support title translated into mainland Mandarin");
     await page.locator(".support-disclosure summary").click();
     ok(await page.locator(".support-disclosure").evaluate(node => node.open), "Chinese support expands on demand");
+    ok(await page.getByRole("img",{name:"研究者提供的微信支付个人收款二维码"}).isVisible(), "Mandarin WeChat QR accessibility label translated");
+    ok(await page.getByText(/转账前请在微信支付中核对收款方身份/).isVisible(), "Mandarin recipient verification warning visible");
     ok(await page.getByRole("textbox",{name:"PayPal support email address"}).count() === 0, "Chinese PayPal accessibility label replaces English label");
     await page.locator(".support-disclosure summary").click();
     await page.goto(url("/cv"), {waitUntil:"networkidle"});
