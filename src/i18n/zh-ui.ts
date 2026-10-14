@@ -14,7 +14,7 @@ export const zhUi: Record<string,string> = {
   "My 10 Rules for PhD Research in the Age of AI · Beijing, China": "人工智能时代，我的十条博士科研准则 · 中国北京",
   "Read the article": "阅读文章",
   "Personal research manifesto": "个人科研宣言",
-  "In Love with the Unknown | My 10 Rules for PhD Research in the Age of AI": "热爱未知｜人工智能时代的博士科研十条准则",
+  "In Love with the Unknown | My 10 Rules for PhD Research in the Age of AI | Chandan Kumar Sah": "热爱未知｜人工智能时代的博士科研十条准则",
   "A personal research manifesto by Chandan Kumar Sah, written in Beijing on October 15, 2026: ten rules for doing rigorous, independent PhD research in the age of AI.": "Chandan Kumar Sah 于2026年10月15日在北京写下的科研宣言：人工智能时代坚持严谨、独立科研的十条准则。",
   "Opportunities": "合作机会",
   "CV & Skills": "学术履历与技能",
