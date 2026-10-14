@@ -281,7 +281,7 @@ function ProjectsPage() {
     <div className="project-controls" role="group" aria-label="Filter projects by research topic">
       {categories.map(category => <button key={category} type="button" className={category === selected ? "project-filter selected" : "project-filter"} onClick={() => setSelected(category)} aria-pressed={category === selected}>{category}</button>)}
     </div>
-    <div className="project-overview"><span>{visible.length} public repositories · {ongoingVisible.length} research previews</span><ExternalLink href={identity.github}>View complete GitHub profile</ExternalLink></div>
+    <div className="project-overview"><span><span>{visible.length} public repositories</span><span> · </span><span>{ongoingVisible.length} research previews</span></span><ExternalLink href={identity.github}>View complete GitHub profile</ExternalLink></div>
     <section className="project-directory-section" aria-labelledby="public-research-heading">
       <h2 id="public-research-heading">Public research & code</h2>
       <p>Selected public repositories. OpenCoder's curated code release is marked coming soon rather than advertised as a ready artifact.</p>
