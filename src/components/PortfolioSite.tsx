@@ -264,7 +264,7 @@ function OngoingProjectCard({ project }: { project: OngoingProject }) {
     <p className="project-description">{project.description}</p>
     <p className="project-question">{project.question}</p>
     <div className="project-tags">{project.tags.map(tag => <span key={tag}>{tag}</span>)}</div>
-    <span className="project-release-label"><Github size={15} aria-hidden="true" /> Code coming soon</span>
+    <span className="project-release-label"><ShieldCheck size={15} aria-hidden="true" /> Private research · Code not public</span>
   </article>;
 }
 
