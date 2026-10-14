@@ -104,7 +104,11 @@ describe("professional Simplified Chinese localization", () => {
     expect(recognitionTile).not.toBeNull();
     expect(recognitionTile).toHaveTextContent("荣誉与交流");
     expect(recognitionTile).toHaveTextContent("学术报告与荣誉档案");
-    expect(document.querySelectorAll("a.cv-layer-card")).toHaveLength(4);
+    expect(document.querySelectorAll("a.cv-layer-card")).toHaveLength(5);
+    const projectsTile = document.querySelector<HTMLAnchorElement>('a.cv-layer-card[href="/projects"]');
+    expect(projectsTile).not.toBeNull();
+    expect(projectsTile).toHaveTextContent("科研项目");
+    expect(within(screen.getByRole("navigation", { name: "主导航" })).queryByRole("link", { name: "科研项目" })).not.toBeInTheDocument();
     expect(within(screen.getByRole("navigation", { name: "主导航" })).queryByRole("link", { name: "荣誉与交流" })).not.toBeInTheDocument();
     expect(screen.queryByRole("heading", { name: "代表性学术报告" })).not.toBeInTheDocument();
   });
