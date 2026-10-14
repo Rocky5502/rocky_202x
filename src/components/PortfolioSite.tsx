@@ -87,7 +87,7 @@ const routeMetadata: Record<string, { title: string; description: string }> = {
     description: "Chronological academic news, research milestones, scholarly recognition, and the latest publication announcements.",
   },
   [researchRulesPath]: {
-    title: "In Love with the Unknown | My 10 Rules for PhD Research in the Age of AI",
+    title: "In Love with the Unknown | My 10 Rules for PhD Research in the Age of AI | Chandan Kumar Sah",
     description: "A personal research manifesto by Chandan Kumar Sah, written in Beijing on October 15, 2026: ten rules for doing rigorous, independent PhD research in the age of AI.",
   },
   "/connect": {
