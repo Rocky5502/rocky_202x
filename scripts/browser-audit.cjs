@@ -10,7 +10,7 @@ fs.mkdirSync(directory, { recursive: true });
 const routes = [
   ["/", "Chandan Kumar Sah"],
   ["/publications", "Publications"],
-  ["/projects", "Open research projects"],
+  ["/projects", "Research projects"],
   ["/research", "Research & projects"],
   ["/service", "Academic service"],
   ["/recognition", "Recognition & talks"],
@@ -121,6 +121,19 @@ async function auditA11y(page, route) {
     await page.locator('a.cv-layer-card[href="#/projects"]').click();
     ok(new URL(page.url()).hash === "#/projects", "CV Projects card opens the existing Projects directory");
     ok(await page.locator(".public-project-card").count() > 0, "Projects directory retains project cards");
+    ok(await page.locator(".public-project-card:not(.ongoing-project-card)").count() === 9, "Public research section retains nine original repository entries");
+    ok(await page.locator(".ongoing-project-card").count() === 4, "Four appropriately labeled private research previews appear");
+    ok(await page.locator(".ongoing-project-card a").count() === 0, "No private research preview exposes a GitHub link");
+    ok(await page.locator(".ongoing-project-card").first().getByText("Code coming soon").isVisible(), "Private work shows a non-clickable code release notice");
+    const openCoderCard = page.locator(".public-project-card").filter({has:page.getByRole("heading",{name:"OpenCoder",exact:true})});
+    ok(await openCoderCard.getByText("Code release coming soon").count() === 1, "OpenCoder public-repository action is replaced with coming soon");
+    ok(await openCoderCard.locator("a.project-repo-link").count() === 0, "OpenCoder does not display a misleading direct code-release action");
+    await page.getByRole("button",{name:"Trustworthy AI",exact:true}).click();
+    ok(await page.locator(".ongoing-project-card").count() === 1, "Trustworthy AI filter narrows private previews");
+    ok(await page.getByRole("heading",{name:"NMI · Epistemic Conservation"}).count() === 1, "NMI remains when Trustworthy AI is selected");
+    await page.getByRole("button",{name:"All projects",exact:true}).click();
+    await auditA11y(page,"projects-with-private-previews");
+    await page.screenshot({path:path.join(directory,"projects-desktop.png"),fullPage:true});
     ok(await page.getByRole("navigation", {name: "Projects breadcrumb"}).getByRole("link", {name: /Back to CV/}).getAttribute("href") === "#/cv", "Projects provides a breadcrumb back to CV");
     await page.goto(url("/cv"), {waitUntil:"networkidle"});
     await page.locator('a.cv-layer-card[href="#/recognition"]').click();
@@ -257,7 +270,7 @@ async function auditA11y(page, route) {
 
     const cnRoutes = [
       ["/research","研究方向与项目"], ["/publications","学术成果"],
-      ["/projects","开源科研项目"], ["/service","学术服务"],
+      ["/projects","科研项目"], ["/service","学术服务"],
       ["/recognition","荣誉与学术交流"], ["/awards","荣誉与表彰"],
       ["/news","新闻与科研里程碑"], ["/connect","合作机会与科研支持"],
       ["/cv","学术履历与技能"], ["/cv/education","教育经历"],
@@ -269,6 +282,10 @@ async function auditA11y(page, route) {
       ok(actual.trim() === expected, "Mandarin heading for " + route + ": " + actual.trim());
       ok(await page.evaluate(() => document.documentElement.lang) === "zh-CN", "Mandarin preference persists across " + route);
     }
+    await page.goto(url("/projects"), {waitUntil: "networkidle"});
+    ok(await page.locator(".ongoing-project-card").count() === 4, "Mandarin Projects page preserves four research previews");
+    ok((await page.locator(".ongoing-project-card").first().innerText()).includes("代码即将公开"), "Private project release notices translated into Mandarin");
+    ok((await page.locator(".project-overview").innerText()).includes("项研究预览"), "Filtered private-research count localized in Mandarin");
     await page.goto(url("/news"), {waitUntil: "networkidle"});
     ok(await page.locator(".news-entry").count() === 11, "All eleven news items remain in the Chinese version");
     ok(await page.locator(".news-entry h3").first().textContent() !== "Auditable Uncertainty Control for Secure LLM Agents — ACM CCS 2026", "News headline translated");
