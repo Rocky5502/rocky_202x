@@ -83,9 +83,9 @@ describe("public project curation", () => {
 
 
 describe("curated private research and OpenCoder release controls", () => {
-  it("describes exactly four approved private research projects without leaking links", () => {
+  it("describes five vetted private research previews without leaking links", () => {
     expect(ongoingProjects.map(p => p.name)).toEqual([
-      "U-SMASH", "UOpenAI / U-PROVE", "NMI · Epistemic Conservation", "TrajUQ",
+      "U-SMASH", "UOpenAI / U-PROVE", "NMI · Epistemic Conservation", "TrajUQ", "U-FLOW",
     ]);
     for (const project of ongoingProjects) {
       expect(project.stage).toBe("Private research");
