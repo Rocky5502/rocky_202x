@@ -1,7 +1,7 @@
 /**
- * Curated PUBLIC repositories, verified in the owner's GitHub account
- * on 2026-10-12. Private work and under-review submissions are excluded.
- * Project descriptions refer to the published README, not private plans.
+ * Curated public repositories verified using the owner's connected GitHub account.
+ * Separately named private project previews below are intentionally high-level:
+ * never link to inaccessible repos or reveal private artifacts or findings.
  */
 export type PublicProject = {
   name: string;
@@ -13,6 +13,8 @@ export type PublicProject = {
   tags: string[];
   featured?: boolean;
   stage: "Research artifact" | "In development";
+  /** Do not imply a curated public release exists, even when a GitHub shell is visible. */
+  release?: "coming-soon";
 };
 export const publicProjects: PublicProject[] = [
   {
@@ -66,6 +68,7 @@ export const publicProjects: PublicProject[] = [
   },
   {
     name: "OpenCoder", repo: "OpenCoder", category: "Software engineering", icon: "{ }",
+    release: "coming-soon",
     description: "Experiments with retrieval-source quality and uncertainty in repository-level code generation.",
     question: "Which retrieved context makes generated code more reliable?",
     tags: ["Code", "RAG", "Uncertainty"],
@@ -79,4 +82,49 @@ export const publicProjects: PublicProject[] = [
     stage: "In development",
   },
 ];
+/**
+ * Names and broad descriptions approved for the public CV/Projects page.
+ * The GitHub repositories are PRIVATE as checked through the connected account.
+ * No outcomes, technical configurations, acceptance claims or code links are shown.
+ */
+export type OngoingProject = {
+  name: string;
+  category: PublicProject["category"];
+  icon: string;
+  description: string;
+  question: string;
+  tags: string[];
+  stage: "Private research";
+};
+export const ongoingProjects: OngoingProject[] = [
+  {
+    name: "U-SMASH", category: "Software engineering", icon: "↗",
+    description: "Research on source-aware uncertainty in repository-level software repair workflows.",
+    question: "Which stage of a repair workflow creates uncertainty, and when is further checking warranted?",
+    tags: ["Software repair", "Uncertainty", "Verification"],
+    stage: "Private research",
+  },
+  {
+    name: "UOpenAI / U-PROVE", category: "Uncertainty & reasoning", icon: "∴",
+    description: "Investigation of uncertainty-informed review priorities for AI-generated mathematical proofs.",
+    question: "Can uncertainty help prioritize independent verification of proof steps?",
+    tags: ["Mathematical reasoning", "Verification", "Calibration"],
+    stage: "Private research",
+  },
+  {
+    name: "NMI · Epistemic Conservation", category: "Trustworthy AI", icon: "◇",
+    description: "An exploratory study of whether AI systems become more confident without receiving new evidence.",
+    question: "Can evidence-preserving transformations reveal unjustified confidence gains?",
+    tags: ["Evidence", "Confidence", "Reliability"],
+    stage: "Private research",
+  },
+  {
+    name: "TrajUQ", category: "Uncertainty & reasoning", icon: "◎",
+    description: "Research into trajectory-aware uncertainty for diffusion language models.",
+    question: "Can generation trajectories help identify risky predictions and guide selective inference?",
+    tags: ["Diffusion language models", "Calibration", "Selective generation"],
+    stage: "Private research",
+  },
+];
+
 export const publicProjectUrl = (repo: string) => `https://github.com/Rocky5502/${encodeURIComponent(repo)}`;
