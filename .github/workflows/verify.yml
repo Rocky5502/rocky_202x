@@ -26,6 +26,8 @@ jobs:
         run: bun run build
       - name: Enforce production Content Security Policy
         run: node scripts/harden-dist.cjs
+      - name: Run first-party security baseline
+        run: node scripts/security-audit.cjs
       - name: Enforce deployed portrait image budget
         run: |
           python3 -m venv .image-env
