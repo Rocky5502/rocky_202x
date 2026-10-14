@@ -84,7 +84,7 @@ export const publicProjects: PublicProject[] = [
 ];
 /**
  * Names and broad descriptions approved for the public CV/Projects page.
- * The GitHub repositories are PRIVATE as checked through the connected account.
+ * The named GitHub research repositories are PRIVATE as checked through the connected account.
  * No outcomes, technical configurations, acceptance claims or code links are shown.
  */
 export type OngoingProject = {
@@ -123,6 +123,13 @@ export const ongoingProjects: OngoingProject[] = [
     description: "Research into trajectory-aware uncertainty for diffusion language models.",
     question: "Can generation trajectories help identify risky predictions and guide selective inference?",
     tags: ["Diffusion language models", "Calibration", "Selective generation"],
+    stage: "Private research",
+  },
+  {
+    name: "U-FLOW", category: "Trustworthy AI", icon: "≈",
+    description: "Explores uncertainty propagation across AI-agent interactions and risk-aware verification in multi-agent workflows.",
+    question: "When can an agent detect spreading errors and choose a safer verification strategy?",
+    tags: ["Multi-agent systems", "Uncertainty propagation", "Verification"],
     stage: "Private research",
   },
 ];
