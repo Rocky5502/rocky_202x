@@ -16,6 +16,7 @@ const routes = [
   ["/recognition", "Recognition & talks"],
   ["/awards", "Awards & Appreciation"],
   ["/news", "News & milestones"],
+  ["/notes/ten-rules-phd-research-ai", "In Love with the Unknown"],
   ["/connect", "Opportunities & support"],
   ["/cv", "CV & Skills"],
   ["/cv/education", "Education"],
@@ -281,7 +282,7 @@ async function auditA11y(page, route) {
       ["/research","研究方向与项目"], ["/publications","学术成果"],
       ["/projects","科研项目"], ["/service","学术服务"],
       ["/recognition","荣誉与学术交流"], ["/awards","荣誉与表彰"],
-      ["/news","新闻与科研里程碑"], ["/connect","合作机会与科研支持"],
+      ["/news","新闻与科研里程碑"], ["/notes/ten-rules-phd-research-ai","热爱未知"], ["/connect","合作机会与科研支持"],
       ["/cv","学术履历与技能"], ["/cv/education","教育经历"],
       ["/cv/skills","科研与技术能力"], ["/cv/languages","编程语言与交流语言"]
     ];
