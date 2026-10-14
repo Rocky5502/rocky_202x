@@ -30,6 +30,8 @@ jobs:
         run: bun run build
       - name: Enforce production Content Security Policy
         run: node scripts/harden-dist.cjs
+      - name: Run first-party security baseline
+        run: node scripts/security-audit.cjs
       - name: Optimize production image before real browser tests
         run: |
           python3 -m venv .image-env
