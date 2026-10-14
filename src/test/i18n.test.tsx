@@ -45,7 +45,7 @@ describe("professional Simplified Chinese localization", () => {
     expect(screen.getByRole("heading", { name: "在研项目 · 私有" })).toBeInTheDocument();
     expect(document.querySelectorAll(".ongoing-project-card")).toHaveLength(4);
     expect(document.querySelector(".project-overview")).toHaveTextContent("4项研究预览");
-    const coder = screen.getByRole("heading", { name: "OpenCoder", exact: true }).closest("article");
+    const coder = screen.getByRole("heading", { name: /^OpenCoder$/ }).closest("article");
     expect(coder).toHaveTextContent("代码整理版即将发布");
     expect(document.querySelector(".ongoing-project-card a")).toBeNull();
   });
