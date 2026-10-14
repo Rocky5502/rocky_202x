@@ -36,5 +36,8 @@ export const researchSupport = {
   googlePayHelp: "https://support.google.com/googlepay/answer/12429287?hl=en",
   googlePayAvailability: "Google Pay personal transfers are region-dependent. An email address alone is not a universal Google Pay payment identifier. Contact me to confirm a supported and verified recipient method before sending any funds.",
   googlePayStatus: "Recipient details available on request — no direct Google Pay payment link",
+  wechatRecipient: "Rocky 文浩 (***R)",
+  wechatHelp: "Owner-provided personal WeChat Pay QR code. Check the recipient shown inside WeChat Pay before confirming a transfer. Availability and transfer permissions vary by region.",
+
 
 } as const;
