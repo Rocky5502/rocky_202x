@@ -8,7 +8,7 @@ import { newsItems } from "@/data/news";
 import { awardsArchive } from "@/data/awards";
 import { researchAreas } from "@/data/portfolio";
 import { researchSkills } from "@/data/cv";
-import { publicProjects } from "@/data/projects";
+import { publicProjects, ongoingProjects } from "@/data/projects";
 
 beforeEach(() => {
   window.localStorage.removeItem("portfolio-language");
@@ -32,6 +32,22 @@ describe("professional Simplified Chinese localization", () => {
       expect(translateText(project.description, "zh-CN")).not.toBe(project.description);
       expect(translateText(project.question, "zh-CN")).not.toBe(project.question);
     }
+    for (const project of ongoingProjects) {
+      expect(translateText(project.description,"zh-CN")).not.toBe(project.description);
+      expect(translateText(project.question,"zh-CN")).not.toBe(project.question);
+    }
+  });
+
+  it("localizes private research previews and OpenCoder code-release state", async () => {
+    renderAt("/projects");
+    fireEvent.click(screen.getByRole("button", { name: "Switch website to Simplified Chinese" }));
+    await waitFor(() => expect(screen.getByRole("heading", { name: "科研项目" })).toBeInTheDocument());
+    expect(screen.getByRole("heading", { name: "在研项目 · 私有" })).toBeInTheDocument();
+    expect(document.querySelectorAll(".ongoing-project-card")).toHaveLength(4);
+    expect(document.querySelector(".project-overview")).toHaveTextContent("4项研究预览");
+    const coder = screen.getByRole("heading", { name: "OpenCoder", exact: true }).closest("article");
+    expect(coder).toHaveTextContent("代码整理版即将发布");
+    expect(document.querySelector(".ongoing-project-card a")).toBeNull();
   });
 
   it("provides authored Chinese for all original news narratives and award titles", () => {
