@@ -42,6 +42,12 @@ const cvSections = [
     description: "Explore selected academic presentations and the separate, year-by-year Awards & Appreciation archive.",
     stat: "Talks & awards archive",
   },
+  {
+    to: "/projects", icon: GitBranch, index: "05",
+    label: "Projects", meta: "Open code · Experiments · Benchmarks",
+    description: "Browse public research repositories, source code, and reproducibility artifacts in the existing Projects directory.",
+    stat: "Public research repositories",
+  },
 ] as const;
 
 function CVHeader({ section, title, subtitle }: { section?: string; title: string; subtitle: string }) {
@@ -79,7 +85,7 @@ function CVLinkedItem({ to, icon: Icon, label, note }: {
 export default function CVPage() {
   return <div className="content-wrap interior-page cv-page cv-overview">
     <CVHeader title="CV & Skills"
-      subtitle="A concise academic profile. Explore education, research skills, languages, or recognition through separate sections."/>
+      subtitle="A concise academic profile. Explore education, research skills, languages, recognition, and open projects through separate sections."/>
     <div className="cv-profile-line">
       <div><p className="eyebrow">Current position</p><strong>Doctoral Researcher</strong><span>Software Engineering & AI · Beihang University</span><p className="cv-origin-note">From Nepal · Chinese Government Scholarship recipient</p></div>
       <div className="cv-profile-links">
@@ -95,23 +101,21 @@ export default function CVPage() {
       <div className="cv-layer-grid">{cvSections.map(item => {
         const Icon = item.icon;
         return <Link className="cv-layer-card" to={item.to} key={item.to}>
-          <div className="cv-layer-top"><span className="cv-layer-icon"><Icon size={24} strokeWidth={1.4} aria-hidden="true"/></span><span>{item.index} / 04</span></div>
+          <div className="cv-layer-top"><span className="cv-layer-icon"><Icon size={24} strokeWidth={1.4} aria-hidden="true"/></span><span>{item.index} / 05</span></div>
           <span className="cv-layer-meta">{item.meta}</span>
           <h3>{item.label}</h3>
           <p>{item.description}</p>
           <div className="cv-layer-bottom"><span>{item.stat}</span><ArrowRight size={18} aria-hidden="true"/></div>
         </Link>;
       })}</div>
-      <p className="cv-editor-note">The CV is intentionally layered. Detailed education, technical skills and language information appear on their own pages; Recognition links to the existing talks and awards gateway.</p>
+      <p className="cv-editor-note">The CV is intentionally layered. Education, skills, and languages have dedicated pages; Recognition and Projects link to their existing sections without duplicating their records.</p>
     </section>
 
     <section className="cv-section cv-overview-footer" aria-labelledby="cv-related-heading">
       <div className="cv-section-head"><div><p className="eyebrow">More of my research profile</p><h2 id="cv-related-heading">Academic record</h2></div></div>
       <div className="cv-destinations">
         <CVLinkedItem to={cvLinks.publications} icon={BookOpen} label="Publications" note="Papers and academic preprints"/>
-        <CVLinkedItem to={cvLinks.projects} icon={GitBranch} label="Research projects" note="Public code and reproducible artifacts"/>
         <CVLinkedItem to={cvLinks.service} icon={ShieldCheck} label="Service" note="Peer review and volunteering"/>
-        <CVLinkedItem to={cvLinks.awards} icon={GraduationCap} label="Awards & appreciation" note="Original historical archive"/>
       </div>
     </section>
   </div>;
