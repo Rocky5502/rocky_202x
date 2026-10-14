@@ -69,14 +69,18 @@ describe("academic introduction and Web of Science search", () => {
 });
 
 describe("navigation usability", () => {
-  it("keeps Recognition off the top menu but available from the four-card CV overview", () => {
+  it("keeps Projects and Recognition inside the five-card CV overview, not the main menu", () => {
     render(<MemoryRouter initialEntries={["/cv"]}><PortfolioSite /></MemoryRouter>);
     const primary = screen.getByRole("navigation", { name: "Primary navigation" });
     expect(within(primary).queryByRole("link", { name: "Recognition" })).not.toBeInTheDocument();
+    expect(within(primary).queryByRole("link", { name: "Projects" })).not.toBeInTheDocument();
     expect(within(primary).getByRole("link", { name: "CV" })).toHaveAttribute("href", "/cv");
     const card = document.querySelector<HTMLAnchorElement>('a.cv-layer-card[href="/recognition"]');
     expect(card).not.toBeNull();
     expect(card).toHaveTextContent("Recognition");
+    const projectsCard = document.querySelector<HTMLAnchorElement>('a.cv-layer-card[href="/projects"]');
+    expect(projectsCard).not.toBeNull();
+    expect(projectsCard).toHaveTextContent("Projects");
   });
 
   it("updates document titles and descriptions for each section", () => {
@@ -97,6 +101,7 @@ describe("navigation usability", () => {
     const mobile = screen.getByRole("navigation", { name: "Mobile navigation" });
     expect(mobile).toBeInTheDocument();
     expect(within(mobile).queryByRole("link", { name: "Recognition" })).not.toBeInTheDocument();
+    expect(within(mobile).queryByRole("link", { name: "Projects" })).not.toBeInTheDocument();
     expect(within(mobile).getByRole("link", { name: "Home" })).toHaveFocus();
     const close = screen.getByRole("button", { name: "Close navigation" });
     expect(close).toHaveAttribute("aria-expanded", "true");
