@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { publications, conferenceRankings, identity } from "@/data/portfolio";
 import { opportunityTracks, researchSupport } from "@/data/opportunities";
-import { publicProjects, publicProjectUrl } from "@/data/projects";
+import { publicProjects, publicProjectUrl, ongoingProjects } from "@/data/projects";
 
 describe("public academic record", () => {
   it("uses distinct verified paper titles and public links", () => {
@@ -80,6 +80,31 @@ describe("public project curation", () => {
   });
 });
 
+
+describe("curated private research and OpenCoder release controls", () => {
+  it("describes exactly four approved private research projects without leaking links", () => {
+    expect(ongoingProjects.map(p => p.name)).toEqual([
+      "U-SMASH", "UOpenAI / U-PROVE", "NMI · Epistemic Conservation", "TrajUQ",
+    ]);
+    for (const project of ongoingProjects) {
+      expect(project.stage).toBe("Private research");
+      expect(project.description.length).toBeGreaterThan(40);
+      expect(project.question.length).toBeGreaterThan(30);
+      expect(project).not.toHaveProperty("repo");
+      expect(project).not.toHaveProperty("url");
+      expect(project).not.toHaveProperty("href");
+    }
+  });
+
+  it("preserves public OpenCoder identity while withholding its curated code-release action", () => {
+    const coder = publicProjects.find(p => p.name === "OpenCoder");
+    expect(coder?.repo).toBe("OpenCoder");
+    expect(coder?.release).toBe("coming-soon");
+    expect(coder?.stage).toBe("In development");
+    expect(publicProjects.filter(p => p.release === "coming-soon")).toHaveLength(1);
+    expect(publicProjects.length).toBe(9);
+  });
+});
 
 describe("professional opportunities and optional research support", () => {
   it("uses the exact recipient email supplied by the owner without inventing a payment account URL", () => {
