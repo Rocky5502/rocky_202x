@@ -79,7 +79,9 @@ async function auditA11y(page, route) {
     ok(await page.getByText("Advancing reliable AI through uncertainty, evidence, and verification.").count() === 1, "Homepage has new research-led headline");
     ok((await page.locator(".portrait-research-number").innerText()).trim() === "13", "Research record reports thirteen currently catalogued outputs, not invented 15+ papers");
     ok(await page.locator(".portrait-research-record").getAttribute("href") === "#/publications", "Research-output summary links to source-backed publication records");
-    ok((await page.locator(".portrait-research-record").innerText()).includes("Includes preprints, a book chapter & forthcoming work"), "Research-output category disclosure prevents treating every entry as a published paper");
+    ok((await page.locator(".portrait-research-record").innerText()).includes("13+"), "Research highlight displays 13+ catalogued works");
+    ok((await page.locator(".portrait-research-record").innerText()).includes("Research works"), "Research highlight uses a concise academically careful label");
+    ok(await page.locator(".portrait-research-record small").count() === 0, "Portrait research highlight has no publication-type caption");
     ok(await page.locator(".portrait-highlight-list li").count() === 6, "Portrait displays six compact academic highlights");
     ok((await page.locator(".portrait-highlight-list").innerText()).includes("2nd Place (Graduate) · ACM SRC, ASE 2025"), "ACM ASE 2025 Graduate SRC second-place award is present");
     ok(await page.locator(".portrait-highlight-list").innerText().then(t=>t.includes("Excellent Paper · AUA Postgraduate Forum")), "AUA highlight preserves actual Excellent Paper designation");
@@ -215,8 +217,8 @@ async function auditA11y(page, route) {
     await page.goto(url("/"), {waitUntil:"networkidle"});
     ok(await page.getByText(/来自尼泊尔 🇳🇵，自2018年4月起在中国学习和生活/).count() === 1, "Mandarin homepage uses formal name-free third-person biography");
     ok(!(await page.locator(".hero-description").innerText()).includes("Chandan Kumar Sah"), "Mandarin biography does not redundantly repeat the H1 name");
-    ok((await page.locator(".portrait-research-record").innerText()).includes("已收录科研成果"), "Research portfolio label has authored Mandarin translation");
-    ok((await page.locator(".portrait-research-record").innerText()).includes("含预印本、书籍章节及待刊成果"), "Mandarin research-output disclosure preserves evidence scope");
+    ok((await page.locator(".portrait-research-record").innerText()).includes("科研成果"), "Research works highlight has authored Mandarin translation");
+    ok(!(await page.locator(".portrait-research-record").innerText()).includes("预印本"), "Mandarin portrait highlight stays concise and does not list publication categories");
     ok(await page.locator(".portrait-highlight-list li").count() === 6, "Mandarin homepage preserves six academic highlights");
     ok((await page.locator(".portrait-highlight-list").innerText()).includes("ASE 2025 ACM 学生研究竞赛研究生组二等奖（第二名）"), "Mandarin ACM SRC ranking is correctly localized");
     ok(await page.locator(".portrait-highlight-list").innerText().then(t=>t.includes("亚洲大学联盟研究生论坛优秀论文奖")), "Mandarin award highlight correctly describes AUA Excellent Paper distinction");
