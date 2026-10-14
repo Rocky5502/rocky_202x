@@ -77,7 +77,7 @@ async function auditA11y(page, route) {
     ok(await page.getByText(/Originally from Nepal 🇳🇵 and based in China since April 2018/).count() === 1, "Homepage introduces researcher's background in formal third person without repeating name");
     ok(!(await page.locator(".hero-description").innerText()).includes("Chandan Kumar Sah"), "Name appears in H1, not redundantly in the introduction");
     ok(await page.getByText("Advancing reliable AI through uncertainty, evidence, and verification.").count() === 1, "Homepage has new research-led headline");
-    ok((await page.locator(".portrait-research-number").innerText()).trim() === "13", "Research record reports thirteen currently catalogued outputs, not invented 15+ papers");
+    ok((await page.locator(".portrait-research-number").innerText()).trim() === "13+", "Research record presents the supported 13+ scholarly-work count");
     ok(await page.locator(".portrait-research-record").getAttribute("href") === "#/publications", "Research-output summary links to source-backed publication records");
     ok((await page.locator(".portrait-research-record").innerText()).includes("13+"), "Research highlight displays 13+ catalogued works");
     ok((await page.locator(".portrait-research-record").innerText()).includes("Research works"), "Research highlight uses a concise academically careful label");
