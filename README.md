@@ -7,6 +7,8 @@ Designed for readers of research papers, potential collaborators, hiring committ
 
 **Quality audit:** [Browser, accessibility, mobile, routing & performance checks](docs/WEBSITE_QUALITY_AUDIT.md) — including reproducible GitHub Actions screenshots and measured production-image optimization.
 
+**Security review (14 October 2026):** [Detailed security audit and open advisory findings](docs/SECURITY_REVIEW_2026-10-14.md) · [Responsible disclosure](SECURITY.md). The production CSP, external-link checks, no-referrer policy, safe 404 routing and frozen modern Bun lockfile are enforced in CI. A separate high/critical dependency advisory job remains intentionally failing while build-tool advisories are addressed; a passing Pages deployment does not mean all advisories are resolved.
+
 **Engineering roadmap:** [Academic website senior-engineering master prompt](docs/ACADEMIC_WEBSITE_ENGINEERING_MASTER_PROMPT.md) — evidence-first priorities, release gates and bilingual UX rules.
 
 ## Pages
