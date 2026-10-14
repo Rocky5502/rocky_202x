@@ -297,5 +297,10 @@ export const zhContent: Record<string,string> = {
   "WeChat Pay receiving QR code supplied by the researcher": "研究者提供的微信支付个人收款二维码",
   "QR code recipient shown in the original screenshot": "原始截图显示的收款人",
   "Owner-provided personal WeChat Pay QR code. Check the recipient shown inside WeChat Pay before confirming a transfer. Availability and transfer permissions vary by region.": "本二维码由收款人提供。转账前请在微信支付中核对收款方身份；转账功能与使用限制因地区而异。",
-  "This is a personal payment code, not an embedded checkout or university donation portal.": "这是个人收款二维码，并非网站内嵌支付结算或大学官方捐赠平台。"
+  "This is a personal payment code, not an embedded checkout or university donation portal.": "这是个人收款二维码，并非网站内嵌支付结算或大学官方捐赠平台。",
+  "Explores uncertainty propagation across AI-agent interactions and risk-aware verification in multi-agent workflows.": "研究多智能体交互中的不确定性传播，以及根据风险采取核验措施的方法。",
+  "When can an agent detect spreading errors and choose a safer verification strategy?": "智能体何时能够识别正在传播的错误，并选择更安全的核验策略？",
+  "Multi-agent systems": "多智能体系统",
+  "Uncertainty propagation": "不确定性传播",
+  "Private research · Code not public": "私人研究 · 代码暂不公开"
 };
