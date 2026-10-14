@@ -260,6 +260,5 @@ export const zhContent: Record<string,string> = {
   "Excellent International Graduate · Beihang": "北京航空航天大学优秀国际毕业生",
   "Recognition details": "查看荣誉详情",
   "Researcher-reported": "研究者自述",
-  "Listed research outputs": "已收录科研成果",
-  "Includes preprints, a book chapter & forthcoming work": "含预印本、书籍章节及待刊成果"
+  "Research works": "科研成果"
 };
