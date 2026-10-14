@@ -22,6 +22,6 @@ jobs:
         with:
           bun-version: latest
       - name: Resolve the actual Bun production dependencies
-        run: bun install --ignore-scripts
+        run: bun install --ignore-scripts --frozen-lockfile
       - name: Fail on published high/critical production dependency advisories
         run: bun audit --prod --audit-level=high
