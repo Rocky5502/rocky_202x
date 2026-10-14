@@ -72,7 +72,7 @@ export const publicProjects: PublicProject[] = [
     description: "Experiments with retrieval-source quality and uncertainty in repository-level code generation.",
     question: "Which retrieved context makes generated code more reliable?",
     tags: ["Code", "RAG", "Uncertainty"],
-    stage: "Research artifact",
+    stage: "In development",
   },
   {
     name: "CL / EBF", repo: "CL_V1", category: "Trustworthy AI", icon: "⚖",
