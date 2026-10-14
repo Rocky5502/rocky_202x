@@ -2009,3 +2009,46 @@ html[lang="zh-CN"] .award-archive-card h3 { overflow-wrap: anywhere; }
   .portrait-research-record { grid-template-columns: 24px max-content minmax(0, 1fr) 15px; column-gap: 8px; }
   .portrait-research-description strong { font-size: 11px; }
 }
+
+/* Research directory: public artifacts and selectively announced private work. */
+.project-directory-section { margin-top: 26px; }
+.project-directory-section + .project-directory-section {
+  margin-top: 44px;
+  padding-top: 31px;
+  border-top: 1px solid var(--portfolio-rule);
+}
+.project-directory-section > h2 {
+  font: 400 clamp(22px, 2.5vw, 29px)/1.2 Georgia, "Times New Roman", serif;
+  letter-spacing: -.025em;
+  color: var(--portfolio-ink);
+}
+.project-directory-section > p {
+  max-width: 690px;
+  color: var(--portfolio-muted);
+  font-size: 12px;
+  line-height: 1.8;
+  margin: 9px 0 19px;
+}
+.project-release-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--portfolio-muted);
+  font-size: 12px;
+  font-weight: 620;
+  margin-top: 22px;
+  line-height: 1.5;
+}
+.ongoing-project-card {
+  background: var(--portfolio-panel);
+  border-style: dashed;
+}
+.ongoing-project-card .project-status {
+  background: var(--portfolio-soft);
+  letter-spacing: .01em;
+}
+.ongoing-project-card::after { display: none; }
+.ongoing-project-card:hover { transform: none; border-color: var(--portfolio-rule); }
+@media (max-width: 540px) {
+  .project-directory-section + .project-directory-section { margin-top: 31px; padding-top: 24px; }
+}
