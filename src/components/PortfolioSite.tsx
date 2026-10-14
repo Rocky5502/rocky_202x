@@ -297,10 +297,9 @@ function Home() {
           <p className="eyebrow">Selected highlights</p>
           <Link className="portrait-research-record" to="/publications">
             <span className="portrait-research-symbol" aria-hidden="true"><BookOpenCheck size={19} strokeWidth={1.45}/></span>
-            <span className="portrait-research-number">{publications.length}</span>
+            <span className="portrait-research-number">{publications.length}+</span>
             <span className="portrait-research-description">
-              <strong>Listed research outputs</strong>
-              <small>Includes preprints, a book chapter & forthcoming work</small>
+              <strong>Research works</strong>
             </span>
             <ArrowRight aria-hidden="true" size={15}/>
           </Link>
