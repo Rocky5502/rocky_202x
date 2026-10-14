@@ -37,6 +37,8 @@ jobs:
 
       - name: Build production assets
         run: bun run build
+      - name: Enforce production Content Security Policy
+        run: node scripts/harden-dist.cjs
 
       - name: Optimize deployment portrait and enforce image budget
         run: |
