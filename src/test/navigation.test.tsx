@@ -25,6 +25,37 @@ describe("research agenda", () => {
   });
 });
 
+describe("Projects directory, privacy and release status", () => {
+  it("keeps private research previews distinct from public repository cards", () => {
+    render(<MemoryRouter initialEntries={["/projects"]}><PortfolioSite /></MemoryRouter>);
+    expect(screen.getByRole("heading", { name: "Research projects", level: 1 })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Public research & code" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Ongoing research · private" })).toBeInTheDocument();
+    expect(document.querySelectorAll(".public-project-card:not(.ongoing-project-card)")).toHaveLength(9);
+    expect(document.querySelectorAll(".ongoing-project-card")).toHaveLength(4);
+    for (const card of Array.from(document.querySelectorAll(".ongoing-project-card"))) {
+      expect(card.querySelector("a")).toBeNull();
+      expect(card).toHaveTextContent("Code coming soon");
+    }
+    expect(screen.getByRole("heading", { name: "U-SMASH" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "UOpenAI / U-PROVE" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "NMI · Epistemic Conservation" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "TrajUQ" })).toBeInTheDocument();
+  });
+  it("replaces OpenCoder repository link with a non-clickable coming-soon notice", () => {
+    render(<MemoryRouter initialEntries={["/projects"]}><PortfolioSite /></MemoryRouter>);
+    const card = screen.getByRole("heading", { name: "OpenCoder", exact: true }).closest("article");
+    expect(card).not.toBeNull();
+    expect(card).toHaveTextContent("Code release coming soon");
+    expect(card?.querySelector('a[href*="/OpenCoder"]')).toBeNull();
+    expect(document.querySelectorAll('a.project-repo-link')).toHaveLength(8);
+    fireEvent.click(screen.getByRole("button", { name: "Trustworthy AI" }));
+    expect(document.querySelectorAll(".ongoing-project-card")).toHaveLength(1);
+    expect(screen.getByRole("heading", { name: "NMI · Epistemic Conservation" })).toBeInTheDocument();
+    expect(screen.queryByRole("heading", { name: "TrajUQ" })).not.toBeInTheDocument();
+  });
+});
+
 describe("academic introduction and Web of Science search", () => {
   const authorSearch = "https://www.webofscience.com/wos/author/author-search?state=%7B%7D";
 
