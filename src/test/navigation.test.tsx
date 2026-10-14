@@ -44,7 +44,7 @@ describe("Projects directory, privacy and release status", () => {
   });
   it("replaces OpenCoder repository link with a non-clickable coming-soon notice", () => {
     render(<MemoryRouter initialEntries={["/projects"]}><PortfolioSite /></MemoryRouter>);
-    const card = screen.getByRole("heading", { name: "OpenCoder", exact: true }).closest("article");
+    const card = screen.getByRole("heading", { name: /^OpenCoder$/ }).closest("article");
     expect(card).not.toBeNull();
     expect(card).toHaveTextContent("Code release coming soon");
     expect(card?.querySelector('a[href*="/OpenCoder"]')).toBeNull();
