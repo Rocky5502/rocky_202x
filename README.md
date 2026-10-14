@@ -17,7 +17,7 @@ Designed for readers of research papers, potential collaborators, hiring committ
 | --- | --- |
 | `/#/` | Research overview, selected publications and contact |
 | `/#/publications` | Papers with topic/type filters and correctly scoped CCF/ICORE venue ratings |
-| `/#/projects` | Nine public repository records and four separately labeled, unlinked private research previews |
+| `/#/projects` | Nine public repository records and five separately labeled, unlinked private research previews |
 | `/#/research` | Five research directions, including Software Engineering for AI and Trustworthy AI |
 | `/#/service` | Reviewing roles, volunteer activities, academic identities |
 | `/#/recognition` | Compact Awards & Appreciation entry point; selected academic talks |
@@ -76,7 +76,7 @@ The visually prominent-on-focus **Skip to content** link moves keyboard focus to
 
 The academic portfolio supports **English** (default) and **Simplified Chinese (zh-CN, standard Mandarin)** through a compact `中文 / EN` toggle next to the light/dark control. Translation works across the existing sections and hash-based URLs, with no external translation service, cookies or extra user tracking. The selected language is saved locally under `portfolio-language` and preserved on refresh and navigation. Visitors can also share an exact bilingual destination using `https://rocky5502.github.io/rocky_202x/?lang=zh-CN#/research` or `?lang=en#/cv`; an explicit URL language overrides the previous local preference, and toggling keeps route fragments and unrelated query parameters intact. The document language (`<html lang>`), metadata, screen-reader labels and placeholders follow the selection. Changing language preserves the reader's position.
 
-The Chinese experience includes researcher-authored translations of the **five research directions**, **nine curated public projects plus four ongoing private research previews**, **ten CV competencies**, the layered Education/Skills/Languages sections, the original **eleven News stories including full articles**, and titles for all **62 Awards records**. Source English records remain untouched; personal and institutional names, official paper titles, DOI/ORCID IDs and URLs retain their canonical spellings. Award organization names and published paper titles may intentionally appear in English when they are official names.
+The Chinese experience includes researcher-authored translations of the **five research directions**, **nine curated public projects plus five ongoing private research previews**, **ten CV competencies**, the layered Education/Skills/Languages sections, the original **eleven News stories including full articles**, and titles for all **62 Awards records**. Source English records remain untouched; personal and institutional names, official paper titles, DOI/ORCID IDs and URLs retain their canonical spellings. Award organization names and published paper titles may intentionally appear in English when they are official names.
 
 **Implementation:** `src/i18n/LanguageProvider.tsx` maintains a reversible translation view, using reviewed dictionaries in `src/i18n/zh-ui.ts`, `zh-content.ts`, `zh-archive.ts` and `zh-extras.ts`. The original English strings are preserved in memory for exact restoration on `EN` switch. No AI service is called at runtime and no archival source text is modified. All select options use stable English values even while the visible labels are translated; award and publication searches also accept Chinese queries. The layout switches to CJK-appropriate typography and collapses the navigation earlier for Chinese text.
 
@@ -122,7 +122,7 @@ Old links `/#/rocky-news` and `/#/updates` redirect to `/#/news`; GitHub Pages `
 
 ## Maintain the content
 
-Edit `src/data/portfolio.ts` for public profile details, the institutional contact address, the explicit PayPal recipient email, publication records, venue rankings, reviewing, volunteering, awards and talks. Edit `src/data/projects.ts` for the public GitHub directory and four approved private research previews. Private projects expose no links; OpenCoder displays Code release coming soon instead of an active code-release action. Each publication has an external reference, a year and a publication type; if publisher proceedings are not public yet, the event website is used and marked explicitly. Add papers only after checking the title, author list, venue, date and link against the publisher or arXiv. Do not classify workshop papers as main-conference papers or preprints as peer-reviewed papers.
+Edit `src/data/portfolio.ts` for public profile details, the institutional contact address, the explicit PayPal recipient email, publication records, venue rankings, reviewing, volunteering, awards and talks. Edit `src/data/projects.ts` for the public GitHub directory and five approved private research previews. Private research cards expose no repository links and state that code is not public. OpenCoder displays Code release coming soon instead of an active code-release action. Each publication has an external reference, a year and a publication type; if publisher proceedings are not public yet, the event website is used and marked explicitly. Add papers only after checking the title, author list, venue, date and link against the publisher or arXiv. Do not classify workshop papers as main-conference papers or preprints as peer-reviewed papers.
 
 **Google Scholar:** https://scholar.google.com/citations?user=PyH-zqygdCYC&hl=en
 
@@ -160,7 +160,7 @@ ICORE: https://portal.core.edu.au/conf-ranks/
 
 ## Current public research code
 
-The `/#/projects` directory separates **Public research & code** (nine public repositories) from **Ongoing research · private** (four owner-approved high-level previews: U-SMASH, UOpenAI / U-PROVE, NMI and TrajUQ). Private repositories were checked via the connected GitHub account; those cards expose **no URLs, internal code, unpublished experimental results or submission files**. These are research questions under active investigation, not promises of completed experiments or accepted papers.
+The `/#/projects` directory separates **Public research & code** (nine public repositories) from **Ongoing research · private** (five high-level research previews: U-SMASH, UOpenAI / U-PROVE, NMI, TrajUQ and U-FLOW). The named private GitHub repositories were checked via the connected GitHub account; those cards expose **no URLs, internal code, unpublished experimental results or submission files**. These are research questions under active investigation, not promises of completed experiments or accepted papers.
 
 OpenCoder itself has a public repository shell but is intentionally marked **Code release coming soon**. The project card does not provide a direct artifact-download action. Other public repositories retain their GitHub links.
 
