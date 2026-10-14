@@ -43,11 +43,13 @@ describe("professional Simplified Chinese localization", () => {
     fireEvent.click(screen.getByRole("button", { name: "Switch website to Simplified Chinese" }));
     await waitFor(() => expect(screen.getByRole("heading", { name: "科研项目" })).toBeInTheDocument());
     expect(screen.getByRole("heading", { name: "在研项目 · 私有" })).toBeInTheDocument();
-    expect(document.querySelectorAll(".ongoing-project-card")).toHaveLength(4);
-    expect(document.querySelector(".project-overview")).toHaveTextContent("4项研究预览");
+    expect(document.querySelectorAll(".ongoing-project-card")).toHaveLength(5);
+    expect(document.querySelector(".project-overview")).toHaveTextContent("5项研究预览");
     const coder = screen.getByRole("heading", { name: /^OpenCoder$/ }).closest("article");
     expect(coder).toHaveTextContent("代码整理版即将发布");
     expect(document.querySelector(".ongoing-project-card a")).toBeNull();
+    expect(screen.getByRole("heading", {name:"U-FLOW"})).toBeInTheDocument();
+    expect(screen.getAllByText("私人研究 · 代码暂不公开")).toHaveLength(5);
   });
 
   it("provides authored Chinese for all original news narratives and award titles", () => {
