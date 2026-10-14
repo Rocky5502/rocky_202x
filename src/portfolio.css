@@ -1594,7 +1594,7 @@ body { margin: 0; }
 }
 
 
-/* CV information architecture v3: four purposeful progressive-disclosure choices. */
+/* CV information architecture v4: five routes, balanced 3+2 desktop composition. */
 .cv-overview .cv-heading { padding-bottom: clamp(28px, 3vw, 42px); }
 .cv-profile-line {
   display: flex;
@@ -1618,7 +1618,9 @@ body { margin: 0; }
   border-bottom: 1px solid var(--portfolio-rule);
 }
 .cv-overview-section { padding-bottom: 56px; }
-.cv-layer-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 15px; }
+.cv-layer-grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 15px; }
+.cv-layer-grid > .cv-layer-card { grid-column: span 2; }
+.cv-layer-grid > .cv-layer-card:nth-last-child(-n+2) { grid-column: span 3; }
 .portfolio-shell a.cv-layer-card {
   display: flex; flex-direction: column;
   min-width: 0; min-height: 352px; padding: 28px 25px 25px;
@@ -1716,10 +1718,19 @@ body { margin: 0; }
 .cv-short-programme p { color: var(--portfolio-muted); font-size: 12px; margin-top: 8px !important; line-height: 1.7; }
 .portfolio-shell .cv-short-programme a { display: inline-flex; gap: 5px; align-items: center; margin-top: 12px; color: var(--portfolio-accent); font-weight: 600; font-size: 11px; }
 @media (max-width: 950px) {
+  .cv-layer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cv-layer-grid > .cv-layer-card,
+  .cv-layer-grid > .cv-layer-card:nth-last-child(-n+2) { grid-column: auto; }
+  .cv-layer-grid > .cv-layer-card:last-child {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: min(100%, calc(50% - 8px));
+  }
   .portfolio-shell a.cv-layer-card { min-height: 315px; }
 }
 @media (max-width: 670px) {
   .cv-layer-grid { grid-template-columns: 1fr; }
+  .cv-layer-grid > .cv-layer-card:last-child { grid-column: auto; width: 100%; }
   .portfolio-shell a.cv-layer-card { min-height: 0; }
   .cv-layer-meta { margin-top: 21px; }
   .cv-layer-card > p { margin-top: 12px !important; }
