@@ -268,6 +268,7 @@ function OngoingProjectCard({ project }: { project: OngoingProject }) {
 }
 
 function ProjectsPage() {
+  const { tr } = useLanguage();
   const categories = ["All projects", "Software engineering", "Uncertainty & reasoning", "Trustworthy AI"] as const;
   const [selected, setSelected] = useState<string>("All projects");
   const visible = selected === "All projects" ? publicProjects : publicProjects.filter(p => p.category === selected);
@@ -281,7 +282,7 @@ function ProjectsPage() {
     <div className="project-controls" role="group" aria-label="Filter projects by research topic">
       {categories.map(category => <button key={category} type="button" className={category === selected ? "project-filter selected" : "project-filter"} onClick={() => setSelected(category)} aria-pressed={category === selected}>{category}</button>)}
     </div>
-    <div className="project-overview"><span><span>{visible.length} public repositories</span><span> · </span><span>{ongoingVisible.length} research previews</span></span><ExternalLink href={identity.github}>View complete GitHub profile</ExternalLink></div>
+    <div className="project-overview"><span><span>{visible.length}{tr("public repositories")}</span><span> · </span><span>{ongoingVisible.length}{tr("research previews")}</span></span><ExternalLink href={identity.github}>View complete GitHub profile</ExternalLink></div>
     <section className="project-directory-section" aria-labelledby="public-research-heading">
       <h2 id="public-research-heading">Public research & code</h2>
       <p>Selected public repositories. OpenCoder's curated code release is marked coming soon rather than advertised as a ready artifact.</p>
