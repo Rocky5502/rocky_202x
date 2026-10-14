@@ -45,14 +45,17 @@ describe("layered academic CV", () => {
     expect(spokenLanguages).toEqual(["Nepali","English","Chinese","Hindi","Urdu","French"]);
   });
 
-  it("shows four clean entry cards on /cv without duplicating the Recognition or Awards archives", () => {
+  it("shows five click-through cards on /cv without duplicating Projects, Recognition or Awards archives", () => {
     renderAt("/cv");
     expect(screen.getByRole("heading", { name: "CV & Skills" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Choose a section" })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /01 \/ 04.*Education/ })).toHaveAttribute("href", "/cv/education");
-    expect(screen.getByRole("link", { name: /02 \/ 04.*Research & technical skills/ })).toHaveAttribute("href", "/cv/skills");
-    expect(screen.getByRole("link", { name: /03 \/ 04.*Programming & languages/ })).toHaveAttribute("href", "/cv/languages");
-    expect(screen.getByRole("link", { name: /04 \/ 04.*Recognition/ })).toHaveAttribute("href", "/recognition");
+    expect(screen.getByRole("link", { name: /01 \/ 05.*Education/ })).toHaveAttribute("href", "/cv/education");
+    expect(screen.getByRole("link", { name: /02 \/ 05.*Research & technical skills/ })).toHaveAttribute("href", "/cv/skills");
+    expect(screen.getByRole("link", { name: /03 \/ 05.*Programming & languages/ })).toHaveAttribute("href", "/cv/languages");
+    expect(screen.getByRole("link", { name: /04 \/ 05.*Recognition/ })).toHaveAttribute("href", "/recognition");
+    expect(screen.getByRole("link", { name: /05 \/ 05.*Projects/ })).toHaveAttribute("href", "/projects");
+    expect(document.querySelectorAll("a.cv-layer-card")).toHaveLength(5);
+    expect(screen.queryByRole("heading", { name: "Open research projects" })).not.toBeInTheDocument();
     expect(screen.queryByRole("heading", { name: "Selected talks" })).not.toBeInTheDocument();
     expect(screen.queryByRole("link", { name: "Explore the Awards & Appreciation archive" })).not.toBeInTheDocument();
     expect(screen.queryByRole("heading", { name: "University degrees" })).not.toBeInTheDocument();
@@ -63,6 +66,7 @@ describe("layered academic CV", () => {
     const order = within(nav).getAllByRole("link").map(x => x.textContent);
     expect(order.slice(-3)).toEqual(["News","Opportunities","CV"]);
     expect(order).not.toContain("Recognition");
+    expect(order).not.toContain("Projects");
   });
 
   it("keeps Recognition accessible as a genuine separate destination with its existing awards gateway", () => {
