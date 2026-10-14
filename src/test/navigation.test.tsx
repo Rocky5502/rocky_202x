@@ -32,15 +32,16 @@ describe("Projects directory, privacy and release status", () => {
     expect(screen.getByRole("heading", { name: "Public research & code" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Ongoing research · private" })).toBeInTheDocument();
     expect(document.querySelectorAll(".public-project-card:not(.ongoing-project-card)")).toHaveLength(9);
-    expect(document.querySelectorAll(".ongoing-project-card")).toHaveLength(4);
+    expect(document.querySelectorAll(".ongoing-project-card")).toHaveLength(5);
     for (const card of Array.from(document.querySelectorAll(".ongoing-project-card"))) {
       expect(card.querySelector("a")).toBeNull();
-      expect(card).toHaveTextContent("Code coming soon");
+      expect(card).toHaveTextContent("Private research · Code not public");
     }
     expect(screen.getByRole("heading", { name: "U-SMASH" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "UOpenAI / U-PROVE" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "NMI · Epistemic Conservation" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "TrajUQ" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "U-FLOW" })).toBeInTheDocument();
   });
   it("replaces OpenCoder repository link with a non-clickable coming-soon notice", () => {
     render(<MemoryRouter initialEntries={["/projects"]}><PortfolioSite /></MemoryRouter>);
@@ -50,8 +51,9 @@ describe("Projects directory, privacy and release status", () => {
     expect(card?.querySelector('a[href*="/OpenCoder"]')).toBeNull();
     expect(document.querySelectorAll('a.project-repo-link')).toHaveLength(8);
     fireEvent.click(screen.getByRole("button", { name: "Trustworthy AI" }));
-    expect(document.querySelectorAll(".ongoing-project-card")).toHaveLength(1);
+    expect(document.querySelectorAll(".ongoing-project-card")).toHaveLength(2);
     expect(screen.getByRole("heading", { name: "NMI · Epistemic Conservation" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "U-FLOW" })).toBeInTheDocument();
     expect(screen.queryByRole("heading", { name: "TrajUQ" })).not.toBeInTheDocument();
   });
 });
