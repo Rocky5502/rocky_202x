@@ -292,5 +292,10 @@ export const zhContent: Record<string,string> = {
   "Selective generation": "选择性生成",
   "Verification": "核验",
   "public repositories": "个公开代码仓库",
-  "research previews": "项研究预览"
+  "research previews": "项研究预览",
+  "Personal receiving QR · verify recipient": "个人收款二维码 · 请核实收款方",
+  "WeChat Pay receiving QR code supplied by the researcher": "研究者提供的微信支付个人收款二维码",
+  "QR code recipient shown in the original screenshot": "原始截图显示的收款人",
+  "Owner-provided personal WeChat Pay QR code. Check the recipient shown inside WeChat Pay before confirming a transfer. Availability and transfer permissions vary by region.": "本二维码由收款人提供。转账前请在微信支付中核对收款方身份；转账功能与使用限制因地区而异。",
+  "This is a personal payment code, not an embedded checkout or university donation portal.": "这是个人收款二维码，并非网站内嵌支付结算或大学官方捐赠平台。"
 };
