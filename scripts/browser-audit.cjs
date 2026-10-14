@@ -122,15 +122,16 @@ async function auditA11y(page, route) {
     ok(new URL(page.url()).hash === "#/projects", "CV Projects card opens the existing Projects directory");
     ok(await page.locator(".public-project-card").count() > 0, "Projects directory retains project cards");
     ok(await page.locator(".public-project-card:not(.ongoing-project-card)").count() === 9, "Public research section retains nine original repository entries");
-    ok(await page.locator(".ongoing-project-card").count() === 4, "Four appropriately labeled private research previews appear");
+    ok(await page.locator(".ongoing-project-card").count() === 5, "Five appropriately labeled private research previews appear");
     ok(await page.locator(".ongoing-project-card a").count() === 0, "No private research preview exposes a GitHub link");
-    ok(await page.locator(".ongoing-project-card").first().getByText("Code coming soon").isVisible(), "Private work shows a non-clickable code release notice");
+    ok(await page.locator(".ongoing-project-card").first().getByText("Private research · Code not public").isVisible(), "Private work explicitly does not promise public code");
     const openCoderCard = page.locator(".public-project-card").filter({has:page.getByRole("heading",{name:"OpenCoder",exact:true})});
     ok(await openCoderCard.getByText("Code release coming soon").count() === 1, "OpenCoder public-repository action is replaced with coming soon");
     ok(await openCoderCard.locator("a.project-repo-link").count() === 0, "OpenCoder does not display a misleading direct code-release action");
     await page.getByRole("button",{name:"Trustworthy AI",exact:true}).click();
-    ok(await page.locator(".ongoing-project-card").count() === 1, "Trustworthy AI filter narrows private previews");
+    ok(await page.locator(".ongoing-project-card").count() === 2, "Trustworthy AI filter shows NMI and U-FLOW as private previews");
     ok(await page.getByRole("heading",{name:"NMI · Epistemic Conservation"}).count() === 1, "NMI remains when Trustworthy AI is selected");
+    ok(await page.getByRole("heading",{name:"U-FLOW"}).count() === 1, "U-FLOW is included when Trustworthy AI is selected");
     await page.getByRole("button",{name:"All projects",exact:true}).click();
     await auditA11y(page,"projects-with-private-previews");
     await page.screenshot({path:path.join(directory,"projects-desktop.png"),fullPage:true});
@@ -291,8 +292,8 @@ async function auditA11y(page, route) {
       ok(await page.evaluate(() => document.documentElement.lang) === "zh-CN", "Mandarin preference persists across " + route);
     }
     await page.goto(url("/projects"), {waitUntil: "networkidle"});
-    ok(await page.locator(".ongoing-project-card").count() === 4, "Mandarin Projects page preserves four research previews");
-    ok((await page.locator(".ongoing-project-card").first().innerText()).includes("代码即将公开"), "Private project release notices translated into Mandarin");
+    ok(await page.locator(".ongoing-project-card").count() === 5, "Mandarin Projects page preserves five research previews");
+    ok((await page.locator(".ongoing-project-card").first().innerText()).includes("私人研究 · 代码暂不公开"), "Private code status translated into Mandarin without promise of publication");
     ok((await page.locator(".project-overview").innerText()).includes("项研究预览"), "Filtered private-research count localized in Mandarin");
     await page.goto(url("/news"), {waitUntil: "networkidle"});
     ok(await page.locator(".news-entry").count() === 11, "All eleven news items remain in the Chinese version");
