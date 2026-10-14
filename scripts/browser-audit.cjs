@@ -86,8 +86,9 @@ async function auditA11y(page, route) {
     });
     ok(await page.evaluate(() => !document.documentElement.dataset.cspProbe), "Chromium CSP blocks simulated inline script injection");
     const primaryNavigation = page.getByRole("navigation", {name: "Primary navigation"});
-    ok(await primaryNavigation.getByRole("link").count() === 8, "Top navigation contains eight entries after removing Recognition");
+    ok(await primaryNavigation.getByRole("link").count() === 7, "Top navigation contains seven entries after moving Recognition and Projects into CV");
     ok(await primaryNavigation.getByRole("link", {name: "Recognition", exact: true}).count() === 0, "Recognition does not appear in the top desktop navigation");
+    ok(await primaryNavigation.getByRole("link", {name: "Projects", exact: true}).count() === 0, "Projects does not appear in the top desktop navigation");
     ok(await page.getByText(/Originally from Nepal 🇳🇵 and based in China since April 2018/).count() === 1, "Homepage introduces researcher's background in formal third person without repeating name");
     ok(!(await page.locator(".hero-description").innerText()).includes("Chandan Kumar Sah"), "Name appears in H1, not redundantly in the introduction");
     ok(await page.getByText("Advancing reliable AI through uncertainty, evidence, and verification.").count() === 1, "Homepage has new research-led headline");
@@ -114,8 +115,14 @@ async function auditA11y(page, route) {
     ok(new URL(page.url()).hash === "#/cv/education", "Skip link preserves the active HashRouter route");
     ok(await page.evaluate(() => document.activeElement?.id === "main-content"), "Skip link moves focus to main content");
     await page.goto(url("/cv"), {waitUntil: "networkidle"});
-    ok(await page.locator("a.cv-layer-card").count() === 4, "CV overview has four interactive section cards");
+    ok(await page.locator("a.cv-layer-card").count() === 5, "CV overview has five interactive section cards");
     ok(await page.locator('a.cv-layer-card[href="#/recognition"]').count() === 1, "CV Recognition section reuses the existing Recognition route");
+    ok(await page.locator('a.cv-layer-card[href="#/projects"]').count() === 1, "CV Projects section links to the existing Projects route");
+    await page.locator('a.cv-layer-card[href="#/projects"]').click();
+    ok(new URL(page.url()).hash === "#/projects", "CV Projects card opens the existing Projects directory");
+    ok(await page.locator(".project-card").count() > 0, "Projects directory retains project cards");
+    ok(await page.getByRole("navigation", {name: "Projects breadcrumb"}).getByRole("link", {name: /Back to CV/}).getAttribute("href") === "#/cv", "Projects provides a breadcrumb back to CV");
+    await page.goto(url("/cv"), {waitUntil:"networkidle"});
     await page.locator('a.cv-layer-card[href="#/recognition"]').click();
     ok(new URL(page.url()).hash === "#/recognition", "CV Recognition card navigates to existing Recognition page");
     const backToCv = page.getByRole("navigation", {name: "Recognition breadcrumb"}).getByRole("link", {name: /Back to CV/});
@@ -204,6 +211,7 @@ async function auditA11y(page, route) {
     await menu.click();
     ok(await page.getByRole("navigation", {name: "Mobile navigation"}).isVisible(), "Mobile menu opens");
     ok(await page.getByRole("navigation", {name: "Mobile navigation"}).getByRole("link", {name: "Recognition", exact: true}).count() === 0, "Recognition absent from mobile menu");
+    ok(await page.getByRole("navigation", {name: "Mobile navigation"}).getByRole("link", {name: "Projects", exact: true}).count() === 0, "Projects absent from mobile menu");
     await page.keyboard.press("Escape");
     ok(await page.getByRole("navigation", {name: "Mobile navigation"}).count() === 0, "Escape closes mobile menu");
     ok(await menu.evaluate(node => document.activeElement === node), "Escape returns keyboard focus to menu button");
