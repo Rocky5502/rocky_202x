@@ -32,7 +32,12 @@
       var routes = ["", "publications", "research", "projects", "service", "recognition", "awards", "cv", "cv/education", "cv/skills", "cv/languages", "news", "connect"];
       var route = Object.prototype.hasOwnProperty.call(aliases, relative) ? aliases[relative] : relative;
       if (routes.indexOf(route) < 0) route = "";
-      window.location.replace(base + "?from=direct-link#/" + route);
+      // Only preserve an explicitly supported locale; discard untrusted
+      // query parameters, while keeping the validated route allowlist.
+      var params = new URLSearchParams(window.location.search);
+      var language = params.get("lang");
+      var locale = language === "en" || language === "zh-CN" ? "&lang=" + encodeURIComponent(language) : "";
+      window.location.replace(base + "?from=direct-link" + locale + "#/" + route);
     })();
   </script>
   <style>
