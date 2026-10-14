@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import { publications, conferenceRankings, identity } from "@/data/portfolio";
 import { opportunityTracks, researchSupport } from "@/data/opportunities";
 import { publicProjects, publicProjectUrl, ongoingProjects } from "@/data/projects";
+import { wechatQrPath, wechatQrSize } from "@/data/wechatQr";
 
 describe("public academic record", () => {
   it("uses distinct verified paper titles and public links", () => {
@@ -107,6 +108,15 @@ describe("curated private research and OpenCoder release controls", () => {
 });
 
 describe("professional opportunities and optional research support", () => {
+  it("includes a scannable-sized owner-provided WeChat QR without external payment checkout", () => {
+    expect(wechatQrSize).toBe(45);
+    expect(wechatQrPath.startsWith("M")).toBe(true);
+    expect(wechatQrPath.length).toBeGreaterThan(1500);
+    expect(researchSupport.wechatRecipient).toContain("Rocky 文浩");
+    expect(researchSupport.wechatHelp).toContain("Check the recipient");
+    expect(researchSupport.disclaimer).toContain("personal");
+  });
+
   it("uses the exact recipient email supplied by the owner without inventing a payment account URL", () => {
     expect(identity.paypalEmail).toBe("sahchandan98@gmail.com");
     expect(identity.email).toBe("sahchandan98@buaa.edu.cn");
