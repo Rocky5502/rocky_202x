@@ -10,6 +10,7 @@ import { publicProjects, publicProjectUrl, ongoingProjects, type PublicProject, 
 import { NewsPage, NewsPreview } from "@/components/NewsComponents";
 import { AwardsInvitation, AwardsPage } from "@/components/AwardsComponents";
 import CVPage, { CVEducationPage, CVSkillsPage, CVLanguagesPage } from "@/components/CVPage";
+import ResearchRulesArticle, { researchRulesPath } from "@/components/ResearchRulesArticle";
 import { LanguageProvider, useLanguage } from "@/i18n/LanguageProvider";
 import { opportunityTracks, researchSupport } from "@/data/opportunities";
 import { wechatQrPath, wechatQrSize } from "@/data/wechatQr";
@@ -23,6 +24,7 @@ const navigation = [
   { to: "/research", label: "Research" },
   { to: "/service", label: "Service" },
   { to: "/news", label: "News" },
+  { to: researchRulesPath, label: "Notes" },
   { to: "/connect", label: "Opportunities" },
   { to: "/cv", label: "CV" },
 ];
@@ -83,6 +85,10 @@ const routeMetadata: Record<string, { title: string; description: string }> = {
   "/news": {
     title: "News & Milestones | Chandan Kumar Sah",
     description: "Chronological academic news, research milestones, scholarly recognition, and the latest publication announcements.",
+  },
+  [researchRulesPath]: {
+    title: "In Love with the Unknown | My 10 Rules for PhD Research in the Age of AI",
+    description: "A personal research manifesto by Chandan Kumar Sah, written in Beijing on October 15, 2026: ten rules for doing rigorous, independent PhD research in the age of AI.",
   },
   "/connect": {
     title: "Opportunities & Support | Chandan Kumar Sah",
@@ -191,6 +197,7 @@ function Footer() {
           <ExternalLink href={identity.github}>GitHub</ExternalLink>
           <ExternalLink href={identity.webOfScienceSearch}>Web of Science Author Search</ExternalLink>
           <Link to="/news">News</Link>
+          <Link to={researchRulesPath}>Research notes</Link>
           <Link to="/connect">Opportunities</Link>
           <Link to="/cv">CV & Skills</Link>
           <a href={`mailto:${identity.email}`}>Email</a>
@@ -347,6 +354,13 @@ function Home() {
     <section className="home-about content-wrap section-divider">
       <div><p className="eyebrow">Research statement</p><h2>Reliable systems begin with knowing their limits.</h2></div>
       <div className="home-about-text"><p>The central research question is how uncertainty can guide evidence retrieval, verification, and decision-making in language-model systems—particularly in software engineering, where incorrect outputs can have significant consequences.</p><p>Related research examines algorithmic fairness, agent safety, and multimodal applications, connecting reproducible empirical evaluation with dependable software systems.</p><Link className="text-action" to="/research">Research directions <ArrowRight size={17} /></Link></div>
+    </section>
+    <section className="content-wrap" aria-label="Personal research manifesto">
+      <div className="home-manifesto-feature">
+        <img src={portrait} alt="Portrait of Chandan Kumar Sah" loading="lazy" decoding="async" width="124" height="124" />
+        <div><p className="eyebrow">Personal writing · October 15, 2026</p><h2>In Love with the Unknown</h2><p>My 10 Rules for PhD Research in the Age of AI · Beijing, China</p></div>
+        <Link to={researchRulesPath}>Read the article <ArrowRight size={17} aria-hidden="true" /></Link>
+      </div>
     </section>
     <NewsPreview />
     <section className="content-wrap page-section section-divider">
@@ -614,6 +628,8 @@ function PortfolioLayout() {
       <Route path="/cv/languages" element={<CVLanguagesPage/>} />
       <Route path="/recognition/awards" element={<Navigate to="/awards" replace />} />
       <Route path="/news" element={<NewsPage/>} />
+      <Route path="/notes" element={<Navigate to={researchRulesPath} replace />} />
+      <Route path={researchRulesPath} element={<ResearchRulesArticle />} />
       <Route path="/connect" element={<ConnectPage/>} />
       <Route path="/opportunities" element={<Navigate to="/connect" replace />} />
       <Route path="/collaborate" element={<Navigate to="/connect" replace />} />
