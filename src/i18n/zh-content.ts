@@ -290,5 +290,7 @@ export const zhContent: Record<string,string> = {
   "Reliability": "可靠性",
   "Diffusion language models": "扩散语言模型",
   "Selective generation": "选择性生成",
-  "Verification": "核验"
+  "Verification": "核验",
+  "public repositories": "个公开代码仓库",
+  "research previews": "项研究预览"
 };
