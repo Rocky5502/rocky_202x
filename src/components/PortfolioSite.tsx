@@ -12,6 +12,7 @@ import { AwardsInvitation, AwardsPage } from "@/components/AwardsComponents";
 import CVPage, { CVEducationPage, CVSkillsPage, CVLanguagesPage } from "@/components/CVPage";
 import { LanguageProvider, useLanguage } from "@/i18n/LanguageProvider";
 import { opportunityTracks, researchSupport } from "@/data/opportunities";
+import { wechatQrPath, wechatQrSize } from "@/data/wechatQr";
 import "@/portfolio.css";
 
 const researchIcons = [BrainCircuit, Code2, ClipboardCheck, ShieldCheck, Scale] as const;
@@ -553,6 +554,24 @@ function ConnectPage() {
           <p className="copy-feedback" role="status">{copyStatus === "googlepay" ? "Contact email copied. This is not a verified Google Pay transfer ID." : copyStatus === "unavailable" ? "Select and copy the email above." : researchSupport.googlePayAvailability}</p>
           <a className="support-paypal-link" href={"mailto:" + identity.paypalEmail + "?subject=Google%20Pay%20support%20details"}>Ask for verified payment details <ArrowUpRight size={15} aria-hidden="true" /></a>
           <ExternalLink className="support-provider-guidelines" href={researchSupport.googlePayHelp}>Where Google Pay transfers are supported</ExternalLink>
+        </div>
+        <div className="support-details wechat-pay-details">
+          <div className="support-payment-heading">
+            <div className="wechat-pay-mark" aria-hidden="true">微</div>
+            <div><strong>WeChat Pay · 微信支付</strong><p>Personal receiving QR · verify recipient</p></div>
+          </div>
+          <div className="wechat-pay-content">
+            <svg className="wechat-pay-qr" viewBox={`0 0 ${wechatQrSize} ${wechatQrSize}`} role="img" aria-label="WeChat Pay receiving QR code supplied by the researcher" shapeRendering="crispEdges">
+              <rect width={wechatQrSize} height={wechatQrSize} fill="#fff" />
+              <path d={wechatQrPath} fill="#101010" />
+            </svg>
+            <div className="wechat-pay-explanation">
+              <p className="support-email-label">QR code recipient shown in the original screenshot</p>
+              <strong>{researchSupport.wechatRecipient}</strong>
+              <p>{researchSupport.wechatHelp}</p>
+              <p className="small-note">This is a personal payment code, not an embedded checkout or university donation portal.</p>
+            </div>
+          </div>
         </div>
       </div>
           <p className="support-disclaimer">{researchSupport.disclaimer} The PayPal recipient and Google Pay transfer arrangements have not been independently verified. An email address is not a universal Google Pay transfer ID. No embedded checkout or payment tracking is used.</p>
