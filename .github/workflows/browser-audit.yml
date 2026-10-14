@@ -28,6 +28,8 @@ jobs:
         run: bun install
       - name: Build production site
         run: bun run build
+      - name: Enforce production Content Security Policy
+        run: node scripts/harden-dist.cjs
       - name: Optimize production image before real browser tests
         run: |
           python3 -m venv .image-env
