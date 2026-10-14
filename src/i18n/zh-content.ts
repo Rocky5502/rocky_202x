@@ -260,5 +260,10 @@ export const zhContent: Record<string,string> = {
   "Excellent International Graduate · Beihang": "北京航空航天大学优秀国际毕业生",
   "Recognition details": "查看荣誉详情",
   "Researcher-reported": "研究者自述",
-  "Research works": "科研成果"
+  "Research works": "科研成果",
+  "A concise academic profile. Explore education, research skills, languages, recognition, and open projects through separate sections.": "简明的学术履历概览：教育经历、科研能力、语言、学术荣誉与开源科研项目，分别按需浏览。",
+  "Open code · Experiments · Benchmarks": "开源代码 · 实验系统 · 评测基准",
+  "Browse public research repositories, source code, and reproducibility artifacts in the existing Projects directory.": "浏览现有科研项目目录中的公开代码仓库、源代码和可复现研究成果。",
+  "The CV is intentionally layered. Education, skills, and languages have dedicated pages; Recognition and Projects link to their existing sections without duplicating their records.": "学术履历采用分层设计：教育、技能和语言设有独立页面；荣誉与科研项目直接链接已有栏目，不重复展示内容。",
+  "An academic CV with Education, Research & Technical Skills, Languages, Recognition, and Open Research Projects.": "学术履历涵盖教育经历、科研与技术能力、语言、荣誉及开源科研项目。"
 };
