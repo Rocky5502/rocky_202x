@@ -1,8 +1,10 @@
-import { beforeEach, describe, expect, it } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { fireEvent, render, screen, within } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import PortfolioSite from "@/components/PortfolioSite";
 import { researchRulesPath } from "@/components/ResearchRulesArticle";
+
+Object.defineProperty(window, "scrollTo", { configurable: true, writable: true, value: vi.fn() });
 
 beforeEach(() => {
   window.localStorage.removeItem("portfolio-language");
