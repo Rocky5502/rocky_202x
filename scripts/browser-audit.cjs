@@ -120,7 +120,7 @@ async function auditA11y(page, route) {
     ok(await page.locator('a.cv-layer-card[href="#/projects"]').count() === 1, "CV Projects section links to the existing Projects route");
     await page.locator('a.cv-layer-card[href="#/projects"]').click();
     ok(new URL(page.url()).hash === "#/projects", "CV Projects card opens the existing Projects directory");
-    ok(await page.locator(".project-card").count() > 0, "Projects directory retains project cards");
+    ok(await page.locator(".public-project-card").count() > 0, "Projects directory retains project cards");
     ok(await page.getByRole("navigation", {name: "Projects breadcrumb"}).getByRole("link", {name: /Back to CV/}).getAttribute("href") === "#/cv", "Projects provides a breadcrumb back to CV");
     await page.goto(url("/cv"), {waitUntil:"networkidle"});
     await page.locator('a.cv-layer-card[href="#/recognition"]').click();
