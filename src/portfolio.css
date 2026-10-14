@@ -1954,7 +1954,7 @@ html[lang="zh-CN"] .award-archive-card h3 { overflow-wrap: anywhere; }
 /* Research-first portrait: one sourced portfolio measure before selected honors. */
 .portrait-research-record {
   display: grid !important;
-  grid-template-columns: 24px 35px minmax(0, 1fr) 15px;
+  grid-template-columns: 24px max-content minmax(0, 1fr) 15px;
   align-items: center;
   column-gap: 8px;
   min-width: 0;
@@ -1988,20 +1988,13 @@ html[lang="zh-CN"] .award-archive-card h3 { overflow-wrap: anywhere; }
   font-weight: 650;
   line-height: 1.4;
 }
-.portrait-research-description small {
-  color: var(--portfolio-muted);
-  font-size: 9px;
-  line-height: 1.45;
-  overflow-wrap: anywhere;
-}
 .portrait-highlight-list { margin-top: 13px; }
 @media (max-width: 800px) {
-  .portrait-research-record { grid-template-columns: 20px 30px minmax(0, 1fr) 14px; column-gap: 6px; }
+  .portrait-research-record { grid-template-columns: 20px max-content minmax(0, 1fr) 14px; column-gap: 6px; }
   .portrait-research-number { font-size: 29px; }
   .portrait-research-description strong { font-size: 10px; }
-  .portrait-research-description small { font-size: 9px; }
 }
 @media (max-width: 620px) {
-  .portrait-research-record { grid-template-columns: 24px 34px minmax(0, 1fr) 15px; column-gap: 8px; }
+  .portrait-research-record { grid-template-columns: 24px max-content minmax(0, 1fr) 15px; column-gap: 8px; }
   .portrait-research-description strong { font-size: 11px; }
 }
