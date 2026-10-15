@@ -11,6 +11,9 @@ import { NewsPage, NewsPreview } from "@/components/NewsComponents";
 import { AwardsInvitation, AwardsPage } from "@/components/AwardsComponents";
 import CVPage, { CVEducationPage, CVSkillsPage, CVLanguagesPage } from "@/components/CVPage";
 import ResearchRulesArticle, { researchRulesPath } from "@/components/ResearchRulesArticle";
+import RightQuestionsEssay, { questionsEssayPath } from "@/components/RightQuestionsEssay";
+import NotesIndex from "@/components/NotesIndex";
+import { nobelMeetingsCollage } from "@/assets/nobelMeetingsCollage";
 import { LanguageProvider, useLanguage } from "@/i18n/LanguageProvider";
 import { opportunityTracks, researchSupport } from "@/data/opportunities";
 import { wechatQrPath, wechatQrSize } from "@/data/wechatQr";
@@ -24,7 +27,7 @@ const navigation = [
   { to: "/research", label: "Research" },
   { to: "/service", label: "Service" },
   { to: "/news", label: "News" },
-  { to: researchRulesPath, label: "Notes" },
+  { to: "/notes", label: "Notes" },
   { to: "/connect", label: "Opportunities" },
   { to: "/cv", label: "CV" },
 ];
@@ -85,6 +88,14 @@ const routeMetadata: Record<string, { title: string; description: string }> = {
   "/news": {
     title: "News & Milestones | Chandan Kumar Sah",
     description: "Chronological academic news, research milestones, scholarly recognition, and the latest publication announcements.",
+  },
+  "/notes": {
+    title: "Personal Research Notes | Chandan Kumar Sah",
+    description: "Essays and personal reflections on scientific curiosity, uncertainty, and PhD research by Chandan Kumar Sah.",
+  },
+  [questionsEssayPath]: {
+    title: "Are We Asking the Right Questions? | Chandan Kumar Sah",
+    description: "A personal reflection dated March 25, 2026: from Nepal to academic encounters with Nobel laureates and the lifelong importance of asking better questions.",
   },
   [researchRulesPath]: {
     title: "In Love with the Unknown | My 10 Rules for PhD Research in the Age of AI | Chandan Kumar Sah",
@@ -197,7 +208,7 @@ function Footer() {
           <ExternalLink href={identity.github}>GitHub</ExternalLink>
           <ExternalLink href={identity.webOfScienceSearch}>Web of Science Author Search</ExternalLink>
           <Link to="/news">News</Link>
-          <Link to={researchRulesPath}>Research notes</Link>
+          <Link to="/notes">Research notes</Link>
           <Link to="/connect">Opportunities</Link>
           <Link to="/cv">CV & Skills</Link>
           <a href={`mailto:${identity.email}`}>Email</a>
@@ -360,6 +371,13 @@ function Home() {
         <img src={portrait} alt="Portrait of Chandan Kumar Sah" loading="lazy" decoding="async" width="124" height="124" />
         <div><p className="eyebrow">Personal writing · October 15, 2026</p><h2>In Love with the Unknown</h2><p>My 10 Rules for PhD Research in the Age of AI · Beijing, China</p></div>
         <Link to={researchRulesPath}>Read the article <ArrowRight size={17} aria-hidden="true" /></Link>
+      </div>
+    </section>
+    <section className="content-wrap" aria-label="Personal reflection on scientific curiosity">
+      <div className="home-manifesto-feature">
+        <img src={nobelMeetingsCollage} alt="Conference moments from the author’s Nobel laureate reflection" loading="lazy" decoding="async" width="124" height="124" />
+        <div><p className="eyebrow">Personal writing · March 25, 2026</p><h2>Are We Asking the Right Questions?</h2><p>A kid from Nepal, Nobel laureate encounters, and a lesson in curiosity.</p></div>
+        <Link to={questionsEssayPath}>Read the story <ArrowRight size={17} aria-hidden="true" /></Link>
       </div>
     </section>
     <NewsPreview />
@@ -628,7 +646,8 @@ function PortfolioLayout() {
       <Route path="/cv/languages" element={<CVLanguagesPage/>} />
       <Route path="/recognition/awards" element={<Navigate to="/awards" replace />} />
       <Route path="/news" element={<NewsPage/>} />
-      <Route path="/notes" element={<Navigate to={researchRulesPath} replace />} />
+      <Route path="/notes" element={<NotesIndex />} />
+      <Route path={questionsEssayPath} element={<RightQuestionsEssay />} />
       <Route path={researchRulesPath} element={<ResearchRulesArticle />} />
       <Route path="/connect" element={<ConnectPage/>} />
       <Route path="/opportunities" element={<Navigate to="/connect" replace />} />
