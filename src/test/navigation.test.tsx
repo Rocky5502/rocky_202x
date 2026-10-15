@@ -115,11 +115,16 @@ describe("academic service redesign", () => {
     expect(document.body).not.toHaveTextContent("Venue names below describe reviewing service");
     expect(document.body).not.toHaveTextContent("Reviewing venues are listed for professional recognition only");
     expect(screen.getByRole("heading", { name: "Memberships" })).toBeInTheDocument();
+    const serviceText = document.querySelector("main")?.textContent ?? "";
+    expect(serviceText.indexOf("Memberships")).toBeLessThan(serviceText.indexOf("Reviewer roles"));
     const membershipCards = document.querySelectorAll(".membership-item");
     expect(membershipCards).toHaveLength(2);
     expect(membershipCards[0]).toHaveTextContent("International Association for Safe & Ethical AI");
     expect(membershipCards[1]).toHaveTextContent("Association for Computing Machinery");
-    expect(document.querySelectorAll(".membership-logo img")).toHaveLength(2);
+    const logos = document.querySelectorAll<HTMLImageElement>(".membership-logo img");
+    expect(logos).toHaveLength(2);
+    expect(Array.from(logos).every(img=>img.getAttribute("src")?.includes("/associations/"))).toBe(true);
+    expect(Array.from(logos).every(img=>!img.src.includes("google.com"))).toBe(true);
     expect(document.querySelectorAll(".membership-actions a")).toHaveLength(4);
     expect(document.body).toHaveTextContent("Nov 2025 – Present");
     expect(document.body).toHaveTextContent("Jul 2024 – Present");
