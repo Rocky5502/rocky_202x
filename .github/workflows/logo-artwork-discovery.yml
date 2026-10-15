@@ -15,9 +15,9 @@ jobs:
           import re,html
           u="https://www.iaseai.org/"
           src=urlopen(Request(u,headers={"User-Agent":"Mozilla/5.0"}),timeout=15).read(800000).decode("utf-8","ignore")
-          for item in re.findall(r'<(?:link|img|meta)\\b[^>]*>',src,re.I|re.S):
+          for item in re.findall(r'<(?:link|img|meta)\b[^>]*>',src,re.I|re.S):
             if re.search(r'(icon|logo|og:image|image|preload|src=)',item,re.I):
-              print("CANDIDATE:",html.unescape(re.sub(r'\\s+',' ',item))[:900])
+              print("CANDIDATE:",html.unescape(re.sub(r'\s+',' ',item))[:900])
           for m in list(re.finditer("logo",src,re.I))[:8]:
-            print("LOGO_REF:",src[max(0,m.start()-140):m.start()+260].replace("\\n"," "))
+            print("LOGO_REF:",src[max(0,m.start()-140):m.start()+260].replace("\n"," "))
           PY
