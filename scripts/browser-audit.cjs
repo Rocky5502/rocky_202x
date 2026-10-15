@@ -204,10 +204,10 @@ async function auditA11y(page, route) {
     ok(await support.evaluate(node => !node.open), "Support closes cleanly again");
 
     await page.goto(url("/service"), {waitUntil:"networkidle"});
-    const wosLinks = page.getByRole("link", {name:"Web of Science Author Search"});
-    ok(await wosLinks.count() >= 1, "Academic service provides Web of Science author search");
-    ok((await wosLinks.first().getAttribute("href")) === "https://www.webofscience.com/wos/author/author-search?state=%7B%7D", "Web of Science link preserves owner-provided search URL");
-    ok(await page.getByText(/not a uniquely verified researcher profile/).count() === 1, "WoS search is not misrepresented as verified individual profile");
+    const wosLinks = page.getByRole("link", {name:"Web of Science Researcher Profile"});
+    ok(await wosLinks.count() >= 1, "Academic service provides the Web of Science Researcher Profile");
+    ok((await wosLinks.first().getAttribute("href")) === "https://www.webofscience.com/wos/author/record/JVY-7383-2024", "Web of Science direct profile link uses the author-provided ResearcherID");
+    ok(await page.getByText("Web of Science ResearcherID: JVY-7383-2024").count() === 1, "ResearcherID is visible as a distinct scholarly identifier");
 
     for (const width of [320, 375, 390, 768, 1024]) {
       await page.setViewportSize({width, height: 844});
