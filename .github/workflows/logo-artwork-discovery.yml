@@ -1,23 +1,50 @@
-name: Inspect public organization artwork
+name: Archive trusted small association artwork
 on:
   push:
     branches: ["fix/membership-first-logos-giscus-graceful-20261016"]
 permissions:
-  contents: read
+  contents: write
 jobs:
-  discover:
+  archive:
     runs-on: ubuntu-latest
     steps:
-      - name: Extract official icon and logo URLs
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/membership-first-logos-giscus-graceful-20261016
+          persist-credentials: true
+      - name: Store fixed local assets, validating image contents
         run: |
           python3 - <<'PY'
-          from urllib.request import Request,urlopen
-          import re,html
-          u="https://www.iaseai.org/"
-          src=urlopen(Request(u,headers={"User-Agent":"Mozilla/5.0"}),timeout=15).read(800000).decode("utf-8","ignore")
-          for item in re.findall(r'<(?:link|img|meta)\b[^>]*>',src,re.I|re.S):
-            if re.search(r'(icon|logo|og:image|image|preload|src=)',item,re.I):
-              print("CANDIDATE:",html.unescape(re.sub(r'\s+',' ',item))[:900])
-          for m in list(re.finditer("logo",src,re.I))[:8]:
-            print("LOGO_REF:",src[max(0,m.start()-140):m.start()+260].replace("\n"," "))
+          from urllib.request import urlopen, Request
+          from pathlib import Path
+          import struct
+          dest=Path("src/assets/associations")
+          dest.mkdir(parents=True,exist_ok=True)
+          assets=[
+            ("iaseai.png","https://www.iaseai.org/favicon.png"),
+            ("acm.svg","https://raw.githubusercontent.com/glincker/thesvg/main/public/icons/acm/default.svg"),
+          ]
+          for name,url in assets:
+            blob=urlopen(Request(url,headers={"User-Agent":"Research-portfolio-web-assets/1.0"}),timeout=20).read()
+            if name.endswith(".png"):
+              assert blob[:8]==b"\\x89PNG\\r\\n\\x1a\\n", "Not a PNG"
+              w,h=struct.unpack(">II",blob[16:24])
+              assert w>=32 and h>=32, (w,h)
+              print("Official IASEAI site favicon",w,h,"bytes",len(blob),flush=True)
+            else:
+              assert b"<svg" in blob[:400] and len(blob)<30000, "Not a small svg"
+              print("ACM CC0 SVG bytes",len(blob),flush=True)
+            assert len(blob)<100000
+            (dest/name).write_bytes(blob)
           PY
+      - name: Commit reviewed local image files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/assets/associations/iaseai.png src/assets/associations/acm.svg
+          if git diff --cached --quiet; then
+            echo "Assets already archived"
+          else
+            git commit -m "assets: store first-party IASEAI favicon and ACM CC0 logo locally"
+            git push origin HEAD:fix/membership-first-logos-giscus-graceful-20261016
+          fi
