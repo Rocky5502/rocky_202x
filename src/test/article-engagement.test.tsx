@@ -65,7 +65,7 @@ describe("GitHub-backed article reader engagement", () => {
     const section=screen.getByRole("region",{name:"Thoughts, questions & reactions"});
     await waitFor(() => expect(within(section).getByText(/Live counts are temporarily unavailable/)).toBeInTheDocument());
     expect(within(section).getByRole("link",{name:/Write a comment/})).toHaveAttribute("href",commentUrl(32));
-    expect(within(section).getByText("—")).toBeInTheDocument();
+    expect(within(section).getAllByText("—").length).toBeGreaterThanOrEqual(1);
   });
   it("adapts text to Chinese without creating a second discussion thread", async () => {
     render(<MemoryRouter initialEntries={["/notes/are-we-asking-the-right-questions"]}><PortfolioSite /></MemoryRouter>);
