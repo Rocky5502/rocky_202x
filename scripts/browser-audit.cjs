@@ -17,6 +17,12 @@ const routes = [
   ["/awards", "Awards & Appreciation"],
   ["/news", "News & milestones"],
   ["/notes", "Notes from the Unknown"],
+  ["/notes/essays/the-boy-from-nepal-who-refused-to-stop-dreaming", "The Boy from Nepal Who Refused to Stop Dreaming"],
+  ["/notes/essays/the-experiments-that-failed", "The Experiments That Failed"],
+  ["/notes/essays/what-does-it-mean-to-be-a-scientist-in-the-age-of-ai", "In the Age of AI, What Does It Mean to Be a Scientist?"],
+  ["/notes/essays/why-i-choose-to-study-uncertainty", "Why I Choose to Study Uncertainty"],
+  ["/notes/essays/dear-younger-me-success-is-not-what-you-think", "Dear Younger Me: Success Is Not What You Think"],
+  ["/notes/essays/when-ai-says-i-know", "When AI Says"],
   ["/notes/are-we-asking-the-right-questions", "Are We Asking the Right Questions?"],
   ["/notes/ten-rules-phd-research-ai", "In Love with the Unknown"],
   ["/connect", "Opportunities & support"],
@@ -284,7 +290,8 @@ async function auditA11y(page, route) {
       ["/research","研究方向与项目"], ["/publications","学术成果"],
       ["/projects","科研项目"], ["/service","学术服务"],
       ["/recognition","荣誉与学术交流"], ["/awards","荣誉与表彰"],
-      ["/news","新闻与科研里程碑"], ["/notes","关于未知的笔记"], ["/notes/are-we-asking-the-right-questions","我们是否提出了正确的问题？"], ["/notes/ten-rules-phd-research-ai","热爱未知"], ["/connect","合作机会与科研支持"],
+      ["/news","新闻与科研里程碑"], ["/notes","关于未知的笔记"],
+      ["/notes/essays/the-boy-from-nepal-who-refused-to-stop-dreaming","那个不愿停止梦想的尼泊尔男孩"], ["/notes/essays/the-experiments-that-failed","那些失败的实验，以及它们教会我的事"], ["/notes/essays/what-does-it-mean-to-be-a-scientist-in-the-age-of-ai","在 AI 时代，成为科学家意味着什么？"], ["/notes/essays/why-i-choose-to-study-uncertainty","我为什么选择研究不确定性"], ["/notes/essays/dear-younger-me-success-is-not-what-you-think","致年少的自己：成功并不是你想象的那样"], ["/notes/essays/when-ai-says-i-know","当 AI 说“我知道”，我们应该相信吗？"],  ["/notes/are-we-asking-the-right-questions","我们是否提出了正确的问题？"], ["/notes/ten-rules-phd-research-ai","热爱未知"], ["/connect","合作机会与科研支持"],
       ["/cv","学术履历与技能"], ["/cv/education","教育经历"],
       ["/cv/skills","科研与技术能力"], ["/cv/languages","编程语言与交流语言"]
     ];

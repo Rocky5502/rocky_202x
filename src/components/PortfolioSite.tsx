@@ -13,6 +13,8 @@ import CVPage, { CVEducationPage, CVSkillsPage, CVLanguagesPage } from "@/compon
 import ResearchRulesArticle, { researchRulesPath } from "@/components/ResearchRulesArticle";
 import RightQuestionsEssay, { questionsEssayPath } from "@/components/RightQuestionsEssay";
 import NotesIndex from "@/components/NotesIndex";
+import ResearchEssayPage, { EssayThumbnail } from "@/components/SixResearchEssays";
+import { researchEssayRoutes } from "@/data/researchEssays";
 import { nobelMeetingsCollage } from "@/assets/nobelMeetingsCollage";
 import { LanguageProvider, useLanguage } from "@/i18n/LanguageProvider";
 import { opportunityTracks, researchSupport } from "@/data/opportunities";
@@ -113,14 +115,18 @@ const fallbackMetadata = {
 
 function RouteEffects() {
   const { pathname } = useLocation();
-  const { tr } = useLanguage();
+  const { tr, language } = useLanguage();
   useEffect(() => {
-    const details = routeMetadata[pathname] ?? fallbackMetadata;
+    const essay = researchEssayRoutes[pathname];
+    const details = routeMetadata[pathname] ?? (essay ? {
+      title: (language === "zh-CN" ? essay.zh.title : essay.title) + " | Chandan Kumar Sah",
+      description: language === "zh-CN" ? essay.zh.subtitle : essay.subtitle,
+    } : fallbackMetadata);
     document.title = tr(details.title);
     document.querySelector<HTMLMetaElement>('meta[name="description"]')?.setAttribute("content", tr(details.description));
     document.querySelector<HTMLMetaElement>('meta[property="og:title"]')?.setAttribute("content", tr(details.title));
     document.querySelector<HTMLMetaElement>('meta[property="og:description"]')?.setAttribute("content", tr(details.description));
-  }, [pathname, tr]);
+  }, [pathname, tr, language]);
   // Keep reading position when switching language; reset only on navigation.
   useEffect(() => { window.scrollTo({ top: 0, behavior: "instant" }); }, [pathname]);
   return null;
@@ -378,6 +384,13 @@ function Home() {
         <img src={nobelMeetingsCollage} alt="Conference moments from the author’s Nobel laureate reflection" loading="lazy" decoding="async" width="124" height="124" />
         <div><p className="eyebrow">Personal writing · March 25, 2026</p><h2>Are We Asking the Right Questions?</h2><p>A kid from Nepal, Nobel laureate encounters, and a lesson in curiosity.</p></div>
         <Link to={questionsEssayPath}>Read the story <ArrowRight size={17} aria-hidden="true" /></Link>
+      </div>
+    </section>
+    <section className="content-wrap" aria-label="Six new research essays">
+      <div className="home-manifesto-feature">
+        <EssayThumbnail index={0} label="AI uncertainty and confidence artwork" className="homepage-essay-thumb"/>
+        <div><p className="eyebrow">Scientific perspectives & personal essays · October 15, 2026</p><h2>Six essays on AI, research, and the journey from Nepal</h2><p>A reflective timeline from January 2025 through October 2026. All six essays published today, with their original illustrations.</p></div>
+        <Link to="/notes">Read all six essays <ArrowRight size={17} aria-hidden="true" /></Link>
       </div>
     </section>
     <NewsPreview />
@@ -647,6 +660,7 @@ function PortfolioLayout() {
       <Route path="/recognition/awards" element={<Navigate to="/awards" replace />} />
       <Route path="/news" element={<NewsPage/>} />
       <Route path="/notes" element={<NotesIndex />} />
+      <Route path="/notes/essays/:slug" element={<ResearchEssayPage />} />
       <Route path={questionsEssayPath} element={<RightQuestionsEssay />} />
       <Route path={researchRulesPath} element={<ResearchRulesArticle />} />
       <Route path="/connect" element={<ConnectPage/>} />
