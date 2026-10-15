@@ -27,7 +27,7 @@ jobs:
           for name,url in assets:
             blob=urlopen(Request(url,headers={"User-Agent":"Research-portfolio-web-assets/1.0"}),timeout=20).read()
             if name.endswith(".png"):
-              assert blob[:8]==b"\\x89PNG\\r\\n\\x1a\\n", "Not a PNG"
+              assert blob[:8]==b"\x89PNG\r\n\x1a\n", "Not a PNG"
               w,h=struct.unpack(">II",blob[16:24])
               assert w>=32 and h>=32, (w,h)
               print("Official IASEAI site favicon",w,h,"bytes",len(blob),flush=True)
