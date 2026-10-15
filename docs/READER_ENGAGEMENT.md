@@ -1,35 +1,35 @@
-# Embedded comments and reactions — on the article page
+# In-page article comments and likes
 
-This website is hosted on GitHub Pages. It does not require a custom server to embed a reliable moderated conversation: **GitHub Discussions is the persistent backend**, while [giscus](https://giscus.app/) supplies the comments, replies, and emoji reaction interface inside each article.
+## Production integration
 
-## Current activation state
+All eight Research Notes share one secure, directly embedded **giscus / GitHub Discussions** interaction system, with one discussion per article.
 
-**Prepared, but not active until the repository owner finishes GitHub setup.** As of October 15, 2026, Discussions on `Rocky5502/rocky_202x` is disabled, and no Discussions category ID is available. The live website therefore continues displaying the existing GitHub Issues comment/reaction fallback until setup is complete. Do not claim in-page posting works before this activation.
+- Repository: `Rocky5502/rocky_202x`
+- Repo node ID: `R_kgDOSeIGfg`
+- Discussion category: **Announcements**
+- Category ID: `DIC_kwDOSeIGfs4DIhO6` (retrieved 2026-10-15 through a GitHub Actions job running a GitHub GraphQL query with the repository's scoped `GITHUB_TOKEN`)
+- Mapping: `specific` with a unique fixed `Rocky Research Notes: /notes/...` term for each of the eight HashRouter paths.
+- Reactions: enabled, along with comments and replies.
+- Language: English or Chinese. Site theme: light or dark.
 
-## One-time owner setup (no passwords sent to assistants)
+The embedded widget loads on the article page. Unlike the retired Issues-based prototype, the website has **no buttons redirecting to GitHub Issues to leave a like or comment**. A Github sign-in popup may be required to participate. The login, data persistence, moderation, and reactions are managed by GitHub Discussions, so there are no secrets, pretend counts, or unprotected anonymous write endpoints in the public site.
 
-1. On [repository Settings → General](https://github.com/Rocky5502/rocky_202x/settings), under **Features**, enable **Discussions**.
-2. Install the verified free [giscus GitHub App](https://github.com/apps/giscus) and grant access to **only** `Rocky5502/rocky_202x`.
-3. Open [giscus configuration](https://giscus.app/), enter `Rocky5502/rocky_202x`, and choose the existing **Announcements** category. Use the category type that restricts new discussions to maintainers and applications; readers can still comment/reply/react.
-4. Send only the **category ID** (`DIC_...`), not any secret or OAuth code, to the website maintainer. Set `categoryId` in `src/data/giscusSettings.ts` to that ID. The known repository ID is `R_kgDOSeIGfg`.
-5. The next tested, merged GitHub Pages build activates the embedded widget for all eight articles. Check one English and one Chinese article using a regular reader account.
+## Important post-deployment verification
 
-## Expected reader experience after activation
+The category ID and repo Discussions enabled state have been confirmed by the repository's GraphQL API. A successful build **does not prove the giscus GitHub App was installed with repository permissions**, nor does it prove individual readers can log in and post. After deployment, visit one article, scroll to the embedded widget, and test a real 👍 and a comment while logged in. If giscus says the Discussions API is unavailable, the owner must confirm the [giscus GitHub App](https://github.com/apps/giscus) has access to this repo.
 
-- Beneath every article, click **Show comments and reactions**. The giscus widget loads in the page, not as a GitHub redirect.
-- Readers can click emojis, write comments, and reply without leaving the article. GitHub may open a temporary authentication window when a reader chooses to participate.
-- Reader identity and moderation are managed by GitHub. No visitor authentication token or secret is stored in this website's source.
-- The integration uses `data-mapping="specific"` and a stable term derived from the **React article route** (`Rocky Research Notes: /notes/...`). Never change this to `pathname`: GitHub Pages uses HashRouter, so all articles otherwise share `/rocky_202x/`.
-- The site supports a single discussion per article across English and Chinese; the iframe receives dark/light mode and language updates. The widget is click-to-load to avoid contacting a third party before reader consent.
-- Eight older Issue threads #31–38 have no reader comments as of creation. They are not silently migrated; keep them available in GitHub for historical continuity if needed.
+## Moderation and privacy
 
-## Security and moderation
+Discussed content is public on GitHub Discussions. The website does not store visitors' GitHub OAuth credentials. Moderators can manage spam and abusive replies through the repository's Discussions interface. The website restricts remote scripts/iframes via its CSP to `giscus.app`. No local browser-only likes are presented as global statistics.
 
-- Production Content Security Policy allows `https://giscus.app` for script and iframe; public `https://api.github.com` reads continue to support the legacy fallback. No `unsafe-inline` JavaScript, no wildcard origin, no client-side GitHub personal access tokens.
-- Readers sign in to GitHub when they engage. GitHub Discussions controls can hide, lock or remove spam and abusive messages.
-- A one-time GitHub App installation is explicit user authorization; automated tools cannot silently perform that action.
-- If the category ID is missing or invalid, the existing Issue-based fallback remains functional. Do not invent engagement counts or create an anonymous insecure write endpoint to replace it.
+The former eight GitHub Issues reader threads may remain archived in GitHub, but are not linked or requested by the website.
 
-## Tests
+## Maintaining the implementation
 
-Run `bun run test`, TypeScript checks, `scripts/security-audit.cjs` after production CSP injection, and Chromium accessibility/browser audit. The `giscus-discussion.test.tsx` suite covers per-article mapping, the activation gate, lazy iframe insertion, and reaction configuration.
+- `src/data/giscusSettings.ts` holds the public category and repo IDs.
+- `src/components/GiscusDiscussion.tsx` mounts the in-page widget and follows website language/theme.
+- `src/components/ArticleEngagement.tsx` attaches the widget to each article.
+- Regression tests: `src/test/article-engagement.test.tsx` and `src/test/giscus-discussion.test.tsx`.
+- Security policy: `scripts/harden-dist.cjs` and `scripts/security-audit.cjs`.
+
+Do not switch giscus to `pathname` mapping: GitHub Pages uses HashRouter, and that would collapse all articles into a single shared discussion.
