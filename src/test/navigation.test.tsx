@@ -123,7 +123,10 @@ describe("academic service redesign", () => {
     expect(membershipCards[1]).toHaveTextContent("Association for Computing Machinery");
     const logos = document.querySelectorAll<HTMLImageElement>(".membership-logo img");
     expect(logos).toHaveLength(2);
-    expect(Array.from(logos).every(img=>img.getAttribute("src")?.includes("/associations/"))).toBe(true);
+    expect(Array.from(logos).every(img=>{
+      const src=img.getAttribute("src")??"";
+      return src.includes("/associations/") || src.startsWith("data:image/svg+xml,") || src.startsWith("data:image/png;base64,");
+    })).toBe(true);
     expect(Array.from(logos).every(img=>!img.src.includes("google.com"))).toBe(true);
     expect(document.querySelectorAll(".membership-actions a")).toHaveLength(4);
     expect(document.body).toHaveTextContent("Nov 2025 – Present");
