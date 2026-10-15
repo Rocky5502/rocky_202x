@@ -92,7 +92,7 @@ export default function CVPage() {
         <a href={identity.scholar} target="_blank" rel="noopener noreferrer">Google Scholar <ArrowUpRight size={14} aria-hidden="true"/></a>
         <a href={identity.orcid} target="_blank" rel="noopener noreferrer">ORCID <ArrowUpRight size={14} aria-hidden="true"/></a>
         <a href={identity.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn <ArrowUpRight size={14} aria-hidden="true"/></a>
-        <a href={identity.webOfScienceSearch} target="_blank" rel="noopener noreferrer" title="Web of Science author search portal, not a verified personal author profile">Web of Science Author Search <ArrowUpRight size={14} aria-hidden="true"/></a>
+        <a href={identity.webOfScienceProfile} target="_blank" rel="noopener noreferrer" title="Web of Science researcher profile">Web of Science ResearcherID · {identity.researcherId} <ArrowUpRight size={14} aria-hidden="true"/></a>
       </div>
     </div>
 
