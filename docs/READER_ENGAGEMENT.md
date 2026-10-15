@@ -6,7 +6,7 @@ All eight Research Notes share one secure, directly embedded **giscus / GitHub D
 
 - Repository: `Rocky5502/rocky_202x`
 - Repo node ID: `R_kgDOSeIGfg`
-- Discussion category: **Announcements**
+- Discussion category: **Announcements** (the format recommended by Giscus for app-created, moderated discussion threads; regular users can comment but cannot independently create announcements)
 - Category ID: `DIC_kwDOSeIGfs4DIhO6` (retrieved 2026-10-15 through a GitHub Actions job running a GitHub GraphQL query with the repository's scoped `GITHUB_TOKEN`)
 - Mapping: `specific` with a unique fixed `Rocky Research Notes: /notes/...` term for each of the eight HashRouter paths.
 - Reactions: enabled, along with comments and replies.

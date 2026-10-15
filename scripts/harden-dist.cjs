@@ -47,4 +47,4 @@ if (!html.includes('<meta name="referrer" content="no-referrer"')) {
 }
 fs.writeFileSync(page, html, "utf8");
 console.log("Production browser security policy generated: inline JSON-LD SHA-256 pinned, other inline scripts blocked.");
-console.log("Third-party policy: giscus-only script/frame and read-only GitHub Issues API; no other remote connections or form posts.");
+console.log("Third-party policy: giscus-only script/frame and scoped read-only GitHub API connections; no other remote connections or form posts.");
