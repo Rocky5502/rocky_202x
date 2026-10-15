@@ -1,0 +1,28 @@
+name: Inspect public organization artwork
+on:
+  push:
+    branches: ["fix/membership-first-logos-giscus-graceful-20261016"]
+permissions:
+  contents: read
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Extract publicly available official site logo candidates
+        run: |
+          python3 - <<'PY'
+          from urllib.request import Request, urlopen
+          from urllib.parse import urljoin
+          import re, html
+          for site in ["https://www.iaseai.org/", "https://www.acm.org/"]:
+              print("SITE",site,flush=True)
+              try:
+                  r=urlopen(Request(site,headers={"User-Agent":"Mozilla/5.0"}),timeout=16)
+                  markup=r.read(1500000).decode("utf-8","ignore")
+                  sources=re.findall(r'<(?:img|link)[^>]{0,1200}>',markup,re.I)
+                  for src in sources:
+                      if re.search(r'logo|favicon|icon|brand|og:image|image\/svg|rel="shortcut',src,re.I):
+                          print("ASSET",html.unescape(src[:750]),flush=True)
+                  print("IMG_CANDIDATES",len(sources),flush=True)
+              except Exception as e:print("ERR",repr(e),flush=True)
+          PY
