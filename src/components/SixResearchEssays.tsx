@@ -4,6 +4,7 @@ import { useLanguage } from "@/i18n/LanguageProvider";
 import { essayPrefix, publishedLabel, publishedOn, researchEssays } from "@/data/researchEssays";
 import { essayCovers } from "@/assets/essayCovers";
 import NotesNavigation from "@/components/NotesNavigation";
+import ArticleEngagement from "@/components/ArticleEngagement";
 import "@/six-research-essays.css";
 
 export function EssayThumbnail({ index, label, className = "" }: { index: number; label: string; className?: string }) {
@@ -55,6 +56,7 @@ export default function ResearchEssayPage() {
           <button type="button" onClick={() => window.print()}><Printer size={15} aria-hidden="true" />{isZh ? "打印 / 保存" : "Print / Save as PDF"}</button>
         </div>
       </div>
+        <ArticleEngagement articlePath={essayPrefix + essay.slug} />
       <NotesNavigation currentPath={essayPrefix + essay.slug}/>
     </div>
   </article>;
