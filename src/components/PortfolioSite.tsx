@@ -15,7 +15,6 @@ import RightQuestionsEssay, { questionsEssayPath } from "@/components/RightQuest
 import NotesIndex from "@/components/NotesIndex";
 import ResearchEssayPage, { EssayThumbnail } from "@/components/SixResearchEssays";
 import { researchEssayRoutes } from "@/data/researchEssays";
-import { nobelMeetingsCollage } from "@/assets/nobelMeetingsCollage";
 import { LanguageProvider, useLanguage } from "@/i18n/LanguageProvider";
 import { opportunityTracks, researchSupport } from "@/data/opportunities";
 import { wechatQrPath, wechatQrSize } from "@/data/wechatQr";
@@ -372,25 +371,15 @@ function Home() {
       <div><p className="eyebrow">Research statement</p><h2>Reliable systems begin with knowing their limits.</h2></div>
       <div className="home-about-text"><p>The central research question is how uncertainty can guide evidence retrieval, verification, and decision-making in language-model systems—particularly in software engineering, where incorrect outputs can have significant consequences.</p><p>Related research examines algorithmic fairness, agent safety, and multimodal applications, connecting reproducible empirical evaluation with dependable software systems.</p><Link className="text-action" to="/research">Research directions <ArrowRight size={17} /></Link></div>
     </section>
-    <section className="content-wrap" aria-label="Personal research manifesto">
+    <section className="content-wrap" aria-label="Research Notes collection">
       <div className="home-manifesto-feature">
-        <img src={portrait} alt="Portrait of Chandan Kumar Sah" loading="lazy" decoding="async" width="124" height="124" />
-        <div><p className="eyebrow">Personal writing · October 15, 2026</p><h2>In Love with the Unknown</h2><p>My 10 Rules for PhD Research in the Age of AI · Beijing, China</p></div>
-        <Link to={researchRulesPath}>Read the article <ArrowRight size={17} aria-hidden="true" /></Link>
-      </div>
-    </section>
-    <section className="content-wrap" aria-label="Personal reflection on scientific curiosity">
-      <div className="home-manifesto-feature">
-        <img src={nobelMeetingsCollage} alt="Conference moments from the author’s Nobel laureate reflection" loading="lazy" decoding="async" width="124" height="124" />
-        <div><p className="eyebrow">Personal writing · March 25, 2026</p><h2>Are We Asking the Right Questions?</h2><p>A kid from Nepal, Nobel laureate encounters, and a lesson in curiosity.</p></div>
-        <Link to={questionsEssayPath}>Read the story <ArrowRight size={17} aria-hidden="true" /></Link>
-      </div>
-    </section>
-    <section className="content-wrap" aria-label="Six new research essays">
-      <div className="home-manifesto-feature">
-        <EssayThumbnail index={0} label="AI uncertainty and confidence artwork" className="homepage-essay-thumb"/>
-        <div><p className="eyebrow">Scientific perspectives & personal essays · October 15, 2026</p><h2>Six essays on AI, research, and the journey from Nepal</h2><p>A reflective timeline from January 2025 through October 2026. All six essays published today, with their original illustrations.</p></div>
-        <Link to="/notes">Read all six essays <ArrowRight size={17} aria-hidden="true" /></Link>
+        <EssayThumbnail index={0} label="Editorial illustration of AI uncertainty" className="homepage-essay-thumb"/>
+        <div>
+          <p className="eyebrow">Selected essays & reflections</p>
+          <h2>Notes from the Unknown</h2>
+          <p>Eight essays on trustworthy AI, research, curiosity, and a journey from Nepal to Beijing.</p>
+        </div>
+        <Link to="/notes">Explore the essays <ArrowRight size={17} aria-hidden="true" /></Link>
       </div>
     </section>
     <NewsPreview />
