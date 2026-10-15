@@ -8,21 +8,16 @@ jobs:
   discover:
     runs-on: ubuntu-latest
     steps:
-      - name: Extract publicly available official site logo candidates
+      - name: Extract official icon and logo URLs
         run: |
           python3 - <<'PY'
-          from urllib.request import Request, urlopen
-          from urllib.parse import urljoin
-          import re, html
-          for site in ["https://www.iaseai.org/", "https://www.acm.org/"]:
-              print("SITE",site,flush=True)
-              try:
-                  r=urlopen(Request(site,headers={"User-Agent":"Mozilla/5.0"}),timeout=16)
-                  markup=r.read(1500000).decode("utf-8","ignore")
-                  sources=re.findall(r'<(?:img|link)[^>]{0,1200}>',markup,re.I)
-                  for src in sources:
-                      if re.search(r'logo|favicon|icon|brand|og:image|image\/svg|rel="shortcut',src,re.I):
-                          print("ASSET",html.unescape(src[:750]),flush=True)
-                  print("IMG_CANDIDATES",len(sources),flush=True)
-              except Exception as e:print("ERR",repr(e),flush=True)
+          from urllib.request import Request,urlopen
+          import re,html
+          u="https://www.iaseai.org/"
+          src=urlopen(Request(u,headers={"User-Agent":"Mozilla/5.0"}),timeout=15).read(800000).decode("utf-8","ignore")
+          for item in re.findall(r'<(?:link|img|meta)\\b[^>]*>',src,re.I|re.S):
+            if re.search(r'(icon|logo|og:image|image|preload|src=)',item,re.I):
+              print("CANDIDATE:",html.unescape(re.sub(r'\\s+',' ',item))[:900])
+          for m in list(re.finditer("logo",src,re.I))[:8]:
+            print("LOGO_REF:",src[max(0,m.start()-140):m.start()+260].replace("\\n"," "))
           PY
