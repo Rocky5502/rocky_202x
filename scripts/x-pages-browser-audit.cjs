@@ -40,7 +40,8 @@ const assert = (ok, description) => {
         const widths=await page.evaluate(()=>({client:document.documentElement.clientWidth,scroll:document.documentElement.scrollWidth}));
         assert(widths.scroll <= widths.client + 2,viewport.name+" "+route+" no horizontal overflow");
         const canonical=await page.locator('link[rel="canonical"]').getAttribute("href");
-        assert(canonical===dest.href,viewport.name+" "+route+" has correct canonical");
+        const expectedCanonical = new URL(route, "https://rocky5502.github.io/rocky_202x/x/").href;
+        assert(canonical===expectedCanonical,viewport.name+" "+route+" has correct canonical");
         assert(await page.locator('meta[http-equiv="Content-Security-Policy"]').count()===1,
           viewport.name+" "+route+" has CSP");
         if (!route || route==="docs/") {
