@@ -37,6 +37,9 @@ jobs:
 
       - name: Build production assets
         run: bun run build
+      - name: Verify X static microsite before production upload
+        run: python3 scripts/verify-x-microsite.py
+
       - name: Enforce production Content Security Policy
         run: node scripts/harden-dist.cjs
       - name: Run first-party security baseline

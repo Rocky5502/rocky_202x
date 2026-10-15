@@ -28,6 +28,9 @@ jobs:
         run: bun install --frozen-lockfile
       - name: Build production site
         run: bun run build
+      - name: Verify X static pages and internal links
+        run: python3 scripts/verify-x-microsite.py
+
       - name: Enforce production Content Security Policy
         run: node scripts/harden-dist.cjs
       - name: Run first-party security baseline
@@ -56,6 +59,11 @@ jobs:
         env:
           NODE_PATH: ${{ github.workspace }}/.audit/node_modules
         run: node scripts/browser-audit.cjs
+      - name: Audit X language desktop/mobile views and accessibility
+        env:
+          NODE_PATH: ${{ github.workspace }}/.audit/node_modules
+        run: node scripts/x-pages-browser-audit.cjs
+
       - name: Preserve screenshots and audit report
         if: always()
         uses: actions/upload-artifact@v4
