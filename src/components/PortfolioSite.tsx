@@ -2,6 +2,8 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { Link, NavLink, Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { ArrowRight, ArrowUpRight, BrainCircuit, BriefcaseBusiness, Check, ClipboardCheck, ClipboardCopy, Code2, Github, HeartHandshake, ChevronDown, Award, BookOpenCheck, GraduationCap, Medal, UsersRound, Mail, Menu, Moon, Scale, ShieldCheck, Sun, X } from "lucide-react";
 import portrait from "@/assets/portrait.jpg";
+import iaseaiLogo from "@/assets/associations/iaseai.png";
+import acmLogo from "@/assets/associations/acm.svg";
 import {
   identity, publications, researchAreas, academicService, conferenceRankings, rankingSources,
   selectedTalks, type Publication,
@@ -470,7 +472,7 @@ function ServicePage() {
       <div className="membership-grid">
         {academicService.memberships.map(m=><article className="membership-item" key={m.abbreviation}>
           <a href={m.website} target="_blank" rel="noopener noreferrer" className="membership-logo" aria-label={m.abbreviation+" organization website"}>
-            <span className={"membership-emblem membership-emblem-"+m.abbreviation.toLowerCase()} aria-hidden="true">{m.abbreviation}</span>
+            <img src={m.abbreviation === "IASEAI" ? iaseaiLogo : acmLogo} alt="" width="48" height="48" loading="lazy" decoding="async" />
           </a>
           <div className="membership-content">
             <p className="membership-role">{m.role} <span aria-hidden="true">·</span> {m.since}</p>
