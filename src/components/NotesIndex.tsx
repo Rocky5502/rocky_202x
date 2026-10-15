@@ -6,6 +6,7 @@ import { useLanguage } from "@/i18n/LanguageProvider";
 import { questionsEssayPath } from "@/components/RightQuestionsEssay";
 import { researchRulesPath } from "@/components/ResearchRulesArticle";
 import "@/questions-essay.css";
+import { SixEssayCollection } from "@/components/SixResearchEssays";
 
 const copies = {
   en: {
@@ -39,6 +40,8 @@ export default function NotesIndex() {
       <h1>{c.title}</h1>
       <p>{c.intro}</p>
     </header>
+    <SixEssayCollection />
+    <div className="notes-index-prior-heading"><p className="eyebrow">{language === "zh-CN" ? "此前文章" : "Previously published reflections"}</p></div>
     <div className="notes-index-grid">
       {c.posts.map(item => <article className="notes-index-card" key={item.path}>
         <Link className="notes-index-thumb" to={item.path} aria-label={item.title}><img src={item.src} alt={item.alt} loading="lazy" decoding="async" width={270} height={270}/></Link>
