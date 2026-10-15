@@ -107,11 +107,11 @@ describe("professional Simplified Chinese localization", () => {
     unmount();
 
     renderAt("/service");
-    await waitFor(() => expect(screen.getAllByRole("link", { name: "Web of Science 作者检索" }).length).toBeGreaterThan(0));
-    const links = screen.getAllByRole("link", { name: "Web of Science 作者检索" });
+    await waitFor(() => expect(screen.getAllByRole("link", { name: "Web of Science 研究者档案" }).length).toBeGreaterThan(0));
+    const links = screen.getAllByRole("link", { name: "Web of Science 研究者档案" });
     expect(links.every(link => link.getAttribute("href") ===
-      "https://www.webofscience.com/wos/author/author-search?state=%7B%7D")).toBe(true);
-    expect(screen.getByText(/并非已经核验的个人学者主页/)).toBeInTheDocument();
+      "https://www.webofscience.com/wos/author/record/JVY-7383-2024")).toBe(true);
+     expect(screen.getByText("Web of Science ResearcherID: JVY-7383-2024")).toBeInTheDocument();
   });
 
   it("provides a Simplified Chinese Recognition tile inside CV without duplicating the archive", async () => {

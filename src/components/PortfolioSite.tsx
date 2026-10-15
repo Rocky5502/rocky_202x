@@ -211,7 +211,7 @@ function Footer() {
           <ExternalLink href={identity.orcid}>ORCID</ExternalLink>
           <ExternalLink href={identity.linkedin}>LinkedIn</ExternalLink>
           <ExternalLink href={identity.github}>GitHub</ExternalLink>
-          <ExternalLink href={identity.webOfScienceSearch}>Web of Science Author Search</ExternalLink>
+          <ExternalLink href={identity.webOfScienceProfile}>Web of Science Researcher Profile</ExternalLink>
           <Link to="/news">News</Link>
           <Link to="/notes">Research notes</Link>
           <Link to="/connect">Opportunities</Link>
@@ -486,8 +486,8 @@ function ServicePage() {
     </section>
     <section className="service-section section-divider">
       <SectionTitle eyebrow="External profile" title="Academic identity" />
-      <div className="profile-links"><ExternalLink href={identity.openreview}>OpenReview</ExternalLink><ExternalLink href={identity.orcid}>ORCID</ExternalLink><ExternalLink href={identity.linkedin}>LinkedIn</ExternalLink><ExternalLink href={identity.scholar}>Google Scholar</ExternalLink><ExternalLink href={identity.webOfScienceSearch}>Web of Science Author Search</ExternalLink></div>
-      <p className="small-note">This opens the general Web of Science author-search portal, not a uniquely verified researcher profile. Please use the affiliation and ORCID to identify the correct person.</p>
+      <div className="profile-links"><ExternalLink href={identity.openreview}>OpenReview</ExternalLink><ExternalLink href={identity.orcid}>ORCID</ExternalLink><ExternalLink href={identity.linkedin}>LinkedIn</ExternalLink><ExternalLink href={identity.scholar}>Google Scholar</ExternalLink><ExternalLink href={identity.webOfScienceProfile}>Web of Science Researcher Profile</ExternalLink></div>
+      <p className="small-note">Web of Science ResearcherID: {identity.researcherId}</p>
     </section>
   </div>;
 }

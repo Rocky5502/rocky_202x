@@ -58,8 +58,8 @@ describe("Projects directory, privacy and release status", () => {
   });
 });
 
-describe("academic introduction and Web of Science search", () => {
-  const authorSearch = "https://www.webofscience.com/wos/author/author-search?state=%7B%7D";
+describe("academic introduction and Web of Science ResearcherID", () => {
+  const researcherProfile = "https://www.webofscience.com/wos/author/record/JVY-7383-2024";
 
   it("presents the short Nepal and Chinese Government Scholarship introduction", () => {
     render(<MemoryRouter initialEntries={["/"]}><PortfolioSite /></MemoryRouter>);
@@ -92,12 +92,12 @@ describe("academic introduction and Web of Science search", () => {
     expect(screen.getByRole("link", { name: "Recognition details" })).toHaveAttribute("href", "/recognition");
   });
 
-  it("links Web of Science as an author search rather than an unsupported individual researcher record", () => {
+  it("links the author-supplied ResearcherID to a direct Web of Science profile", () => {
     render(<MemoryRouter initialEntries={["/service"]}><PortfolioSite /></MemoryRouter>);
-    const links = screen.getAllByRole("link", { name: "Web of Science Author Search" });
+    const links = screen.getAllByRole("link", { name: "Web of Science Researcher Profile" });
     expect(links.length).toBeGreaterThanOrEqual(1);
-    expect(links.every(link => link.getAttribute("href") === authorSearch)).toBe(true);
-    expect(screen.getByText(/not a uniquely verified researcher profile/)).toBeInTheDocument();
+    expect(links.every(link => link.getAttribute("href") === researcherProfile)).toBe(true);
+    expect(screen.getByText("Web of Science ResearcherID: JVY-7383-2024")).toBeInTheDocument();
   });
 });
 
