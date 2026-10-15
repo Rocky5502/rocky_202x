@@ -33,7 +33,7 @@ describe("Nobel laureate reflection and research notes archive", () => {
   it("lists both permanent essays under Notes, accessible from primary navigation", () => {
     const {unmount} = render(<MemoryRouter initialEntries={["/"]}><PortfolioSite/></MemoryRouter>);
     expect(within(screen.getByRole("navigation", {name:"Primary navigation"})).getByRole("link", {name:"Notes"})).toHaveAttribute("href","/notes");
-    expect(screen.getByRole("link", {name:"Read the story"})).toHaveAttribute("href",questionsEssayPath);
+    expect(screen.getByRole("link", {name:"Explore the essays"})).toHaveAttribute("href","/notes");
     unmount();
     render(<MemoryRouter initialEntries={["/notes"]}><PortfolioSite/></MemoryRouter>);
     expect(screen.getByRole("heading", {name:"Notes from the Unknown", level: 1})).toBeInTheDocument();
