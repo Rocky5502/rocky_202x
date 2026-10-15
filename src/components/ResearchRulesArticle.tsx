@@ -6,6 +6,7 @@ import {
 } from "lucide-react";
 import portrait from "@/assets/portrait.jpg";
 import { useLanguage } from "@/i18n/LanguageProvider";
+import NotesNavigation from "@/components/NotesNavigation";
 import "@/research-rules.css";
 
 type Rule = {
@@ -147,6 +148,7 @@ export default function ResearchRulesArticle() {
           <div><strong>{c.acknowledgement}</strong><p>{c.thanks}</p></div>
           <Link to="/">{c.back} <ArrowRight size={17} aria-hidden="true" /></Link>
         </footer>
+        <NotesNavigation currentPath={researchRulesPath}/>
       </div>
     </article>
   );
