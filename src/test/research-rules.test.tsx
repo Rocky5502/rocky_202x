@@ -31,7 +31,7 @@ describe("Research manifesto – 15 October 2026", () => {
   it("exposes the article through both homepage and primary navigation", () => {
     render(<MemoryRouter initialEntries={["/"]}><PortfolioSite /></MemoryRouter>);
     const nav = screen.getByRole("navigation", { name: "Primary navigation" });
-    expect(within(nav).getByRole("link", { name: "Notes" })).toHaveAttribute("href",researchRulesPath);
+    expect(within(nav).getByRole("link", { name: "Notes" })).toHaveAttribute("href","/notes");
     expect(screen.getByRole("link", { name: "Read the article" })).toHaveAttribute("href",researchRulesPath);
   });
 
