@@ -39,3 +39,25 @@
 .hero-logo-tile{display:flex;align-items:center;justify-content:center;max-width:242px;min-height:96px;padding:11px 16px;margin:0 0 22px;background:#fff;border:1px solid #e6eaf0;border-radius:18px;box-shadow:0 15px 45px #0003}
 .hero-logo-tile img{display:block;width:100%;height:auto;max-height:88px}
 @media(max-width:600px){.brand-symbol{width:59px;min-width:59px;height:38px;padding:4px}.hero-logo-tile{max-width:190px;min-height:80px}}
+
+/* X Trace Lens prototype: read-only, responsive human+agent explanation. */
+.trace-lens-section{background:var(--panel2)}
+.trace-lens-switch{display:flex;flex-wrap:wrap;gap:10px;margin:-10px 0 26px}
+.trace-lens-switch [aria-pressed="true"]{border-color:var(--mint);box-shadow:inset 0 0 0 1px var(--mint);color:var(--mint)}
+.trace-lens-grid{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:20px;align-items:stretch}
+.trace-lens-code,.trace-lens-walkthrough,.trace-lens-record{min-width:0;background:var(--panel);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.trace-lens-code{background:#0b151c;color:#e7f0ed}
+.trace-lens-code pre{padding:25px;line-height:1.75;font-size:.89rem;min-height:240px;overflow-x:auto}
+.trace-lens-walkthrough{padding:29px;display:flex;flex-direction:column;justify-content:center;gap:17px}
+.trace-lens-walkthrough h3{font-size:1.54rem}
+.trace-lens-walkthrough p{max-width:45ch}
+.trace-lens-count{font-weight:760;font-size:.78rem;letter-spacing:.09em;color:var(--mint);text-transform:uppercase}
+.trace-lens-actions{display:flex;flex-wrap:wrap;gap:9px}
+.trace-lens-actions button:disabled{opacity:.42;cursor:not-allowed}
+.trace-lens-actions button:disabled:hover{transform:none}
+.trace-lens-record{margin-top:20px;display:grid;grid-template-columns:minmax(0,.75fr) minmax(0,1.25fr);gap:24px;padding:25px;align-items:start}
+.trace-lens-record h3{margin-top:13px}
+.trace-lens-record pre{max-height:290px;overflow:auto;border-radius:12px;border:1px solid var(--line);background:var(--bg);padding:20px;font-size:.79rem;line-height:1.55}
+.trace-lens-footnote{margin-top:18px;max-width:850px}
+@media(max-width:920px){.trace-lens-grid,.trace-lens-record{grid-template-columns:1fr}.trace-lens-record{gap:12px}}
+@media(max-width:540px){.trace-lens-code pre{padding:17px;font-size:.78rem;min-height:195px}.trace-lens-walkthrough{padding:21px}.trace-lens-record{padding:18px}.trace-lens-actions .button{flex-grow:1}}
