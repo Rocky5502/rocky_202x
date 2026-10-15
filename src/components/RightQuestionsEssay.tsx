@@ -4,6 +4,7 @@ import NotesNavigation from "@/components/NotesNavigation";
 import portrait from "@/assets/portrait.jpg";
 import { nobelMeetingsCollage } from "@/assets/nobelMeetingsCollage";
 import { useLanguage } from "@/i18n/LanguageProvider";
+import ArticleEngagement from "@/components/ArticleEngagement";
 import "@/questions-essay.css";
 
 export const questionsEssayPath = "/notes/are-we-asking-the-right-questions";
@@ -195,6 +196,7 @@ export default function RightQuestionsEssay() {
             <button type="button" onClick={() => window.print()}><Printer size={15} aria-hidden="true"/>{c.print}</button>
           </div>
         </div>
+        <ArticleEngagement articlePath={questionsEssayPath} />
         <NotesNavigation currentPath={questionsEssayPath}/>
       </div>
     </article>
