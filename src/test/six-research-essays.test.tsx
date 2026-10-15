@@ -38,7 +38,7 @@ describe("Unified newest-first research notes", () => {
   it("uses six independent full-HD, vector-scalable editorial covers", () => {
     expect(essayCovers).toHaveLength(6);
     expect(new Set(essayCovers).size).toBe(6);
-    for (const src of essayCovers) expect(src).toMatch(/\.svg(?:\?|$)/);
+    for (const src of essayCovers) expect(src.endsWith(".svg") || src.includes(".svg?") || src.startsWith("data:image/svg+xml,")).toBe(true);
     render(<MemoryRouter initialEntries={[essayPrefix+"when-ai-says-i-know"]}><PortfolioSite /></MemoryRouter>);
     const image=document.querySelector(".essay-reader-figure img");
     expect(image).not.toBeNull();
