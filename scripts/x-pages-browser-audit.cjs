@@ -46,7 +46,34 @@ const assert = (ok, description) => {
         assert(canonical===expectedCanonical,viewport.name+" "+route+" has correct canonical");
         assert(await page.locator('meta[http-equiv="Content-Security-Policy"]').count()===1,
           viewport.name+" "+route+" has CSP");
-        if (!route || route==="docs/") {
+        if(route==="learn/"){
+          const demo=page.locator("[data-trace-lens]");
+          assert(await demo.count()===1, viewport.name+" Learn page renders Trace Lens");
+          const counter=page.locator("[data-trace-position]");
+          assert((await counter.textContent())?.includes("Step 1 of 5"),
+            viewport.name+" function-call trace opens at first step");
+          await page.getByRole("button",{name:"Next trace step"}).click();
+          assert((await counter.textContent())?.includes("Step 2 of 5"),
+            viewport.name+" trace advances exactly one event");
+          assert((await page.locator("[data-trace-heading]").textContent())==="Call add",
+            viewport.name+" human explanation follows structured step");
+          await page.getByRole("button",{name:"Explore arithmetic example"}).click();
+          assert((await counter.textContent())?.includes("Step 1 of 4"),
+            viewport.name+" switching curated examples resets the trace");
+          assert((await page.locator("[data-trace-source]").textContent())?.includes("6 * 7"),
+            viewport.name+" arithmetic example displays curated X source");
+          assert(await page.getByRole("button",{name:"Previous trace step"}).isDisabled(),
+            viewport.name+" previous action disabled at first event");
+          const record=JSON.parse(await page.locator("[data-trace-agent]").textContent());
+          assert(record.kind==="illustrative-not-executed" && record.modelInvoked===false
+            && record.programId==="arithmetic" && record.step===1,
+            viewport.name+" agent record labels simulated evidence correctly");
+          await page.getByRole("button",{name:"Next trace step"}).click();
+          await page.getByRole("button",{name:"Reset trace to first step"}).click();
+          assert((await counter.textContent())?.includes("Step 1 of 4"),
+            viewport.name+" trace reset works without executing source");
+        }
+        if (!route || route==="docs/" || route==="learn/") {
           await page.screenshot({path:path.join(outDir,"x-"+(route?route.replace("/",""):"home")+"-"+viewport.name+".png"),fullPage:true});
           const result=await new AxeBuilder({page}).withTags(["wcag2a","wcag2aa","wcag21aa"]).analyze();
           const severe=result.violations.filter(x=>x.impact==="critical"||x.impact==="serious");
