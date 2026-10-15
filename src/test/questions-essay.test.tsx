@@ -38,7 +38,7 @@ describe("Nobel laureate reflection and research notes archive", () => {
     render(<MemoryRouter initialEntries={["/notes"]}><PortfolioSite/></MemoryRouter>);
     expect(screen.getByRole("heading", {name:"Notes from the Unknown", level: 1})).toBeInTheDocument();
     expect(screen.getAllByRole("link", {name:"Are We Asking the Right Questions?"}).some(link => link.getAttribute("href") === questionsEssayPath)).toBe(true);
-    expect(screen.getByRole("link", {name:"In Love with the Unknown"})).toHaveAttribute("href","/notes/ten-rules-phd-research-ai");
+    expect(screen.getAllByRole("link", {name:"In Love with the Unknown"}).some(link => link.getAttribute("href") === "/notes/ten-rules-phd-research-ai")).toBe(true);
   });
 
   it("works in Simplified Chinese without affecting the canonical dated citation", () => {
