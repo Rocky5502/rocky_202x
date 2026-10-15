@@ -44,12 +44,14 @@ if (fs.existsSync(htmlPath)) {
   assert(!!match, "Production CSP missing");
   if (match) {
     const policy = match[1];
-    for (const part of ["default-src 'none'", "object-src 'none'", "connect-src 'none'", "form-action 'none'", "base-uri 'self'", "frame-src 'none'", "script-src-attr 'none'"]) {
+    for (const part of ["default-src 'none'", "object-src 'none'", "connect-src 'self' https://api.github.com", "form-action 'none'", "base-uri 'self'", "frame-src https://giscus.app", "script-src-attr 'none'"]) {
       assert(policy.includes(part), `CSP lacks ${part}`);
     }
     assert(/script-src 'self' 'sha256-[A-Za-z0-9+/=]+'/.test(policy), "Trusted inline JSON-LD must be SHA-256 hash-pinned");
     const scripts = policy.split("; ").find(x => x.startsWith("script-src ")) ?? "";
-    assert(!scripts.includes("'unsafe-inline'") && !scripts.includes("https:"), "CSP must not allow unrestricted inline/remote JavaScript");
+    assert(!scripts.includes("'unsafe-inline'") && !scripts.replaceAll("https://giscus.app", "").includes("https:"), "CSP must not allow unrestricted inline/remote JavaScript");
+    assert(scripts.includes(" https://giscus.app"), "Only approved giscus script host is permitted");
+    assert(!policy.includes("https://*.") && !policy.includes(" * "), "Never wildcard third-party sources");
   }
   assert(html.includes('<meta name="referrer" content="no-referrer"'), "Privacy-preserving referrer policy missing");
   assert(!/http:\/\/(?!127\.0\.0\.1|localhost)/i.test(html), "Production HTML contains a plaintext HTTP destination");

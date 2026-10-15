@@ -1,0 +1,10 @@
+/* Embeddable comment/reaction section, loaded only after visitor opts in. */
+.onpage-discussion { max-width:860px; margin:62px auto 28px; padding-top:36px; border-top:1px solid var(--portfolio-rule); }
+.onpage-discussion h2 { margin:0 0 12px; font:400 clamp(29px,3.4vw,40px)/1.2 Georgia,"Times New Roman",serif; letter-spacing:-.037em; }
+.onpage-discussion > p { max-width:670px; margin:0 0 25px; color:var(--portfolio-muted); font-size:13px; line-height:1.75; }
+.onpage-discussion > button { background:var(--portfolio-accent); color:#fff; border:1px solid var(--portfolio-accent); border-radius:8px; padding:13px 20px; font-weight:650; font-size:13px; cursor:pointer; }
+.onpage-discussion > button:hover { filter:brightness(.94); }
+.onpage-discussion-frame { margin-top:24px; min-height:10px; }
+.onpage-discussion-frame .giscus, .onpage-discussion-frame .giscus-frame { width:100%; border:0; }
+@media (max-width:650px) { .onpage-discussion { margin-top:37px; padding-top:25px; } .onpage-discussion > button { width:100%; } }
+@media print { .onpage-discussion { display:none!important; } }

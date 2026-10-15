@@ -81,7 +81,7 @@ async function auditA11y(page, route) {
     }
     await page.goto(url("/"), {waitUntil: "networkidle"});
     const policy = await page.locator('meta[http-equiv="Content-Security-Policy"]').getAttribute("content");
-    ok(!!policy && policy.includes("connect-src 'none'") && policy.includes("object-src 'none'"), "Production browser policy blocks network APIs and embedded objects");
+    ok(!!policy && policy.includes("connect-src 'self' https://api.github.com") && policy.includes("frame-src https://giscus.app") && policy.includes("object-src 'none'"), "Production browser policy limits external APIs and embedded frames to approved GitHub and giscus hosts");
     ok(!!policy && /script-src 'self' 'sha256-[A-Za-z0-9+/=]+'/.test(policy), "Inline structured data is hash-pinned, not broadly executable");
     ok(!policy.split("; ").find(part => part.startsWith("script-src "))?.includes("'unsafe-inline'"), "Production CSP rejects arbitrary inline JavaScript");
     ok(await page.locator('meta[name="referrer"]').getAttribute("content") === "no-referrer", "External visitors' browsing path is not leaked via Referrer header");
