@@ -32,7 +32,7 @@ describe("Research manifesto – 15 October 2026", () => {
     render(<MemoryRouter initialEntries={["/"]}><PortfolioSite /></MemoryRouter>);
     const nav = screen.getByRole("navigation", { name: "Primary navigation" });
     expect(within(nav).getByRole("link", { name: "Notes" })).toHaveAttribute("href","/notes");
-    expect(screen.getByRole("link", { name: "Read the article" })).toHaveAttribute("href",researchRulesPath);
+    expect(screen.getByRole("link", { name: "Explore the essays" })).toHaveAttribute("href","/notes");
   });
 
   it("supports the existing Simplified Chinese language switch", () => {

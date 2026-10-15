@@ -76,3 +76,27 @@
 .homepage-essay-thumb { width:124px; height:124px; aspect-ratio:1; border-radius:8px; }
 .notes-index-prior-heading { border-top:1px solid var(--portfolio-rule); padding: 35px 0 18px; }
 @media (max-width:760px) { .homepage-essay-thumb { width:84px; height:104px; } }
+
+/* Full-HD SVG artwork: wide, responsive and resolution-independent. */
+.essay-thumb { display:block; object-fit:cover; width:100%; height:100%; background:var(--portfolio-soft); }
+.essay-reader-figure { max-width:860px; margin:0 auto 47px; }
+.essay-reader-figure .essay-thumb { max-width:none; width:100%; height:auto; aspect-ratio:16/9; border-radius:9px; }
+.homepage-essay-thumb { object-fit:cover; object-position:center; }
+.essay-reader-tools { border-top:1px solid var(--portfolio-rule); padding-top:20px; display:flex; justify-content:flex-end; }
+.essay-reader-tools button { display:inline-flex; align-items:center; gap:9px; padding:11px 15px; background:var(--portfolio-panel); border:1px solid var(--portfolio-rule); color:var(--portfolio-ink); cursor:pointer; font-size:12px; font-weight:650; }
+.essay-reader-tools button:hover { border-color:var(--portfolio-accent); }
+.notes-chronology { max-width:860px; margin:58px auto 5px; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; }
+.notes-chronology-link { display:flex; align-items:center; gap:16px; padding:21px; background:var(--portfolio-panel); border:1px solid var(--portfolio-rule); border-radius:9px; }
+.notes-chronology-link:hover, .notes-chronology-link:focus-visible { border-color:var(--portfolio-accent); }
+.notes-chronology-link > span { min-width:0; display:flex; flex-direction:column; gap:8px; }
+.notes-chronology-link strong { font:400 18px/1.32 Georgia,"Times New Roman",serif; }
+.notes-chronology-older { text-align:right; justify-content:flex-end; }
+@media (max-width:620px) {
+  .notes-chronology { grid-template-columns:1fr; gap:12px; margin-top:36px; }
+  .notes-chronology-empty { display:none; }
+  .essay-reader-figure { margin-bottom:33px; }
+}
+@media print {
+  .notes-chronology, .essay-reader-tools { display:none !important; }
+  .essay-reader-figure .essay-thumb { max-width:350px; }
+}
