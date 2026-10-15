@@ -1,0 +1,17 @@
+/* A single professional newest-first archive with eight equal-status essays. */
+.notes-unified .notes-index-header { max-width:760px; margin-bottom:38px; }
+.notes-unified-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:26px; }
+.notes-unified-card { min-width:0; border:1px solid var(--portfolio-rule); background:var(--portfolio-panel); border-radius:12px; overflow:hidden; display:flex; flex-direction:column; transition:border-color .18s ease,transform .18s ease; }
+.notes-unified-card:hover { border-color:var(--portfolio-accent); transform:translateY(-2px); }
+.notes-unified-card:focus-within { outline:2px solid var(--portfolio-accent); outline-offset:3px; }
+.notes-unified-visual { display:block; width:100%; aspect-ratio:16/9; overflow:hidden; background:var(--portfolio-soft); }
+.notes-unified-visual img { display:block; width:100%; height:100%; aspect-ratio:16/9; object-fit:cover; object-position:center; border:0; }
+.notes-unified-card:nth-child(2) .notes-unified-visual img { object-position:center 26%; }
+.notes-unified-card:nth-child(4) .notes-unified-visual img { object-fit:contain; padding:14px; background:var(--portfolio-soft); }
+.notes-unified-copy { padding:22px 25px 28px; display:flex; flex-direction:column; flex:1; }
+.notes-unified-date { color:var(--portfolio-accent); font-size:11px; letter-spacing:.028em; font-weight:650; line-height:1.5; }
+.notes-unified-copy h2 { font:400 clamp(24px,2.8vw,33px)/1.2 Georgia,"Times New Roman",serif; letter-spacing:-.03em; margin:14px 0 10px !important; }
+.notes-unified-copy > p:not(.notes-unified-date) { color:var(--portfolio-muted); font-size:13px; line-height:1.7; margin-bottom:22px !important; }
+.notes-unified-read { display:inline-flex; align-items:center; gap:8px; margin-top:auto; width:max-content; color:var(--portfolio-accent) !important; font-size:12px; font-weight:650; }
+@media (max-width:760px){.notes-unified-grid{grid-template-columns:1fr;gap:21px}.notes-unified-copy{padding:18px 21px 24px}.notes-unified-copy h2{font-size:26px}}
+@media (prefers-reduced-motion:reduce){.notes-unified-card{transition:none}.notes-unified-card:hover{transform:none}}
