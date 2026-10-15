@@ -13,6 +13,7 @@ export const SEARCH_ITEMS = Object.freeze([
   { title: 'Governance and contribution', category: 'Community', url: '../community/index.html', summary: 'Review open-source preparation, responsible proposals and contributor expectations.', keywords: 'github rfc review code conduct' },
   { title: 'Donations and sponsorship status', category: 'Community', url: '../community/index.html#funding', summary: 'Funding is not active; no verified donation recipient is available.', keywords: 'funding sponsors donate payments support' },
   { title: 'X AI agents and research', category: 'Research', url: '../ai/index.html', summary: 'Research how coding agents can consume versioned X compiler diagnostics and limited tools.', keywords: 'codex claude gemini kimi grok ai agents MCP' },
+  { title: 'XCook: safe X development workflows', category: 'Tools', url: '../xcook/index.html', summary: 'Seven coding skills, an opt-in verification CLI and human approval gates.', keywords: 'superpowers plan test debug review agent security xcook' },
 ]);
 
 const normalized = value => String(value ?? '').normalize('NFKD').replace(/\p{M}/gu, '').toLowerCase();

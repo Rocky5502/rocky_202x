@@ -12,7 +12,7 @@ describe("academically honest discovery metadata", () => {
     expect(html).toContain('"@type": "Person"');
   });
 
-  it("indexes the academic homepage and six real X HTML pages, never hash-router fragments", () => {
+  it("indexes the academic homepage and seven real X HTML pages, never hash-router fragments", () => {
     const sitemap = readFileSync("public/sitemap.xml", "utf8");
     const urls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(x => x[1]);
     const x = root + "x/";
@@ -24,10 +24,11 @@ describe("academically honest discovery metadata", () => {
       x + "status/",
       x + "community/",
       x + "ai/",
+      x + "xcook/",
     ]);
     expect(new Set(urls).size).toBe(urls.length);
     expect(urls.every(url => url.startsWith(root) && !url.includes("#"))).toBe(true);
-    for (const relative of ["index.html", "docs/index.html", "learn/index.html", "status/index.html", "community/index.html", "ai/index.html"]) {
+    for (const relative of ["index.html", "docs/index.html", "learn/index.html", "status/index.html", "community/index.html", "ai/index.html", "xcook/index.html"]) {
       const html = readFileSync("public/x/" + relative, "utf8");
       const canonical = x + relative.replace(/index\.html$/, "");
       expect(html).toContain('<link rel="canonical" href="' + canonical + '">');

@@ -15,6 +15,7 @@ const pages = [
   ["status/", "Progress without"],
   ["community/", "Build carefully."],
   ["ai/", "Humans and AI."],
+  ["xcook/", "Cook carefully."]
 ];
 const errors = [];
 const assert = (ok, description) => {
