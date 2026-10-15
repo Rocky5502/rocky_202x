@@ -1,5 +1,5 @@
 import { Link, useParams } from "react-router-dom";
-import { ArrowLeft, ArrowRight, ArrowUpRight, BookOpen, CalendarDays, Printer } from "lucide-react";
+import { ArrowLeft, ArrowRight, ArrowUpRight, CalendarDays, Printer } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import { essayPrefix, publishedLabel, publishedOn, researchEssays } from "@/data/researchEssays";
 import { essayThumbSprite } from "@/assets/essayThumbSprite";
