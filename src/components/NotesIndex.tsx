@@ -7,6 +7,7 @@ import { notesCatalog } from "@/data/notesCatalog";
 import { EssayThumbnail } from "@/components/SixResearchEssays";
 import "@/questions-essay.css";
 import "@/six-research-essays.css";
+import "@/notes-unified.css";
 
 export default function NotesIndex() {
   const { language } = useLanguage();
