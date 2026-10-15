@@ -1,5 +1,5 @@
 import { beforeEach,describe,expect,it } from "vitest";
-import { render,screen } from "@testing-library/react";
+import { render,screen,fireEvent } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { LanguageProvider } from "@/i18n/LanguageProvider";
 import GiscusDiscussion from "@/components/GiscusDiscussion";
@@ -34,6 +34,28 @@ describe("In-page discussions and reactions",()=>{
     expect(region.querySelector("a[href*='github.com']")).toBeNull();
     view.unmount();
     expect(document.querySelector(".onpage-discussion-frame script")).toBeNull();
+  });
+  it("hides the raw giscus installation failure and offers an in-page retry",()=>{
+    const view=render(<LanguageProvider><MemoryRouter>
+      <GiscusDiscussion articlePath="/notes/essays/when-ai-says-i-know"/>
+    </MemoryRouter></LanguageProvider>);
+    fireEvent(window,new MessageEvent("message",{
+      origin:"https://giscus.app",
+      data:{giscus:{error:"giscus is not installed on this repository"}}
+    }));
+    expect(screen.getByText(/Reader comments and reactions are temporarily unavailable/)).toBeInTheDocument();
+    expect(screen.getByRole("button",{name:"Try again"})).toBeInTheDocument();
+    expect(document.querySelector(".onpage-discussion-frame")).toHaveAttribute("hidden");
+    expect(document.body.textContent).not.toContain("giscus is not installed on this repository");
+    fireEvent.click(screen.getByRole("button",{name:"Try again"}));
+    expect(document.querySelector(".onpage-discussion-frame")).not.toHaveAttribute("hidden");
+    view.unmount();
+  });
+  it("ignores error events from untrusted origins",()=>{
+    const view=render(<LanguageProvider><MemoryRouter><GiscusDiscussion articlePath="/notes/ten-rules-phd-research-ai"/></MemoryRouter></LanguageProvider>);
+    fireEvent(window,new MessageEvent("message",{origin:"https://untrusted.invalid",data:{giscus:{error:"error"}}}));
+    expect(screen.queryByRole("button",{name:"Try again"})).toBeNull();
+    view.unmount();
   });
   it("loads the dark theme when the website is in dark mode",()=>{
     document.documentElement.classList.add("dark");

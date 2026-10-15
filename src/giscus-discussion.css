@@ -14,3 +14,10 @@
 .onpage-discussion h2 { display:flex; flex-wrap:wrap; align-items:center; gap:13px; }
 .onpage-discussion h2 svg { color:var(--portfolio-accent); flex:none; }
 .onpage-discussion-frame { min-height:230px; }
+
+/* Present provider failures without exposing raw iframe stack traces to readers. */
+.onpage-discussion-frame[hidden] { display:none!important; min-height:0; }
+.onpage-discussion-fallback { margin:19px 0 0; padding:19px 21px; border:1px solid var(--portfolio-rule); background:var(--portfolio-panel); border-radius:8px; }
+.onpage-discussion-fallback p { color:var(--portfolio-muted); font-size:12px; line-height:1.7; margin-bottom:11px; }
+.onpage-discussion-fallback button { cursor:pointer; display:inline-flex; align-items:center; gap:7px; padding:9px 13px; border:1px solid var(--portfolio-rule); background:var(--portfolio-soft); color:var(--portfolio-ink); border-radius:6px; font-size:11px; font-weight:650; }
+.onpage-discussion-fallback button:hover { border-color:var(--portfolio-accent); }

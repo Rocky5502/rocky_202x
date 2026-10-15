@@ -2118,3 +2118,6 @@ html[lang="zh-CN"] .award-archive-card h3 { overflow-wrap: anywhere; }
 .membership-actions a { display:inline-flex; align-items:center; gap:4px; color:var(--portfolio-accent)!important; font-size:11px; font-weight:650; }
 .membership-actions a:hover { text-decoration:underline; }
 @media(max-width:790px){.membership-grid{grid-template-columns:1fr;}.membership-item{padding:17px;}}
+
+/* Consistent locally archived organization marks; no third-party favicon requests. */
+.membership-logo img { width:43px; height:43px; object-fit:contain; display:block; }
