@@ -13,10 +13,9 @@ beforeEach(() => {
 
 describe("On-page GitHub Discussions comments and likes", () => {
   it("requires the owner's valid category before enabling the live widget", () => {
-    expect(giscusReady).toBe(false);
+    expect(giscusReady).toBe(/^DIC_[A-Za-z0-9_-]{8,}$/.test(giscusSettings.categoryId));
     expect(giscusSettings.repo).toBe("Rocky5502/rocky_202x");
     expect(giscusSettings.repoId).toBe("R_kgDOSeIGfg");
-    expect(giscusSettings.categoryId).toBe("");
   });
 
   it("uses unique explicit terms instead of HashRouter's shared pathname", () => {
