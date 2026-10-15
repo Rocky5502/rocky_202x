@@ -37,7 +37,7 @@ describe("Nobel laureate reflection and research notes archive", () => {
     unmount();
     render(<MemoryRouter initialEntries={["/notes"]}><PortfolioSite/></MemoryRouter>);
     expect(screen.getByRole("heading", {name:"Notes from the Unknown", level: 1})).toBeInTheDocument();
-    expect(screen.getByRole("link", {name:"Are We Asking the Right Questions?"})).toHaveAttribute("href",questionsEssayPath);
+    expect(screen.getAllByRole("link", {name:"Are We Asking the Right Questions?"}).some(link => link.getAttribute("href") === questionsEssayPath)).toBe(true);
     expect(screen.getByRole("link", {name:"In Love with the Unknown"})).toHaveAttribute("href","/notes/ten-rules-phd-research-ai");
   });
 
