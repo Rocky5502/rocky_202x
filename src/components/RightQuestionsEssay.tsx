@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { ArrowLeft, ArrowRight, ArrowUpRight, BookOpen, CalendarDays, MapPin, Printer } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, BookOpen, CalendarDays, MapPin, Printer } from "lucide-react";
+import NotesNavigation from "@/components/NotesNavigation";
 import portrait from "@/assets/portrait.jpg";
 import { nobelMeetingsCollage } from "@/assets/nobelMeetingsCollage";
 import { useLanguage } from "@/i18n/LanguageProvider";
@@ -194,9 +195,7 @@ export default function RightQuestionsEssay() {
             <button type="button" onClick={() => window.print()}><Printer size={15} aria-hidden="true"/>{c.print}</button>
           </div>
         </div>
-        <Link className="questions-next" to="/notes/ten-rules-phd-research-ai">
-          <span><span className="eyebrow">{c.more}</span><strong>{c.nextTitle}</strong><span>{c.nextSubtitle}</span></span><ArrowRight size={22} aria-hidden="true" />
-        </Link>
+        <NotesNavigation currentPath={questionsEssayPath}/>
       </div>
     </article>
   );
