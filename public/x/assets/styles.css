@@ -28,3 +28,7 @@
 .search-description{color:var(--muted);font-size:.83rem;line-height:1.5}
 @media(max-width:900px){.docs-search-layout{grid-template-columns:1fr;gap:22px}}
 @media(max-width:550px){.search-panel{padding:18px}.search-control{flex-direction:column}.search-control .button{width:100%}}
+
+/* X AI research subpage */
+.ai-hero .lead{max-width:810px}.ai-hero .hero-actions{margin-top:25px}.ai-hero .muted-sm{margin-top:26px}.ai-research-grid{gap:18px}.ai-research-grid .feature-card{min-height:230px}.ai-research-grid .icon-square{min-width:48px;width:auto;padding:0 10px}
+@media(max-width:730px){.ai-research-grid{grid-template-columns:1fr}}

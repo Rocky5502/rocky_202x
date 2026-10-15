@@ -12,6 +12,7 @@ export const SEARCH_ITEMS = Object.freeze([
   { title: 'Types and effects', category: 'Language', url: '#language', summary: 'Learn about types, functions and explicit effect contracts in X.', keywords: 'type checking effects static analysis' },
   { title: 'Governance and contribution', category: 'Community', url: '../community/index.html', summary: 'Review open-source preparation, responsible proposals and contributor expectations.', keywords: 'github rfc review code conduct' },
   { title: 'Donations and sponsorship status', category: 'Community', url: '../community/index.html#funding', summary: 'Funding is not active; no verified donation recipient is available.', keywords: 'funding sponsors donate payments support' },
+  { title: 'X AI agents and research', category: 'Research', url: '../ai/index.html', summary: 'Research how coding agents can consume versioned X compiler diagnostics and limited tools.', keywords: 'codex claude gemini kimi grok ai agents MCP' },
 ]);
 
 const normalized = value => String(value ?? '').normalize('NFKD').replace(/\p{M}/gu, '').toLowerCase();
