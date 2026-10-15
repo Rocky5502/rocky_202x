@@ -3,6 +3,8 @@ import { ArrowUpRight, Heart, MessageCircle, RefreshCw, ShieldCheck } from "luci
 import { useLanguage } from "@/i18n/LanguageProvider";
 import { articleThreads, commentUrl, commentsRepo, discussionUrl } from "@/data/articleThreads";
 import "@/article-engagement.css";
+import { giscusReady } from "@/data/giscusSettings";
+import GiscusDiscussion from "@/components/GiscusDiscussion";
 
 type GitHubIssue = {
   number: number; comments: number; state: string; locked?: boolean;
@@ -61,7 +63,11 @@ async function fetchJson<T>(url: string, signal: AbortSignal): Promise<T> {
   return response.json() as Promise<T>;
 }
 
-export default function ArticleEngagement({ articlePath }: { articlePath: string }) {
+export default function ArticleEngagement({articlePath}:{articlePath:string}) {
+  return giscusReady ? <GiscusDiscussion articlePath={articlePath}/> : <LegacyIssueEngagement articlePath={articlePath}/>;
+}
+
+function LegacyIssueEngagement({ articlePath }: { articlePath: string }) {
   const { language } = useLanguage();
   const zh = language === "zh-CN";
   const c = zh ? copy.zh : copy.en;
