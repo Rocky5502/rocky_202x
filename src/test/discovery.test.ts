@@ -18,6 +18,7 @@ describe("academically honest discovery metadata", () => {
     const x = root + "x/";
     expect(urls).toEqual([
       root,
+      root + "notes/",
       x,
       x + "docs/",
       x + "learn/",
@@ -41,6 +42,14 @@ describe("academically honest discovery metadata", () => {
       const html = readFileSync("public/x/" + relative, "utf8");
       expect(html.match(/assets\/ex-logo\.svg/g)?.length).toBe(2 + Number(relative === "index.html"));
     }
+    const notes=readFileSync("public/notes/index.html","utf8");
+    expect(notes).toContain('<link rel="canonical" href="'+root+'notes/">');
+    expect(notes).toContain('<meta name="robots" content="index, follow">');
+    expect(notes).toContain('Notes from the Unknown');
+    expect((notes.match(/<article class="essay"/g)||[])).toHaveLength(8);
+    expect((notes.match(/href="\/rocky_202x\/#\/notes\//g)||[]).length).toBeGreaterThanOrEqual(8);
+    expect(notes).not.toMatch(/<script[^>]+src=/);
+    expect(readFileSync("public/notes/notes.css","utf8")).toContain("focus-visible");
     const robots = readFileSync("public/robots.txt", "utf8");
     expect(robots).toContain("Sitemap: " + root + "sitemap.xml");
   });
