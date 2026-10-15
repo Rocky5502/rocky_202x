@@ -32,3 +32,10 @@
 /* X AI research subpage */
 .ai-hero .lead{max-width:810px}.ai-hero .hero-actions{margin-top:25px}.ai-hero .muted-sm{margin-top:26px}.ai-research-grid{gap:18px}.ai-research-grid .feature-card{min-height:230px}.ai-research-grid .icon-square{min-width:48px;width:auto;padding:0 10px}
 @media(max-width:730px){.ai-research-grid{grid-template-columns:1fr}}
+
+/* Official eX mark: a traced vector of the selected charcoal/electric-blue design. */
+.brand-symbol{display:flex;align-items:center;justify-content:center;width:74px;height:44px;min-width:74px;padding:4px 5px;background:#fff;border:1px solid #e0e7f0;border-radius:11px;color:#18212d;box-shadow:0 3px 12px #0002;font-size:inherit}
+.brand-symbol img{display:block;width:100%;height:auto;max-height:38px}
+.hero-logo-tile{display:flex;align-items:center;justify-content:center;max-width:242px;min-height:96px;padding:11px 16px;margin:0 0 22px;background:#fff;border:1px solid #e6eaf0;border-radius:18px;box-shadow:0 15px 45px #0003}
+.hero-logo-tile img{display:block;width:100%;height:auto;max-height:88px}
+@media(max-width:600px){.brand-symbol{width:59px;min-width:59px;height:38px;padding:4px}.hero-logo-tile{max-width:190px;min-height:80px}}

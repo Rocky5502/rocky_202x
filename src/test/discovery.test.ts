@@ -33,6 +33,14 @@ describe("academically honest discovery metadata", () => {
       const canonical = x + relative.replace(/index\.html$/, "");
       expect(html).toContain('<link rel="canonical" href="' + canonical + '">');
     }
+    const logo = readFileSync("public/x/assets/ex-logo.svg", "utf8");
+    const favicon = readFileSync("public/x/assets/x-mark.svg", "utf8");
+    expect(logo).toContain("eX — X programming language");
+    expect(favicon).toContain("eX language favicon");
+    for (const relative of ["index.html", "docs/index.html", "learn/index.html", "status/index.html", "community/index.html", "ai/index.html", "xcook/index.html"]) {
+      const html = readFileSync("public/x/" + relative, "utf8");
+      expect(html.match(/assets\/ex-logo\.svg/g)?.length).toBe(2 + Number(relative === "index.html"));
+    }
     const robots = readFileSync("public/robots.txt", "utf8");
     expect(robots).toContain("Sitemap: " + root + "sitemap.xml");
   });

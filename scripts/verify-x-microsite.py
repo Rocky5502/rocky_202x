@@ -17,7 +17,7 @@ PUBLIC_BASE = "https://rocky5502.github.io/rocky_202x/x/"
 PAGES = ("index.html", "docs/index.html", "learn/index.html",
          "status/index.html", "community/index.html", "ai/index.html", "xcook/index.html")
 ASSETS = ("assets/styles.css", "assets/site.js", "assets/search-core.mjs",
-          "assets/docs-search.mjs", "assets/x-mark.svg")
+          "assets/docs-search.mjs", "assets/x-mark.svg", "assets/ex-logo.svg")
 
 
 class HTMLAudit(HTMLParser):
@@ -146,7 +146,7 @@ def main() -> int:
     if errors:
         print("X microsite verification FAILED (" + str(len(errors)) + " issues).")
         return 1
-    print("X microsite verified: 7 static pages, 5 assets, CSP, links, canonical URLs and sitemap.")
+    print("X microsite verified: 7 static pages, 6 assets, CSP, links, canonical URLs and sitemap.")
     return 0
 
 
