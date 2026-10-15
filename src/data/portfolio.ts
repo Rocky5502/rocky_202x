@@ -30,9 +30,10 @@ export const identity = {
   // Public-facing PayPal recipient email requested by the site owner.
   // This is not a verified PayPal account or a payment link.
   paypalEmail: "sahchandan98@gmail.com",
-  // The supplied Web of Science URL is a generic author-search landing page,
-  // NOT a verified researcher profile (no unique researcher ID provided).
-  webOfScienceSearch: "https://www.webofscience.com/wos/author/author-search?state=%7B%7D",
+  // ResearcherID supplied directly by the researcher (2026-10-15).
+  // Direct profile URL follows Clarivate's documented /wos/author/record/{ResearcherID} format.
+  researcherId: "JVY-7383-2024",
+  webOfScienceProfile: "https://www.webofscience.com/wos/author/record/JVY-7383-2024",
   countryOfOrigin: "Nepal",
   scholarship: "Chinese Government Scholarship recipient",
   scholar: "https://scholar.google.com/citations?user=PyH-zqygdCYC&hl=en",
