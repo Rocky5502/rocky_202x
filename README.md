@@ -5,6 +5,8 @@ Designed for readers of research papers, potential collaborators, hiring committ
 
 **Live website:** https://rocky5502.github.io/rocky_202x/
 
+**X programming language microsite:** https://rocky5502.github.io/rocky_202x/x/ — public static documentation for the **private**, experimental X compiler. It does not offer a public compiler download or browser execution.
+
 **Quality audit:** [Browser, accessibility, mobile, routing & performance checks](docs/WEBSITE_QUALITY_AUDIT.md) — including reproducible GitHub Actions screenshots and measured production-image optimization.
 
 **Security review (14 October 2026):** [Detailed security audit and open advisory findings](docs/SECURITY_REVIEW_2026-10-14.md) · [Responsible disclosure](SECURITY.md). The production CSP, external-link checks, no-referrer policy, safe 404 routing and frozen modern Bun lockfile are enforced in CI. A separate high/critical dependency advisory job remains intentionally failing while build-tool advisories are addressed; a passing Pages deployment does not mean all advisories are resolved.

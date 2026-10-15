@@ -1,8 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- HashRouter page fragments cannot be indexed as separate sitemap URLs.
-       Only the real crawlable homepage is listed. -->
+  <!-- HashRouter page fragments cannot be indexed separately; X uses real static paths. -->
   <url>
     <loc>https://rocky5502.github.io/rocky_202x/</loc>
+  </url>
+  <url>
+    <loc>https://rocky5502.github.io/rocky_202x/x/</loc>
+  </url>
+  <url>
+    <loc>https://rocky5502.github.io/rocky_202x/x/docs/</loc>
+  </url>
+  <url>
+    <loc>https://rocky5502.github.io/rocky_202x/x/learn/</loc>
+  </url>
+  <url>
+    <loc>https://rocky5502.github.io/rocky_202x/x/status/</loc>
+  </url>
+  <url>
+    <loc>https://rocky5502.github.io/rocky_202x/x/community/</loc>
   </url>
 </urlset>
