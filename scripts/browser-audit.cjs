@@ -296,7 +296,9 @@ async function auditA11y(page, route) {
       ["/cv/skills","科研与技术能力"], ["/cv/languages","编程语言与交流语言"]
     ];
     for (const [route, expected] of cnRoutes) {
-      await page.goto(url(route), {waitUntil: "networkidle"});
+      // Embedded discussions keep remote requests active; audit application readiness, not global network idleness.
+      await page.goto(url(route), {waitUntil: "domcontentloaded"});
+      await page.locator("main h1").first().waitFor();
       const actual = await page.locator("main h1").first().textContent();
       ok(actual.trim() === expected, "Mandarin heading for " + route + ": " + actual.trim());
       ok(await page.evaluate(() => document.documentElement.lang) === "zh-CN", "Mandarin preference persists across " + route);
