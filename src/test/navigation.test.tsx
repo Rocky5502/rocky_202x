@@ -101,6 +101,31 @@ describe("academic introduction and Web of Science ResearcherID", () => {
   });
 });
 
+describe("academic service redesign", () => {
+  it("presents one non-duplicated reviewing figure, AIES service and professional memberships", () => {
+    render(<MemoryRouter initialEntries={["/service"]}><PortfolioSite /></MemoryRouter>);
+    const review = document.querySelector(".review-evidence");
+    expect(review).not.toBeNull();
+    expect(review?.querySelectorAll(".review-value")).toHaveLength(1);
+    expect(review).toHaveTextContent("5");
+    expect(review).toHaveTextContent("Distinct manuscripts reviewed");
+    expect(screen.getByText("AAAI/ACM AIES 2025")).toBeInTheDocument();
+    expect(document.body).not.toHaveTextContent("Review rounds reported in Web of Science");
+    expect(document.body).not.toHaveTextContent("These researcher-supplied records may overlap");
+    expect(document.body).not.toHaveTextContent("Venue names below describe reviewing service");
+    expect(document.body).not.toHaveTextContent("Reviewing venues are listed for professional recognition only");
+    expect(screen.getByRole("heading", { name: "Memberships" })).toBeInTheDocument();
+    const membershipCards = document.querySelectorAll(".membership-item");
+    expect(membershipCards).toHaveLength(2);
+    expect(membershipCards[0]).toHaveTextContent("International Association for Safe & Ethical AI");
+    expect(membershipCards[1]).toHaveTextContent("Association for Computing Machinery");
+    expect(document.querySelectorAll(".membership-logo img")).toHaveLength(2);
+    expect(document.querySelectorAll(".membership-actions a")).toHaveLength(4);
+    expect(document.body).toHaveTextContent("Nov 2025 – Present");
+    expect(document.body).toHaveTextContent("Jul 2024 – Present");
+  });
+});
+
 describe("navigation usability", () => {
   it("keeps Projects and Recognition inside the five-card CV overview, not the main menu", () => {
     render(<MemoryRouter initialEntries={["/cv"]}><PortfolioSite /></MemoryRouter>);
