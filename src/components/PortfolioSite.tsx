@@ -464,21 +464,32 @@ function ResearchPage() {
 
 function ServicePage() {
   return <div className="content-wrap interior-page">
-    <PageHeading kicker="Community / 03" title="Academic service" subtitle="Peer review, conference support, and work that helps the research community function." />
+    <PageHeading kicker="Community / 03" title="Academic service" subtitle="Peer review, professional memberships, and contributions to the research community." />
     <section className="service-section">
       <SectionTitle eyebrow="Scholarly peer review" title="Reviewer roles" />
-      <p className="service-intro">I contribute to peer review across software engineering, machine learning, computer vision, and information retrieval. Venue names below describe reviewing service, not membership in organizing or program committees.</p>
-      <div className="review-evidence" aria-label="Peer review activity records">
-        <div><span className="review-value">{academicService.reviewRecord.webOfScienceRounds}</span><span className="review-term">Review rounds reported in Web of Science</span></div>
-        <div><span className="review-value">{academicService.reviewRecord.webOfScienceManuscripts}</span><span className="review-term">Distinct manuscripts represented</span></div>
-        <div><span className="review-value">{academicService.reviewRecord.orcidReviewRecords}</span><span className="review-term">Peer-review records on ORCID</span></div>
+      <p className="service-intro">Reviewing across artificial intelligence, software engineering, computer vision, and information retrieval.</p>
+      <div className="review-evidence review-evidence-compact" aria-label="Peer review activity">
+        <div><span className="review-value">{academicService.reviewRecord.distinctManuscripts}</span><span className="review-term">Distinct manuscripts reviewed</span></div>
       </div>
-      <p className="small-note">These researcher-supplied records may overlap; the counts are not added together. Individual manuscript titles and confidential reviewer reports are deliberately excluded.</p>
       <div className="service-columns">
         <div><h3>Conferences</h3><ul className="quiet-list">{academicService.conferences.map(v=><li key={v}>{v}</li>)}</ul></div>
         <div><h3>Journals</h3><ul className="quiet-list">{academicService.journals.map(v=><li key={v}>{v}</li>)}</ul></div>
       </div>
-      <p className="small-note">Reviewing venues are listed for professional recognition only. The reported activity counts have not been independently checked in authenticated Web of Science or ORCID accounts.</p>
+    </section>
+    <section className="service-section section-divider">
+      <SectionTitle eyebrow="Professional associations" title="Memberships" />
+      <div className="membership-grid">
+        {academicService.memberships.map(m=><article className="membership-item" key={m.abbreviation}>
+          <a href={m.website} target="_blank" rel="noopener noreferrer" className="membership-logo" aria-label={m.abbreviation+" organization website"}>
+            <img src={`https://www.google.com/s2/favicons?domain=${m.iconDomain}&sz=128`} alt="" width="48" height="48" loading="lazy" referrerPolicy="no-referrer" />
+          </a>
+          <div className="membership-content">
+            <p className="membership-role">{m.role} <span aria-hidden="true">·</span> {m.since}</p>
+            <h3>{m.organization}</h3>
+            <p className="membership-actions"><a href={m.website} target="_blank" rel="noopener noreferrer">Website <ArrowUpRight size={13} aria-hidden="true"/></a><a href={m.linkedIn} target="_blank" rel="noopener noreferrer">LinkedIn <ArrowUpRight size={13} aria-hidden="true"/></a></p>
+          </div>
+        </article>)}
+      </div>
     </section>
     <section className="service-section section-divider">
       <SectionTitle eyebrow="Volunteer engagement" title="Community involvement" />

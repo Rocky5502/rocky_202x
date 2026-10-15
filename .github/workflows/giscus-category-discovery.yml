@@ -1,0 +1,30 @@
+name: Discover public giscus category ID
+on:
+  push:
+    branches: ["feature/academic-service-and-native-reactions-20261016"]
+permissions:
+  contents: read
+  discussions: read
+jobs:
+  find-category:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check repository discussion categories (non-secret IDs only)
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          node <<'JS'
+          const query='query { repository(owner:"Rocky5502", name:"rocky_202x") { hasDiscussionsEnabled discussionCategories(first:30) { nodes { name slug id } } } }';
+          (async()=>{
+            const resp=await fetch("https://api.github.com/graphql", {
+              method:"POST",
+              headers:{"Authorization":"Bearer "+process.env.GH_TOKEN,"Content-Type":"application/json","User-Agent":"giscus-category-discovery"},
+              body:JSON.stringify({query})
+            });
+            const payload=await resp.json();
+            if(!resp.ok || payload.errors?.length) throw Error(JSON.stringify({status:resp.status,errors:payload.errors}));
+            const repo=payload.data?.repository;
+            console.log("DISCUSSIONS_ENABLED="+repo?.hasDiscussionsEnabled);
+            for(const c of repo?.discussionCategories?.nodes||[]) console.log("CATEGORY="+c.name+"|"+c.slug+"|"+c.id);
+          })().catch(e=>{console.error(e.message);process.exitCode=1;});
+          JS

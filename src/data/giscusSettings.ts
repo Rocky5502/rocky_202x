@@ -3,15 +3,16 @@
  * This site's URL uses HashRouter, so discussions MUST map via a stable specific term,
  * never 'pathname' (all essays share the same browser pathname on GitHub Pages).
  *
- * One-time owner setup: turn on repo Discussions, install github.com/apps/giscus for this
- * repository, and copy the Announcements category ID from https://giscus.app/.
- * Category ID is not a secret; no GitHub OAuth token is ever embedded in this site.
+ * GitHub Discussions is enabled, and the Announcements category ID was retrieved
+ * from the repository using its GITHUB_TOKEN in a one-time CI check. The owner
+ * must also ensure the official giscus GitHub App has repository access.
+ * No GitHub OAuth token is embedded in this site.
  */
 export const giscusSettings = {
   repo: "Rocky5502/rocky_202x",
   repoId: "R_kgDOSeIGfg",
   category: "Announcements",
-  categoryId: "", // Activate after owner enables Discussions and supplies correct category ID.
+  categoryId: "DIC_kwDOSeIGfs4DIhO6", // Read from repository GraphQL API via authenticated GitHub Actions; public ID.
 } as const;
 
 export const giscusReady =

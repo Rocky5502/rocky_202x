@@ -8,3 +8,9 @@
 .onpage-discussion-frame .giscus, .onpage-discussion-frame .giscus-frame { width:100%; border:0; }
 @media (max-width:650px) { .onpage-discussion { margin-top:37px; padding-top:25px; } .onpage-discussion > button { width:100%; } }
 @media print { .onpage-discussion { display:none!important; } }
+
+/* Immediately visible in-page discussion; no redirect-to-issue actions. */
+.onpage-discussion .eyebrow { color:var(--portfolio-accent); margin-bottom:12px; }
+.onpage-discussion h2 { display:flex; flex-wrap:wrap; align-items:center; gap:13px; }
+.onpage-discussion h2 svg { color:var(--portfolio-accent); flex:none; }
+.onpage-discussion-frame { min-height:230px; }

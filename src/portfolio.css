@@ -2101,3 +2101,20 @@ html[lang="zh-CN"] .award-archive-card h3 { overflow-wrap: anywhere; }
   .wechat-pay-content { flex-direction: column; align-items: flex-start; gap: 12px; }
   .wechat-pay-qr { width: min(100%, 224px); height: auto; aspect-ratio: 1; }
 }
+
+/* Academic service — quiet single-number summary and compact memberships. */
+.review-evidence-compact { display:flex; gap:18px; align-items:center; padding:15px 0 23px; margin-block:14px 21px; }
+.review-evidence-compact > div { flex-direction:row; align-items:baseline; gap:17px; }
+.review-evidence-compact .review-value { font-size:32px; }
+.review-evidence-compact .review-term { max-width:none; }
+.membership-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; margin-top:21px; }
+.membership-item { min-width:0; display:flex; align-items:center; gap:16px; padding:20px; border:1px solid var(--portfolio-rule); background:var(--portfolio-panel); border-radius:8px; }
+.membership-logo { flex:none; width:58px; height:58px; border:1px solid var(--portfolio-rule); border-radius:9px; background:white; display:grid; place-items:center; padding:6px; }
+.membership-logo img { width:43px; height:43px; object-fit:contain; }
+.membership-content { min-width:0; }
+.membership-role { font-size:11px; font-weight:630; color:var(--portfolio-accent); line-height:1.5; }
+.membership-content h3 { font:500 clamp(16px,1.8vw,20px)/1.32 Georgia,"Times New Roman",serif; margin:6px 0 11px; }
+.membership-actions { display:flex; flex-wrap:wrap; align-items:center; gap:8px 17px; }
+.membership-actions a { display:inline-flex; align-items:center; gap:4px; color:var(--portfolio-accent)!important; font-size:11px; font-weight:650; }
+.membership-actions a:hover { text-decoration:underline; }
+@media(max-width:790px){.membership-grid{grid-template-columns:1fr;}.membership-item{padding:17px;}}

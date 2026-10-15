@@ -71,7 +71,7 @@ async function auditA11y(page, route) {
       if (response.url().startsWith("http://127.0.0.1:4173/") && response.status() >= 400) brokenOwnAssets.push(response.status() + " " + response.url());
     });
     for (const [route, heading] of routes) {
-      await page.goto(url(route), {waitUntil: "networkidle", timeout: 30000});
+      await page.goto(url(route), {waitUntil: "domcontentloaded", timeout: 30000});
       const info = await dimensions(page);
       observations.push({route, ...info});
       ok(info.h1.length === 1, route + " has exactly one H1 (" + info.h1.join(", ") + ")");
@@ -79,7 +79,7 @@ async function auditA11y(page, route) {
       ok(info.scroll <= info.inner + 2, route + " has no horizontal overflow at 1440px (" + info.scroll + "/" + info.inner + ")");
       ok(info.title.includes("Chandan Kumar Sah"), route + " has route-specific document title");
     }
-    await page.goto(url("/"), {waitUntil: "networkidle"});
+    await page.goto(url("/"), {waitUntil: "domcontentloaded"});
     const policy = await page.locator('meta[http-equiv="Content-Security-Policy"]').getAttribute("content");
     ok(!!policy && policy.includes("connect-src 'self' https://api.github.com") && policy.includes("frame-src https://giscus.app") && policy.includes("object-src 'none'"), "Production browser policy limits external APIs and embedded frames to approved GitHub and giscus hosts");
     ok(!!policy && /script-src 'self' 'sha256-[A-Za-z0-9+/=]+'/.test(policy), "Inline structured data is hash-pinned, not broadly executable");
@@ -117,13 +117,13 @@ async function auditA11y(page, route) {
     await auditA11y(page, "home-desktop");
 
     // Skip-link must not replace the HashRouter route with #main-content.
-    await page.goto(url("/cv/education"), {waitUntil: "networkidle"});
+    await page.goto(url("/cv/education"), {waitUntil: "domcontentloaded"});
     await page.keyboard.press("Tab");
     ok(await page.evaluate(() => document.activeElement?.classList.contains("skip-link") === true), "Keyboard Tab reaches the skip-to-content link");
     await page.keyboard.press("Enter");
     ok(new URL(page.url()).hash === "#/cv/education", "Skip link preserves the active HashRouter route");
     ok(await page.evaluate(() => document.activeElement?.id === "main-content"), "Skip link moves focus to main content");
-    await page.goto(url("/cv"), {waitUntil: "networkidle"});
+    await page.goto(url("/cv"), {waitUntil: "domcontentloaded"});
     ok(await page.locator("a.cv-layer-card").count() === 5, "CV overview has five interactive section cards");
     ok(await page.locator('a.cv-layer-card[href="#/recognition"]').count() === 1, "CV Recognition section reuses the existing Recognition route");
     ok(await page.locator('a.cv-layer-card[href="#/projects"]').count() === 1, "CV Projects section links to the existing Projects route");
@@ -145,14 +145,14 @@ async function auditA11y(page, route) {
     await auditA11y(page,"projects-with-private-previews");
     await page.screenshot({path:path.join(directory,"projects-desktop.png"),fullPage:true});
     ok(await page.getByRole("navigation", {name: "Projects breadcrumb"}).getByRole("link", {name: /Back to CV/}).getAttribute("href") === "#/cv", "Projects provides a breadcrumb back to CV");
-    await page.goto(url("/cv"), {waitUntil:"networkidle"});
+    await page.goto(url("/cv"), {waitUntil:"domcontentloaded"});
     await page.locator('a.cv-layer-card[href="#/recognition"]').click();
     ok(new URL(page.url()).hash === "#/recognition", "CV Recognition card navigates to existing Recognition page");
     const backToCv = page.getByRole("navigation", {name: "Recognition breadcrumb"}).getByRole("link", {name: /Back to CV/});
     ok(await backToCv.getAttribute("href") === "#/cv", "Recognition breadcrumb provides a route back to CV");
     ok(await page.getByRole("link", {name: "Explore the Awards & Appreciation archive"}).count() === 1, "Recognition keeps Awards & Appreciation click-through");
     ok(await page.getByRole("heading", {name: "Selected talks"}).count() === 1, "Recognition keeps selected academic talks");
-    await page.goto(url("/cv"), {waitUntil: "networkidle"});
+    await page.goto(url("/cv"), {waitUntil: "domcontentloaded"});
     ok(await page.locator(".cv-education-row").count() === 0, "CV overview does not expose degree details");
     await page.screenshot({path: path.join(directory, "cv-overview-desktop.png"), fullPage: true});
     await auditA11y(page, "cv-overview");
@@ -166,7 +166,7 @@ async function auditA11y(page, route) {
     ok(await page.locator(".cv-school-card").count() === 4, "Education displays four original schools");
     await auditA11y(page, "cv-education");
 
-    await page.goto(url("/awards"), {waitUntil: "networkidle"});
+    await page.goto(url("/awards"), {waitUntil: "domcontentloaded"});
     ok(await page.locator(".award-archive-card").count() === 62, "Awards archive preserves 62 records");
     await page.getByRole("searchbox", {name: "Search archived awards"}).fill("xyz-no-results-portfolio-audit");
     ok(await page.getByText("No records match these filters.").isVisible(), "Awards shows useful no-results state");
@@ -174,12 +174,12 @@ async function auditA11y(page, route) {
     ok(await page.locator(".award-archive-card").count() === 62, "Awards reset restores the archive");
     await auditA11y(page, "awards");
 
-    await page.goto(url("/news"), {waitUntil: "networkidle"});
+    await page.goto(url("/news"), {waitUntil: "domcontentloaded"});
     ok(await page.locator(".news-entry").count() === 11, "News retains eleven original and new items");
     await page.getByRole("button", {name: "2024", exact: true}).click();
     ok(await page.locator(".news-entry").count() > 0 && await page.locator(".news-entry").count() < 11, "News year filter works");
 
-    await page.goto(url("/connect"), {waitUntil: "networkidle"});
+    await page.goto(url("/connect"), {waitUntil: "domcontentloaded"});
     const support = page.locator(".support-disclosure");
     ok(await support.count() === 1, "Optional support appears as one small disclosure, not a full-width fundraising panel");
     ok(await support.evaluate(node => !node.open), "Support details are collapsed by default");
@@ -203,7 +203,7 @@ async function auditA11y(page, route) {
     await support.locator("summary").click();
     ok(await support.evaluate(node => !node.open), "Support closes cleanly again");
 
-    await page.goto(url("/service"), {waitUntil:"networkidle"});
+    await page.goto(url("/service"), {waitUntil:"domcontentloaded"});
     const wosLinks = page.getByRole("link", {name:"Web of Science Researcher Profile"});
     ok(await wosLinks.count() >= 1, "Academic service provides the Web of Science Researcher Profile");
     ok((await wosLinks.first().getAttribute("href")) === "https://www.webofscience.com/wos/author/record/JVY-7383-2024", "Web of Science direct profile link uses the author-provided ResearcherID");
@@ -220,7 +220,7 @@ async function auditA11y(page, route) {
     }
     for (const width of [320, 390]) {
       await page.setViewportSize({width, height: 844});
-      await page.goto(url("/connect"), {waitUntil: "networkidle"});
+      await page.goto(url("/connect"), {waitUntil: "domcontentloaded"});
       const compact = page.locator(".support-disclosure");
       ok(await compact.evaluate(node => !node.open), "Compact support defaults closed at " + width + "px");
       await compact.locator("summary").focus();
@@ -234,7 +234,7 @@ async function auditA11y(page, route) {
       ok(await compact.evaluate(node => !node.open), "Keyboard Enter closes support at " + width + "px");
     }
     await page.setViewportSize({width: 390, height: 844});
-    await page.goto(url("/"), {waitUntil: "networkidle"});
+    await page.goto(url("/"), {waitUntil: "domcontentloaded"});
     await page.screenshot({path: path.join(directory, "home-mobile.png"), fullPage: true});
     const menu = page.getByRole("button", {name: "Open navigation"});
     await menu.click();
@@ -265,7 +265,7 @@ async function auditA11y(page, route) {
     ok(await page.getByRole("heading", {name: "学术履历与技能"}).count() === 1, "CV title switches into natural Simplified Chinese");
     ok(await page.getByRole("button", {name: "切换网站语言为英语"}).count() === 1, "Language switch labels its next action accessibly in Mandarin");
     ok(await page.evaluate(() => localStorage.getItem("portfolio-language") === "zh-CN"), "Mandarin preference saved");
-    await page.goto(url("/"), {waitUntil:"networkidle"});
+    await page.goto(url("/"), {waitUntil:"domcontentloaded"});
     ok(await page.getByText(/来自尼泊尔 🇳🇵，自2018年4月起在中国学习和生活/).count() === 1, "Mandarin homepage uses formal name-free third-person biography");
     ok(!(await page.locator(".hero-description").innerText()).includes("Chandan Kumar Sah"), "Mandarin biography does not redundantly repeat the H1 name");
     ok((await page.locator(".portrait-research-record").innerText()).includes("科研成果"), "Research works highlight has authored Mandarin translation");
@@ -273,7 +273,7 @@ async function auditA11y(page, route) {
     ok(await page.locator(".portrait-highlight-list li").count() === 6, "Mandarin homepage preserves six academic highlights");
     ok((await page.locator(".portrait-highlight-list").innerText()).includes("ASE 2025 ACM 学生研究竞赛研究生组二等奖（第二名）"), "Mandarin ACM SRC ranking is correctly localized");
     ok(await page.locator(".portrait-highlight-list").innerText().then(t=>t.includes("亚洲大学联盟研究生论坛优秀论文奖")), "Mandarin award highlight correctly describes AUA Excellent Paper distinction");
-    await page.goto(url("/connect"), {waitUntil:"networkidle"});
+    await page.goto(url("/connect"), {waitUntil:"domcontentloaded"});
     ok(await page.locator(".support-disclosure").evaluate(node => !node.open), "Mandarin research support remains discreet by default");
     ok((await page.locator(".support-disclosure summary").textContent()).includes("支持开放、负责任的人工智能研究"), "Compact support title translated into mainland Mandarin");
     await page.locator(".support-disclosure summary").click();
@@ -282,7 +282,7 @@ async function auditA11y(page, route) {
     ok(await page.getByText(/转账前请在微信支付中核对收款方身份/).isVisible(), "Mandarin recipient verification warning visible");
     ok(await page.getByRole("textbox",{name:"PayPal support email address"}).count() === 0, "Chinese PayPal accessibility label replaces English label");
     await page.locator(".support-disclosure summary").click();
-    await page.goto(url("/cv"), {waitUntil:"networkidle"});
+    await page.goto(url("/cv"), {waitUntil:"domcontentloaded"});
     await page.screenshot({path: path.join(directory, "cv-mobile-zh-dark.png"), fullPage: true});
     await auditA11y(page, "cv-mobile-zh-dark");
 
@@ -296,22 +296,24 @@ async function auditA11y(page, route) {
       ["/cv/skills","科研与技术能力"], ["/cv/languages","编程语言与交流语言"]
     ];
     for (const [route, expected] of cnRoutes) {
-      await page.goto(url(route), {waitUntil: "networkidle"});
+      // Embedded discussions keep remote requests active; audit application readiness, not global network idleness.
+      await page.goto(url(route), {waitUntil: "domcontentloaded"});
+      await page.locator("main h1").first().waitFor();
       const actual = await page.locator("main h1").first().textContent();
       ok(actual.trim() === expected, "Mandarin heading for " + route + ": " + actual.trim());
       ok(await page.evaluate(() => document.documentElement.lang) === "zh-CN", "Mandarin preference persists across " + route);
     }
-    await page.goto(url("/projects"), {waitUntil: "networkidle"});
+    await page.goto(url("/projects"), {waitUntil: "domcontentloaded"});
     ok(await page.locator(".ongoing-project-card").count() === 5, "Mandarin Projects page preserves five research previews");
     ok((await page.locator(".ongoing-project-card").first().innerText()).includes("私人研究 · 代码暂不公开"), "Private code status translated into Mandarin without promise of publication");
     ok((await page.locator(".project-overview").innerText()).includes("项研究预览"), "Filtered private-research count localized in Mandarin");
-    await page.goto(url("/news"), {waitUntil: "networkidle"});
+    await page.goto(url("/news"), {waitUntil: "domcontentloaded"});
     ok(await page.locator(".news-entry").count() === 11, "All eleven news items remain in the Chinese version");
     ok(await page.locator(".news-entry h3").first().textContent() !== "Auditable Uncertainty Control for Secure LLM Agents — ACM CCS 2026", "News headline translated");
     await page.locator(".news-story-details summary").first().click();
     ok((await page.locator(".news-story-body p").first().textContent()).includes("ACM"), "Full CCS article has its Mandarin editorial translation");
 
-    await page.goto(url("/awards"), {waitUntil: "networkidle"});
+    await page.goto(url("/awards"), {waitUntil: "domcontentloaded"});
     ok(await page.locator(".award-archive-card").count() === 62, "All 62 awards survive Mandarin localization");
     await page.getByRole("combobox", {name: "按类别筛选档案"}).selectOption("Scholarships & fellowships");
     const scholarshipCount = await page.locator(".award-archive-card").count();
@@ -330,7 +332,7 @@ async function auditA11y(page, route) {
       }
     }
     await page.setViewportSize({width:390,height:844});
-    await page.goto(url("/research"), {waitUntil:"networkidle"});
+    await page.goto(url("/research"), {waitUntil:"domcontentloaded"});
     ok(await page.evaluate(() => localStorage.getItem("portfolio-language")) === "zh-CN", "Language preserved on reload");
     ok((await page.title()).startsWith("研究方向"), "Chinese document title and SEO metadata update");
     await page.getByRole("button", {name:"切换网站语言为英语"}).click();
@@ -339,7 +341,7 @@ async function auditA11y(page, route) {
     ok(await page.evaluate(() => localStorage.getItem("portfolio-language")) === "en", "Returning to English persists");
 
     // A shareable link must beat prior preferences and preserve hash routes.
-    await page.goto(BASE + "?campaign=academic&lang=zh-CN#/cv/education", {waitUntil:"networkidle"});
+    await page.goto(BASE + "?campaign=academic&lang=zh-CN#/cv/education", {waitUntil:"domcontentloaded"});
     ok(await page.evaluate(() => document.documentElement.lang === "zh-CN"), "Explicit shared Chinese deep link overrides saved English");
     ok((await page.locator("main h1").textContent()).trim() === "教育经历", "Shared Chinese URL opens the requested CV education route");
     await page.getByRole("button", {name:"切换网站语言为英语"}).click();
@@ -347,7 +349,7 @@ async function auditA11y(page, route) {
     ok(new URL(page.url()).searchParams.get("campaign") === "academic", "Language switch preserves unrelated query parameters");
     ok(new URL(page.url()).searchParams.get("lang") === "en", "Language switch writes an explicit shareable English URL");
     ok(new URL(page.url()).hash === "#/cv/education", "Language switch preserves the deep route hash");
-    await page.goto(BASE + "?lang=zh-CN#/news", {waitUntil:"networkidle"});
+    await page.goto(BASE + "?lang=zh-CN#/news", {waitUntil:"domcontentloaded"});
     ok(await page.evaluate(() => document.documentElement.lang === "zh-CN"), "Chinese share URL reloads correctly");
     ok((await page.locator("main h1").textContent()).trim() === "新闻与科研里程碑", "Chinese news deep link retains full translation");
 

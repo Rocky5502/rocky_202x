@@ -172,7 +172,7 @@ export const selectedProjects = [
 ];
 
 export const academicService = {
-  conferences: ["NeurIPS", "AAAI", "CVPR", "ICCV", "ECIR", "ASE"],
+  conferences: ["NeurIPS", "AAAI", "AAAI/ACM AIES 2025", "CVPR", "ICCV", "ECIR", "ASE"],
   journals: [
     "ACM Transactions on Software Engineering and Methodology (TOSEM)",
     "Complex & Intelligent Systems",
@@ -180,12 +180,30 @@ export const academicService = {
     "International Journal of Human-Computer Interaction",
   ],
   reviewRecord: {
-    webOfScienceRounds: 7,
-    webOfScienceManuscripts: 5,
-    orcidReviewRecords: 2,
-    summary: "7 review-round records associated with 5 manuscripts in Web of Science, plus 2 ORCID review records. These may overlap and are not summed.",
-    source: "Researcher-provided Web of Science and ORCID summaries (2025–2026); not independently accessible without account access.",
+    // Only the five distinct manuscripts reported in the author's Web of Science
+    // record are shown; ORCID entries may duplicate them and are NOT summed.
+    distinctManuscripts: 5,
   },
+  memberships: [
+    {
+      organization: "International Association for Safe & Ethical AI",
+      abbreviation: "IASEAI",
+      role: "Member",
+      since: "Nov 2025 – Present",
+      website: "https://www.iaseai.org/",
+      linkedIn: "https://www.linkedin.com/in/chandan-sah-rocky-%E6%96%87%E6%B5%A9-5803bb1b4/details/volunteer-experiences/",
+      iconDomain: "iaseai.org",
+    },
+    {
+      organization: "Association for Computing Machinery",
+      abbreviation: "ACM",
+      role: "Member",
+      since: "Jul 2024 – Present",
+      website: "https://www.acm.org/",
+      linkedIn: "https://www.linkedin.com/in/chandan-sah-rocky-%E6%96%87%E6%B5%A9-5803bb1b4/details/volunteer-experiences/",
+      iconDomain: "acm.org",
+    },
+  ],
   volunteering: [
     { role: "Student Volunteer", organization: "ASE 2025", year: "2025", description: "40th IEEE/ACM International Conference on Automated Software Engineering." },
     { role: "Conference Volunteer", organization: "International Association for Safe & Ethical AI (IASEAI’26)", year: "2026", description: "Volunteer service supporting the 2026 IASEAI conference in Paris. Role reported by the researcher." },
