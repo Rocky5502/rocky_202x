@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- HashRouter page fragments cannot be indexed separately; X uses real static paths. -->
+  <!-- HashRouter fragments are not independently indexable; real static Notes and X pages are listed here. -->
   <url>
     <loc>https://rocky5502.github.io/rocky_202x/</loc>
+  </url>
+  <url>
+    <loc>https://rocky5502.github.io/rocky_202x/notes/</loc>
   </url>
   <url>
     <loc>https://rocky5502.github.io/rocky_202x/x/</loc>
