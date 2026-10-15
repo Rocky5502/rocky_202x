@@ -1,34 +1,35 @@
-# Article reader conversations
+# Embedded comments and reactions — on the article page
 
-Eight publicly accessible research notes have dedicated GitHub Issue threads (see `src/data/articleThreads.ts`). This is a deliberate **no-secrets, GitHub-Pages-compatible** reader-feedback feature. It does not create a custom API, ask visitors for email addresses, or store likes in `localStorage`.
+This website is hosted on GitHub Pages. It does not require a custom server to embed a reliable moderated conversation: **GitHub Discussions is the persistent backend**, while [giscus](https://giscus.app/) supplies the comments, replies, and emoji reaction interface inside each article.
 
-## Reader experience
+## Current activation state
 
-- On every article: counts of **GitHub thumbs-up and heart reactions** to the opening issue (shown together as “likes”), the number of comments, and up to eight of the most recent comments fetched from a maximum of 100 available through the public GitHub API.
-- Visitors can see public comments without signing in. They click **Like this article on GitHub** to choose 👍 or ❤️ on the opening issue, or **Write a comment** to post on the matching thread. GitHub sign-in is required to write/react.
-- The article page never submits reactions or comments via an unauthenticated frontend request. **Do not describe the reaction control as a one-click in-page like button.** It is a link to GitHub’s secure UI.
-- Reader comments render as plain text in React, not raw HTML or untrusted Markdown. External avatars are restricted to `avatars.githubusercontent.com`; GitHub comment links are validated to remain inside the correct issue. Comment text is capped at 2,000 characters and the source link shows the full comment.
-- Fail-open viewing: if the GitHub public API is down or rate-limited, counts read as unavailable and the public GitHub posting links continue to work.
-- English and Chinese share **the same one thread per article**, including after a language switch. Article URLs and dates are unchanged.
+**Prepared, but not active until the repository owner finishes GitHub setup.** As of October 15, 2026, Discussions on `Rocky5502/rocky_202x` is disabled, and no Discussions category ID is available. The live website therefore continues displaying the existing GitHub Issues comment/reaction fallback until setup is complete. Do not claim in-page posting works before this activation.
 
-## Moderation
+## One-time owner setup (no passwords sent to assistants)
 
-1. Open [the repository's Issues](https://github.com/Rocky5502/rocky_202x/issues) and search for `[Reader discussion]`. Eight specific Issue URLs are recorded in `src/data/articleThreads.ts`.
-2. Use GitHub's issue moderation controls to hide, report, delete, or lock abusive or off-topic contributions. Locking an issue stops new comments; public comments already visible may still be read.
-3. To avoid deleting discussions accidentally, do not rename routes or renumber/migrate threads without updating `articleThreads.ts`. Closing an issue can also prevent new participation. Avoid closing them as “completed” work.
-4. There is no anonymous comment form, unverified email collection, local data storage, or fake engagement counter.
-5. The GitHub API has unauthenticated rate limits (often 60 requests/hour per IP). The article UI makes two GET requests per article view and provides manual refresh; it does not poll continually. The user may read/follow the original thread directly even when counts are unavailable.
+1. On [repository Settings → General](https://github.com/Rocky5502/rocky_202x/settings), under **Features**, enable **Discussions**.
+2. Install the verified free [giscus GitHub App](https://github.com/apps/giscus) and grant access to **only** `Rocky5502/rocky_202x`.
+3. Open [giscus configuration](https://giscus.app/), enter `Rocky5502/rocky_202x`, and choose the existing **Announcements** category. Use the category type that restricts new discussions to maintainers and applications; readers can still comment/reply/react.
+4. Send only the **category ID** (`DIC_...`), not any secret or OAuth code, to the website maintainer. Set `categoryId` in `src/data/giscusSettings.ts` to that ID. The known repository ID is `R_kgDOSeIGfg`.
+5. The next tested, merged GitHub Pages build activates the embedded widget for all eight articles. Check one English and one Chinese article using a regular reader account.
 
-## Future upgrade: fully embedded replies and reactions
+## Expected reader experience after activation
 
-**Not yet active:** GitHub Discussions is disabled on this repository as of October 15, 2026. For true in-page posting, enabling GitHub Discussions and connecting [giscus](https://giscus.app/) is an option. That needs the owner to:
-- Enable **Settings → General → Features → Discussions** on `Rocky5502/rocky_202x`.
-- Install the official **giscus GitHub App** with repository-scoped access.
-- Choose a dedicated Discussions category and record the correct repository/category IDs from giscus.
-- Migrate or preserve existing Issue conversations thoughtfully before changing providers.
+- Beneath every article, click **Show comments and reactions**. The giscus widget loads in the page, not as a GitHub redirect.
+- Readers can click emojis, write comments, and reply without leaving the article. GitHub may open a temporary authentication window when a reader chooses to participate.
+- Reader identity and moderation are managed by GitHub. No visitor authentication token or secret is stored in this website's source.
+- The integration uses `data-mapping="specific"` and a stable term derived from the **React article route** (`Rocky Research Notes: /notes/...`). Never change this to `pathname`: GitHub Pages uses HashRouter, so all articles otherwise share `/rocky_202x/`.
+- The site supports a single discussion per article across English and Chinese; the iframe receives dark/light mode and language updates. The widget is click-to-load to avoid contacting a third party before reader consent.
+- Eight older Issue threads #31–38 have no reader comments as of creation. They are not silently migrated; keep them available in GitHub for historical continuity if needed.
 
-**Never** hardcode private credentials, introduce OAuth secrets in the public Vite bundle, fake counts, or silently switch off public Issue threads. The GitHub Issues approach above is functional without these additional steps.
+## Security and moderation
 
-## Smoke tests
+- Production Content Security Policy allows `https://giscus.app` for script and iframe; public `https://api.github.com` reads continue to support the legacy fallback. No `unsafe-inline` JavaScript, no wildcard origin, no client-side GitHub personal access tokens.
+- Readers sign in to GitHub when they engage. GitHub Discussions controls can hide, lock or remove spam and abusive messages.
+- A one-time GitHub App installation is explicit user authorization; automated tools cannot silently perform that action.
+- If the category ID is missing or invalid, the existing Issue-based fallback remains functional. Do not invent engagement counts or create an anonymous insecure write endpoint to replace it.
 
-Verify for each article: correct opening issue, both GitHub actions, public comment visibility or graceful fallback, markup-safe text, English/Chinese, mobile layout, dark mode, and public GitHub API latency. GitHub Actions checks are in `.github/workflows`. No backend hosting or service charge is required for the described Issues integration.
+## Tests
+
+Run `bun run test`, TypeScript checks, `scripts/security-audit.cjs` after production CSP injection, and Chromium accessibility/browser audit. The `giscus-discussion.test.tsx` suite covers per-article mapping, the activation gate, lazy iframe insertion, and reaction configuration.
