@@ -14,7 +14,7 @@ import ResearchRulesArticle, { researchRulesPath } from "@/components/ResearchRu
 import RightQuestionsEssay, { questionsEssayPath } from "@/components/RightQuestionsEssay";
 import NotesIndex from "@/components/NotesIndex";
 import ResearchEssayPage, { EssayThumbnail } from "@/components/SixResearchEssays";
-import { essayPrefix, researchEssayRoutes } from "@/data/researchEssays";
+import { researchEssayRoutes } from "@/data/researchEssays";
 import { nobelMeetingsCollage } from "@/assets/nobelMeetingsCollage";
 import { LanguageProvider, useLanguage } from "@/i18n/LanguageProvider";
 import { opportunityTracks, researchSupport } from "@/data/opportunities";
