@@ -8,6 +8,12 @@ export default function GiscusDiscussion({articlePath,categoryId=giscusSettings.
   const [enabled,setEnabled]=useState(false);
   const host=useRef<HTMLDivElement>(null);
   const zh=language==="zh-CN";
+  const [dark,setDark]=useState(()=>document.documentElement.classList.contains("dark"));
+  useEffect(()=>{
+    const watcher=new MutationObserver(()=>setDark(document.documentElement.classList.contains("dark")));
+    watcher.observe(document.documentElement,{attributes:true,attributeFilter:["class"]});
+    return ()=>watcher.disconnect();
+  },[]);
   useEffect(()=>{
     if(!enabled||!categoryId||!host.current)return;
     const mount=host.current;
@@ -23,7 +29,7 @@ export default function GiscusDiscussion({articlePath,categoryId=giscusSettings.
       "data-strict":"1",
       "data-reactions-enabled":"1",
       "data-input-position":"top",
-      "data-theme":document.documentElement.classList.contains("dark")?"dark":"light",
+      "data-theme":dark?"dark":"light",
       "data-lang":zh?"zh-CN":"en",
       "data-loading":"lazy"
     };
@@ -32,7 +38,12 @@ export default function GiscusDiscussion({articlePath,categoryId=giscusSettings.
     script.async=true;
     mount.appendChild(script);
     return ()=>{mount.replaceChildren();};
-  },[enabled,articlePath,categoryId,zh]);
+  },[enabled,articlePath,categoryId]);
+  useEffect(()=>{
+    if(!enabled)return;
+    const iframe=host.current?.querySelector<HTMLIFrameElement>("iframe.giscus-frame");
+    iframe?.contentWindow?.postMessage({giscus:{setConfig:{theme:dark?"dark":"light",lang:zh?"zh-CN":"en"}}},"https://giscus.app");
+  },[enabled,dark,zh]);
   return <section className="onpage-discussion" aria-label={zh?"点赞与评论":"Likes and comments"}>
     <h2>{zh?"点赞与评论":"Likes & comments"}</h2>
     <p>{zh?"在本页点赞、留言与回复。需要 GitHub 登录。":"Leave reactions, comments and replies here. GitHub handles sign-in."}</p>
