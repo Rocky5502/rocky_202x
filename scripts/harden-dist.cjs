@@ -24,15 +24,15 @@ JSON.parse(jsonld[0][1]);
 const hash = crypto.createHash("sha256").update(jsonld[0][1], "utf8").digest("base64");
 const directives = [
   "default-src 'none'",
-  `script-src 'self' 'sha256-${hash}'`,
+  `script-src 'self' 'sha256-${hash}' https://giscus.app`,
   "script-src-attr 'none'",
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: https://www.paypalobjects.com https://developers.google.com https://avatars.githubusercontent.com",
   "font-src 'self' data:",
-  "connect-src 'none'",
+  "connect-src 'self' https://api.github.com",
   "worker-src 'none'",
   "object-src 'none'",
-  "frame-src 'none'",
+  "frame-src https://giscus.app",
   "base-uri 'self'",
   "form-action 'none'",
   "manifest-src 'self'"
@@ -47,4 +47,4 @@ if (!html.includes('<meta name="referrer" content="no-referrer"')) {
 }
 fs.writeFileSync(page, html, "utf8");
 console.log("Production browser security policy generated: inline JSON-LD SHA-256 pinned, other inline scripts blocked.");
-console.log("Allowed third-party assets: only published research identity/payment logos; network APIs, frames and form posts disabled.");
+console.log("Third-party policy: giscus-only script/frame and read-only GitHub Issues API; no other remote connections or form posts.");
