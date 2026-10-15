@@ -71,3 +71,8 @@
   .essay-reader-chapter { break-inside: avoid; padding: 16px 0 10px; }
   .essay-reader-takeaway,.essay-reader-references { break-inside: avoid; }
 }
+
+/* Homepage thumbnail uses the same compact, locally stored six-picture sprite. */
+.homepage-essay-thumb { width:124px; height:124px; aspect-ratio:1; border-radius:8px; }
+.notes-index-prior-heading { border-top:1px solid var(--portfolio-rule); padding: 35px 0 18px; }
+@media (max-width:760px) { .homepage-essay-thumb { width:84px; height:104px; } }
