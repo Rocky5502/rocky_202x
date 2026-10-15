@@ -1,0 +1,73 @@
+/* Editorial personal essay and the research-notes archive. Built on existing site tokens. */
+.questions-page { border-top: 1px solid var(--portfolio-rule); }
+.questions-wrap { width: min(980px,calc(100% - 72px)); margin: auto; padding-bottom: 110px; }
+.questions-breadcrumb { padding: 29px 0 24px; color: var(--portfolio-muted); font-size: 12px; font-weight: 630; }
+.questions-breadcrumb a { display: inline-flex; align-items: center; gap: 9px; }
+.questions-header { text-align: center; max-width: 830px; margin: auto; padding: clamp(30px,5vw,68px) 0 43px; }
+.questions-header h1 { margin-top: 19px; font: 400 clamp(45px,6.2vw,78px)/1.08 Georgia,"Times New Roman",serif; letter-spacing: -.055em; }
+.questions-subtitle { max-width: 670px; margin: 22px auto 0 !important; font: 400 clamp(21px,2.7vw,29px)/1.42 Georgia,"Times New Roman",serif; letter-spacing: -.025em; color: var(--portfolio-muted); }
+.questions-meta { margin-top: 27px; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 16px 25px; font-size: 11px; letter-spacing: .035em; color: var(--portfolio-muted); font-weight: 620; }
+.questions-meta span { display: inline-flex; align-items: center; gap: 6px; }
+.questions-lead { max-width: 770px; margin: 52px auto 0 !important; font: 400 clamp(20px,2.35vw,27px)/1.67 Georgia,"Times New Roman",serif; letter-spacing: -.02em; }
+.questions-document { max-width: 700px; margin: 24px auto 70px; }
+.questions-montage-frame { display: grid; place-items: center; padding: clamp(14px,4vw,34px); border: 1px solid var(--portfolio-edge); background: var(--portfolio-soft); }
+.questions-montage-frame img { display: block; width: min(100%,250px); height: auto; aspect-ratio: 1; object-fit: contain; box-shadow: 0 12px 40px #00000012; image-rendering: auto; }
+.questions-document figcaption { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 19px; margin-top: 14px; font-size: 11px; line-height: 1.65; color: var(--portfolio-muted); }
+.questions-document figcaption a { display: inline-flex; gap: 5px; align-items: center; color: var(--portfolio-accent); font-weight: 600; white-space: nowrap; }
+.questions-essay-body { max-width: 710px; margin: auto; }
+.questions-chapter { padding: 39px 0 20px; border-top: 1px solid var(--portfolio-rule); }
+.questions-chapter-number { margin-bottom: 14px !important; color: var(--portfolio-accent); font-size: 10px; font-weight: 650; letter-spacing: .15em; }
+.questions-chapter h2 { margin: 0 0 19px; font: 400 clamp(27px,3vw,40px)/1.2 Georgia,"Times New Roman",serif; letter-spacing: -.038em; }
+.questions-chapter > p:not(.questions-chapter-number) { margin: 17px 0 !important; font: 400 16px/2 Georgia,"Times New Roman",serif; color: var(--portfolio-ink); }
+.questions-pullquote { margin: 42px 0 32px; padding: 11px 0 11px 28px; border-left: 3px solid var(--portfolio-accent); }
+.questions-pullquote p { font: italic 400 clamp(22px,3vw,33px)/1.5 Georgia,"Times New Roman",serif; letter-spacing: -.022em; }
+.questions-signoff { font: italic 400 clamp(23px,3vw,35px)/1.45 Georgia,"Times New Roman",serif; margin: 45px 0 22px !important; }
+.questions-author { display: flex; align-items: center; gap: 13px; margin: 34px 0 40px; }
+.questions-author img { border-radius: 50%; width: 50px; height: 50px; object-fit: cover; }
+.questions-author div { display: flex; flex-direction: column; gap: 3px; }
+.questions-author strong { font-size: 13px; font-weight: 660; }
+.questions-author span { font-size: 11px; color: var(--portfolio-muted); }
+.questions-endmatter { max-width: 710px; margin: auto; border-top: 1px solid var(--portfolio-rule); padding-top: 25px; }
+.questions-endmatter > p { font-size: 11px; line-height: 1.9; color: var(--portfolio-muted); }
+.questions-actions { display: flex; flex-wrap: wrap; gap: 16px 25px; margin-top: 19px; }
+.questions-actions a, .questions-actions button { display: inline-flex; align-items: center; gap: 7px; color: var(--portfolio-accent); font: 650 11px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; cursor: pointer; }
+.questions-actions button { border: 0; background: none; padding: 0; }
+.questions-next { max-width: 710px; margin: 57px auto 0; border-top: 1px solid var(--portfolio-rule); border-bottom: 1px solid var(--portfolio-rule); display: flex; align-items: center; justify-content: space-between; gap: 15px; padding: 31px 0; }
+.questions-next > span { display: flex; flex-direction: column; gap: 8px; }
+.questions-next strong { font: 400 26px/1.22 Georgia,"Times New Roman",serif; }
+.questions-next span span:last-child:not(.eyebrow) { font-size: 11px; color: var(--portfolio-muted); }
+.notes-index-header { max-width: 750px; margin: 0 0 49px; }
+.notes-index-header h1 { margin: 16px 0 15px; font: 400 clamp(46px,5.5vw,67px)/1.1 Georgia,"Times New Roman",serif; letter-spacing: -.05em; }
+.notes-index-header > p:last-child { font: 400 16px/1.85 Georgia,"Times New Roman",serif; color: var(--portfolio-muted); }
+.notes-index-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 32px; }
+.notes-index-card { border: 1px solid var(--portfolio-rule); background: var(--portfolio-panel); min-width: 0; }
+.notes-index-thumb { display: grid; place-items: center; padding: 28px; background: var(--portfolio-soft); min-height: 295px; }
+.notes-index-thumb img { width: min(100%,240px); aspect-ratio: 1; object-fit: cover; display: block; }
+.notes-index-card > div { padding: 26px 29px 30px; }
+.notes-index-date { color: var(--portfolio-accent); font-size: 11px; letter-spacing: .025em; font-weight: 650; }
+.notes-index-card h2 { font: 400 clamp(26px,3vw,34px)/1.17 Georgia,"Times New Roman",serif; letter-spacing: -.04em; margin: 13px 0 !important; }
+.notes-index-description { color: var(--portfolio-muted); font-size: 13px; line-height: 1.75; }
+.notes-index-more { display: inline-flex; align-items: center; gap: 8px; margin-top: 22px; color: var(--portfolio-accent) !important; font-weight: 650; font-size: 12px; }
+@media (max-width: 690px) {
+  .questions-wrap { width: min(100% - 40px,980px); padding-bottom: 72px; }
+  .questions-header { padding-top: 24px; text-align: left; }
+  .questions-header h1 { font-size: clamp(42px,10vw,59px); }
+  .questions-subtitle { margin-left: 0 !important; }
+  .questions-meta { justify-content: flex-start; }
+  .questions-lead { margin-top: 34px !important; }
+  .questions-document { margin-bottom: 45px; }
+  .questions-chapter > p:not(.questions-chapter-number) { font-size: 15px; }
+  .notes-index-grid { grid-template-columns: 1fr; }
+  .notes-index-thumb { min-height: 220px; }
+  .notes-index-header h1 { font-size: 45px; }
+}
+@media print {
+  .site-header, .site-footer, .questions-breadcrumb, .questions-actions, .questions-next { display: none !important; }
+  .questions-wrap { padding: 0; width: 100%; }
+  .questions-header { padding: 18px 0; }
+  .questions-document { margin: 10px auto 25px; }
+  .questions-montage-frame { padding: 12px; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .questions-montage-frame img { width: 180px; }
+  .questions-chapter { break-inside: avoid; padding-top: 16px; }
+  .questions-endmatter { break-inside: avoid; }
+}
