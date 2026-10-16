@@ -35,3 +35,7 @@ jobs:
           .image-env/bin/python scripts/optimize-build-images.py
       - name: Unit tests
         run: bun run test
+      - name: Anonymous reactions API and privacy tests
+        run: node --test scripts/test-anonymous-likes.mjs
+      - name: Anonymous reactions real SQLite migration tests
+        run: python3 scripts/test-anonymous-likes-schema.py
