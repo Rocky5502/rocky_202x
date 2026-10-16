@@ -22,6 +22,23 @@ const jsonld = [...html.matchAll(/<script\s+type="application\/ld\+json">([\s\S]
 if (jsonld.length !== 1) throw new Error("Expected exactly one trusted structured-data script, found " + jsonld.length);
 JSON.parse(jsonld[0][1]);
 const hash = crypto.createHash("sha256").update(jsonld[0][1], "utf8").digest("base64");
+// Only a verified Cloudflare Worker host can be added to the connect-src policy.
+// The feature is intentionally inactive until its real database-backed service exists.
+const likeConfigPath = path.join(dir, "anonymous-likes-config.json");
+if (!fs.existsSync(likeConfigPath)) throw new Error("Missing public anonymous likes activation config");
+const likeConfig = JSON.parse(fs.readFileSync(likeConfigPath, "utf8"));
+let likeApiOrigin = "";
+if (likeConfig.apiBaseUrl !== null) {
+  if (typeof likeConfig.apiBaseUrl !== "string" || likeConfig.apiBaseUrl.length > 180) {
+    throw new Error("Invalid anonymous likes backend URL");
+  }
+  const url = new URL(likeConfig.apiBaseUrl);
+  if (url.protocol !== "https:" || url.username || url.password ||
+      !url.hostname.endsWith(".workers.dev") || url.pathname !== "/" || url.search || url.hash) {
+    throw new Error("Anonymous likes backend must be a specific HTTPS workers.dev origin");
+  }
+  likeApiOrigin = url.origin;
+}
 const directives = [
   "default-src 'none'",
   `script-src 'self' 'sha256-${hash}' https://giscus.app`,
@@ -29,7 +46,7 @@ const directives = [
   "style-src 'self' 'unsafe-inline' https://giscus.app",
   "img-src 'self' data: https://www.paypalobjects.com https://developers.google.com https://avatars.githubusercontent.com https://www.google.com",
   "font-src 'self' data:",
-  "connect-src 'self' https://api.github.com",
+  `connect-src 'self' https://api.github.com${likeApiOrigin ? ' ' + likeApiOrigin : ''}`,
   "worker-src 'none'",
   "object-src 'none'",
   "frame-src https://giscus.app",

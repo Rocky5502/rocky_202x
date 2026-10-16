@@ -1,0 +1,23 @@
+{
+  // Create a fresh D1 database and replace the placeholder UUID before deploy.
+  "name": "rocky-research-anonymous-likes",
+  "main": "src/index.mjs",
+  "compatibility_date": "2026-10-01",
+  "workers_dev": true,
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "rocky-research-anonymous-likes",
+      "database_id": "REPLACE_WITH_YOUR_D1_DATABASE_ID",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "ratelimits": [
+    {
+      "name": "LIKE_RATE_LIMITER",
+      "namespace_id": "10041",
+      "simple": { "limit": 40, "period": 60 }
+    }
+  ],
+  "triggers": { "crons": ["23 2 * * *"] }
+}

@@ -10,7 +10,7 @@ import "@/giscus-discussion.css";
  * If missing, giscus sends a documented postMessage error: replace its raw error
  * iframe with a polished, honest temporary-unavailable state.
  */
-export default function GiscusDiscussion({articlePath}:{articlePath:string}) {
+export default function GiscusDiscussion({articlePath, reactionsEnabled = true}:{articlePath:string; reactionsEnabled?:boolean}) {
   const {language}=useLanguage();
   const mountRef=useRef<HTMLDivElement>(null);
   const [dark,setDark]=useState(()=>document.documentElement.classList.contains("dark"));
@@ -56,7 +56,7 @@ export default function GiscusDiscussion({articlePath}:{articlePath:string}) {
       "data-mapping":"specific",
       "data-term":giscusTerm(articlePath),
       "data-strict":"1",
-      "data-reactions-enabled":"1",
+      "data-reactions-enabled":reactionsEnabled?"1":"0",
       "data-emit-metadata":"0",
       "data-input-position":"top",
       "data-theme":dark?"dark":"light",
@@ -69,17 +69,17 @@ export default function GiscusDiscussion({articlePath}:{articlePath:string}) {
     script.onerror=()=>setServiceError(true);
     mount.appendChild(script);
     return ()=>{mount.replaceChildren();};
-  },[articlePath,retryCount]);
+  },[articlePath,retryCount,reactionsEnabled]);
 
   useEffect(()=>{
     const iframe=mountRef.current?.querySelector<HTMLIFrameElement>("iframe.giscus-frame");
     iframe?.contentWindow?.postMessage({giscus:{setConfig:{theme:dark?"dark":"light",lang:zh?"zh-CN":"en"}}},"https://giscus.app");
   },[dark,zh]);
 
-  return <section className="onpage-discussion" id="reader-conversation" aria-label={zh?"点赞与评论":"Likes and comments"}>
+  return <section className="onpage-discussion" id="reader-conversation" aria-label={reactionsEnabled ? (zh?"点赞与评论":"Likes and comments") : (zh?"读者评论":"Reader comments")}>
     <p className="eyebrow">{zh?"读者交流":"Reader conversation"}</p>
-    <h2><Heart size={23} strokeWidth={1.6} aria-hidden="true"/>{zh?"点赞与评论":"Likes & comments"}<MessageCircle size={23} strokeWidth={1.6} aria-hidden="true"/></h2>
-    <p>{zh?"直接在本页点赞、评论或回复。参与互动时需通过 GitHub 登录。":"Like, comment, or reply below without leaving this article. GitHub sign-in is required to participate."}</p>
+    <h2><Heart size={23} strokeWidth={1.6} aria-hidden="true"/>{reactionsEnabled ? (zh?"点赞与评论":"Likes & comments") : (zh?"读者评论":"Reader comments")}<MessageCircle size={23} strokeWidth={1.6} aria-hidden="true"/></h2>
+    <p>{reactionsEnabled ? (zh?"直接在本页点赞、评论或回复。参与互动时需通过 GitHub 登录。":"Like, comment, or reply below without leaving this article. GitHub sign-in is required to participate.") : (zh?"评论和回复由 GitHub Discussions 提供，需要 GitHub 账号；上方匿名点赞无需登录。":"Comments and replies use GitHub Discussions and require GitHub sign-in. Anonymous likes above need no account.")}</p>
     <div ref={mountRef} className="onpage-discussion-frame" hidden={serviceError||!giscusReady} aria-label={zh?"嵌入的讨论区":"Embedded discussion"}/>
     {(serviceError||!giscusReady)&&<div className="onpage-discussion-fallback" role="status">
       <p>{zh?"读者评论暂时无法使用。网站正在完成评论服务配置。":"Reader comments and reactions are temporarily unavailable while the discussion service is being configured."}</p>
