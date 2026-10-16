@@ -186,6 +186,16 @@ export const academicService = {
   },
   memberships: [
     {
+      organization: "Association for the Advancement of Artificial Intelligence",
+      abbreviation: "AAAI",
+      role: "Member",
+      since: "Oct 2026 – Present",
+      website: "https://aaai.org/",
+      // No inferred personal AAAI membership profile or LinkedIn listing.
+      linkedIn: "",
+      iconDomain: "aaai.org",
+    },
+    {
       organization: "International Association for Safe & Ethical AI",
       abbreviation: "IASEAI",
       role: "Member",
