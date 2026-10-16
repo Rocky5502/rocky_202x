@@ -35,6 +35,14 @@ try {
       colorScheme: check.slug === "ai-confidence" ? "dark" : "light",
     });
     const page = await context.newPage();
+    await page.addInitScript(() => {
+      window.__giscusSmokeErrors = [];
+      window.addEventListener("message", event => {
+        if (event.origin !== "https://giscus.app") return;
+        const error = event.data?.giscus?.error;
+        if (typeof error === "string") window.__giscusSmokeErrors.push(error.slice(0,220));
+      });
+    });
     const errors = [];
     page.on("pageerror", e => errors.push("pageerror: " + e.message.slice(0,160)));
     page.on("console", msg => {
@@ -52,17 +60,21 @@ try {
       const src = await frame.getAttribute("src") || "";
       result.frame = true;
       result.iframeOriginValid = /^https:\/\/giscus\.app\//.test(src);
-      const frameBody = page.frameLocator("iframe.giscus-frame").locator("body");
+      const frameBody = page.frameLocator("iframe.giscus-frame").locator("main");
       await frameBody.waitFor({state:"attached",timeout:15000});
       await page.waitForTimeout(3000); // Briefly allow public GitHub Discussion fetch to settle
       const body = (await frameBody.innerText({timeout:10000})).trim().slice(0,2400);
       result.contentPresent = body.length > 25;
       result.contentSample = body.slice(0,450);
       result.fallback = await page.locator(".onpage-discussion-fallback:visible").count() > 0;
-      result.likelyConfigured = !failurePatterns.some(p=>p.test(body));
+      const providerErrors = await page.evaluate(() => window.__giscusSmokeErrors || []);
+      result.providerErrors = providerErrors;
+      const fatalErrors = providerErrors.filter(e => !/Discussion not found|Bad credentials|Invalid state value|State has expired/i.test(e));
+      result.likelyConfigured = !failurePatterns.some(p=>p.test(body)) && fatalErrors.length === 0;
       result.errors = errors;
+      result.stylesheetBlocked = errors.some(e => /giscus\.app\/default\.css/.test(e));
       await page.screenshot({path:path.join(output,check.slug+".png"),fullPage:false});
-      if (!result.frame || !result.iframeOriginValid || !result.contentPresent || !result.likelyConfigured || result.fallback) {
+      if (!result.frame || !result.iframeOriginValid || !result.contentPresent || !result.likelyConfigured || result.fallback || result.stylesheetBlocked) {
         failed = true;
         console.error("GISCUS_SMOKE_FAIL "+JSON.stringify(result));
       } else {
