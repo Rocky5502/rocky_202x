@@ -54,3 +54,20 @@ test('traces are explicitly authored demonstrations, not proof of X execution', 
     assert.equal(snapshot.record.modelInvoked, false);
   }
 });
+
+test('every illustrative step links to an existing curated X source line', () => {
+  for (const id of demoIds()) {
+    const count = getTraceSnapshot(id, 0).totalSteps;
+    for (let i = 0; i < count; i++) {
+      const snapshot = getTraceSnapshot(id, i);
+      const lines = snapshot.source.split('\n');
+      assert.ok(Number.isInteger(snapshot.sourceLine), id + ' line must be integer');
+      assert.ok(snapshot.sourceLine >= 1 && snapshot.sourceLine <= lines.length);
+      assert.equal(snapshot.sourceText, lines[snapshot.sourceLine - 1]);
+      assert.ok(snapshot.sourceText.trim().length > 0);
+      assert.equal(snapshot.record.illustrativeSourceLine, snapshot.sourceLine);
+      assert.equal(snapshot.record.kind, 'illustrative-not-executed');
+      assert.equal(snapshot.record.origin, 'pre-authored');
+    }
+  }
+});
