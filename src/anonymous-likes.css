@@ -1,0 +1,16 @@
+/* Calm academic appreciation control; real counts only, never browser-only numbers. */
+.anonymous-like { max-width:860px; margin:55px auto 0; padding:27px clamp(18px,3.2vw,33px); border:1px solid var(--portfolio-rule); background:var(--portfolio-panel); border-radius:12px; display:grid; grid-template-columns:minmax(0,1fr) auto; gap:18px 30px; align-items:center; }
+.anonymous-like-eyebrow { color:var(--portfolio-accent); font-size:10px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; margin:0 0 7px; }
+.anonymous-like h2 { font:400 clamp(22px,2.8vw,31px)/1.2 Georgia,"Times New Roman",serif; letter-spacing:-.035em; margin:0 0 9px; }
+.anonymous-like-copy > p:last-child { font-size:12px; line-height:1.75; color:var(--portfolio-muted); margin:0; }
+.anonymous-like-action { display:flex; flex-wrap:wrap; align-items:center; gap:12px; }
+.anonymous-like-action button { display:inline-flex; align-items:center; justify-content:center; gap:9px; padding:11px 17px; min-height:44px; background:var(--portfolio-soft); color:var(--portfolio-ink); border:1px solid var(--portfolio-rule); border-radius:25px; font:650 13px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; cursor:pointer; }
+.anonymous-like-action button[aria-pressed="true"] { background:var(--portfolio-accent); border-color:var(--portfolio-accent); color:white; }
+.anonymous-like-action button:hover:not(:disabled) { border-color:var(--portfolio-accent); }
+.anonymous-like-action button:focus-visible { outline:3px solid var(--portfolio-accent); outline-offset:3px; }
+.anonymous-like-action button:disabled { cursor:default; opacity:.65; }
+.anonymous-like-count { white-space:nowrap; font-size:13px; font-variant-numeric:tabular-nums; font-weight:650; }
+.anonymous-like-count > span { color:var(--portfolio-muted); font-size:11px; font-weight:400; }
+.anonymous-like-message { grid-column:1/-1; font-size:12px; color:var(--portfolio-muted); margin:0; }
+@media(max-width:680px) { .anonymous-like { grid-template-columns:1fr; gap:19px; margin-top:35px; padding:20px; } .anonymous-like-action { justify-content:flex-start; } }
+@media print { .anonymous-like {display:none!important;} }
