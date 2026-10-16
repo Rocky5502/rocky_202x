@@ -2121,3 +2121,5 @@ html[lang="zh-CN"] .award-archive-card h3 { overflow-wrap: anywhere; }
 
 /* Consistent locally archived organization marks; no third-party favicon requests. */
 .membership-logo img { width:43px; height:43px; object-fit:contain; display:block; }
+/* AAAI is rendered as an original textual identifier; not an unlicensed official logo. */
+.membership-wordmark { display:flex; align-items:center; justify-content:center; width:100%; height:100%; border-radius:5px; background:#142d53; color:#fff; font:700 12px/1.2 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; letter-spacing:.06em; }
