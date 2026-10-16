@@ -31,7 +31,12 @@ export default function GiscusDiscussion({articlePath}:{articlePath:string}) {
       if(!body||typeof body.error!=="string")return;
       const iframe=mountRef.current?.querySelector<HTMLIFrameElement>("iframe.giscus-frame");
       if(iframe?.contentWindow&&event.source!==iframe.contentWindow)return;
-      // Error detail intentionally not echoed in the visitor-facing page.
+      // Official Giscus behavior: an article with no Discussion yet reports
+      // "Discussion not found" and creates it upon the first comment/reaction.
+      // Expired GitHub sessions are also reset automatically by client.js.
+      // Neither is a fatal widget failure; do not hide a usable comment box.
+      if(/Discussion not found|Bad credentials|Invalid state value|State has expired/i.test(body.error))return;
+      // Other trusted Giscus errors show a safe retry, without leaking details.
       setServiceError(true);
     }
     window.addEventListener("message",handleGiscusMessage);

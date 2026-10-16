@@ -1,0 +1,60 @@
+name: Giscus live integration smoke
+on:
+  push:
+    branches: ["feature/giscus-live-smoke-20261016"]
+  workflow_run:
+    workflows: ["Deploy Vite site to Pages"]
+    types: [completed]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  anonymous-widget:
+    if: ${{ github.event_name != 'workflow_run' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main') }}
+    name: Read-only public Giscus widget
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        if: github.event_name == 'push'
+        with:
+          bun-version: latest
+      - name: Build candidate with production Content Security Policy
+        if: github.event_name == 'push'
+        run: |
+          bun install --frozen-lockfile
+          bun run build
+          node scripts/harden-dist.cjs
+          node scripts/security-audit.cjs
+      - name: Start candidate preview
+        if: github.event_name == 'push'
+        run: |
+          bunx vite preview --host 127.0.0.1 --port 4173 >/tmp/giscus-preview.log 2>&1 &
+          for i in $(seq 1 40); do
+            if curl --fail --silent --output /dev/null http://127.0.0.1:4173/rocky_202x/; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/giscus-preview.log
+          exit 1
+      - name: Install isolated Playwright smoke tooling
+        run: |
+          mkdir -p .giscus-audit
+          npm install --prefix .giscus-audit --no-audit --no-fund --no-package-lock --no-save playwright@1.56.1
+      - name: Install real Chromium
+        run: ./.giscus-audit/node_modules/.bin/playwright install --with-deps chromium
+      - name: Check Giscus without login, writes, or public test comments
+        env:
+          NODE_PATH: ${{ github.workspace }}/.giscus-audit/node_modules
+          GISCUS_SITE_BASE: ${{ github.event_name == 'push' && 'http://127.0.0.1:4173/rocky_202x/' || 'https://rocky5502.github.io/rocky_202x/' }}
+        run: node scripts/giscus-live-probe.cjs
+      - name: Preserve anonymous widget screenshots and logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: giscus-live-smoke-${{ github.sha }}
+          path: artifacts/giscus-live
+          if-no-files-found: warn
+          retention-days: 7

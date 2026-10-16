@@ -26,7 +26,7 @@ const directives = [
   "default-src 'none'",
   `script-src 'self' 'sha256-${hash}' https://giscus.app`,
   "script-src-attr 'none'",
-  "style-src 'self' 'unsafe-inline'",
+  "style-src 'self' 'unsafe-inline' https://giscus.app",
   "img-src 'self' data: https://www.paypalobjects.com https://developers.google.com https://avatars.githubusercontent.com https://www.google.com",
   "font-src 'self' data:",
   "connect-src 'self' https://api.github.com",
