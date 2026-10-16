@@ -23,7 +23,9 @@ describe("static-hosting security boundaries", () => {
     const generator = readFileSync("scripts/harden-dist.cjs", "utf8");
     expect(generator).toContain('crypto.createHash("sha256")');
     expect(generator).toContain('"default-src \'none\'"');
-    expect(generator).toContain('"connect-src \'self\' https://api.github.com"');
+    expect(generator).toContain("connect-src 'self' https://api.github.com");
+    expect(generator).toContain('url.hostname.endsWith(".workers.dev")');
+    expect(generator).toContain("likeApiOrigin");
     expect(generator).toContain('"frame-src https://giscus.app"');
     expect(generator).toContain("https://giscus.app");
     expect(generator).toContain('"object-src \'none\'"');
