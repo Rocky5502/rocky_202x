@@ -118,9 +118,13 @@ describe("academic service redesign", () => {
     const serviceText = document.querySelector("main")?.textContent ?? "";
     expect(serviceText.indexOf("Memberships")).toBeLessThan(serviceText.indexOf("Reviewer roles"));
     const membershipCards = document.querySelectorAll(".membership-item");
-    expect(membershipCards).toHaveLength(2);
-    expect(membershipCards[0]).toHaveTextContent("International Association for Safe & Ethical AI");
-    expect(membershipCards[1]).toHaveTextContent("Association for Computing Machinery");
+    expect(membershipCards).toHaveLength(3);
+    expect(membershipCards[0]).toHaveTextContent("Association for the Advancement of Artificial Intelligence");
+    expect(membershipCards[0]).toHaveTextContent("Oct 2026 – Present");
+    expect(membershipCards[1]).toHaveTextContent("International Association for Safe & Ethical AI");
+    expect(membershipCards[2]).toHaveTextContent("Association for Computing Machinery");
+    expect(membershipCards[0].querySelector(".membership-wordmark")).toHaveTextContent("AAAI");
+    expect(membershipCards[0].querySelector(".membership-logo")).toHaveAttribute("href","https://aaai.org/");
     const logos = document.querySelectorAll<HTMLImageElement>(".membership-logo img");
     expect(logos).toHaveLength(2);
     expect(Array.from(logos).every(img=>{
@@ -128,7 +132,8 @@ describe("academic service redesign", () => {
       return src.includes("/associations/") || src.startsWith("data:image/svg+xml,") || src.startsWith("data:image/png;base64,");
     })).toBe(true);
     expect(Array.from(logos).every(img=>!img.src.includes("google.com"))).toBe(true);
-    expect(document.querySelectorAll(".membership-actions a")).toHaveLength(4);
+    expect(document.querySelectorAll(".membership-actions a")).toHaveLength(5);
+    expect(membershipCards[0].querySelectorAll(".membership-actions a")).toHaveLength(1);
     expect(document.body).toHaveTextContent("Nov 2025 – Present");
     expect(document.body).toHaveTextContent("Jul 2024 – Present");
   });

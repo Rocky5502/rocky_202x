@@ -472,12 +472,12 @@ function ServicePage() {
       <div className="membership-grid">
         {academicService.memberships.map(m=><article className="membership-item" key={m.abbreviation}>
           <a href={m.website} target="_blank" rel="noopener noreferrer" className="membership-logo" aria-label={m.abbreviation+" organization website"}>
-            <img src={m.abbreviation === "IASEAI" ? iaseaiLogo : acmLogo} alt="" width="48" height="48" loading="lazy" decoding="async" />
+            {m.abbreviation === "AAAI" ? <span className="membership-wordmark" aria-hidden="true">AAAI</span> : <img src={m.abbreviation === "IASEAI" ? iaseaiLogo : acmLogo} alt="" width="48" height="48" loading="lazy" decoding="async" />}
           </a>
           <div className="membership-content">
             <p className="membership-role">{m.role} <span aria-hidden="true">·</span> {m.since}</p>
             <h3>{m.organization}</h3>
-            <p className="membership-actions"><a href={m.website} target="_blank" rel="noopener noreferrer">Website <ArrowUpRight size={13} aria-hidden="true"/></a><a href={m.linkedIn} target="_blank" rel="noopener noreferrer">LinkedIn <ArrowUpRight size={13} aria-hidden="true"/></a></p>
+            <p className="membership-actions"><a href={m.website} target="_blank" rel="noopener noreferrer">Website <ArrowUpRight size={13} aria-hidden="true"/></a>{m.linkedIn && <a href={m.linkedIn} target="_blank" rel="noopener noreferrer">LinkedIn <ArrowUpRight size={13} aria-hidden="true"/></a>}</p>
           </div>
         </article>)}
       </div>
