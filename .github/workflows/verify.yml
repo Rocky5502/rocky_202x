@@ -35,3 +35,7 @@ jobs:
           .image-env/bin/python scripts/optimize-build-images.py
       - name: Unit tests
         run: bun run test
+      - name: Verify X code-copy fallback
+        run: node --test scripts/x-copy-fallback.test.mjs
+      - name: Verify X Trace Lens safety and event contract
+        run: node --test scripts/x-trace-lens.test.mjs
