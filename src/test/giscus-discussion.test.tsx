@@ -51,6 +51,28 @@ describe("In-page discussions and reactions",()=>{
     expect(document.querySelector(".onpage-discussion-frame")).not.toHaveAttribute("hidden");
     view.unmount();
   });
+  it("keeps comment box visible when first visitor has not created a discussion yet",()=>{
+    const view=render(<LanguageProvider><MemoryRouter>
+      <GiscusDiscussion articlePath="/notes/ten-rules-phd-research-ai"/>
+    </MemoryRouter></LanguageProvider>);
+    fireEvent(window,new MessageEvent("message",{
+      origin:"https://giscus.app",data:{giscus:{error:"Discussion not found"}}
+    }));
+    expect(screen.queryByRole("button",{name:"Try again"})).toBeNull();
+    expect(document.querySelector(".onpage-discussion-frame")).not.toHaveAttribute("hidden");
+    expect(document.querySelector(".onpage-discussion-frame script")).not.toBeNull();
+    view.unmount();
+  });
+  it("leaves widget visible while giscus recovers automatically from expired login state",()=>{
+    const view=render(<LanguageProvider><MemoryRouter>
+      <GiscusDiscussion articlePath="/notes/ten-rules-phd-research-ai"/>
+    </MemoryRouter></LanguageProvider>);
+    for(const error of ["Bad credentials","Invalid state value","State has expired"]){
+      fireEvent(window,new MessageEvent("message",{origin:"https://giscus.app",data:{giscus:{error}}}));
+      expect(document.querySelector(".onpage-discussion-frame")).not.toHaveAttribute("hidden");
+    }
+    view.unmount();
+  });
   it("ignores error events from untrusted origins",()=>{
     const view=render(<LanguageProvider><MemoryRouter><GiscusDiscussion articlePath="/notes/ten-rules-phd-research-ai"/></MemoryRouter></LanguageProvider>);
     fireEvent(window,new MessageEvent("message",{origin:"https://untrusted.invalid",data:{giscus:{error:"error"}}}));
