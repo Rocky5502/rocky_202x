@@ -44,7 +44,7 @@ if (fs.existsSync(htmlPath)) {
   assert(!!match, "Production CSP missing");
   if (match) {
     const policy = match[1];
-    for (const part of ["default-src 'none'", "object-src 'none'", "connect-src 'self' https://api.github.com", "form-action 'none'", "base-uri 'self'", "frame-src https://giscus.app", "script-src-attr 'none'"]) {
+    for (const part of ["default-src 'none'", "object-src 'none'", "connect-src 'self' https://api.github.com", "form-action 'none'", "base-uri 'self'", "frame-src https://giscus.app", "style-src 'self' 'unsafe-inline' https://giscus.app", "script-src-attr 'none'"]) {
       assert(policy.includes(part), `CSP lacks ${part}`);
     }
     assert(/script-src 'self' 'sha256-[A-Za-z0-9+/=]+'/.test(policy), "Trusted inline JSON-LD must be SHA-256 hash-pinned");
