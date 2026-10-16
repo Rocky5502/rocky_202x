@@ -1,0 +1,35 @@
+name: Giscus live integration smoke
+on:
+  push:
+    branches: ["feature/giscus-live-smoke-20261016"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  anonymous-widget:
+    name: Read-only public Giscus widget
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install isolated Playwright smoke tooling
+        run: |
+          mkdir -p .giscus-audit
+          npm install --prefix .giscus-audit --no-audit --no-fund --no-package-lock --no-save playwright@1.56.1
+      - name: Install real Chromium
+        run: ./.giscus-audit/node_modules/.bin/playwright install --with-deps chromium
+      - name: Check deployed English and Chinese article discussions, without posting
+        env:
+          NODE_PATH: ${{ github.workspace }}/.giscus-audit/node_modules
+          GISCUS_SITE_BASE: https://rocky5502.github.io/rocky_202x/
+        run: node scripts/giscus-live-probe.cjs
+      - name: Preserve anonymous widget screenshots and logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: giscus-live-smoke-${{ github.sha }}
+          path: artifacts/giscus-live
+          if-no-files-found: warn
+          retention-days: 7
