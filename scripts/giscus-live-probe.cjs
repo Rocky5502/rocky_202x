@@ -24,6 +24,7 @@ const failurePatterns = [
   /error loading comments/i,
   /not installed on this repository/i,
 ];
+(async () => {
 const results = [];
 let failed = false;
 const browser = await chromium.launch({ headless: true });
@@ -91,3 +92,5 @@ if(failed) {
 } else {
   console.log("Giscus anonymous widget render smoke passed. This does not test GitHub sign-in or posting.");
 }
+
+})().catch(error => { console.error('GISCUS_SMOKE_FATAL '+String(error)); process.exitCode=1; });
