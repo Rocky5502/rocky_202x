@@ -61,3 +61,23 @@
 .trace-lens-footnote{margin-top:18px;max-width:850px}
 @media(max-width:920px){.trace-lens-grid,.trace-lens-record{grid-template-columns:1fr}.trace-lens-record{gap:12px}}
 @media(max-width:540px){.trace-lens-code pre{padding:17px;font-size:.78rem;min-height:195px}.trace-lens-walkthrough{padding:21px}.trace-lens-record{padding:18px}.trace-lens-actions .button{flex-grow:1}}
+
+/* Trace Lens authored source alignment: no syntax interpretation or HTML injection. */
+.trace-source-line[data-trace-active-line="true"]{
+  background:rgba(50,205,168,.18);
+  color:#e9fff8;
+  box-shadow:inset 3px 0 0 #43dfae;
+  padding-inline:6px;
+  margin-inline:-6px;
+}
+.trace-source-focus{
+  font-size:.82rem;
+  line-height:1.6;
+  color:var(--ink);
+  border-inline-start:3px solid var(--mint);
+  padding-inline-start:12px;
+  overflow-wrap:anywhere;
+}
+@media(prefers-contrast:more){
+ .trace-source-line[data-trace-active-line="true"]{outline:2px solid #43dfae;outline-offset:1px}
+}
