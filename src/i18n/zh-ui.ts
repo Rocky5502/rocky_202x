@@ -179,6 +179,8 @@ export const zhUi: Record<string,string> = {
   "Professional associations": "专业学术组织",
   "Memberships": "会员身份",
   "International Association for Safe & Ethical AI": "国际安全与伦理人工智能协会",
+  "Association for the Advancement of Artificial Intelligence": "人工智能促进协会",
+  "Oct 2026 – Present": "2026年10月至今",
   "Association for Computing Machinery": "美国计算机协会",
   "Member": "会员",
   "Nov 2025 – Present": "2025年11月至今",
