@@ -52,7 +52,16 @@ const assert = (ok, description) => {
           const counter=page.locator("[data-trace-position]");
           assert((await counter.textContent())?.includes("Step 1 of 5"),
             viewport.name+" function-call trace opens at first step");
+          const focused=page.locator('[data-trace-source] [data-trace-active-line="true"]');
+          assert(await focused.count()===1
+            && (await focused.textContent())?.includes('fn main()'),
+            viewport.name+" first authored step highlights main source");
+          assert((await page.locator("[data-trace-line]").textContent())?.includes("source line 5"),
+            viewport.name+" source focus has a readable description");
           await page.getByRole("button",{name:"Next trace step"}).click();
+          assert(await focused.count()===1
+            && (await focused.textContent())?.includes("return add(20, 22)"),
+            viewport.name+" event navigation updates highlighted source");
           assert((await counter.textContent())?.includes("Step 2 of 5"),
             viewport.name+" trace advances exactly one event");
           assert((await page.locator("[data-trace-heading]").textContent())==="Call add",
@@ -62,6 +71,11 @@ const assert = (ok, description) => {
             viewport.name+" switching curated examples resets the trace");
           assert((await page.locator("[data-trace-source]").textContent())?.includes("6 * 7"),
             viewport.name+" arithmetic example displays curated X source");
+          assert(await focused.count()===1
+            && (await focused.textContent())?.includes("fn main()"),
+            viewport.name+" changing demo resets source focus");
+          assert((await page.locator("[data-trace-line]").textContent())?.includes("source line 1"),
+            viewport.name+" announcement matches focused line");
           assert(await page.getByRole("button",{name:"Previous trace step"}).isDisabled(),
             viewport.name+" previous action disabled at first event");
           const record=JSON.parse(await page.locator("[data-trace-agent]").textContent());
