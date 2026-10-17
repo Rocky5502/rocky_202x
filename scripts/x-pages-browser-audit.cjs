@@ -15,7 +15,8 @@ const pages = [
   ["status/", "Progress without"],
   ["community/", "Build carefully."],
   ["ai/", "Humans and AI."],
-  ["xcook/", "Cook carefully."]
+  ["xcook/", "Cook carefully."],
+  ["film/", "Build what you can"]
 ];
 const errors = [];
 const assert = (ok, description) => {
@@ -87,11 +88,31 @@ const assert = (ok, description) => {
           assert((await counter.textContent())?.includes("Step 1 of 4"),
             viewport.name+" trace reset works without executing source");
         }
-        if (!route || route==="docs/" || route==="learn/") {
+        if (!route || route==="docs/" || route==="learn/" || route==="film/") {
           await page.screenshot({path:path.join(outDir,"x-"+(route?route.replace("/",""):"home")+"-"+viewport.name+".png"),fullPage:true});
           const result=await new AxeBuilder({page}).withTags(["wcag2a","wcag2aa","wcag21aa"]).analyze();
           const severe=result.violations.filter(x=>x.impact==="critical"||x.impact==="serious");
           assert(severe.length===0,viewport.name+" "+route+" has no serious/critical Axe WCAG findings: "+severe.map(v=>v.id).join(","));
+        }
+        if(route==="film/"){
+          assert(await page.locator(".scene[data-n]").count()===8,
+            viewport.name+" film keeps eight timed scenes");
+          assert(await page.locator('script:not([src]), style, [style]').count()===0,
+            viewport.name+" film has no inline script, CSS or attributes");
+          assert(await page.locator('script[src$="/film.js"]').count()===1,
+            viewport.name+" film uses external, CSP-compatible controller");
+          assert(await page.getByRole("button",{name:"Pause"}).count()===1,
+            viewport.name+" film playback control is available");
+          await page.getByRole("button",{name:"Pause"}).click();
+          assert(await page.getByRole("button",{name:"Play"}).count()===1,
+            viewport.name+" film can pause and offer play");
+          await page.getByRole("button",{name:"Replay film"}).click();
+          assert(await page.getByRole("button",{name:"Pause"}).count()===1,
+            viewport.name+" replay resumes from start");
+          assert((await page.locator("#clock").textContent()).includes("/ 00:52"),
+            viewport.name+" film retains 52-second duration label");
+          assert(await page.getByText("Read the film transcript").count()===1,
+            viewport.name+" film offers accessible text transcript");
         }
         if(route==="docs/"){
           const input=page.getByRole("searchbox",{name:"Search topics"});
