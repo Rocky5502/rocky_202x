@@ -15,9 +15,11 @@ import xml.etree.ElementTree as ET
 
 PUBLIC_BASE = "https://rocky5502.github.io/rocky_202x/x/"
 PAGES = ("index.html", "docs/index.html", "learn/index.html",
-         "status/index.html", "community/index.html", "ai/index.html", "xcook/index.html")
+         "status/index.html", "community/index.html", "ai/index.html", "xcook/index.html",
+         "film/index.html")
 ASSETS = ("assets/styles.css", "assets/site.js", "assets/search-core.mjs",
-          "assets/docs-search.mjs", "assets/x-mark.svg", "assets/ex-logo.svg")
+          "assets/docs-search.mjs", "assets/x-mark.svg", "assets/ex-logo.svg",
+          "assets/film.css", "assets/film.js")
 
 
 class HTMLAudit(HTMLParser):
@@ -80,7 +82,8 @@ def audit(root: Path, sitemap: Path) -> list[str]:
             issues.append("missing X page: " + name)
             continue
         parser = HTMLAudit()
-        parser.feed(path.read_text(encoding="utf-8"))
+        page_text = path.read_text(encoding="utf-8")
+        parser.feed(page_text)
         parser.close()
         canonical = PUBLIC_BASE + name.removesuffix("index.html")
         if parser.canonicals != [canonical]:
@@ -99,6 +102,14 @@ def audit(root: Path, sitemap: Path) -> list[str]:
             issues.append(name + ": duplicate IDs or missing main anchor")
         if parser.inline_code:
             issues.append(name + ": unsafe inline element: " + repr(parser.inline_code))
+        if "Private source" in page_text or re.search(r'href="https://github\.com/Rocky5502/X(?:["/])', page_text):
+            issues.append(name + ": must not link to inaccessible private compiler source")
+        if name == "film/index.html":
+            if page_text.count('class="scene" data-n=') != 8 or "00:52" not in page_text:
+                issues.append(name + ": missing 52-second eight-scene cinematic film")
+            if "../assets/film.js" not in page_text or "../assets/film.css" not in page_text:
+                issues.append(name + ": missing CSP-safe film player assets")
+
         if not parser.scripts:
             issues.append(name + ": no first-party script loaded")
         for ref in parser.references:
@@ -128,7 +139,7 @@ def audit(root: Path, sitemap: Path) -> list[str]:
     except (OSError, ET.ParseError) as exc:
         issues.append("invalid sitemap: " + type(exc).__name__)
 
-    for asset in ("assets/site.js", "assets/search-core.mjs", "assets/docs-search.mjs"):
+    for asset in ("assets/site.js", "assets/search-core.mjs", "assets/docs-search.mjs", "assets/film.js"):
         file = root / asset
         if file.is_file() and re.search(r"\b(?:fetch|XMLHttpRequest|WebSocket|sendBeacon)\s*\(", file.read_text(encoding="utf-8")):
             issues.append("unexpected external communication code in " + asset)
@@ -146,7 +157,7 @@ def main() -> int:
     if errors:
         print("X microsite verification FAILED (" + str(len(errors)) + " issues).")
         return 1
-    print("X microsite verified: 7 static pages, 6 assets, CSP, links, canonical URLs and sitemap.")
+    print("X microsite verified: 8 static pages, 8 assets, CSP, links, canonical URLs and sitemap.")
     return 0
 
 
