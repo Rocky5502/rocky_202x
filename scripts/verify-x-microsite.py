@@ -105,7 +105,7 @@ def audit(root: Path, sitemap: Path) -> list[str]:
         if "Private source" in page_text or re.search(r'href="https://github\.com/Rocky5502/X(?:["/])', page_text):
             issues.append(name + ": must not link to inaccessible private compiler source")
         if name == "film/index.html":
-            if page_text.count('class="scene" data-n=') != 8 or "00:52" not in page_text:
+            if page_text.count(' data-n="') != 8 or "00:52" not in page_text:
                 issues.append(name + ": missing 52-second eight-scene cinematic film")
             if "../assets/film.js" not in page_text or "../assets/film.css" not in page_text:
                 issues.append(name + ": missing CSP-safe film player assets")
