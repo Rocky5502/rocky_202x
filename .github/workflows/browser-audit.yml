@@ -67,7 +67,7 @@ jobs:
 
       - name: Preserve screenshots and audit report
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: browser-audit-${{ github.sha }}
           path: artifacts/browser-audit
