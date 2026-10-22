@@ -312,6 +312,7 @@ async function auditA11y(page, route) {
     ok(await page.evaluate(() => localStorage.getItem("portfolio-language") === "zh-CN"), "Mandarin preference saved");
     await page.goto(url("/"), {waitUntil:"domcontentloaded"});
     ok(await page.locator(".supervisor-name").allTextContents().then(names => names.join(",") === "张莉,连小利"), "Home displays supervisors' actual Chinese names in Mandarin");
+    ok(await page.locator(".home-supervision .beihang-emblem").getAttribute("alt") === "北京航空航天大学校徽", "Chinese-language homepage displays correct Beihang seal description");
     ok((await page.locator(".supervision-affiliation").innerText()) === "北京航空航天大学 · 计算机学院 · 软件工程研究所 · 中国北京", "Chinese homepage displays Beihang computer science school and software engineering institute");
     const chineseSupervisorLinks = await page.locator(".home-supervision-profiles a").evaluateAll(links => links.map(a => a.href));
     ok(JSON.stringify(chineseSupervisorLinks) === JSON.stringify(["https://scse.buaa.edu.cn/info/1387/10317.htm","https://scse.buaa.edu.cn/info/1389/10618.htm"]), "Chinese supervisor cards retain the original university profile URLs");
