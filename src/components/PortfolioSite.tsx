@@ -386,7 +386,7 @@ function Home() {
            href="https://scse.buaa.edu.cn/info/1389/10618.htm"
            target="_blank" rel="noopener noreferrer">
           <span className="supervisor-name">Xiaoli Lian</span>
-          <span className="supervisor-profile-info">Lecturer · Institutional profile <ArrowUpRight aria-hidden="true" size={15}/></span>
+          <span className="supervisor-profile-info">Assistant Professor · Institutional profile <ArrowUpRight aria-hidden="true" size={15}/></span>
         </a>
       </div>
     </section>
@@ -510,7 +510,7 @@ function ServicePage() {
         <div><span className="review-value">{academicService.reviewRecord.distinctManuscripts}</span><span className="review-term">Distinct manuscripts reviewed</span></div>
       </div>
       <div className="service-columns">
-        <div><h3>Conferences</h3><ul className="quiet-list">{academicService.conferences.map(v=><li key={v}>{v}</li>)}</ul></div>
+        <div><h3>Conferences</h3><ul className="quiet-list">{academicService.conferences.map(v=><li key={v}>{v === "IASEAI" ? <a href="https://openreview.net/group?id=IASEAI.org/2027/Conference/Reviewers" target="_blank" rel="noopener noreferrer">{v} <ArrowUpRight size={12} aria-hidden="true" /></a> : v}</li>)}</ul></div>
         <div><h3>Journals</h3><ul className="quiet-list">{academicService.journals.map(v=><li key={v}>{v}</li>)}</ul></div>
       </div>
     </section>

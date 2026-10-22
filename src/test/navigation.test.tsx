@@ -74,7 +74,7 @@ describe("academic introduction and Web of Science ResearcherID", () => {
     expect(record).toHaveTextContent("Research works");
     expect(record).not.toHaveTextContent("preprints");
     expect(record?.querySelector("small")).toBeNull();
-    expect(publications).toHaveLength(13);
+    expect(publications).toHaveLength(14);
     expect(publications.some(p => p.type === "Preprint")).toBe(true);
     expect(publications.some(p => p.type === "Book chapter")).toBe(true);
     expect(publications.some(p => p.status?.includes("author-reported"))).toBe(true);
