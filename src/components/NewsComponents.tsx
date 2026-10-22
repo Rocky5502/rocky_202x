@@ -58,7 +58,6 @@ export function NewsPreview() {
       <p>{item.summary}</p>
       <Link to="/news" className="news-preview-action">Browse full news archive <ArrowRight size={15} aria-hidden="true" /></Link>
     </article>)}</div>
-    <p className="editorial-note">The archive preserves the researcher's original updates. Historical claims and third-party recognition are reproduced from the earlier website and have not all been independently reverified.</p>
   </section>;
 }
 
@@ -70,11 +69,11 @@ export function NewsPage() {
     <header className="page-heading">
       <p className="eyebrow">Research journey / News</p>
       <h1>News & milestones</h1>
-      <p className="page-intro">Research announcements, academic recognition, and international activities — restored from my original website, with the newest updates first.</p>
+      <p className="page-intro">Research announcements, academic recognition, and international activities — newest updates first.</p>
     </header>
     <div className="news-introduction">
       <span className="news-archive-stat">{newsItems.length} dated stories</span>
-      <p>The original archive is preserved with its month-level dates, full stories and external source links. The CCS 2026 acceptance is a newer author-reported announcement; an official paper URL will be added when available.</p>
+      <p>A timeline of research milestones, academic activities, and announcements, with original source links.</p>
     </div>
     <div className="news-year-controls" role="group" aria-label="Filter news by year">
       {["All years", ...newsYears].map(option => <button key={option} type="button"
@@ -87,6 +86,5 @@ export function NewsPage() {
       <div className="news-timeline">{newsItems.filter(item => newsMonthKey(item.date).startsWith(groupYear)).map(item =>
         <NewsArchiveEntry key={item.title} item={item} />)}</div>
     </section>)}
-    <p className="editorial-note">Older descriptions are reproduced from the site's 2026 historical snapshot and may describe recognitions for which direct certificate or third-party evidence is not linked. The archival record should not be interpreted as independently verified news reporting.</p>
   </div>;
 }
