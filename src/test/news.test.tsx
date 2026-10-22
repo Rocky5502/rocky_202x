@@ -11,7 +11,7 @@ describe("restored historical news", () => {
     expect(newsItems.filter(item => item.provenance === "Author-reported 2026 update")).toHaveLength(1);
     expect(newsItems[0].title).toContain("Auditable Uncertainty Control for Secure LLM Agents");
     expect(newsItems[0].article).toMatch(/sole-authored/i);
-    expect(newsItems[0].dateDetail).toMatch(/not independently verified/i);
+    expect(newsItems[0].dateDetail).toMatch(/Digital Library paper link/i);
     expect(newsItems[0].link).toBe("https://www.sigsac.org/ccs/CCS2026/");
   });
 
