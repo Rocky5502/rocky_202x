@@ -386,7 +386,7 @@ function Home() {
            href="https://scse.buaa.edu.cn/info/1389/10618.htm"
            target="_blank" rel="noopener noreferrer">
           <span className="supervisor-name">Xiaoli Lian</span>
-          <span className="supervisor-profile-info">Lecturer · Institutional profile <ArrowUpRight aria-hidden="true" size={15}/></span>
+          <span className="supervisor-profile-info">Assistant Professor · Institutional profile <ArrowUpRight aria-hidden="true" size={15}/></span>
         </a>
       </div>
     </section>
@@ -457,13 +457,9 @@ function PublicationsPage() {
     {filtered.length === 0 && <p className="empty-results">No papers match these filters. Try a broader search.</p>}
     <aside className="ranking-note">
       <h2>About venue rankings</h2>
-      <p>CCF (7th edition, 2026) and ICORE 2026 classify <strong>venues</strong>, not individual articles.
-        A Doctoral Symposium or workshop paper does not inherit the host conference's A/A* rating.
-        For those entries, host venue ranks are displayed <strong>for context only</strong>.
-        Unverified or unlisted venues have no rank shown; no rating is inferred.</p>
+      <p>CCF (7th edition, 2026) and ICORE 2026 provide conference classifications. Ratings shown for special-track entries refer to the host venue, not the individual paper.</p>
       <div className="ranking-sources"><ExternalLink href={rankingSources.ccf}>CCF official list (2026)</ExternalLink><ExternalLink href={rankingSources.icore}>ICORE conference database (2026)</ExternalLink></div>
     </aside>
-    <p className="editorial-note">Published conference, workshop, and journal articles are distinguished from preprints and book chapters. No unconfirmed acceptance claims or guessed ranks are added.</p>
   </div>;
 }
 
@@ -510,7 +506,7 @@ function ServicePage() {
         <div><span className="review-value">{academicService.reviewRecord.distinctManuscripts}</span><span className="review-term">Distinct manuscripts reviewed</span></div>
       </div>
       <div className="service-columns">
-        <div><h3>Conferences</h3><ul className="quiet-list">{academicService.conferences.map(v=><li key={v}>{v}</li>)}</ul></div>
+        <div><h3>Conferences & review programmes</h3><ul className="quiet-list">{academicService.conferences.map(v=><li key={v}>{v === "IASEAI 2027" ? <a href="https://openreview.net/group?id=IASEAI.org/2027/Conference/Reviewers" target="_blank" rel="noopener noreferrer">IASEAI 2027 <ArrowUpRight aria-hidden="true" size={13}/></a> : v}</li>)}</ul></div>
         <div><h3>Journals</h3><ul className="quiet-list">{academicService.journals.map(v=><li key={v}>{v}</li>)}</ul></div>
       </div>
     </section>
