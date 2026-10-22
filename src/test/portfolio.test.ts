@@ -35,7 +35,8 @@ describe("public academic record", () => {
         expect(paper.rankingVenue).toBeUndefined();
       }
       if (paper.type === "Workshop") {
-        expect(paper.rankingScope).toBe("host-only");
+        expect(paper.rankingScope).toBeUndefined();
+        expect(paper.rankingVenue).toBeUndefined();
       }
       if (paper.rankingScope === "host-only") {
         expect(paper.rankingVenue).toBeDefined();
@@ -44,6 +45,13 @@ describe("public academic record", () => {
         expect(conferenceRankings[paper.rankingVenue]).toBeDefined();
       }
     }
+  });
+
+  it("includes the author's autonomous-vehicle preprint with its exact arXiv metadata", () => {
+    const paper = publications.find(p => p.title.startsWith("Advancing Autonomous Vehicle Intelligence:"));
+    expect(paper?.url).toBe("https://arxiv.org/abs/2503.06313");
+    expect(paper?.type).toBe("Preprint");
+    expect(paper?.authors).toBe("Chandan Kumar Sah, Ankit Kumar Shaw, Xiaoli Lian, Arsalan Shahid Baig, Tuopu Wen, Kun Jiang, Mengmeng Yang, Diange Yang");
   });
 
   it("preserves checked ICORE 2026 and CCF 2026 reference grades", () => {
