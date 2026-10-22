@@ -83,6 +83,31 @@ describe("professional Simplified Chinese localization", () => {
     expect(screen.getByRole("link", { name: "Publications" })).toHaveAttribute("href", "/publications");
   });
 
+  it("uses the professors' actual Chinese names and official institute affiliation in Mandarin, reversible to English", async () => {
+    renderAt("/");
+    const section = document.querySelector<HTMLElement>(".home-supervision");
+    expect(section).not.toBeNull();
+    expect(within(section!).getByText("Li Zhang")).toBeInTheDocument();
+    expect(within(section!).getByText("Xiaoli Lian")).toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole("button", { name: "Switch website to Simplified Chinese" }));
+    await waitFor(() => expect(within(section!).getByText("张莉")).toBeInTheDocument());
+    expect(within(section!).getByText("连小利")).toBeInTheDocument();
+    expect(within(section!).getByText("北京航空航天大学 · 计算机学院 · 软件工程研究所 · 中国北京")).toBeInTheDocument();
+    expect(within(section!).getByText("教授 · 学校教师主页", {exact: false})).toBeInTheDocument();
+    expect(within(section!).getByText("助理研究员 · 学校教师主页", {exact: false})).toBeInTheDocument();
+    const links = within(section!).getAllByRole("link");
+    expect(links.map(node => node.getAttribute("href"))).toEqual([
+      "https://scse.buaa.edu.cn/info/1387/10317.htm",
+      "https://scse.buaa.edu.cn/info/1389/10618.htm",
+    ]);
+
+    fireEvent.click(screen.getByRole("button", { name: "切换网站语言为英语" }));
+    await waitFor(() => expect(within(section!).getByText("Li Zhang")).toBeInTheDocument());
+    expect(within(section!).getByText("Xiaoli Lian")).toBeInTheDocument();
+    expect(within(section!).getByText("Beihang University · School of Computer Science and Engineering · Institute of Software Engineering · Beijing, China")).toBeInTheDocument();
+  });
+
   it("translates Nepal scholarship biography and the Web of Science link without changing its target", async () => {
     const { unmount } = renderAt("/");
     fireEvent.click(screen.getByRole("button", { name: "Switch website to Simplified Chinese" }));
