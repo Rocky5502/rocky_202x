@@ -31,7 +31,7 @@ function NewsArchiveEntry({ item }: { item: NewsItem }) {
       </div>
       <h3>{item.title}</h3>
       <p className="news-entry-summary">{item.summary}</p>
-      {isNew && <p className="news-corroboration">Acceptance reported by the author · ACM publication record forthcoming</p>}
+      {isNew && <p className="news-corroboration">ACM proceedings link forthcoming</p>}
       <details className="news-story-details">
         <summary>Read full story <ArrowRight size={15} aria-hidden="true" /></summary>
         <div className="news-story-body">
@@ -58,7 +58,6 @@ export function NewsPreview() {
       <p>{item.summary}</p>
       <Link to="/news" className="news-preview-action">Browse full news archive <ArrowRight size={15} aria-hidden="true" /></Link>
     </article>)}</div>
-    <p className="editorial-note">The archive preserves the researcher's original updates. Historical claims and third-party recognition are reproduced from the earlier website and have not all been independently reverified.</p>
   </section>;
 }
 
@@ -74,7 +73,7 @@ export function NewsPage() {
     </header>
     <div className="news-introduction">
       <span className="news-archive-stat">{newsItems.length} dated stories</span>
-      <p>The original archive is preserved with its month-level dates, full stories and external source links. The CCS 2026 acceptance is a newer author-reported announcement; an official paper URL will be added when available.</p>
+      <p>Research announcements, academic recognition, and international milestones, with dates, full stories, and source links.</p>
     </div>
     <div className="news-year-controls" role="group" aria-label="Filter news by year">
       {["All years", ...newsYears].map(option => <button key={option} type="button"
@@ -87,6 +86,5 @@ export function NewsPage() {
       <div className="news-timeline">{newsItems.filter(item => newsMonthKey(item.date).startsWith(groupYear)).map(item =>
         <NewsArchiveEntry key={item.title} item={item} />)}</div>
     </section>)}
-    <p className="editorial-note">Older descriptions are reproduced from the site's 2026 historical snapshot and may describe recognitions for which direct certificate or third-party evidence is not linked. The archival record should not be interpreted as independently verified news reporting.</p>
   </div>;
 }
