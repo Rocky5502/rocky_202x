@@ -136,10 +136,22 @@ async function auditA11y(page, route) {
     ok(await page.locator(".portrait-highlight-list sup").count() === 0, "Portrait honors show no ECIR dagger markers");
     ok(await page.locator(".portrait-highlights-note").count() === 0, "No ECIR verification footnote appears under portrait");
     ok(await page.getByRole("link",{name:"Recognition details"}).getAttribute("href") === "#/recognition", "Portrait highlights link to existing Recognition page");
-    await page.screenshot({path: path.join(directory, "home-desktop.png"), fullPage: true});
+    ok(await page.locator(".publication-list .publication-row").count() === 4, "Homepage features four records including autonomous-vehicle preprint");
+    ok((await page.locator(".publication-list").innerText()).includes("Advancing Autonomous Vehicle Intelligence"), "Autonomous-vehicle paper is visible among featured publications");
+    ok((await page.locator(".supervisor-profile-green").innerText()).includes("Assistant Professor"), "Xiaoli Lian's owner-updated title is Assistant Professor");
+        await page.screenshot({path: path.join(directory, "home-desktop.png"), fullPage: true});
     await auditA11y(page, "home-desktop");
 
     // Skip-link must not replace the HashRouter route with #main-content.
+    await page.goto(url("/publications"), {waitUntil: "domcontentloaded"});
+    const publicationText=await page.locator(".publication-list").innerText();
+    ok(publicationText.includes("ASE 2025 — Student Research Competition"), "ASE 2025 publication displays official SRC track rather than Doctoral Symposium");
+    ok(publicationText.includes("ICCV 2025") && publicationText.includes("CVPR 2025"), "ICCV and CVPR retain clean academic-paper venue labels");
+    ok(!(await page.locator(".ranking-note").innerText()).includes("workshop paper"), "Ranking note uses concise special-track language");
+    await page.goto(url("/service"), {waitUntil: "domcontentloaded"});
+    const reviewerNames=await page.locator(".service-columns .quiet-list").first().innerText();
+    ok(!reviewerNames.split("\\n").includes("ASE"), "ASE is not listed as a reviewing role");
+    ok(["ACL ARR","AAMAS","IASEAI"].every(name=>reviewerNames.includes(name)), "Reviewer list includes ACL ARR, AAMAS, and IASEAI");
     await page.goto(url("/cv/education"), {waitUntil: "domcontentloaded"});
     await page.keyboard.press("Tab");
     ok(await page.evaluate(() => document.activeElement?.classList.contains("skip-link") === true), "Keyboard Tab reaches the skip-to-content link");

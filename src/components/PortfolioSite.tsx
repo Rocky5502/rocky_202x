@@ -324,7 +324,9 @@ function ProjectsPage() {
 }
 
 function Home() {
-  const featured = [publications[0], publications[1], publications[2]];
+  const featured = publications.filter((paper, index) =>
+    index < 3 || paper.url === "https://arxiv.org/abs/2503.06313"
+  );
   return <>
     <section className="home-hero content-wrap">
       <div className="hero-copy">
@@ -458,12 +460,12 @@ function PublicationsPage() {
     <aside className="ranking-note">
       <h2>About venue rankings</h2>
       <p>CCF (7th edition, 2026) and ICORE 2026 classify <strong>venues</strong>, not individual articles.
-        A Doctoral Symposium or workshop paper does not inherit the host conference's A/A* rating.
-        For those entries, host venue ranks are displayed <strong>for context only</strong>.
-        Unverified or unlisted venues have no rank shown; no rating is inferred.</p>
+        Special-track and student-competition contributions do not inherit main-track ratings.
+        Where relevant, host-venue rankings appear <strong>for context only</strong>.
+        No ranking is inferred for unlisted venues.</p>
       <div className="ranking-sources"><ExternalLink href={rankingSources.ccf}>CCF official list (2026)</ExternalLink><ExternalLink href={rankingSources.icore}>ICORE conference database (2026)</ExternalLink></div>
     </aside>
-    <p className="editorial-note">Published conference, workshop, and journal articles are distinguished from preprints and book chapters. No unconfirmed acceptance claims or guessed ranks are added.</p>
+    <p className="editorial-note">Publisher records and publication categories are preserved separately from the concise venue labels. Preprints and book chapters are clearly identified, and no unconfirmed acceptance or paper-level ranking is implied.</p>
   </div>;
 }
 

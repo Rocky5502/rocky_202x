@@ -84,7 +84,7 @@ export const publications: Publication[] = [
   {
     title: "Understanding Uncertainty in LLMs",
     authors: "Chandan Kumar Sah",
-    year: 2025, venue: "ASE 2025", type: "Conference", topic: "Reliable AI",
+    year: 2025, venue: "ASE 2025 — Student Research Competition", type: "Conference", topic: "Reliable AI",
     rankingVenue: "ASE", rankingScope: "host-only",
     url: "https://ieeexplore.ieee.org/abstract/document/11334526",
   },
