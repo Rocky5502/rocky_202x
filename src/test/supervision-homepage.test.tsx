@@ -18,6 +18,7 @@ describe("Beihang PhD supervision on the academic homepage", () => {
     expect(links[0]).toHaveTextContent("Li Zhang");
     expect(links[0]).toHaveAttribute("href", "https://scse.buaa.edu.cn/info/1387/10317.htm");
     expect(links[1]).toHaveTextContent("Xiaoli Lian");
+    expect(links[1]).toHaveTextContent("Assistant Professor");
     expect(links[1]).toHaveAttribute("href", "https://scse.buaa.edu.cn/info/1389/10618.htm");
     for (const link of links) {
       expect(link).toHaveAttribute("target", "_blank");
