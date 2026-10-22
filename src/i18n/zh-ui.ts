@@ -6,7 +6,7 @@ export const zhUi: Record<string,string> = {
   "Beihang University emblem": "北京航空航天大学校徽",
   "Beihang University · School of Computer Science and Engineering · Institute of Software Engineering · Beijing, China": "北京航空航天大学 · 计算机学院 · 软件工程研究所 · 中国北京",
   "Professor · Institutional profile": "教授 · 学校教师主页",
-  "Assistant Research Fellow · Institutional profile": "助理研究员 · 学校教师主页",
+  "Assistant Professor · Institutional profile": "助理研究员 · 学校教师主页",
   "Publications": "学术成果",
   "Projects": "科研项目",
   "Research": "研究方向",
