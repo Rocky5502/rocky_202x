@@ -166,7 +166,7 @@ const originalNewsItems: NewsItem[] = [
  */
 const ccsAnnouncement: NewsItem = {
   date: "Oct 2026",
-  dateDetail: "Website announcement updated 13 October 2026. The actual acceptance-decision date is not independently verified.",
+  dateDetail: "Website announcement updated October 13, 2026.",
   location: "CCS 2026 · The Hague, Netherlands",
   tag: "Research acceptance",
   title: "Auditable Uncertainty Control for Secure LLM Agents — ACM CCS 2026",
