@@ -51,6 +51,8 @@ The two faculty entries point to the precise university profiles, unchanged acro
 - **Li Zhang → 张莉**, [Professor / official profile](https://scse.buaa.edu.cn/info/1387/10317.htm)
 - **Xiaoli Lian → 连小利**, [official profile](https://scse.buaa.edu.cn/info/1389/10618.htm)
 
+The heading now features a **68px Beihang University emblem** (56px on mobile), positioned beside the doctoral-supervision title. The mark uses the university's established blue circular seal, described by the [university's own visual-identity page](https://xcb.buaa.edu.cn/info/1032/1631.htm). A public reproduction is retrieved by `scripts/build-beihang-emblem.py` **during GitHub Actions builds** and downscaled to a first-party PNG under `dist/assets/`, capped at 40 kB. Visitors do **not** contact an external image host. Both desktop and Mandarin image alt labels are covered by unit and Chromium loading tests. The emblem indicates academic affiliation only, not institutional endorsement of this independent portfolio.
+
 Names are rendered with **React-owned locale state**, rather than globally translating author names in published citation metadata. The second page's Chinese institutional biography lists **助理研究员**; its English-page text currently lists Lecturer. The Chinese interface uses the source-backed **助理研究员** designation. The English role label is preserved from the user's existing site pending formal role-title confirmation. No personal contact information is added.
 
 Regression tests cover official URLs, reversible English/Chinese names, full department translations, and Chromium rendering. The main PhD degree timeline continues to omit dates at the owner's request.
