@@ -21,7 +21,7 @@ const cvSections = [
   {
     to: "/cv/education", icon: GraduationCap, index: "01",
     label: "Education", meta: "Degrees · Summer & winter schools",
-    description: "My academic degrees and selected international research schools, each presented with their historical source context.",
+    description: "Academic degrees and selected international summer and winter research schools.",
     stat: "3 degrees · 4 schools",
   },
   {
@@ -140,7 +140,7 @@ export function CVEducationPage() {
   const schoolYears = [...new Set(researchSchools.map(s => s.year))].sort((a,b)=>b-a);
   return <div className="content-wrap interior-page cv-page cv-education-page">
     <CVHeader section="Education" title="Education"
-      subtitle="Academic degrees and selected summer and winter schools. Research schools and short courses are distinct from degree qualifications."/>
+      subtitle="Academic degrees, international summer and winter schools, and research training."/>
     <CVSectionNav active="/cv/education"/>
 
     <section className="cv-section" aria-labelledby="cv-degrees-heading">
@@ -153,17 +153,15 @@ export function CVEducationPage() {
           <p className="cv-education-description">{entry.description}</p>
         </div>
       </article>)}</div>
-      <p className="cv-editor-note">University degrees are listed without dates. The PhD remains in progress; degree titles and institutions are based on the original academic portfolio.</p>
     </section>
 
     <section className="cv-section" aria-labelledby="cv-schools-heading">
       <div className="cv-section-head"><div><p className="eyebrow">International academic development</p><h2 id="cv-schools-heading">Summer & winter schools</h2></div><School size={23} strokeWidth={1.35} aria-hidden="true"/></div>
-      <p className="cv-section-intro">Restored from my earlier website’s certificates and recognition archive. The linked organizer pages establish each programme, while individual participation or awards are retained as historical researcher-provided records.</p>
+      <p className="cv-section-intro">Selected international research schools, academic programmes, and workshops from my studies.</p>
       {schoolYears.map(year => <div className="cv-schools-year" key={year}>
         <h3 className="cv-schools-year-heading">{year}<span>{researchSchools.filter(s=>s.year===year).length} programmes</span></h3>
         <div className="cv-schools-grid">{researchSchools.filter(item=>item.year===year).map(item => <SchoolCard key={item.name} item={item}/>)}</div>
       </div>)}
-      <p className="cv-editor-note">The Terahertz Summer School entry comes from an archived oral-presentation award, not a course-completion certificate. No school qualifies as an additional university degree, and archived certificate images are not fabricated or replaced.</p>
     </section>
 
     <section className="cv-section cv-short-programmes" aria-labelledby="cv-development-heading">
@@ -172,7 +170,6 @@ export function CVEducationPage() {
         <div className="cv-short-year">{item.year}</div>
         <div><h3>{item.name}</h3><p>{item.organization} · {item.location}</p><a href={item.eventUrl} target="_blank" rel="noopener noreferrer">Institution website <ArrowUpRight size={14} aria-hidden="true"/></a></div>
       </article>)}
-      <p className="cv-editor-note">The historical Oxford/UNESCO record is presented as professional learning, not as an Oxford degree, formal university appointment, or independently verified qualification.</p>
     </section>
   </div>;
 }
@@ -220,7 +217,6 @@ export function CVLanguagesPage() {
       <div className="cv-spoken-list">{spokenLanguages.map((lang,i) =>
         <span className="cv-spoken-item" key={lang}><span aria-hidden="true">{String(i+1).padStart(2,"0")}</span>{lang}</span>
       )}</div>
-      <p className="cv-editor-note">Researcher-reported communication languages; no CEFR rating, native-fluency label or language certification is claimed.</p>
     </section>
   </div>;
 }
