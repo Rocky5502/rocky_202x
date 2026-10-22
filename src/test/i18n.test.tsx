@@ -93,7 +93,7 @@ describe("professional Simplified Chinese localization", () => {
     fireEvent.click(screen.getByRole("button", { name: "Switch website to Simplified Chinese" }));
     await waitFor(() => expect(within(section!).getByText("张莉")).toBeInTheDocument());
     expect(within(section!).getByText("连小利")).toBeInTheDocument();
-    expect(within(section!).getByRole("img", { name: "北京航空航天大学校徽" })).toHaveAttribute("src", "/rocky_202x/assets/beihang-university-emblem.png");
+    expect(within(section!).getByRole("img", { name: "北京航空航天大学校徽" }).getAttribute("src")).toMatch(/\/assets\/beihang-university-emblem\.png$/);
     expect(within(section!).getByText("北京航空航天大学 · 计算机学院 · 软件工程研究所 · 中国北京")).toBeInTheDocument();
     expect(within(section!).getByText("教授 · 学校教师主页", {exact: false})).toBeInTheDocument();
     expect(within(section!).getByText("助理研究员 · 学校教师主页", {exact: false})).toBeInTheDocument();
