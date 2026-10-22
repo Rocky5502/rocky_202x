@@ -2125,6 +2125,24 @@ html[lang="zh-CN"] .award-archive-card h3 { overflow-wrap: anywhere; }
 .membership-wordmark { display:flex; align-items:center; justify-content:center; width:100%; height:100%; border-radius:5px; background:#142d53; color:#fff; font:700 12px/1.2 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; letter-spacing:.06em; }
 
 
+/* Locally hosted university emblem; no third-party visitor requests. */
+.supervision-heading-row { display: flex; align-items: center; gap: 17px; }
+.supervision-heading-copy { min-width: 0; }
+.home-supervision .beihang-emblem {
+  display: block;
+  width: 68px; height: 68px;
+  flex: 0 0 68px;
+  object-fit: contain;
+  border-radius: 50%;
+  background: #fff;
+  padding: 4px;
+  border: 1px solid var(--portfolio-rule);
+}
+@media (max-width: 540px) {
+  .supervision-heading-row { gap: 13px; }
+  .home-supervision .beihang-emblem { width: 56px; height: 56px; flex-basis: 56px; padding: 3px; }
+}
+
 /* Doctoral supervision: two official Beihang profile links, intentionally no emails. */
 .home-supervision {
   display: grid;
