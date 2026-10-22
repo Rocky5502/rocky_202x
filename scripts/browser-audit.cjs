@@ -91,6 +91,15 @@ async function auditA11y(page, route) {
       displayedEmails: (section.textContent||"").includes("@buaa.edu.cn"),
       colors: Array.from(section.querySelectorAll(".supervisor-name")).map(el => getComputedStyle(el).backgroundColor),
     }));
+    const universitySeal = page.locator(".home-supervision .beihang-emblem");
+    await universitySeal.scrollIntoViewIfNeeded();
+    await page.waitForFunction(() => {
+      const img = document.querySelector(".home-supervision .beihang-emblem");
+      return img && img.complete && img.naturalWidth > 60;
+    }, { timeout: 12000 });
+    ok(await universitySeal.getAttribute("alt") === "Beihang University emblem", "Beihang seal has meaningful accessible English text");
+    ok((await universitySeal.getAttribute("src")) === "/rocky_202x/assets/beihang-university-emblem.png", "Beihang seal is locally hosted without browser calls to third parties");
+    ok(await universitySeal.evaluate(img => img.naturalWidth > 60 && img.naturalHeight > 60), "Beihang seal asset loads properly in a real Chromium browser");
     ok(supervision.heading === "PhD supervision", "Home displays PhD supervision heading");
     ok((await page.locator(".supervision-affiliation").innerText()) === "Beihang University · School of Computer Science and Engineering · Institute of Software Engineering · Beijing, China", "Home identifies the full Beihang institute and city in English");
     ok(supervision.links.length === 2 &&
