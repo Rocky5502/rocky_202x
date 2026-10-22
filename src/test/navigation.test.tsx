@@ -58,6 +58,23 @@ describe("Projects directory, privacy and release status", () => {
   });
 });
 
+describe("doctoral supervision on the homepage", () => {
+  it("links both professors to the correct official Beihang profiles and shows the full institute affiliation", () => {
+    render(<MemoryRouter initialEntries={["/"]}><PortfolioSite /></MemoryRouter>);
+    const section = document.querySelector<HTMLElement>(".home-supervision");
+    expect(section).not.toBeNull();
+    expect(within(section!).getByRole("heading", { name: "PhD supervision" })).toBeInTheDocument();
+    expect(within(section!).getByText("Beihang University · School of Computer Science and Engineering · Institute of Software Engineering · Beijing, China")).toBeInTheDocument();
+    const profiles = within(section!).getAllByRole("link");
+    expect(profiles).toHaveLength(2);
+    expect(profiles[0]).toHaveAttribute("href", "https://scse.buaa.edu.cn/info/1387/10317.htm");
+    expect(profiles[1]).toHaveAttribute("href", "https://scse.buaa.edu.cn/info/1389/10618.htm");
+    expect(profiles[0]).toHaveTextContent("Li Zhang");
+    expect(profiles[1]).toHaveTextContent("Xiaoli Lian");
+    expect(profiles.every(link => link.getAttribute("rel") === "noopener noreferrer")).toBe(true);
+  });
+});
+
 describe("academic introduction and Web of Science ResearcherID", () => {
   const researcherProfile = "https://www.webofscience.com/wos/author/record/JVY-7383-2024";
 
