@@ -92,6 +92,7 @@ async function auditA11y(page, route) {
       colors: Array.from(section.querySelectorAll(".supervisor-name")).map(el => getComputedStyle(el).backgroundColor),
     }));
     ok(supervision.heading === "PhD supervision", "Home displays PhD supervision heading");
+    ok((await page.locator(".supervision-affiliation").innerText()) === "Beihang University · School of Computer Science and Engineering · Institute of Software Engineering · Beijing, China", "Home identifies the full Beihang institute and city in English");
     ok(supervision.links.length === 2 &&
       supervision.links[0].name === "Li Zhang" &&
       supervision.links[0].href === "https://scse.buaa.edu.cn/info/1387/10317.htm" &&
@@ -301,6 +302,10 @@ async function auditA11y(page, route) {
     ok(await page.getByRole("button", {name: "切换网站语言为英语"}).count() === 1, "Language switch labels its next action accessibly in Mandarin");
     ok(await page.evaluate(() => localStorage.getItem("portfolio-language") === "zh-CN"), "Mandarin preference saved");
     await page.goto(url("/"), {waitUntil:"domcontentloaded"});
+    ok(await page.locator(".supervisor-name").allTextContents().then(names => names.join(",") === "张莉,连小利"), "Home displays supervisors' actual Chinese names in Mandarin");
+    ok((await page.locator(".supervision-affiliation").innerText()) === "北京航空航天大学 · 计算机学院 · 软件工程研究所 · 中国北京", "Chinese homepage displays Beihang computer science school and software engineering institute");
+    const chineseSupervisorLinks = await page.locator(".home-supervision-profiles a").evaluateAll(links => links.map(a => a.href));
+    ok(JSON.stringify(chineseSupervisorLinks) === JSON.stringify(["https://scse.buaa.edu.cn/info/1387/10317.htm","https://scse.buaa.edu.cn/info/1389/10618.htm"]), "Chinese supervisor cards retain the original university profile URLs");
     ok(await page.getByText(/来自尼泊尔 🇳🇵，自2018年4月起在中国学习和生活/).count() === 1, "Mandarin homepage uses formal name-free third-person biography");
     ok(!(await page.locator(".hero-description").innerText()).includes("Chandan Kumar Sah"), "Mandarin biography does not redundantly repeat the H1 name");
     ok((await page.locator(".portrait-research-record").innerText()).includes("科研成果"), "Research works highlight has authored Mandarin translation");
