@@ -84,30 +84,32 @@ export const publications: Publication[] = [
   {
     title: "Understanding Uncertainty in LLMs",
     authors: "Chandan Kumar Sah",
-    year: 2025, venue: "ASE 2025 — Doctoral Symposium", type: "Conference", topic: "Reliable AI",
-    rankingVenue: "ASE", rankingScope: "host-only",
+    year: 2025, venue: "ASE 2025", type: "Conference", topic: "Reliable AI",
     url: "https://ieeexplore.ieee.org/abstract/document/11334526",
   },
   {
     title: "PerFairX: Is There a Balance Between Fairness and Personality in Large Language Model Recommendations?",
     authors: "Chandan Kumar Sah, Xiaoli Lian",
-    year: 2025, venue: "ICCV Workshops 2025", type: "Workshop", topic: "Fairness",
-    rankingVenue: "ICCV", rankingScope: "host-only",
+    year: 2025, venue: "ICCV 2025", type: "Workshop", topic: "Fairness",
     url: "https://openaccess.thecvf.com/content/ICCV2025W/MCL/html/Sah_PerFairX_Is_There_a_Balance_Between_Fairness_and_Personality_in_ICCVW_2025_paper.html",
   },
   {
     title: "SafeRoute: Enhancing Traffic Scene Understanding via a Unified Deep Learning and Multimodal LLM",
     authors: "Ankit Kumar Shaw, Chandan Kumar Sah, Xiaoli Lian, Arsalan Shahid Baig, Tuopu Wen, Kun Jiang, Mengmeng Yang, Diange Yang, Li Zhang",
-    year: 2025, venue: "ICCV Workshops 2025", type: "Workshop", topic: "Multimodal AI",
-    rankingVenue: "ICCV", rankingScope: "host-only",
+    year: 2025, venue: "ICCV 2025", type: "Workshop", topic: "Multimodal AI",
     url: "https://openaccess.thecvf.com/content/ICCV2025W/WDFM-AD/html/Shaw_SafeRoute_Enhancing_Traffic_Scene_Understanding_via_a_Unified_Deep_Learning_ICCVW_2025_paper.html",
   },
   {
     title: "CleanMAP: Distilling Multimodal LLMs for Confidence-Driven Crowdsourced HD Map Updates",
     authors: "Ankit Kumar Shaw, Kun Jiang, Tuopu Wen, Chandan Kumar Sah, Yining Shi, Mengmeng Yang, Diange Yang, Xiaoli Lian",
-    year: 2025, venue: "CVPR Workshops 2025", type: "Workshop", topic: "Multimodal AI",
-    rankingVenue: "CVPR", rankingScope: "host-only",
+    year: 2025, venue: "CVPR 2025", type: "Workshop", topic: "Multimodal AI",
     url: "https://openaccess.thecvf.com/content/CVPR2025W/WDFM-AD/html/Shaw_CleanMAP_Distilling_Multimodal_LLMs_for_Confidence-Driven_Crowdsourced_HD_Map_Updates_CVPRW_2025_paper.html",
+  },
+  {
+    title: "Advancing Autonomous Vehicle Intelligence: Deep Learning and Multimodal LLM for Traffic Sign Recognition and Robust Lane Detection",
+    authors: "Chandan Kumar Sah, Ankit Kumar Shaw, Xiaoli Lian, Arsalan Shahid Baig, Tuopu Wen, Kun Jiang, Mengmeng Yang, Diange Yang",
+    year: 2025, venue: "arXiv:2503.06313", type: "Preprint", topic: "Multimodal AI",
+    url: "https://arxiv.org/abs/2503.06313",
   },
   {
     title: "FairEval: Evaluating Fairness in LLM-Based Recommendations with Personality Awareness",
@@ -172,7 +174,12 @@ export const selectedProjects = [
 ];
 
 export const academicService = {
-  conferences: ["NeurIPS", "AAAI", "AAAI/ACM AIES 2025", "CVPR", "ICCV", "ECIR", "ASE"],
+  conferences: ["NeurIPS", "AAAI", "AAAI/ACM AIES 2025", "CVPR", "ICCV", "ECIR", "ACL ARR", "AAMAS", "IASEAI 2027"],
+  conferenceReviewerLinks: {
+    "ACL ARR": "https://aclrollingreview.org/",
+    "AAMAS": "https://warwick.ac.uk/fac/sci/dcs/aamas2027/",
+    "IASEAI 2027": "https://openreview.net/group?id=IASEAI.org/2027/Conference/Reviewers",
+  } as Record<string, string>,
   journals: [
     "ACM Transactions on Software Engineering and Methodology (TOSEM)",
     "Complex & Intelligent Systems",
@@ -216,7 +223,7 @@ export const academicService = {
   ],
   volunteering: [
     { role: "Student Volunteer", organization: "ASE 2025", year: "2025", description: "40th IEEE/ACM International Conference on Automated Software Engineering." },
-    { role: "Conference Volunteer", organization: "International Association for Safe & Ethical AI (IASEAI’26)", year: "2026", description: "Volunteer service supporting the 2026 IASEAI conference in Paris. Role reported by the researcher." },
+    { role: "Conference Volunteer", organization: "International Association for Safe & Ethical AI (IASEAI’26)", year: "2026", description: "Volunteer service supporting the 2026 IASEAI conference in Paris." },
     { role: "Student Ambassador", organization: "Beihang University", year: "2023–present", description: "International academic community engagement and student outreach." },
     { role: "Academic & Innovation Department Lead", organization: "Beihang International Graduate Student Union", year: "2023–2025", description: "Graduate student leadership and academic community activities." },
   ],
