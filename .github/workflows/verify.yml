@@ -33,6 +33,7 @@ jobs:
           python3 -m venv .image-env
           .image-env/bin/python -m pip install -q --disable-pip-version-check Pillow==11.3.0
           .image-env/bin/python scripts/optimize-build-images.py
+          .image-env/bin/python scripts/build-beihang-emblem.py
       - name: Unit tests
         run: bun run test
       - name: Anonymous reactions API and privacy tests
