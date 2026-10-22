@@ -396,7 +396,7 @@ function Home() {
            href="https://scse.buaa.edu.cn/info/1389/10618.htm"
            target="_blank" rel="noopener noreferrer">
           <span className="supervisor-name" lang={language === "zh-CN" ? "zh-CN" : "en"}>{language === "zh-CN" ? "连小利" : "Xiaoli Lian"}</span>
-          <span className="supervisor-profile-info">Assistant Research Fellow · Institutional profile <ArrowUpRight aria-hidden="true" size={15}/></span>
+          <span className="supervisor-profile-info">Assistant Professor · Institutional profile <ArrowUpRight aria-hidden="true" size={15}/></span>
         </a>
       </div>
     </section>
