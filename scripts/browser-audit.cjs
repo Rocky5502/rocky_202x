@@ -88,7 +88,7 @@ async function auditA11y(page, route) {
         rel: a.rel,
       })),
       emailLinks: section.querySelectorAll('a[href^="mailto:"]').length,
-      displayedEmails: /@buaa\\.edu\\.cn/.test(section.textContent||""),
+      displayedEmails: (section.textContent||"").includes("@buaa.edu.cn"),
       colors: Array.from(section.querySelectorAll(".supervisor-name")).map(el => getComputedStyle(el).backgroundColor),
     }));
     ok(supervision.heading === "PhD supervision", "Home displays PhD supervision heading");
