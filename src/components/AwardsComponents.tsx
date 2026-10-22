@@ -76,7 +76,7 @@ export function AwardsPage() {
     </header>
     <div className="awards-summary">
       <BookOpen size={20} strokeWidth={1.4} aria-hidden="true"/>
-      <p>These records have been <strong>restored from my original personal website</strong>. Some represent awards, while others document attendance, speaking, volunteering, or training. The archive is organized by the year groups used in the original site and is not a third-party verification of individual achievements.</p>
+      <p>My academic distinctions, scholarships, certificates, conference participation, and service activities—organized by year.</p>
     </div>
     <div className="awards-tools">
       <div className="awards-year-controls" role="group" aria-label="Filter archived awards by year">
@@ -118,6 +118,5 @@ export function AwardsPage() {
       <button type="button" onClick={() => { setYear("All years"); setCategory("All categories"); setQuery(""); }}>Clear all filters <ArrowRight size={14} aria-hidden="true" /></button>
     </div>}
 
-    <p className="editorial-note">Original certificate images were referenced in the historic code, but most files were never committed to the repository. Small category icons avoid missing-image placeholders. The exact original image filenames are preserved for possible future restoration. Linked sites may be general organizer pages, not individual award verification.</p>
   </div>;
 }
