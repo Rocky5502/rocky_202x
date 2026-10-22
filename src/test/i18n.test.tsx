@@ -92,7 +92,7 @@ describe("professional Simplified Chinese localization", () => {
     const record = document.querySelector(".portrait-research-record");
     expect(record).not.toBeNull();
     expect(record).toHaveAttribute("href", "/publications");
-    expect(record).toHaveTextContent("13+");
+    expect(record).toHaveTextContent("14+");
     expect(record).toHaveTextContent("科研成果");
     expect(record).not.toHaveTextContent("预印本");
     expect(record?.querySelector("small")).toBeNull();
