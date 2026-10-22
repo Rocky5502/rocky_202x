@@ -374,8 +374,15 @@ function Home() {
     </section>
     <section className="home-supervision content-wrap" aria-labelledby="home-supervision-heading">
       <div className="home-supervision-intro">
-        <p className="eyebrow">Current doctoral studies</p>
-        <h2 id="home-supervision-heading">PhD supervision</h2>
+        <div className="supervision-heading-row">
+          <img className="beihang-emblem"
+            src={`${import.meta.env.BASE_URL}assets/beihang-university-emblem.png`}
+            width={68} height={68} alt="Beihang University emblem" loading="lazy" decoding="async"/>
+          <div className="supervision-heading-copy">
+            <p className="eyebrow">Current doctoral studies</p>
+            <h2 id="home-supervision-heading">PhD supervision</h2>
+          </div>
+        </div>
         <p className="supervision-affiliation">Beihang University · School of Computer Science and Engineering · Institute of Software Engineering · Beijing, China</p>
       </div>
       <div className="home-supervision-profiles">
@@ -389,7 +396,7 @@ function Home() {
            href="https://scse.buaa.edu.cn/info/1389/10618.htm"
            target="_blank" rel="noopener noreferrer">
           <span className="supervisor-name" lang={language === "zh-CN" ? "zh-CN" : "en"}>{language === "zh-CN" ? "连小利" : "Xiaoli Lian"}</span>
-          <span className="supervisor-profile-info">Assistant Professor · Institutional profile <ArrowUpRight aria-hidden="true" size={15}/></span>
+          <span className="supervisor-profile-info">Assistant Research Fellow · Institutional profile <ArrowUpRight aria-hidden="true" size={15}/></span>
         </a>
       </div>
     </section>
