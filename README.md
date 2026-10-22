@@ -43,6 +43,18 @@ GitHub Pages may serve temporarily cached HTML immediately after a deployment, e
 
 `src/test/navigation.test.tsx` tests the real `/#/connect` address, legacy hash aliases, 404 recovery and all five research topics. Both `Verify portfolio` and the Pages deployment should succeed for the same latest commit before considering a release complete.
 
+## Doctoral supervision: bilingual faculty profiles
+
+The homepage **Current doctoral studies → PhD supervision** section displays the full institutional context: **Beihang University · School of Computer Science and Engineering · Institute of Software Engineering · Beijing, China** (Chinese: **北京航空航天大学 · 计算机学院 · 软件工程研究所 · 中国北京**). The department/institute terminology is supported by [Professor Zhang Li's official Beihang profile](https://scse.buaa.edu.cn/info/1387/10317.htm).
+
+The two faculty entries point to the precise university profiles, unchanged across languages:
+- **Li Zhang → 张莉**, [Professor / official profile](https://scse.buaa.edu.cn/info/1387/10317.htm)
+- **Xiaoli Lian → 连小利**, [official profile](https://scse.buaa.edu.cn/info/1389/10618.htm)
+
+Names are rendered with **React-owned locale state**, rather than globally translating author names in published citation metadata. The second page's Chinese institutional biography lists **助理研究员**; its English-page text currently lists Lecturer. The Chinese interface uses the source-backed **助理研究员** designation. The English role label is preserved from the user's existing site pending formal role-title confirmation. No personal contact information is added.
+
+Regression tests cover official URLs, reversible English/Chinese names, full department translations, and Chromium rendering. The main PhD degree timeline continues to omit dates at the owner's request.
+
 ## Portrait highlights and international introduction
 
 The homepage introduction identifies the researcher as **from Nepal 🇳🇵, living in China since April 2018** (researcher-provided timeline), supported by Chinese Government Scholarship(s), and currently undertaking doctoral work at Beihang University. It avoids subjective rankings such as “highly talented” or “top 0.1%.”
