@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { publications, conferenceRankings, identity } from "@/data/portfolio";
+import { publications, conferenceRankings, identity, academicService } from "@/data/portfolio";
 import { opportunityTracks, researchSupport } from "@/data/opportunities";
 import { publicProjects, publicProjectUrl, ongoingProjects } from "@/data/projects";
 import { wechatQrPath, wechatQrSize } from "@/data/wechatQr";
@@ -12,6 +12,29 @@ describe("public academic record", () => {
       expect(paper.title.length).toBeGreaterThan(12);
       expect(paper.authors).toMatch(/Chandan Kumar Sah/);
       expect(paper.url).toMatch(/^https:\/\//);
+    }
+  });
+
+  it("includes the 2025 autonomous-vehicle paper with its verified preprint author list", () => {
+    const paper = publications.find(p => p.title.startsWith("Advancing Autonomous Vehicle Intelligence:"));
+    expect(paper).toBeDefined();
+    expect(paper?.authors).toBe("Chandan Kumar Sah, Ankit Kumar Shaw, Xiaoli Lian, Arsalan Shahid Baig, Tuopu Wen, Kun Jiang, Mengmeng Yang, Diange Yang");
+    expect(paper?.venue).toBe("arXiv:2503.06313");
+    expect(paper?.type).toBe("Preprint");
+    expect(paper?.url).toContain("citation_for_view=PyH-zqygdCYC:zYLM7Y9cAGgC");
+  });
+
+  it("lists the requested conferences and omits ASE from reviewer service", () => {
+    expect(academicService.conferences).not.toContain("ASE");
+    for(const venue of ["ACL ARR","AAMAS","IASEAI 2027"]) expect(academicService.conferences).toContain(venue);
+  });
+
+  it("presents requested short venue labels while preserving actual paper types", () => {
+    const ase = publications.find(p => p.title === "Understanding Uncertainty in LLMs");
+    expect(ase?.venue).toBe("ASE 2025");
+    for(const paper of publications.filter(p => p.type === "Workshop")) {
+      expect(paper.venue).toMatch(/^(ICCV|CVPR) 2025$/);
+      expect(paper.rankingScope).toBe("host-only");
     }
   });
 
