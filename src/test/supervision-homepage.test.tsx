@@ -12,7 +12,7 @@ describe("Beihang PhD supervision on the academic homepage", () => {
     render(<MemoryRouter initialEntries={["/"]}><PortfolioSite /></MemoryRouter>);
     const region = screen.getByRole("region", { name: "PhD supervision" });
     expect(within(region).getByText("Current doctoral studies")).toBeInTheDocument();
-    expect(within(region).getByText("Beihang University · School of Computer Science and Engineering")).toBeInTheDocument();
+    expect(within(region).getByText("Beihang University · School of Computer Science and Engineering · Institute of Software Engineering · Beijing, China")).toBeInTheDocument();
     const links = within(region).getAllByRole("link");
     expect(links).toHaveLength(2);
     expect(links[0]).toHaveTextContent("Li Zhang");
@@ -31,16 +31,16 @@ describe("Beihang PhD supervision on the academic homepage", () => {
     expect(region.querySelector('a[href^="mailto:"]')).toBeNull();
   });
 
-  it("keeps the names and profile URLs while translating the section into Chinese", () => {
+  it("shows source-backed Chinese professor names and full institute while preserving profile URLs", () => {
     window.localStorage.removeItem("portfolio-language");
     window.history.replaceState({}, "", "/rocky_202x/");
     render(<MemoryRouter initialEntries={["/"]}><PortfolioSite /></MemoryRouter>);
     fireEvent.click(screen.getByRole("button", { name: "Switch website to Simplified Chinese" }));
     const region = screen.getByRole("region", { name: "博士研究指导" });
     expect(within(region).getByText("目前的博士研究")).toBeInTheDocument();
-    expect(within(region).getByText("北京航空航天大学 · 计算机学院")).toBeInTheDocument();
-    expect(within(region).getByText("Li Zhang")).toBeInTheDocument();
-    expect(within(region).getByText("Xiaoli Lian")).toBeInTheDocument();
+    expect(within(region).getByText("北京航空航天大学 · 计算机学院 · 软件工程研究所 · 中国北京")).toBeInTheDocument();
+    expect(within(region).getByText("张莉")).toBeInTheDocument();
+    expect(within(region).getByText("连小利")).toBeInTheDocument();
     expect(within(region).getAllByRole("link")).toHaveLength(2);
   });
 });
