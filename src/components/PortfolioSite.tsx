@@ -369,6 +369,27 @@ function Home() {
         </div>
       </figure>
     </section>
+    <section className="home-supervision content-wrap" aria-labelledby="home-supervision-heading">
+      <div className="home-supervision-intro">
+        <p className="eyebrow">Current doctoral studies</p>
+        <h2 id="home-supervision-heading">PhD supervision</h2>
+        <p>Beihang University · School of Computer Science and Engineering</p>
+      </div>
+      <div className="home-supervision-profiles">
+        <a className="supervisor-profile supervisor-profile-blue"
+           href="https://scse.buaa.edu.cn/info/1387/10317.htm"
+           target="_blank" rel="noopener noreferrer">
+          <span className="supervisor-name">Li Zhang</span>
+          <span className="supervisor-profile-info">Professor · Institutional profile <ArrowUpRight aria-hidden="true" size={15}/></span>
+        </a>
+        <a className="supervisor-profile supervisor-profile-green"
+           href="https://scse.buaa.edu.cn/info/1389/10618.htm"
+           target="_blank" rel="noopener noreferrer">
+          <span className="supervisor-name">Xiaoli Lian</span>
+          <span className="supervisor-profile-info">Lecturer · Institutional profile <ArrowUpRight aria-hidden="true" size={15}/></span>
+        </a>
+      </div>
+    </section>
     <section className="home-about content-wrap section-divider">
       <div><p className="eyebrow">Research statement</p><h2>Reliable systems begin with knowing their limits.</h2></div>
       <div className="home-about-text"><p>The central research question is how uncertainty can guide evidence retrieval, verification, and decision-making in language-model systems—particularly in software engineering, where incorrect outputs can have significant consequences.</p><p>Related research examines algorithmic fairness, agent safety, and multimodal applications, connecting reproducible empirical evaluation with dependable software systems.</p><Link className="text-action" to="/research">Research directions <ArrowRight size={17} /></Link></div>

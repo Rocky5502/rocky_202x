@@ -1,6 +1,11 @@
 /** Standard mainland Simplified Chinese (zh-CN), authored and version controlled. */
 export const zhUi: Record<string,string> = {
   "Home": "首页",
+  "Current doctoral studies": "目前的博士研究",
+  "PhD supervision": "博士研究指导",
+  "Beihang University · School of Computer Science and Engineering": "北京航空航天大学 · 计算机学院",
+  "Professor · Institutional profile": "教授 · 学校教师主页",
+  "Lecturer · Institutional profile": "讲师 · 学校教师主页",
   "Publications": "学术成果",
   "Projects": "科研项目",
   "Research": "研究方向",

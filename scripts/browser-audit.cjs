@@ -80,6 +80,29 @@ async function auditA11y(page, route) {
       ok(info.title.includes("Chandan Kumar Sah"), route + " has route-specific document title");
     }
     await page.goto(url("/"), {waitUntil: "domcontentloaded"});
+    const supervision = await page.locator(".home-supervision").evaluate(section => ({
+      heading: section.querySelector("h2")?.textContent?.trim(),
+      links: Array.from(section.querySelectorAll("a")).map(a => ({
+        name: a.querySelector(".supervisor-name")?.textContent?.trim(),
+        href: a.href,
+        rel: a.rel,
+      })),
+      emailLinks: section.querySelectorAll('a[href^="mailto:"]').length,
+      displayedEmails: (section.textContent||"").includes("@buaa.edu.cn"),
+      colors: Array.from(section.querySelectorAll(".supervisor-name")).map(el => getComputedStyle(el).backgroundColor),
+    }));
+    ok(supervision.heading === "PhD supervision", "Home displays PhD supervision heading");
+    ok(supervision.links.length === 2 &&
+      supervision.links[0].name === "Li Zhang" &&
+      supervision.links[0].href === "https://scse.buaa.edu.cn/info/1387/10317.htm" &&
+      supervision.links[1].name === "Xiaoli Lian" &&
+      supervision.links[1].href === "https://scse.buaa.edu.cn/info/1389/10618.htm",
+      "Supervision names link to their exact official Beihang faculty profiles");
+    ok(supervision.emailLinks === 0 && !supervision.displayedEmails,
+      "Supervision section exposes no faculty email addresses");
+    ok(supervision.colors.length === 2 && supervision.colors[0] !== supervision.colors[1] &&
+      supervision.colors.every(color => color !== "rgba(0, 0, 0, 0)"),
+      "Supervisor names have distinct visible blue and green backgrounds");
     const policy = await page.locator('meta[http-equiv="Content-Security-Policy"]').getAttribute("content");
     ok(!!policy && policy.includes("connect-src 'self' https://api.github.com") && policy.includes("frame-src https://giscus.app") && policy.includes("object-src 'none'"), "Production browser policy limits external APIs and embedded frames to approved GitHub and giscus hosts");
     ok(!!policy && /script-src 'self' 'sha256-[A-Za-z0-9+/=]+'/.test(policy), "Inline structured data is hash-pinned, not broadly executable");
