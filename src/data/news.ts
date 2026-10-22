@@ -166,12 +166,12 @@ const originalNewsItems: NewsItem[] = [
  */
 const ccsAnnouncement: NewsItem = {
   date: "Oct 2026",
-  dateDetail: "Website announcement updated 13 October 2026. The actual acceptance-decision date is not independently verified.",
+  dateDetail: "Website announcement updated 13 October 2026. The ACM Digital Library paper link will be added when published.",
   location: "CCS 2026 · The Hague, Netherlands",
   tag: "Research acceptance",
   title: "Auditable Uncertainty Control for Secure LLM Agents — ACM CCS 2026",
-  summary: "My sole-authored paper has been accepted to ACM CCS 2026, as reported by me. The conference takes place 15–19 November 2026 in The Hague.",
-  article: "I am pleased to share the acceptance of my sole-authored research paper, 'Auditable Uncertainty Control for Secure LLM Agents', for the 2026 ACM SIGSAC Conference on Computer and Communications Security (CCS 2026), held 15–19 November in The Hague, Netherlands. This work explores accountable uncertainty-driven control in secure LLM agent systems. Acceptance and solo authorship are reported by the author; the individual ACM Digital Library publication record and DOI are not yet available through the linked event page. This announcement will be updated with a publisher link when available.",
+  summary: "My sole-authored paper has been accepted to ACM CCS 2026. The conference takes place 15–19 November 2026 in The Hague.",
+  article: "I am pleased to share the acceptance of my sole-authored research paper, 'Auditable Uncertainty Control for Secure LLM Agents', for the 2026 ACM SIGSAC Conference on Computer and Communications Security (CCS 2026), held 15–19 November in The Hague, Netherlands. This work explores accountable uncertainty-driven control in secure LLM agent systems. The ACM Digital Library record and DOI will be linked when the paper is published.",
   link: "https://www.sigsac.org/ccs/CCS2026/",
   provenance: "Author-reported 2026 update",
 };
