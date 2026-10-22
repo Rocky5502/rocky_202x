@@ -249,12 +249,11 @@ function PublicationRow({ publication, index }: { publication: Publication; inde
       <h3>{publication.linkKind === "venue" ? publication.title : <a href={publication.url} target="_blank" rel="noopener noreferrer">{publication.title}<ArrowUpRight className="title-arrow" size={16} aria-hidden="true" /></a>}</h3>
       {publication.status && <p className="acceptance-status">{publication.status} · <ExternalLink href={publication.url}>Conference website</ExternalLink></p>}
       <p className="author-line">{publication.authors}</p>
-      {publication.rankingVenue && publication.rankingScope && <div className="rank-line" aria-label="Conference venue ranking">
-        <span className="rank-label">{publication.rankingScope === "host-only" ? "Host venue" : "Venue"}</span>
+      {publication.rankingVenue && publication.rankingScope === "main" && <div className="rank-line" aria-label="Main conference venue ranking">
+        <span className="rank-label">Venue</span>
         <span className="rank-venue">{conferenceRankings[publication.rankingVenue].label}</span>
         {conferenceRankings[publication.rankingVenue].ccf && <span className="rank-chip">CCF {conferenceRankings[publication.rankingVenue].ccf}</span>}
         <span className="rank-chip">ICORE {conferenceRankings[publication.rankingVenue].icore}</span>
-        {publication.rankingScope === "host-only" && <span className="rank-caveat">Host-conference classification only; not an individual-paper rating</span>}
       </div>}
       <span className="topic-tag">{publication.topic}</span>
     </div>
@@ -324,7 +323,9 @@ function ProjectsPage() {
 }
 
 function Home() {
-  const featured = [publications[0], publications[1], publications[2]];
+  const featured = publications.filter((paper, index) =>
+    index < 3 || paper.title === "Advancing Autonomous Vehicle Intelligence: Deep Learning and Multimodal LLM for Traffic Sign Recognition and Robust Lane Detection"
+  );
   return <>
     <section className="home-hero content-wrap">
       <div className="hero-copy">
@@ -386,7 +387,7 @@ function Home() {
            href="https://scse.buaa.edu.cn/info/1389/10618.htm"
            target="_blank" rel="noopener noreferrer">
           <span className="supervisor-name">Xiaoli Lian</span>
-          <span className="supervisor-profile-info">Lecturer · Institutional profile <ArrowUpRight aria-hidden="true" size={15}/></span>
+          <span className="supervisor-profile-info">Assistant Professor · Institutional profile <ArrowUpRight aria-hidden="true" size={15}/></span>
         </a>
       </div>
     </section>
@@ -456,14 +457,10 @@ function PublicationsPage() {
     <div className="publication-list">{filtered.map((p,i)=><PublicationRow key={p.title} publication={p} index={i} />)}</div>
     {filtered.length === 0 && <p className="empty-results">No papers match these filters. Try a broader search.</p>}
     <aside className="ranking-note">
-      <h2>About venue rankings</h2>
-      <p>CCF (7th edition, 2026) and ICORE 2026 classify <strong>venues</strong>, not individual articles.
-        A Doctoral Symposium or workshop paper does not inherit the host conference's A/A* rating.
-        For those entries, host venue ranks are displayed <strong>for context only</strong>.
-        Unverified or unlisted venues have no rank shown; no rating is inferred.</p>
-      <div className="ranking-sources"><ExternalLink href={rankingSources.ccf}>CCF official list (2026)</ExternalLink><ExternalLink href={rankingSources.icore}>ICORE conference database (2026)</ExternalLink></div>
+      <h2>Conference classifications</h2>
+      <p>CCF and ICORE classifications appear for applicable main-conference publications. See the official conference lists.</p>
+      <div className="ranking-sources"><ExternalLink href={rankingSources.ccf}>CCF list</ExternalLink><ExternalLink href={rankingSources.icore}>ICORE database</ExternalLink></div>
     </aside>
-    <p className="editorial-note">Published conference, workshop, and journal articles are distinguished from preprints and book chapters. No unconfirmed acceptance claims or guessed ranks are added.</p>
   </div>;
 }
 
@@ -510,7 +507,9 @@ function ServicePage() {
         <div><span className="review-value">{academicService.reviewRecord.distinctManuscripts}</span><span className="review-term">Distinct manuscripts reviewed</span></div>
       </div>
       <div className="service-columns">
-        <div><h3>Conferences</h3><ul className="quiet-list">{academicService.conferences.map(v=><li key={v}>{v}</li>)}</ul></div>
+        <div><h3>Conferences</h3><ul className="quiet-list">{academicService.conferences.map(v=><li key={v}>{v === "IASEAI"
+          ? <a href="https://openreview.net/group?id=IASEAI.org/2027/Conference/Reviewers" target="_blank" rel="noopener noreferrer">IASEAI <ArrowUpRight size={13} aria-hidden="true" /></a>
+          : v}</li>)}</ul></div>
         <div><h3>Journals</h3><ul className="quiet-list">{academicService.journals.map(v=><li key={v}>{v}</li>)}</ul></div>
       </div>
     </section>
