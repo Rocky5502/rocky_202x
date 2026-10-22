@@ -112,4 +112,10 @@ export const zhExtras: Record<string,string> = {
   "Software Engineering & AI · Beihang University": "软件工程与人工智能 · 北京航空航天大学",
   "Academic degrees": "学历教育",
   "Programmes": "研修项目"
+  "Research announcements, academic recognition, and international activities, with the newest updates first.": "科研公告、学术荣誉与国际交流活动，按时间倒序呈现。",
+  "Browse research milestones, awards, talks, and international activities, with dates and source links for further reading.": "浏览科研成果、荣誉、学术报告及国际交流动态，并通过日期与来源链接了解详情。",
+  "A collection of academic awards, research recognition, scholarships, conference participation, leadership, and international learning experiences.": "学术奖项、科研荣誉、奖学金、会议参与、学生领导经历与国际研修记录。",
+  "Website announcement updated 13 October 2026. The ACM Digital Library paper link will be added when published.": "公告于2026年10月13日更新；论文发表后将添加 ACM 数字图书馆链接。",
+  "My sole-authored paper has been accepted to ACM CCS 2026. The conference takes place 15–19 November 2026 in The Hague.": "我的独著论文已被 ACM CCS 2026 录用，会议于2026年11月15日至19日在海牙举行。",
+  "Volunteer service supporting the 2026 IASEAI conference in Paris.": "参与2026年巴黎 IASEAI 大会的志愿服务。",
 };
