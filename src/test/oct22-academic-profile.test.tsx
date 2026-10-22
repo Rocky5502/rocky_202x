@@ -65,7 +65,7 @@ describe("October 22 academic profile completion", () => {
     const {unmount}=render(<MemoryRouter initialEntries={["/service"]}><PortfolioSite /></MemoryRouter>);
     const conferenceList=document.querySelector(".service-columns .quiet-list");
     expect(conferenceList).not.toBeNull();
-    expect(conferenceList).not.toHaveTextContent("ASE");
+    expect(Array.from(conferenceList?.querySelectorAll("li")??[]).some(li=>li.textContent?.trim()==="ASE")).toBe(false);
     expect(conferenceList).toHaveTextContent("ACL ARR");
     expect(conferenceList).toHaveTextContent("AAMAS");
     expect(conferenceList).toHaveTextContent("IASEAI");
