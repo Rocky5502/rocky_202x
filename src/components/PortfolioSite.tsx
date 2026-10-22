@@ -386,7 +386,7 @@ function Home() {
            href="https://scse.buaa.edu.cn/info/1389/10618.htm"
            target="_blank" rel="noopener noreferrer">
           <span className="supervisor-name">Xiaoli Lian</span>
-          <span className="supervisor-profile-info">Lecturer · Institutional profile <ArrowUpRight aria-hidden="true" size={15}/></span>
+          <span className="supervisor-profile-info">Assistant Professor · Institutional profile <ArrowUpRight aria-hidden="true" size={15}/></span>
         </a>
       </div>
     </section>
