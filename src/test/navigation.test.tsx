@@ -64,6 +64,9 @@ describe("doctoral supervision on the homepage", () => {
     const section = document.querySelector<HTMLElement>(".home-supervision");
     expect(section).not.toBeNull();
     expect(within(section!).getByRole("heading", { name: "PhD supervision" })).toBeInTheDocument();
+    const emblem = within(section!).getByRole("img", { name: "Beihang University emblem" });
+    expect(emblem).toHaveAttribute("src", "/rocky_202x/assets/beihang-university-emblem.png");
+    expect(emblem).toHaveAttribute("loading", "lazy");
     expect(within(section!).getByText("Beihang University · School of Computer Science and Engineering · Institute of Software Engineering · Beijing, China")).toBeInTheDocument();
     const profiles = within(section!).getAllByRole("link");
     expect(profiles).toHaveLength(2);
@@ -71,6 +74,7 @@ describe("doctoral supervision on the homepage", () => {
     expect(profiles[1]).toHaveAttribute("href", "https://scse.buaa.edu.cn/info/1389/10618.htm");
     expect(profiles[0]).toHaveTextContent("Li Zhang");
     expect(profiles[1]).toHaveTextContent("Xiaoli Lian");
+    expect(profiles[1]).toHaveTextContent("Assistant Research Fellow");
     expect(profiles.every(link => link.getAttribute("rel") === "noopener noreferrer")).toBe(true);
   });
 });
