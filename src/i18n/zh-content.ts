@@ -302,4 +302,7 @@ export const zhContent: Record<string,string> = {
   "Multi-agent systems": "多智能体系统",
   "Uncertainty propagation": "不确定性传播",
   "Private research · Code not public": "私人研究 · 代码暂不公开"
+  "Academic degrees and selected international summer and winter research schools.": "学位教育与国际暑期、冬季研修学校。",
+  "Academic degrees, international summer and winter schools, and research training.": "学历教育、国际暑期及冬季学校、科研培训经历。",
+  "Selected international research schools, academic programmes, and workshops from my studies.": "求学期间参加的国际科研学校、学术项目和专题研修活动。",
 };
