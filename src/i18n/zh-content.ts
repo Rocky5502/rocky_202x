@@ -144,6 +144,8 @@ export const zhContent: Record<string,string> = {
   "University degrees are listed without dates. The PhD remains in progress; degree titles and institutions are based on the original academic portfolio.": "大学学历不显示年份。博士学位仍在攻读中；学位名称及学校信息沿用原始学术主页记录。",
   "International academic development": "国际学术研修",
   "Summer & winter schools": "暑期与冬季学校",
+  "Academic degrees, international research schools, and further professional development.": "学历教育、国际学术研修学校及专业进修经历。",
+  "Summer and winter schools attended as part of my international research and professional development.": "参加的国际科研暑期和冬季学校与专业进修活动。",
   "Restored from my earlier website’s certificates and recognition archive. The linked organizer pages establish each programme, while individual participation or awards are retained as historical researcher-provided records.": "信息恢复自早期网站的证书和荣誉档案。活动主办方页面可用于确认项目本身，个人参与或获奖记录仍归属于研究者提供的历史资料。",
   "International Software Engineering Winter School on Hybrid and Generative Intelligence": "混合与生成式智能国际软件工程冬季学校",
   "Winter school": "冬季学校",
