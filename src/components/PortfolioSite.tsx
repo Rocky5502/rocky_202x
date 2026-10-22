@@ -324,6 +324,7 @@ function ProjectsPage() {
 }
 
 function Home() {
+  const { language } = useLanguage();
   const featured = publications.filter((paper, index) =>
     index < 3 || paper.url === "https://arxiv.org/abs/2503.06313"
   );
@@ -375,19 +376,19 @@ function Home() {
       <div className="home-supervision-intro">
         <p className="eyebrow">Current doctoral studies</p>
         <h2 id="home-supervision-heading">PhD supervision</h2>
-        <p>Beihang University · School of Computer Science and Engineering</p>
+        <p className="supervision-affiliation">Beihang University · School of Computer Science and Engineering · Institute of Software Engineering · Beijing, China</p>
       </div>
       <div className="home-supervision-profiles">
         <a className="supervisor-profile supervisor-profile-blue"
            href="https://scse.buaa.edu.cn/info/1387/10317.htm"
            target="_blank" rel="noopener noreferrer">
-          <span className="supervisor-name">Li Zhang</span>
+          <span className="supervisor-name" lang={language === "zh-CN" ? "zh-CN" : "en"}>{language === "zh-CN" ? "张莉" : "Li Zhang"}</span>
           <span className="supervisor-profile-info">Professor · Institutional profile <ArrowUpRight aria-hidden="true" size={15}/></span>
         </a>
         <a className="supervisor-profile supervisor-profile-green"
            href="https://scse.buaa.edu.cn/info/1389/10618.htm"
            target="_blank" rel="noopener noreferrer">
-          <span className="supervisor-name">Xiaoli Lian</span>
+          <span className="supervisor-name" lang={language === "zh-CN" ? "zh-CN" : "en"}>{language === "zh-CN" ? "连小利" : "Xiaoli Lian"}</span>
           <span className="supervisor-profile-info">Assistant Professor · Institutional profile <ArrowUpRight aria-hidden="true" size={15}/></span>
         </a>
       </div>
