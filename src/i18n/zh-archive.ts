@@ -90,5 +90,13 @@ export const zhArchive: Record<string,string> = {
   "Delegate – Yenching Global Symposium": "燕京全球论坛代表",
   "Officially Licensed Software Engineer": "软件工程师职业资格许可（历史记录）",
   "Critical Thinking in English Language Teaching": "英语教学中的批判性思维研修",
-  "Full Belt and Road Scholarship – Bachelor": "本科阶段“一带一路”全额奖学金"
+  "Full Belt and Road Scholarship – Bachelor": "本科阶段“一带一路”全额奖学金",
+  "Beihang campus feature": "北航校园学术人物展",
+  "Featured in Beihang's AI Explorer Research Showcase": "亮相北航校园“人工智能探索者的成长之路”专题展板",
+  "A Beihang campus display featured Chandan Kumar Sah's journey in AI research, academic writing and international student leadership.": "北航校园专题展板展示了 Chandan Kumar Sah 在人工智能研究、学术写作和国际学生服务方面的成长经历。",
+  "In October 2026, a Beihang University campus exhibition panel presented Chandan Kumar Sah's research and international student journey under the Chinese heading 人工智能探索者的成长之路 (The Growth Journey of an AI Explorer). The panel, identifying him as a doctoral researcher in the 2025 cohort, highlighted academic research and writing, participation in international forums, and contributions to student leadership and campus life. The accompanying photograph was provided directly by the researcher. This is a campus-profile feature, not a separate officially named research prize or a verified ranking of scholars.": "2026年10月，北京航空航天大学校园内的专题展板以“人工智能探索者的成长之路”为题，介绍了 Chandan Kumar Sah（文浩）的科研与国际学生成长经历。展板注明其为2025级博士研究生，重点展示学术研究与论文写作、国际学术交流，以及学生组织和校园服务等方面的经历。照片由研究者本人提供。这是一则校园人物展示记录，并不代表单独颁发的科研奖项或经过核验的学者排名。",
+  "Beihang campus research-journey display, photographed in October 2026. Photograph supplied by the researcher.": "北航校园“人工智能探索者的成长之路”专题展板，2026年10月拍摄。图片由本人提供。",
+  "Photographed Beihang University campus display titled 人工智能探索者的成长之路, featuring the research journey of Chandan Kumar Sah.": "北航校园“人工智能探索者的成长之路”人物展板照片，展示 Chandan Kumar Sah 的科研成长经历。",
+  "Photograph supplied by the researcher. October 2026 is the reported feature month; the exact exhibition date and an official online announcement have not been independently confirmed.": "照片由本人提供。2026年10月为据本人提供信息记录的展示月份；展览具体日期及单独的官方线上报道尚未独立核验。",
+  "On-campus display documented by an author-supplied photograph · no independent online announcement linked": "校园展板由本人提供的照片记录，暂无独立的官方线上报道链接"
 };
