@@ -17,9 +17,11 @@ export type NewsItem = {
   article: string;
   link?: string;
   video?: string;
+  /** Optimized user-provided photograph under public/assets; never an inferred remote photo. */
+  image?: { filename: string; alt: string; caption: string };
   links?: NewsLink[];
   /** Verified against the owner’s old site; historical statements are not independently revalidated. */
-  provenance?: "Original site archive" | "Author-reported 2026 update";
+  provenance?: "Original site archive" | "Author-reported 2026 update" | "Photograph supplied by researcher";
   dateDetail?: string;
 };
 
@@ -164,6 +166,22 @@ const originalNewsItems: NewsItem[] = [
  * have only broad organizational URLs; retain the archive but do not describe
  * every claim as independently verified.
  */
+const beihangCampusFeature: NewsItem = {
+  date: "Oct 2026",
+  location: "Beijing, China 🇨🇳",
+  tag: "Beihang campus feature",
+  title: "Featured in Beihang's AI Explorer Research Showcase",
+  summary: "A Beihang campus display featured Chandan Kumar Sah's journey in AI research, academic writing and international student leadership.",
+  article: "In October 2026, a Beihang University campus exhibition panel presented Chandan Kumar Sah's research and international student journey under the Chinese heading 人工智能探索者的成长之路 (The Growth Journey of an AI Explorer). The panel, identifying him as a doctoral researcher in the 2025 cohort, highlighted academic research and writing, participation in international forums, and contributions to student leadership and campus life. The accompanying photograph was provided directly by the researcher. This is a campus-profile feature, not a separate officially named research prize or a verified ranking of scholars.",
+  image: {
+    filename: "beihang-ai-explorer-oct-2026.webp",
+    alt: "Photographed Beihang University campus display titled 人工智能探索者的成长之路, featuring the research journey of Chandan Kumar Sah.",
+    caption: "Beihang campus research-journey display, photographed in October 2026. Photograph supplied by the researcher.",
+  },
+  provenance: "Photograph supplied by researcher",
+  dateDetail: "Photograph supplied by the researcher. October 2026 is the reported feature month; the exact exhibition date and an official online announcement have not been independently confirmed.",
+};
+
 const ccsAnnouncement: NewsItem = {
   date: "Oct 2026",
   dateDetail: "Website announcement updated 13 October 2026. The actual acceptance-decision date is not independently verified.",
@@ -189,7 +207,7 @@ export function newsMonthKey(date: string): string {
   return match[2] + "-" + String(month).padStart(2, "0");
 }
 
-export const newsItems: NewsItem[] = [ccsAnnouncement,
+export const newsItems: NewsItem[] = [beihangCampusFeature, ccsAnnouncement,
   ...originalNewsItems.map(item => ({ ...item, provenance: "Original site archive" as const })),
 ].sort((a, b) => newsMonthKey(b.date).localeCompare(newsMonthKey(a.date)));
 
