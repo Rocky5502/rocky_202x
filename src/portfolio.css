@@ -2226,3 +2226,94 @@ html[lang="zh-CN"] .award-archive-card h3 { overflow-wrap: anywhere; }
   .home-supervision-profiles { grid-template-columns: 1fr; gap: 10px; }
   .supervisor-profile { gap: 8px; padding: 15px 16px; }
 }
+
+
+/* October 2026 Beihang campus spotlight — documentary, not an invented award. */
+.home-campus-feature {
+  display: grid;
+  grid-template-columns: minmax(0, 245px) minmax(0, 1fr);
+  gap: clamp(28px, 5vw, 78px);
+  align-items: center;
+  padding-top: clamp(42px, 5vw, 74px);
+  padding-bottom: clamp(42px, 5vw, 74px);
+}
+.home-campus-photo { min-width: 0; margin: 0; }
+.home-campus-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border: 1px solid var(--portfolio-rule);
+  background: var(--portfolio-soft);
+}
+.home-campus-photo figcaption {
+  font-size: 10px;
+  line-height: 1.6;
+  color: var(--portfolio-faint);
+  margin-top: 9px;
+}
+.home-campus-copy { min-width: 0; }
+.home-campus-copy h2 {
+  font: 400 clamp(27px, 3.3vw, 43px)/1.2 Georgia, "Times New Roman", serif;
+  letter-spacing: -.038em;
+  margin-top: 13px;
+  max-width: 690px;
+}
+.home-campus-original {
+  font-size: clamp(14px, 1.7vw, 18px);
+  line-height: 1.7;
+  margin-top: 15px !important;
+  color: var(--portfolio-accent);
+  letter-spacing: .035em;
+}
+.home-campus-copy > p:not(.eyebrow):not(.home-campus-original):not(.home-campus-citation) {
+  margin-top: 16px !important;
+  font-size: 13px;
+  line-height: 1.9;
+  color: var(--portfolio-muted);
+  max-width: 620px;
+}
+.home-campus-copy .home-campus-citation {
+  margin-top: 12px !important;
+  font-size: 11px;
+  color: var(--portfolio-faint);
+  line-height: 1.7;
+}
+.portfolio-shell .home-campus-copy > a.inline-link {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  margin-top: 21px;
+  color: var(--portfolio-accent);
+  font-size: 12px;
+  font-weight: 650;
+}
+.news-feature-photo {
+  margin: 16px 0 5px;
+  max-width: 365px;
+}
+.news-feature-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 4;
+  background: var(--portfolio-soft);
+  border: 1px solid var(--portfolio-rule);
+}
+.news-feature-photo figcaption {
+  color: var(--portfolio-faint);
+  margin-top: 8px;
+  font-size: 10px;
+  line-height: 1.65;
+}
+@media (max-width: 720px) {
+  .home-campus-feature { grid-template-columns: 160px minmax(0, 1fr); gap: 19px; align-items: start; }
+  .home-campus-copy h2 { font-size: clamp(24px, 4vw, 30px); }
+}
+@media (max-width: 480px) {
+  .home-campus-feature { grid-template-columns: 1fr; gap: 20px; }
+  .home-campus-photo { max-width: 210px; }
+  .home-campus-copy h2 { font-size: 29px; }
+  .news-feature-photo { max-width: 300px; }
+}
