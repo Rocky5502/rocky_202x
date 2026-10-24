@@ -172,7 +172,7 @@ const beihangCampusFeature: NewsItem = {
   tag: "Beihang campus feature",
   title: "Featured in Beihang's AI Explorer Research Showcase",
   summary: "A Beihang campus display featured Chandan Kumar Sah's journey in AI research, academic writing and international student leadership.",
-  article: "In October 2026, a Beihang University campus exhibition panel presented Chandan Kumar Sah's research and international student journey under the Chinese heading 人工智能探索者的成长之路 (The Growth Journey of an AI Explorer). The panel, identifying him as a doctoral researcher in the 2025 cohort, highlighted academic research and writing, participation in international forums, and contributions to student leadership and campus life. The accompanying photograph was provided directly by the researcher. This is a campus-profile feature, not a separate officially named research prize or a verified ranking of scholars.",
+  article: "In October 2026, a Beihang University campus exhibition panel featured Chandan Kumar Sah's academic and international student journey. Titled 人工智能探索者的成长之路 (An AI Explorer's Research Journey), the display highlighted his research and academic writing, participation in international forums, and leadership within the university's international student community. The exhibition identified him as a doctoral researcher in the 2025 cohort and presented the milestones of his studies and research in China.",
   image: {
     filename: "beihang-ai-explorer-oct-2026.webp",
     alt: "Photographed Beihang University campus display titled 人工智能探索者的成长之路, featuring the research journey of Chandan Kumar Sah.",
