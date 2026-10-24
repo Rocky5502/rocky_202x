@@ -13,6 +13,8 @@ describe("restored historical news", () => {
     expect(newsItems[0].title).toContain("Beihang");
     expect(newsItems[0].image?.filename).toBe("beihang-ai-explorer-oct-2026.webp");
     expect(newsItems[0].article).toContain("人工智能探索者的成长之路");
+    expect(newsItems[0].dateDetail).toBeUndefined();
+    expect(newsItems[0].image?.caption).toBe("Beihang University campus display · October 2026");
     const ccs = newsItems.find(item => item.tag === "Research acceptance")!;
     expect(ccs.article).toMatch(/sole-authored/i);
     expect(ccs.dateDetail).toMatch(/not independently verified/i);
@@ -44,13 +46,31 @@ describe("restored historical news", () => {
     expect(screen.getByRole("heading", { name: "News & milestones" })).toBeInTheDocument();
     expect(screen.getAllByRole("article")).toHaveLength(12);
     expect(screen.getByText(/My sole-authored paper has been accepted/i)).toBeInTheDocument();
-    expect(screen.getByRole("img", { name: /Photographed Beihang University campus display/ })).toHaveAttribute("src", "/assets/beihang-ai-explorer-oct-2026.webp");
+    const firstEntry = document.querySelector(".news-entry");
+    expect(firstEntry?.querySelector("details")).not.toHaveAttribute("open");
+    expect(firstEntry?.querySelector(".news-feature-photo")).not.toBeNull();
+    expect(firstEntry?.querySelector("a[aria-label='View original full-resolution Beihang exhibition photograph']")).toHaveAttribute(
+      "href", "/assets/beihang-ai-explorer-oct-2026-original.jpg"
+    );
     expect(screen.getAllByText("Read full story")).toHaveLength(12);
     fireEvent.click(screen.getByRole("button", { name: "2025" }));
     expect(screen.getAllByRole("article")).toHaveLength(3);
     expect(screen.queryByText(/My sole-authored paper has been accepted/i)).not.toBeInTheDocument();
     fireEvent.click(screen.getByRole("button", { name: "All years" }));
     expect(screen.getAllByRole("article")).toHaveLength(12);
+  });
+
+  it("opens the full campus story and its large photo from a shareable news deep link", () => {
+    render(<MemoryRouter initialEntries={["/news?story=beihang-ai-explorer"]}><NewsPage /></MemoryRouter>);
+    const first = document.querySelector(".news-entry");
+    const details = first?.querySelector(".news-story-details");
+    expect(details).toHaveAttribute("open");
+    const photo = details?.querySelector("img");
+    expect(photo).toHaveAttribute("src", "/assets/beihang-ai-explorer-oct-2026.webp");
+    expect(photo).toHaveAttribute("alt", expect.stringContaining("Beihang University campus display"));
+    expect(first).not.toHaveTextContent("Photograph supplied by the researcher. October 2026 is the reported feature month");
+    expect(first).not.toHaveTextContent("no independent online announcement linked");
+    expect(first?.querySelector(".news-feature-photo")).toHaveTextContent("Beihang University campus display · October 2026");
   });
 
   it("shows the three newest announcements on the homepage, with full archive link", () => {
