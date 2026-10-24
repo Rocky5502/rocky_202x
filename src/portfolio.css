@@ -2260,25 +2260,12 @@ html[lang="zh-CN"] .award-archive-card h3 { overflow-wrap: anywhere; }
   margin-top: 13px;
   max-width: 690px;
 }
-.home-campus-original {
-  font-size: clamp(14px, 1.7vw, 18px);
-  line-height: 1.7;
-  margin-top: 15px !important;
-  color: var(--portfolio-accent);
-  letter-spacing: .035em;
-}
-.home-campus-copy > p:not(.eyebrow):not(.home-campus-original):not(.home-campus-citation) {
+.home-campus-copy > p:not(.eyebrow) {
   margin-top: 16px !important;
   font-size: 13px;
   line-height: 1.9;
   color: var(--portfolio-muted);
   max-width: 620px;
-}
-.home-campus-copy .home-campus-citation {
-  margin-top: 12px !important;
-  font-size: 11px;
-  color: var(--portfolio-faint);
-  line-height: 1.7;
 }
 .portfolio-shell .home-campus-copy > a.inline-link {
   display: inline-flex;
@@ -2290,8 +2277,17 @@ html[lang="zh-CN"] .award-archive-card h3 { overflow-wrap: anywhere; }
   font-weight: 650;
 }
 .news-feature-photo {
-  margin: 16px 0 5px;
-  max-width: 365px;
+  margin: 0 0 22px;
+  max-width: min(100%, 560px);
+}
+.portfolio-shell .news-feature-photo a {
+  display: block;
+  border-radius: 3px;
+  color: inherit;
+}
+.portfolio-shell .news-feature-photo a:focus-visible {
+  outline: 3px solid var(--portfolio-accent);
+  outline-offset: 4px;
 }
 .news-feature-photo img {
   display: block;
@@ -2315,5 +2311,5 @@ html[lang="zh-CN"] .award-archive-card h3 { overflow-wrap: anywhere; }
   .home-campus-feature { grid-template-columns: 1fr; gap: 20px; }
   .home-campus-photo { max-width: 210px; }
   .home-campus-copy h2 { font-size: 29px; }
-  .news-feature-photo { max-width: 300px; }
+  .news-feature-photo { max-width: 100%; }
 }
