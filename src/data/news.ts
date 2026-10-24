@@ -176,10 +176,9 @@ const beihangCampusFeature: NewsItem = {
   image: {
     filename: "beihang-ai-explorer-oct-2026.webp",
     alt: "Photographed Beihang University campus display titled 人工智能探索者的成长之路, featuring the research journey of Chandan Kumar Sah.",
-    caption: "Beihang campus research-journey display, photographed in October 2026. Photograph supplied by the researcher.",
+    caption: "Beihang University campus display · October 2026",
   },
   provenance: "Photograph supplied by researcher",
-  dateDetail: "Photograph supplied by the researcher. October 2026 is the reported feature month; the exact exhibition date and an official online announcement have not been independently confirmed.",
 };
 
 const ccsAnnouncement: NewsItem = {
