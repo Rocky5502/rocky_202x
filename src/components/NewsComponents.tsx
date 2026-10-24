@@ -36,8 +36,8 @@ function NewsArchiveEntry({ item }: { item: NewsItem }) {
           width={480} height={640} loading="lazy" decoding="async"/>
         <figcaption>{item.image.caption}</figcaption>
       </figure>}
-      {isNew && <p className="news-corroboration">Acceptance reported by the author · ACM publication record forthcoming</p>
-      {item.provenance === "Photograph supplied by researcher" && <p className="news-corroboration">On-campus display documented by an author-supplied photograph · no independent online announcement linked</p>}}
+      {isNew && <p className="news-corroboration">Acceptance reported by the author · ACM publication record forthcoming</p>}
+      {item.provenance === "Photograph supplied by researcher" && <p className="news-corroboration">On-campus display documented by an author-supplied photograph · no independent online announcement linked</p>}
       <details className="news-story-details">
         <summary>Read full story <ArrowRight size={15} aria-hidden="true" /></summary>
         <div className="news-story-body">
