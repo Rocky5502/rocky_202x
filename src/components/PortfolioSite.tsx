@@ -400,6 +400,22 @@ function Home() {
         </a>
       </div>
     </section>
+    <section className="home-campus-feature content-wrap section-divider" aria-labelledby="home-campus-feature-title">
+      <figure className="home-campus-photo">
+        <img src={`${import.meta.env.BASE_URL}assets/beihang-ai-explorer-oct-2026.webp`}
+          alt="Beihang campus display featuring an AI research journey, titled 人工智能探索者的成长之路."
+          loading="lazy" decoding="async" width={640} height={853}/>
+        <figcaption>Photograph supplied by the researcher · October 2026</figcaption>
+      </figure>
+      <div className="home-campus-copy">
+        <p className="eyebrow">Beihang University · Campus spotlight · October 2026</p>
+        <h2 id="home-campus-feature-title">An AI Explorer’s Research Journey</h2>
+        <p className="home-campus-original" lang="zh-CN">人工智能探索者的成长之路</p>
+        <p>A Beihang campus exhibition panel highlights a doctoral research journey across artificial intelligence, academic publishing, international exchange and student leadership.</p>
+        <p className="home-campus-citation">Documented by an on-campus photograph. This feature is not presented as a separately awarded university prize.</p>
+        <Link to="/news" className="inline-link">Read the October 2026 story <ArrowRight size={16} aria-hidden="true"/></Link>
+      </div>
+    </section>
     <section className="home-about content-wrap section-divider">
       <div><p className="eyebrow">Research statement</p><h2>Reliable systems begin with knowing their limits.</h2></div>
       <div className="home-about-text"><p>The central research question is how uncertainty can guide evidence retrieval, verification, and decision-making in language-model systems—particularly in software engineering, where incorrect outputs can have significant consequences.</p><p>Related research examines algorithmic fairness, agent safety, and multimodal applications, connecting reproducible empirical evaluation with dependable software systems.</p><Link className="text-action" to="/research">Research directions <ArrowRight size={17} /></Link></div>
