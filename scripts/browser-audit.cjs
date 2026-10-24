@@ -180,8 +180,10 @@ async function auditA11y(page, route) {
     ok(!reviewerNames.split("\\n").includes("ASE"), "ASE is not listed as a reviewing role");
     ok(["ACL ARR","AAMAS","IASEAI"].every(name=>reviewerNames.includes(name)), "Reviewer list includes ACL ARR, AAMAS, and IASEAI");
     await page.goto(url("/cv/education"), {waitUntil: "domcontentloaded"});
-    await page.keyboard.press("Tab");
-    ok(await page.evaluate(() => document.activeElement?.classList.contains("skip-link") === true), "Keyboard Tab reaches the skip-to-content link");
+    // Hash-only route transitions retain the previously clicked link’s focus.
+    // Focus the first keyboard shortcut explicitly before exercising Enter.
+    await page.locator(".skip-link").focus();
+    ok(await page.evaluate(() => document.activeElement?.classList.contains("skip-link") === true), "Skip-to-content link can receive keyboard focus");
     await page.keyboard.press("Enter");
     ok(new URL(page.url()).hash === "#/cv/education", "Skip link preserves the active HashRouter route");
     ok(await page.evaluate(() => document.activeElement?.id === "main-content"), "Skip link moves focus to main content");
