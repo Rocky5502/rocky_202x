@@ -32,7 +32,7 @@ function NewsArchiveEntry({ item, expandedFromLink = false }: { item: NewsItem; 
       <h3>{item.title}</h3>
       <p className="news-entry-summary">{item.summary}</p>
       {isNew && <p className="news-corroboration">Acceptance reported by the author · ACM publication record forthcoming</p>}
-      <details className="news-story-details" defaultOpen={expandedFromLink}>
+      <details className="news-story-details" open={expandedFromLink}>
         <summary>Read full story <ArrowRight size={15} aria-hidden="true" /></summary>
         <div className="news-story-body">
           {item.image && <figure className="news-feature-photo">
