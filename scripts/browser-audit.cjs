@@ -149,7 +149,13 @@ async function auditA11y(page, route) {
     ok(await page.locator(".publication-list .publication-row").count() === 4, "Homepage features four records including autonomous-vehicle preprint");
     ok((await page.locator(".publication-list").innerText()).includes("Advancing Autonomous Vehicle Intelligence"), "Autonomous-vehicle paper is visible among featured publications");
     ok((await page.locator(".supervisor-profile-green").innerText()).includes("Assistant Professor"), "Xiaoli Lian's owner-updated title is Assistant Professor");
-        await page.screenshot({path: path.join(directory, "home-desktop.png"), fullPage: true});
+        const beihangSpotlight = page.locator(".home-campus-feature");
+    ok(await beihangSpotlight.count() === 1, "Homepage contains a compact October 2026 Beihang campus spotlight");
+    ok((await beihangSpotlight.innerText()).includes("An AI Explorer’s Research Journey"), "Home spotlight uses original AI Explorer research-journey theme");
+    ok(await beihangSpotlight.getByRole("img").count() === 1, "Homepage feature photograph has accessible image");
+    ok(await beihangSpotlight.getByRole("link", {name:/Read the October 2026 story/}).getAttribute("href") === "#/news", "Homepage spotlight links to full news story");
+    ok(await beihangSpotlight.getByRole("img").evaluate(el => el.complete && el.naturalWidth > 0), "Optimized Beihang photograph loads from site assets");
+    await page.screenshot({path: path.join(directory, "home-desktop.png"), fullPage: true});
     await auditA11y(page, "home-desktop");
 
     // Skip-link must not replace the HashRouter route with #main-content.
@@ -220,9 +226,12 @@ async function auditA11y(page, route) {
     await auditA11y(page, "awards");
 
     await page.goto(url("/news"), {waitUntil: "domcontentloaded"});
-    ok(await page.locator(".news-entry").count() === 11, "News retains eleven original and new items");
+    ok(await page.locator(".news-entry").count() === 12, "News retains 10 historical items plus CCS and Beihang campus story");
+    ok((await page.locator(".news-entry h3").first().innerText()).includes("Beihang"), "October 2026 Beihang feature appears first in news archive");
+    ok(await page.locator(".news-feature-photo img").count() === 1, "News displays author-supplied campus photograph");
+    ok(await page.locator(".news-feature-photo img").evaluate(el => el.complete && el.naturalWidth > 0), "News photograph loads successfully");
     await page.getByRole("button", {name: "2024", exact: true}).click();
-    ok(await page.locator(".news-entry").count() > 0 && await page.locator(".news-entry").count() < 11, "News year filter works");
+    ok(await page.locator(".news-entry").count() > 0 && await page.locator(".news-entry").count() < 12, "News year filter works");
 
     await page.goto(url("/connect"), {waitUntil: "domcontentloaded"});
     const support = page.locator(".support-disclosure");
@@ -358,10 +367,10 @@ async function auditA11y(page, route) {
     ok((await page.locator(".ongoing-project-card").first().innerText()).includes("私人研究 · 代码暂不公开"), "Private code status translated into Mandarin without promise of publication");
     ok((await page.locator(".project-overview").innerText()).includes("项研究预览"), "Filtered private-research count localized in Mandarin");
     await page.goto(url("/news"), {waitUntil: "domcontentloaded"});
-    ok(await page.locator(".news-entry").count() === 11, "All eleven news items remain in the Chinese version");
-    ok(await page.locator(".news-entry h3").first().textContent() !== "Auditable Uncertainty Control for Secure LLM Agents — ACM CCS 2026", "News headline translated");
+    ok(await page.locator(".news-entry").count() === 12, "All twelve news items remain in the Chinese version");
+    ok((await page.locator(".news-entry h3").first().textContent()).includes("北航校园"), "New Beihang story headline translated into Mandarin");
     await page.locator(".news-story-details summary").first().click();
-    ok((await page.locator(".news-story-body p").first().textContent()).includes("ACM"), "Full CCS article has its Mandarin editorial translation");
+    ok((await page.locator(".news-story-body p").first().textContent()).includes("人工智能探索者"), "Full October Beihang feature has natural Mandarin translation");
 
     await page.goto(url("/awards"), {waitUntil: "domcontentloaded"});
     ok(await page.locator(".award-archive-card").count() === 62, "All 62 awards survive Mandarin localization");
