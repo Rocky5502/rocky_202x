@@ -301,5 +301,12 @@ export const zhContent: Record<string,string> = {
   "When can an agent detect spreading errors and choose a safer verification strategy?": "智能体何时能够识别正在传播的错误，并选择更安全的核验策略？",
   "Multi-agent systems": "多智能体系统",
   "Uncertainty propagation": "不确定性传播",
-  "Private research · Code not public": "私人研究 · 代码暂不公开"
+  "Private research · Code not public": "私人研究 · 代码暂不公开",
+  "Beihang University · Campus spotlight · October 2026": "北京航空航天大学 · 校园人物风采 · 2026年10月",
+  "An AI Explorer’s Research Journey": "人工智能探索者的科研成长之路",
+  "A Beihang campus exhibition panel highlights a doctoral research journey across artificial intelligence, academic publishing, international exchange and student leadership.": "北京航空航天大学校园专题展板展示了博士研究生在人工智能研究、学术发表、国际交流及学生组织工作中的成长历程。",
+  "Documented by an on-campus photograph. This feature is not presented as a separately awarded university prize.": "现场照片记录的校园人物展示，并非单独颁发的大学科研奖项。",
+  "Read the October 2026 story": "阅读2026年10月人物报道",
+  "Photograph supplied by the researcher · October 2026": "照片由本人提供 · 2026年10月",
+  "Beihang campus display featuring an AI research journey, titled 人工智能探索者的成长之路.": "北京航空航天大学“人工智能探索者的成长之路”校园人物展板照片。"
 };
