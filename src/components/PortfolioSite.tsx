@@ -405,15 +405,13 @@ function Home() {
         <img src={`${import.meta.env.BASE_URL}assets/beihang-ai-explorer-oct-2026.webp`}
           alt="Beihang campus display featuring an AI research journey, titled 人工智能探索者的成长之路."
           loading="lazy" decoding="async" width={640} height={853}/>
-        <figcaption>Photograph supplied by the researcher · October 2026</figcaption>
+        <figcaption>Beihang University · October 2026</figcaption>
       </figure>
       <div className="home-campus-copy">
         <p className="eyebrow">Beihang University · Campus spotlight · October 2026</p>
         <h2 id="home-campus-feature-title">An AI Explorer’s Research Journey</h2>
-        <p className="home-campus-original" lang="zh-CN">人工智能探索者的成长之路</p>
         <p>A Beihang campus exhibition panel highlights a doctoral research journey across artificial intelligence, academic publishing, international exchange and student leadership.</p>
-        <p className="home-campus-citation">Documented by an on-campus photograph. This feature is not presented as a separately awarded university prize.</p>
-        <Link to="/news" className="inline-link">Read the October 2026 story <ArrowRight size={16} aria-hidden="true"/></Link>
+        <Link to="/news?story=beihang-ai-explorer" className="inline-link">Read full story <ArrowRight size={16} aria-hidden="true"/></Link>
       </div>
     </section>
     <section className="home-about content-wrap section-divider">
