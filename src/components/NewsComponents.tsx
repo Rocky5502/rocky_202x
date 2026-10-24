@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { ArrowRight, ArrowUpRight, Newspaper } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { newsItems, newsMonthKey, newsYears, type NewsItem } from "@/data/news";
 
 /**
@@ -17,7 +17,7 @@ function SourceLinks({ item }: { item: NewsItem }) {
   </div>;
 }
 
-function NewsArchiveEntry({ item }: { item: NewsItem }) {
+function NewsArchiveEntry({ item, expandedFromLink = false }: { item: NewsItem; expandedFromLink?: boolean }) {
   const isNew = item.tag === "Research acceptance" && item.provenance === "Author-reported 2026 update";
   return <article className="news-entry">
     <div className="news-date-column">
@@ -31,16 +31,18 @@ function NewsArchiveEntry({ item }: { item: NewsItem }) {
       </div>
       <h3>{item.title}</h3>
       <p className="news-entry-summary">{item.summary}</p>
-      {item.image && <figure className="news-feature-photo">
-        <img src={`${import.meta.env.BASE_URL}assets/${item.image.filename}`} alt={item.image.alt}
-          width={480} height={640} loading="lazy" decoding="async"/>
-        <figcaption>{item.image.caption}</figcaption>
-      </figure>}
       {isNew && <p className="news-corroboration">Acceptance reported by the author · ACM publication record forthcoming</p>}
-      {item.provenance === "Photograph supplied by researcher" && <p className="news-corroboration">On-campus display documented by an author-supplied photograph · no independent online announcement linked</p>}
-      <details className="news-story-details">
+      <details className="news-story-details" defaultOpen={expandedFromLink}>
         <summary>Read full story <ArrowRight size={15} aria-hidden="true" /></summary>
         <div className="news-story-body">
+          {item.image && <figure className="news-feature-photo">
+            <a href={`${import.meta.env.BASE_URL}assets/beihang-ai-explorer-oct-2026-original.jpg`}
+              target="_blank" rel="noopener noreferrer" aria-label="View original full-resolution Beihang exhibition photograph">
+              <img src={`${import.meta.env.BASE_URL}assets/${item.image.filename}`} alt={item.image.alt}
+                width={640} height={853} loading="lazy" decoding="async"/>
+            </a>
+            <figcaption>{item.image.caption}</figcaption>
+          </figure>}
           <p>{item.article}</p>
           {item.dateDetail && <p className="news-date-note">{item.dateDetail}</p>}
         </div>
@@ -68,6 +70,8 @@ export function NewsPreview() {
 }
 
 export function NewsPage() {
+  const [searchParams] = useSearchParams();
+  const openCampusStory = searchParams.get("story") === "beihang-ai-explorer";
   const [year, setYear] = useState("All years");
   const selectedYears = year === "All years" ? newsYears : newsYears.filter(y => y === year);
   const count = year === "All years" ? newsItems.length : newsItems.filter(item => newsMonthKey(item.date).startsWith(year)).length;
@@ -90,7 +94,8 @@ export function NewsPage() {
     {selectedYears.map(groupYear => <section className="news-year-section" key={groupYear} aria-label={groupYear + " news"}>
       <h2 className="news-year-heading">{groupYear}<span>Chronological archive</span></h2>
       <div className="news-timeline">{newsItems.filter(item => newsMonthKey(item.date).startsWith(groupYear)).map(item =>
-        <NewsArchiveEntry key={item.title} item={item} />)}</div>
+        <NewsArchiveEntry key={item.title + (openCampusStory && item.tag === "Beihang campus feature" ? "-expanded" : "")}
+          item={item} expandedFromLink={openCampusStory && item.tag === "Beihang campus feature"} />)}</div>
     </section>)}
   </div>;
 }
