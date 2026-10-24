@@ -153,10 +153,21 @@ async function auditA11y(page, route) {
     ok(await beihangSpotlight.count() === 1, "Homepage contains a compact October 2026 Beihang campus spotlight");
     ok((await beihangSpotlight.innerText()).includes("An AI Explorer’s Research Journey"), "Home spotlight uses original AI Explorer research-journey theme");
     ok(await beihangSpotlight.getByRole("img").count() === 1, "Homepage feature photograph has accessible image");
-    ok(await beihangSpotlight.getByRole("link", {name:/Read the October 2026 story/}).getAttribute("href") === "#/news", "Homepage spotlight links to full news story");
+    ok(await beihangSpotlight.getByRole("link", {name:"Read full story"}).getAttribute("href") === "#/news?story=beihang-ai-explorer", "Homepage spotlight links directly to expanded October story");
+    ok(await beihangSpotlight.locator(".home-campus-original").count() === 0, "Homepage removes redundant Chinese title beneath English heading");
+    ok(await beihangSpotlight.locator(".home-campus-citation").count() === 0, "Homepage removes redundant photo source disclaimer");
     ok(await beihangSpotlight.getByRole("img").evaluate(el => el.complete && el.naturalWidth > 0), "Optimized Beihang photograph loads from site assets");
     await page.screenshot({path: path.join(directory, "home-desktop.png"), fullPage: true});
     await auditA11y(page, "home-desktop");
+    await beihangSpotlight.getByRole("link", {name:"Read full story"}).click();
+    ok(new URL(page.url()).hash === "#/news?story=beihang-ai-explorer", "Click Read full story opens deep-linked October feature");
+    ok(await page.locator(".news-entry").first().locator("details.news-story-details").evaluate(node=>node.open), "Deep-linked October story opens automatically");
+    ok(await page.locator(".news-entry").first().locator(".news-feature-photo img").isVisible(), "Large campus photograph is visible within opened story");
+    await page.locator(".news-entry").first().locator(".news-feature-photo img").evaluate(img=>img.decode());
+    ok(await page.locator(".news-entry").first().locator(".news-feature-photo img").evaluate(img=>img.naturalWidth>0), "Opened photo loads successfully");
+    ok(await page.locator(".news-entry").first().getByRole("link", {name:"View original full-resolution Beihang exhibition photograph"}).getAttribute("href") === "/rocky_202x/assets/beihang-ai-explorer-oct-2026-original.jpg", "Expanded photo links to unchanged full-resolution original");
+    await page.screenshot({path:path.join(directory,"beihang-october-story-expanded.png"),fullPage:true});
+
 
     // Skip-link must not replace the HashRouter route with #main-content.
     await page.goto(url("/publications"), {waitUntil: "domcontentloaded"});
@@ -228,8 +239,14 @@ async function auditA11y(page, route) {
     await page.goto(url("/news"), {waitUntil: "domcontentloaded"});
     ok(await page.locator(".news-entry").count() === 12, "News retains 10 historical items plus CCS and Beihang campus story");
     ok((await page.locator(".news-entry h3").first().innerText()).includes("Beihang"), "October 2026 Beihang feature appears first in news archive");
-    ok(await page.locator(".news-feature-photo img").count() === 1, "News displays author-supplied campus photograph");
+    ok(await page.locator(".news-feature-photo img").count() === 1, "News retains one campus photo, inside story details");
+    ok(!(await page.locator(".news-entry").first().locator(".news-feature-photo img").isVisible()), "News photograph stays hidden until Read full story is opened");
+    await page.locator(".news-entry").first().locator("details.news-story-details > summary").click();
+    ok(await page.locator(".news-entry").first().locator(".news-feature-photo img").isVisible(), "Read full story expands to reveal the Beihang photograph");
+    await page.locator(".news-feature-photo img").evaluate(img=>img.decode());
     ok(await page.locator(".news-feature-photo img").evaluate(el => el.complete && el.naturalWidth > 0), "News photograph loads successfully");
+    ok((await page.locator(".news-entry").first().innerText()).includes("Beihang University campus display · October 2026"), "Expanded story includes concise campus photo caption");
+    ok(!(await page.locator(".news-entry").first().innerText()).includes("Photograph supplied by the researcher. October 2026"), "Removed verbose photo date disclaimer");
     await page.getByRole("button", {name: "2024", exact: true}).click();
     ok(await page.locator(".news-entry").count() > 0 && await page.locator(".news-entry").count() < 12, "News year filter works");
 
@@ -370,6 +387,8 @@ async function auditA11y(page, route) {
     ok(await page.locator(".news-entry").count() === 12, "All twelve news items remain in the Chinese version");
     ok((await page.locator(".news-entry h3").first().textContent()).includes("北航校园"), "New Beihang story headline translated into Mandarin");
     await page.locator(".news-story-details summary").first().click();
+    ok(await page.locator(".news-entry").first().locator(".news-feature-photo img").isVisible(), "Chinese Read full story opens exhibition photograph");
+    ok((await page.locator(".news-entry").first().locator(".news-feature-photo figcaption").innerText()).includes("北京航空航天大学校园展板"), "Chinese exhibition photo caption is localized");
     ok((await page.locator(".news-story-body p").first().textContent()).includes("人工智能探索者"), "Full October Beihang feature has natural Mandarin translation");
 
     await page.goto(url("/awards"), {waitUntil: "domcontentloaded"});
