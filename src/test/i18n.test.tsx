@@ -53,8 +53,10 @@ describe("professional Simplified Chinese localization", () => {
   });
 
   it("provides authored Chinese for all original news narratives and award titles", () => {
-    expect(newsItems).toHaveLength(11);
+    expect(newsItems).toHaveLength(12);
     expect(awardsArchive).toHaveLength(62);
+    expect(translateText(newsItems[0].title, "zh-CN")).toContain("北航校园");
+    expect(translateText(newsItems[0].article, "zh-CN")).toContain("人工智能探索者的成长之路");
     for (const story of newsItems) {
       expect(zhTranslations[story.title], story.title).toBeTruthy();
       expect(zhTranslations[story.summary], story.title + " summary").toBeTruthy();
