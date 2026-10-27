@@ -21,7 +21,7 @@ describe("Beihang PhD supervision on the academic homepage", () => {
     expect(region.querySelectorAll(".supervisor-profile")).toHaveLength(2);
     expect(region.querySelectorAll(".supervisor-name")).toHaveLength(2);
     expect(region.querySelectorAll("a, button, [role='link'], [role='button'], [tabindex]")).toHaveLength(0);
-    expect(region.innerHTML).not.toMatch(/scse\\.buaa\\.edu\\.cn\\/info\\//);
+    expect(region.innerHTML).not.toContain("scse.buaa.edu.cn/info/");
     expect(region.querySelector(".supervisor-profile-blue")).toHaveTextContent("Li Zhang");
     expect(region.querySelector(".supervisor-profile-green")).toHaveTextContent("Xiaoli Lian");
     expect(region.textContent).not.toMatch(/@buaa\.edu\.cn|mailto:/);
