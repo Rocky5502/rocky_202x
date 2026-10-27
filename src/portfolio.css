@@ -2143,7 +2143,7 @@ html[lang="zh-CN"] .award-archive-card h3 { overflow-wrap: anywhere; }
   .home-supervision .beihang-emblem { width: 56px; height: 56px; flex-basis: 56px; padding: 3px; }
 }
 
-/* Doctoral supervision: two official Beihang profile links, intentionally no emails. */
+/* Doctoral supervision: non-interactive faculty cards, no outbound personal-page links. */
 .home-supervision {
   display: grid;
   grid-template-columns: minmax(0, .82fr) minmax(0, 1.18fr);
@@ -2179,9 +2179,7 @@ html[lang="zh-CN"] .award-archive-card h3 { overflow-wrap: anywhere; }
   background: var(--portfolio-panel);
   border: 1px solid var(--portfolio-rule);
   border-radius: 8px;
-  transition: border-color .15s ease;
 }
-.supervisor-profile:hover { border-color: var(--portfolio-accent); }
 .supervisor-name {
   display: inline-block;
   max-width: 100%;
@@ -2210,7 +2208,6 @@ html[lang="zh-CN"] .award-archive-card h3 { overflow-wrap: anywhere; }
   font-weight: 560;
   line-height: 1.5;
 }
-.supervisor-profile-info svg { flex: none; }
 :root.dark .supervisor-profile-blue .supervisor-name {
   background: #203e58;
   color: #d6eaff;
