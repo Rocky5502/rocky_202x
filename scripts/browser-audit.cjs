@@ -82,10 +82,12 @@ async function auditA11y(page, route) {
     await page.goto(url("/"), {waitUntil: "domcontentloaded"});
     const supervision = await page.locator(".home-supervision").evaluate(section => ({
       heading: section.querySelector("h2")?.textContent?.trim(),
-      links: Array.from(section.querySelectorAll("a")).map(a => ({
-        name: a.querySelector(".supervisor-name")?.textContent?.trim(),
-        href: a.href,
-        rel: a.rel,
+      links: section.querySelectorAll("a, [role='link'], button, [tabindex]").length,
+      cards: Array.from(section.querySelectorAll(".supervisor-profile")).map(card => ({
+        tag: card.tagName,
+        href: card.getAttribute("href"),
+        name: card.querySelector(".supervisor-name")?.textContent?.trim(),
+        role: card.querySelector(".supervisor-profile-info")?.textContent?.trim(),
       })),
       emailLinks: section.querySelectorAll('a[href^="mailto:"]').length,
       displayedEmails: (section.textContent||"").includes("@buaa.edu.cn"),
@@ -102,12 +104,13 @@ async function auditA11y(page, route) {
     ok(await universitySeal.evaluate(img => img.naturalWidth > 60 && img.naturalHeight > 60), "Beihang seal asset loads properly in a real Chromium browser");
     ok(supervision.heading === "PhD supervision", "Home displays PhD supervision heading");
     ok((await page.locator(".supervision-affiliation").innerText()) === "Beihang University · School of Computer Science and Engineering · Institute of Software Engineering · Beijing, China", "Home identifies the full Beihang institute and city in English");
-    ok(supervision.links.length === 2 &&
-      supervision.links[0].name === "Li Zhang" &&
-      supervision.links[0].href === "https://scse.buaa.edu.cn/info/1387/10317.htm" &&
-      supervision.links[1].name === "Xiaoli Lian" &&
-      supervision.links[1].href === "https://scse.buaa.edu.cn/info/1389/10618.htm",
-      "Supervision names link to their exact official Beihang faculty profiles");
+    ok(supervision.links === 0 &&
+      supervision.cards.length === 2 &&
+      supervision.cards[0].tag === "DIV" && supervision.cards[0].href === null &&
+      supervision.cards[0].name === "Li Zhang" && supervision.cards[0].role === "Professor" &&
+      supervision.cards[1].tag === "DIV" && supervision.cards[1].href === null &&
+      supervision.cards[1].name === "Xiaoli Lian" && supervision.cards[1].role === "Assistant Professor",
+      "Faculty cards preserve academic information without clickable professor profile links");
     ok(supervision.emailLinks === 0 && !supervision.displayedEmails,
       "Supervision section exposes no faculty email addresses");
     ok(supervision.colors.length === 2 && supervision.colors[0] !== supervision.colors[1] &&
