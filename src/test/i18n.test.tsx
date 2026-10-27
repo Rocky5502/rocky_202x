@@ -97,13 +97,9 @@ describe("professional Simplified Chinese localization", () => {
     expect(within(section!).getByText("连小利")).toBeInTheDocument();
     expect(within(section!).getByRole("img", { name: "北京航空航天大学校徽" }).getAttribute("src")).toMatch(/\/assets\/beihang-university-emblem\.png$/);
     expect(within(section!).getByText("北京航空航天大学 · 计算机学院 · 软件工程研究所 · 中国北京")).toBeInTheDocument();
-    expect(within(section!).getByText("教授 · 学校教师主页", {exact: false})).toBeInTheDocument();
-    expect(within(section!).getByText("助理研究员 · 学校教师主页", {exact: false})).toBeInTheDocument();
-    const links = within(section!).getAllByRole("link");
-    expect(links.map(node => node.getAttribute("href"))).toEqual([
-      "https://scse.buaa.edu.cn/info/1387/10317.htm",
-      "https://scse.buaa.edu.cn/info/1389/10618.htm",
-    ]);
+    expect(within(section!).getByText("教授")).toBeInTheDocument();
+    expect(within(section!).getByText("助理研究员")).toBeInTheDocument();
+    expect(within(section!).queryAllByRole("link")).toHaveLength(0);
 
     fireEvent.click(screen.getByRole("button", { name: "切换网站语言为英语" }));
     await waitFor(() => expect(within(section!).getByText("Li Zhang")).toBeInTheDocument());

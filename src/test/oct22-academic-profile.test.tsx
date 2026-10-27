@@ -20,11 +20,14 @@ describe("October 22 academic profile completion", () => {
     unmount();
   });
 
-  it("shows author-requested supervisor profile title and reliable institutional destination", () => {
+  it("retains the supervisor's academic title without an outbound webpage link", () => {
     const {unmount}=render(<MemoryRouter initialEntries={["/"]}><PortfolioSite /></MemoryRouter>);
-    const supervisor=screen.getByRole("link",{name:/Xiaoli Lian Assistant Professor/});
-    expect(supervisor).toHaveAttribute("href","https://scse.buaa.edu.cn/info/1389/10618.htm");
+    const section=screen.getByRole("region",{name:"PhD supervision"});
+    const supervisor=within(section).getByText("Xiaoli Lian").closest(".supervisor-profile");
+    expect(supervisor).toHaveTextContent("Assistant Professor");
     expect(supervisor).not.toHaveTextContent("Lecturer");
+    expect(supervisor).not.toHaveAttribute("href");
+    expect(within(section).queryAllByRole("link")).toHaveLength(0);
     unmount();
   });
 

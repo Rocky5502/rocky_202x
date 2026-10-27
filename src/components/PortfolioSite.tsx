@@ -386,18 +386,15 @@ function Home() {
         <p className="supervision-affiliation">Beihang University · School of Computer Science and Engineering · Institute of Software Engineering · Beijing, China</p>
       </div>
       <div className="home-supervision-profiles">
-        <a className="supervisor-profile supervisor-profile-blue"
-           href="https://scse.buaa.edu.cn/info/1387/10317.htm"
-           target="_blank" rel="noopener noreferrer">
+        {/* Names and appointments intentionally displayed without faculty-site links. */}
+        <div className="supervisor-profile supervisor-profile-blue">
           <span className="supervisor-name" lang={language === "zh-CN" ? "zh-CN" : "en"}>{language === "zh-CN" ? "张莉" : "Li Zhang"}</span>
-          <span className="supervisor-profile-info">Professor · Institutional profile <ArrowUpRight aria-hidden="true" size={15}/></span>
-        </a>
-        <a className="supervisor-profile supervisor-profile-green"
-           href="https://scse.buaa.edu.cn/info/1389/10618.htm"
-           target="_blank" rel="noopener noreferrer">
+          <span className="supervisor-profile-info">{language === "zh-CN" ? "教授" : "Professor"}</span>
+        </div>
+        <div className="supervisor-profile supervisor-profile-green">
           <span className="supervisor-name" lang={language === "zh-CN" ? "zh-CN" : "en"}>{language === "zh-CN" ? "连小利" : "Xiaoli Lian"}</span>
-          <span className="supervisor-profile-info">Assistant Professor · Institutional profile <ArrowUpRight aria-hidden="true" size={15}/></span>
-        </a>
+          <span className="supervisor-profile-info">{language === "zh-CN" ? "助理研究员" : "Assistant Professor"}</span>
+        </div>
       </div>
     </section>
     <section className="home-campus-feature content-wrap section-divider" aria-labelledby="home-campus-feature-title">

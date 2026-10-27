@@ -59,7 +59,7 @@ describe("Projects directory, privacy and release status", () => {
 });
 
 describe("doctoral supervision on the homepage", () => {
-  it("links both professors to the correct official Beihang profiles and shows the full institute affiliation", () => {
+  it("keeps accurate Beihang faculty information without linking directly to professor profiles", () => {
     render(<MemoryRouter initialEntries={["/"]}><PortfolioSite /></MemoryRouter>);
     const section = document.querySelector<HTMLElement>(".home-supervision");
     expect(section).not.toBeNull();
@@ -68,13 +68,14 @@ describe("doctoral supervision on the homepage", () => {
     expect(emblem.getAttribute("src")).toMatch(/\/assets\/beihang-university-emblem\.png$/);
     expect(emblem).toHaveAttribute("loading", "lazy");
     expect(within(section!).getByText("Beihang University · School of Computer Science and Engineering · Institute of Software Engineering · Beijing, China")).toBeInTheDocument();
-    const profiles = within(section!).getAllByRole("link");
+    const profiles = Array.from(section!.querySelectorAll<HTMLElement>(".supervisor-profile"));
     expect(profiles).toHaveLength(2);
-    expect(profiles[0]).toHaveAttribute("href", "https://scse.buaa.edu.cn/info/1387/10317.htm");
-    expect(profiles[1]).toHaveAttribute("href", "https://scse.buaa.edu.cn/info/1389/10618.htm");
     expect(profiles[0]).toHaveTextContent("Li Zhang");
+    expect(profiles[0]).toHaveTextContent("Professor");
     expect(profiles[1]).toHaveTextContent("Xiaoli Lian");
-    expect(profiles.every(link => link.getAttribute("rel") === "noopener noreferrer")).toBe(true);
+    expect(profiles[1]).toHaveTextContent("Assistant Professor");
+    expect(section!.querySelectorAll("a, [role='link'], button")).toHaveLength(0);
+    expect(profiles.every(card => !card.hasAttribute("href") && card.tagName === "DIV")).toBe(true);
   });
 });
 
