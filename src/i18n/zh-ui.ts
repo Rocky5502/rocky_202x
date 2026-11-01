@@ -220,5 +220,6 @@ export const zhUi: Record<string,string> = {
   "Return to homepage": "返回首页",
   "Opportunities & support": "合作机会与科研支持",
   "Browse the portfolio": "浏览学术主页",
-  "Tip: refresh the website if you've opened an older link from a cached browser tab.": "提示：若浏览器缓存了旧页面，请尝试刷新网站。"
+  "Tip: refresh the website if you've opened an older link from a cached browser tab.": "提示：若浏览器缓存了旧页面，请尝试刷新网站。",
+  "Reviewer venues and service years are researcher-provided. Linked websites identify the venues; the manuscript figure above refers only to the Web of Science review record.": "审稿会议、期刊及年份由研究者本人提供。所附链接用于介绍相关学术机构或刊物，不代表个人审稿身份已获官方公开核验；上方稿件数量仅对应 Web of Science 审稿记录。"
 };
