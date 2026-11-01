@@ -14,7 +14,8 @@ jobs:
   anonymous-widget:
     if: ${{ github.event_name != 'workflow_run' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main') }}
     name: Read-only public Giscus widget
-    runs-on: ubuntu-latest
+    # Playwright 1.56.1 does not support ubuntu26.04-x64; keep this consistent with browser-audit.yml.
+    runs-on: ubuntu-24.04
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
