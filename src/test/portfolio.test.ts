@@ -1,10 +1,31 @@
 import { describe, expect, it } from "vitest";
-import { publications, conferenceRankings, identity } from "@/data/portfolio";
+import { publications, conferenceRankings, identity, academicService, reviewVenueDetails } from "@/data/portfolio";
 import { opportunityTracks, researchSupport } from "@/data/opportunities";
 import { publicProjects, publicProjectUrl, ongoingProjects } from "@/data/projects";
 import { wechatQrPath, wechatQrSize } from "@/data/wechatQr";
 
 describe("public academic record", () => {
+  it("records TOIS 2026 reviewing without conflating manuscript counts or official logo claims", () => {
+    const tois = "ACM Transactions on Information Systems (TOIS)";
+    expect(academicService.journals.filter(v => v === tois)).toHaveLength(1);
+    expect(reviewVenueDetails[tois].years).toEqual([2026]);
+    expect(reviewVenueDetails[tois].homepage).toBe("https://dl.acm.org/loi/tois");
+    expect(reviewVenueDetails[tois].publisherMark).toBe("acm");
+    expect(academicService.reviewRecord.distinctManuscripts).toBe(5);
+    expect(academicService.journals).toHaveLength(5);
+    expect(academicService.conferences).toHaveLength(9);
+    for (const venue of [...academicService.conferences, ...academicService.journals]) {
+      const details = reviewVenueDetails[venue];
+      expect(details, "Missing reviewer venue data: " + venue).toBeDefined();
+      expect(details.years.length).toBeGreaterThan(0);
+      expect(details.years.every(y => y === 2025 || y === 2026)).toBe(true);
+      expect(details.homepage).toMatch(/^https:\/\//);
+      expect(details.mark.length).toBeGreaterThan(0);
+      if (details.publisherMark) expect(venue.startsWith("ACM Transactions")).toBe(true);
+    }
+  });
+
+
   it("uses distinct verified paper titles and public links", () => {
     expect(new Set(publications.map(p => p.title)).size).toBe(publications.length);
     expect(publications.length).toBeGreaterThan(10);
