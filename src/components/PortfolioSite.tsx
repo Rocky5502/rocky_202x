@@ -5,7 +5,7 @@ import portrait from "@/assets/portrait.jpg";
 import iaseaiLogo from "@/assets/associations/iaseai.png";
 import acmLogo from "@/assets/associations/acm.svg";
 import {
-  identity, publications, researchAreas, academicService, conferenceRankings, rankingSources,
+  identity, publications, researchAreas, academicService, reviewVenueDetails, conferenceRankings, rankingSources,
   selectedTalks, type Publication,
 } from "@/data/portfolio";
 import { publicProjects, publicProjectUrl, ongoingProjects, type PublicProject, type OngoingProject } from "@/data/projects";
@@ -506,6 +506,30 @@ function ResearchPage() {
   </div>;
 }
 
+/** Compact scholarly venue identifiers. Only ACM journal rows use an actual
+ * source-backed association logo; other badges are intentional initials. */
+function ReviewerVenueList({ names }: { names: readonly string[] }) {
+  return <ul className="quiet-list review-venue-list">
+    {names.map(name => {
+      const venue = reviewVenueDetails[name];
+      if (!venue) return <li key={name} className="review-venue-row"><span>{name}</span></li>;
+      return <li key={name} className="review-venue-row">
+        <span className={venue.publisherMark === "acm" ? "review-venue-mark review-venue-mark-acm" : "review-venue-mark"} aria-hidden="true">
+          {venue.publisherMark === "acm" ?
+            <img src={acmLogo} alt="" loading="lazy" decoding="async" width={31} height={31} /> :
+            <span>{venue.mark}</span>}
+        </span>
+        <a className="review-venue-label" href={venue.homepage} target="_blank" rel="noopener noreferrer">
+          {name}<ArrowUpRight size={13} aria-hidden="true"/>
+        </a>
+        <span className="review-venue-years" aria-label={`Review service years: ${venue.years.join(", ")}`}>
+          {venue.years.join(" · ")}
+        </span>
+      </li>;
+    })}
+  </ul>;
+}
+
 function ServicePage() {
   return <div className="content-wrap interior-page">
     <PageHeading kicker="Community / 03" title="Academic service" subtitle="Peer review, professional memberships, and contributions to the research community." />
@@ -531,9 +555,10 @@ function ServicePage() {
         <div><span className="review-value">{academicService.reviewRecord.distinctManuscripts}</span><span className="review-term">Distinct manuscripts reviewed</span></div>
       </div>
       <div className="service-columns">
-        <div><h3>Conferences</h3><ul className="quiet-list">{academicService.conferences.map(v=><li key={v}>{v === "IASEAI" ? <a href="https://openreview.net/group?id=IASEAI.org/2027/Conference/Reviewers" target="_blank" rel="noopener noreferrer">{v} <ArrowUpRight size={12} aria-hidden="true" /></a> : v}</li>)}</ul></div>
-        <div><h3>Journals</h3><ul className="quiet-list">{academicService.journals.map(v=><li key={v}>{v}</li>)}</ul></div>
+        <div><h3>Conferences</h3><ReviewerVenueList names={academicService.conferences}/></div>
+        <div><h3>Journals</h3><ReviewerVenueList names={academicService.journals}/></div>
       </div>
+      <p className="review-venue-note">Reviewer venues and service years are researcher-provided. Linked websites identify the venues; the manuscript figure above refers only to the Web of Science review record.</p>
     </section>
     <section className="service-section section-divider">
       <SectionTitle eyebrow="Volunteer engagement" title="Community involvement" />
