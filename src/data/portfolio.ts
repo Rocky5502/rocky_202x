@@ -180,11 +180,13 @@ export const selectedProjects = [
 export const academicService = {
   conferences: ["NeurIPS", "AAAI", "AAAI/ACM AIES 2025", "CVPR", "ICCV", "ECIR", "ACL ARR", "AAMAS", "IASEAI"],
   journals: [
+    // Group the two ACM journals together for easier scanning; reviewer-service
+    // years are displayed from reviewVenueDetails rather than guessed.
     "ACM Transactions on Software Engineering and Methodology (TOSEM)",
+    "ACM Transactions on Information Systems (TOIS)",
     "Complex & Intelligent Systems",
     "Expert Systems",
     "International Journal of Human-Computer Interaction",
-    "ACM Transactions on Information Systems (TOIS)",
   ],
   reviewRecord: {
     // Only the five distinct manuscripts reported in the author's Web of Science
