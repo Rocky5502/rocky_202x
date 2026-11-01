@@ -17,7 +17,8 @@ concurrency:
 jobs:
   browser-audit:
     name: Route, mobile and WCAG browser QA
-    runs-on: ubuntu-latest
+    # Playwright 1.56.1 supports Ubuntu 24.04 but not the newer ubuntu26.04 runner.
+    runs-on: ubuntu-24.04
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
