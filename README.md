@@ -161,6 +161,14 @@ Google Scholar does not provide a supported public publications API and may bloc
 The portrait is intentionally rendered at a compact width (238 px max on large screens, smaller on mobile). To replace it, edit `src/assets/portrait.jpg`. The site deliberately omits personal life information, exact address, background counters and other non-academic biography.
 
 
+## Reviewer venues and visual identifiers (November 2026)
+
+The Academic Service page displays **nine conference** and **five journal** reviewing venues, each with reviewer-service years from the researcher's own account. **ACM Transactions on Information Systems (TOIS) — 2026** is grouped immediately after **ACM Transactions on Software Engineering and Methodology (TOSEM) — 2026**. The TOIS link goes directly to the [official ACM journal page](https://dl.acm.org/loi/tois). The years here indicate *reported reviewer service*, not publication years or journal acceptance decisions.
+
+For a clean and privacy-preserving design, venue identifiers and names form a single accessible clickable link to their official websites. The two ACM journal rows reuse the locally stored ACM association mark already included with the site; all remaining conferences/journals use original neutral initial-based badges instead of reproducing third-party trademarks as if they were official logos. No remote favicon requests or unverifiable artwork is added. Mobile widths (320, 375, 390, 768, and 1024px) and the new TOIS reviewer row are covered by Chromium regression tests.
+
+The **5 distinct manuscripts** count refers only to the previously recorded Web of Science review history. Adding TOIS to the venue roster **does not increase that manuscript count**; third-party website links confirm venue identity, not this researcher's confidential reviewing appointments.
+
 ## Publication venue rankings (checked 2026-10-12)
 
 The website uses the **7th CCF recommended venue directory (2026)** and **ICORE 2026** for conference venue labels. Venue ranks are informational, not individual paper grades.
