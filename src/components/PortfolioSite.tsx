@@ -515,13 +515,14 @@ function ReviewerVenueList({ names }: { names: readonly string[] }) {
       const venue = reviewVenueDetails[name];
       if (!venue) return <li key={name} className="review-venue-row"><span>{name}</span></li>;
       return <li key={name} className="review-venue-row">
-        <span className={venue.publisherMark === "acm" ? "review-venue-mark review-venue-mark-acm" : "review-venue-mark"} aria-hidden="true">
-          {venue.publisherMark === "acm" ?
-            <img src={acmLogo} alt="" loading="lazy" decoding="async" width={31} height={31} /> :
-            <span>{venue.mark}</span>}
-        </span>
         <a className="review-venue-label" href={venue.homepage} target="_blank" rel="noopener noreferrer">
-          {name}<ArrowUpRight size={13} aria-hidden="true"/>
+          <span className={venue.publisherMark === "acm" ? "review-venue-mark review-venue-mark-acm" : "review-venue-mark"} aria-hidden="true">
+            {venue.publisherMark === "acm" ?
+              <img src={acmLogo} alt="" loading="lazy" decoding="async" width={31} height={31} /> :
+              <span>{venue.mark}</span>}
+          </span>
+          <span className="review-venue-name">{name}</span>
+          <ArrowUpRight size={13} aria-hidden="true"/>
         </a>
         <span className="review-venue-years" aria-label={`${language === "zh-CN" ? "审稿年份" : "Review service years"}: ${venue.years.join(", ")}`}>
           {venue.years.join(" · ")}
@@ -560,6 +561,7 @@ function ServicePage() {
         <div><h3>Journals</h3><ReviewerVenueList names={academicService.journals}/></div>
       </div>
       <p className="review-venue-note">Reviewer venues and service years are researcher-provided. Linked websites identify the venues; the manuscript figure above refers only to the Web of Science review record.</p>
+      <p className="review-venue-mark-note">ACM journal rows use the ACM association mark; other venue badges are typographic abbreviations, not official conference or journal logos.</p>
     </section>
     <section className="service-section section-divider">
       <SectionTitle eyebrow="Volunteer engagement" title="Community involvement" />
