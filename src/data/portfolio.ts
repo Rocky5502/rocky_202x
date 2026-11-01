@@ -184,6 +184,7 @@ export const academicService = {
     "Complex & Intelligent Systems",
     "Expert Systems",
     "International Journal of Human-Computer Interaction",
+    "ACM Transactions on Information Systems (TOIS)",
   ],
   reviewRecord: {
     // Only the five distinct manuscripts reported in the author's Web of Science
@@ -226,6 +227,45 @@ export const academicService = {
     { role: "Student Ambassador", organization: "Beihang University", year: "2023–present", description: "International academic community engagement and student outreach." },
     { role: "Academic & Innovation Department Lead", organization: "Beihang International Graduate Student Union", year: "2023–2025", description: "Graduate student leadership and academic community activities." },
   ],
+};
+
+/** Reviewer-service year labels were supplied by the researcher in November
+ * 2026. Official venue pages confirm venue identity, not personal assignments.
+ * ACM-hosted journals use the locally saved official ACM association mark;
+ * other venues receive neutral typographic initials, NOT invented logos.
+ */
+export type ReviewVenueVisual = {
+  mark: string;
+  years: readonly number[];
+  homepage: string;
+  publisherMark?: "acm";
+};
+
+export const reviewVenueDetails: Record<string, ReviewVenueVisual> = {
+  "NeurIPS": { mark: "N", years: [2025, 2026], homepage: "https://neurips.cc/" },
+  "AAAI": { mark: "AI", years: [2026], homepage: "https://aaai.org/" },
+  "AAAI/ACM AIES 2025": { mark: "AIES", years: [2025], homepage: "https://www.aies-conference.com/" },
+  "CVPR": { mark: "CV", years: [2025], homepage: "https://cvpr.thecvf.com/" },
+  "ICCV": { mark: "IC", years: [2025], homepage: "https://iccv.thecvf.com/" },
+  "ECIR": { mark: "EC", years: [2025, 2026], homepage: "https://ecir2026.eu/" },
+  "ACL ARR": { mark: "ACL", years: [2026], homepage: "https://aclrollingreview.org/" },
+  "AAMAS": { mark: "AM", years: [2026], homepage: "https://www.ifaamas.org/" },
+  "IASEAI": { mark: "IA", years: [2026], homepage: "https://www.iaseai.org/" },
+  "ACM Transactions on Software Engineering and Methodology (TOSEM)": {
+    mark: "ACM", years: [2026], homepage: "https://dl.acm.org/journal/tosem", publisherMark: "acm",
+  },
+  "ACM Transactions on Information Systems (TOIS)": {
+    mark: "ACM", years: [2026], homepage: "https://dl.acm.org/loi/tois", publisherMark: "acm",
+  },
+  "Complex & Intelligent Systems": {
+    mark: "CIS", years: [2025], homepage: "https://link.springer.com/journal/40747",
+  },
+  "Expert Systems": {
+    mark: "ES", years: [2025, 2026], homepage: "https://onlinelibrary.wiley.com/journal/14680394",
+  },
+  "International Journal of Human-Computer Interaction": {
+    mark: "HCI", years: [2026], homepage: "https://www.tandfonline.com/journals/hihc20",
+  },
 };
 
 export const distinctions = [
