@@ -182,6 +182,16 @@ async function auditA11y(page, route) {
     const reviewerNames=await page.locator(".service-columns .quiet-list").first().innerText();
     ok(!reviewerNames.split("\\n").includes("ASE"), "ASE is not listed as a reviewing role");
     ok(["ACL ARR","AAMAS","IASEAI"].every(name=>reviewerNames.includes(name)), "Reviewer list includes ACL ARR, AAMAS, and IASEAI");
+    const reviewerRows = page.locator(".review-venue-row");
+    ok(await reviewerRows.count() === 14, "Reviewer service preserves nine conferences and five journals");
+    const toisRow = reviewerRows.filter({hasText:"ACM Transactions on Information Systems (TOIS)"});
+    ok(await toisRow.count() === 1, "TOIS appears once in reviewer journals");
+    ok(await toisRow.locator(".review-venue-years").innerText() === "2026", "TOIS reviewer year is 2026");
+    ok(await toisRow.locator("a.review-venue-label").getAttribute("href") === "https://dl.acm.org/loi/tois", "TOIS links to the official ACM Digital Library journal");
+    ok(await toisRow.locator("a.review-venue-label .review-venue-mark-acm img").count() === 1, "Official ACM association mark is clickable with TOIS");
+    ok(await page.locator(".review-venue-mark-acm img").count() === 2, "Only ACM journals use the locally stored ACM association mark");
+    ok(await page.locator(".review-venue-row a.review-venue-label .review-venue-mark").count() === 14, "All 14 reviewer venue badges are included in accessible official-site links");
+    await page.screenshot({path:path.join(directory, "reviewer-roles-desktop.png"),fullPage:true});
     await page.goto(url("/cv/education"), {waitUntil: "domcontentloaded"});
     // Hash-only route transitions retain the previously clicked link’s focus.
     // Focus the first keyboard shortcut explicitly before exercising Enter.
@@ -287,7 +297,7 @@ async function auditA11y(page, route) {
 
     for (const width of [320, 375, 390, 768, 1024]) {
       await page.setViewportSize({width, height: 844});
-      for (const route of ["/", "/cv", "/cv/education", "/cv/skills", "/news", "/awards", "/connect"]) {
+      for (const route of ["/", "/cv", "/cv/education", "/cv/skills", "/service", "/news", "/awards", "/connect"]) {
         await page.goto(url(route), {waitUntil: "domcontentloaded"});
         await page.locator("main h1").first().waitFor();
         const info = await dimensions(page);
