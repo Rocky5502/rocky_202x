@@ -130,6 +130,17 @@ describe("academic service redesign", () => {
     expect(review?.querySelectorAll(".review-value")).toHaveLength(1);
     expect(review).toHaveTextContent("5");
     expect(review).toHaveTextContent("Distinct manuscripts reviewed");
+    const conferenceRows = document.querySelectorAll(".service-columns > div:first-child .review-venue-row");
+    const journalRows = document.querySelectorAll(".service-columns > div:last-child .review-venue-row");
+    expect(conferenceRows).toHaveLength(9);
+    expect(journalRows).toHaveLength(5);
+    const tois = [...journalRows].find(row => row.textContent?.includes("ACM Transactions on Information Systems (TOIS)"));
+    expect(tois).toBeDefined();
+    expect(tois).toHaveTextContent("2026");
+    expect(tois?.querySelector("a.review-venue-label")).toHaveAttribute("href","https://dl.acm.org/loi/tois");
+    expect(tois?.querySelector("img")).toHaveAttribute("alt", "");
+    expect([...journalRows].filter(row => row.querySelector(".review-venue-mark img"))).toHaveLength(2);
+    expect(screen.getByText(/manuscript figure above refers only to the Web of Science review record/)).toBeInTheDocument();
     expect(screen.getByText("AAAI/ACM AIES 2025")).toBeInTheDocument();
     expect(document.body).not.toHaveTextContent("Review rounds reported in Web of Science");
     expect(document.body).not.toHaveTextContent("These researcher-supplied records may overlap");
