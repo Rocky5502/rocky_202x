@@ -19,6 +19,19 @@ beforeEach(() => {
 const renderAt = (path: string) => render(<MemoryRouter initialEntries={[path]}><PortfolioSite/></MemoryRouter>);
 
 describe("professional Simplified Chinese localization", () => {
+  it("localizes reviewer provenance while preserving TOIS as an official English journal title", async () => {
+    renderAt("/service");
+    fireEvent.click(screen.getByRole("button", { name: "Switch website to Simplified Chinese" }));
+    await waitFor(() => expect(screen.getByRole("heading", { name: "学术服务" })).toBeInTheDocument());
+    expect(screen.getByText("ACM Transactions on Information Systems (TOIS)")).toBeInTheDocument();
+    expect(screen.getByText(/审稿会议、期刊及年份由研究者本人提供/)).toBeInTheDocument();
+    expect(document.querySelectorAll(".service-columns .review-venue-row")).toHaveLength(14);
+    const tois = [...document.querySelectorAll(".review-venue-row")].find(row => row.textContent?.includes("(TOIS)"));
+    expect(tois).toHaveTextContent("2026");
+    expect(tois?.querySelector(".review-venue-years")).toHaveAttribute("aria-label", "审稿年份: 2026");
+  });
+
+
   it("covers the five primary research themes and ten research skills", () => {
     for (const area of researchAreas) {
       expect(translateText(area.name, "zh-CN")).not.toBe(area.name);
