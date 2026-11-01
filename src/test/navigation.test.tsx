@@ -122,6 +122,39 @@ describe("academic introduction and Web of Science ResearcherID", () => {
   });
 });
 
+describe("reviewer venue logo and TOIS presentation", () => {
+  it("shows TOIS 2026 with its official ACM journal link and clickable association mark", () => {
+    render(<MemoryRouter initialEntries={["/service"]}><PortfolioSite /></MemoryRouter>);
+    const rows = Array.from(document.querySelectorAll(".review-venue-row"));
+    const tois = rows.filter(row => row.textContent?.includes("ACM Transactions on Information Systems (TOIS)"));
+    expect(tois).toHaveLength(1);
+    const link = tois[0].querySelector<HTMLAnchorElement>("a.review-venue-label");
+    expect(link).toHaveAttribute("href", "https://dl.acm.org/loi/tois");
+    expect(link).toHaveAttribute("target", "_blank");
+    expect(link).toHaveAttribute("rel", expect.stringContaining("noopener"));
+    expect(link?.querySelector(".review-venue-mark-acm img")).not.toBeNull();
+    expect(tois[0].querySelector(".review-venue-years")).toHaveTextContent("2026");
+    const journals = document.querySelectorAll(".service-columns > div:last-child .review-venue-row");
+    expect(journals).toHaveLength(5);
+    expect(journals[0].textContent).toContain("TOSEM");
+    expect(journals[1].textContent).toContain("TOIS");
+  });
+
+  it("makes every venue badge part of its official linked title, without fabricating non-ACM logos", () => {
+    render(<MemoryRouter initialEntries={["/service"]}><PortfolioSite /></MemoryRouter>);
+    const rows = Array.from(document.querySelectorAll(".review-venue-row"));
+    expect(rows).toHaveLength(14);
+    for (const row of rows) {
+      const link = row.querySelector<HTMLAnchorElement>("a.review-venue-label");
+      expect(link?.querySelector(".review-venue-mark")).not.toBeNull();
+      expect(link?.getAttribute("href")).toMatch(/^https:\/\//);
+      expect(row.querySelector(".review-venue-years")?.textContent).toMatch(/202[56]/);
+    }
+    expect(document.querySelectorAll(".review-venue-mark-acm img")).toHaveLength(2);
+    expect(screen.getByText(/other venue badges are typographic abbreviations/)).toBeInTheDocument();
+  });
+});
+
 describe("academic service redesign", () => {
   it("presents one non-duplicated reviewing figure, AIES service and professional memberships", () => {
     render(<MemoryRouter initialEntries={["/service"]}><PortfolioSite /></MemoryRouter>);
