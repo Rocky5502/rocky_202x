@@ -509,6 +509,7 @@ function ResearchPage() {
 /** Compact scholarly venue identifiers. Only ACM journal rows use an actual
  * source-backed association logo; other badges are intentional initials. */
 function ReviewerVenueList({ names }: { names: readonly string[] }) {
+  const { language } = useLanguage();
   return <ul className="quiet-list review-venue-list">
     {names.map(name => {
       const venue = reviewVenueDetails[name];
@@ -522,7 +523,7 @@ function ReviewerVenueList({ names }: { names: readonly string[] }) {
         <a className="review-venue-label" href={venue.homepage} target="_blank" rel="noopener noreferrer">
           {name}<ArrowUpRight size={13} aria-hidden="true"/>
         </a>
-        <span className="review-venue-years" aria-label={`Review service years: ${venue.years.join(", ")}`}>
+        <span className="review-venue-years" aria-label={`${language === "zh-CN" ? "审稿年份" : "Review service years"}: ${venue.years.join(", ")}`}>
           {venue.years.join(" · ")}
         </span>
       </li>;
