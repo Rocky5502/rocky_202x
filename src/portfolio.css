@@ -2310,3 +2310,78 @@ html[lang="zh-CN"] .award-archive-card h3 { overflow-wrap: anywhere; }
   .home-campus-copy h2 { font-size: 29px; }
   .news-feature-photo { max-width: 100%; }
 }
+
+
+/* Reviewer roles: recognizable publisher logo when licensed asset is already
+   available; otherwise accurate, non-branded venue initials (not fake logos). */
+.review-venue-list { margin-top: 17px; }
+.review-venue-list .review-venue-row {
+  display: grid;
+  grid-template-columns: 39px minmax(0, 1fr) auto;
+  align-items: center;
+  column-gap: 13px;
+  min-height: 72px;
+  padding: 13px 0;
+}
+.review-venue-mark {
+  display: grid;
+  place-items: center;
+  width: 39px;
+  height: 39px;
+  flex: none;
+  border: 1px solid var(--portfolio-rule);
+  border-radius: 8px;
+  background: var(--portfolio-soft);
+  color: var(--portfolio-accent);
+}
+.review-venue-mark > span {
+  font: 700 10px/1.1 system-ui, sans-serif;
+  letter-spacing: -.025em;
+}
+.review-venue-mark-acm { background: #fff; }
+.review-venue-mark img { display: block; width: 30px; height: 30px; object-fit: contain; }
+.portfolio-shell a.review-venue-label {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 5px;
+  width: fit-content;
+  max-width: 100%;
+  color: var(--portfolio-ink);
+  font-size: 12px;
+  line-height: 1.65;
+  font-weight: 550;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+.portfolio-shell a.review-venue-label:hover { color: var(--portfolio-accent); text-decoration: underline; }
+.review-venue-label > svg { flex: none; vertical-align: middle; color: var(--portfolio-accent); }
+.review-venue-years {
+  white-space: nowrap;
+  color: var(--portfolio-accent);
+  background: var(--portfolio-soft);
+  font-size: 10px;
+  line-height: 1.4;
+  font-weight: 650;
+  padding: 5px 7px;
+  border-radius: 4px;
+  font-variant-numeric: tabular-nums;
+}
+.review-venue-note {
+  max-width: 810px;
+  color: var(--portfolio-faint);
+  font-size: 10px;
+  line-height: 1.7;
+  margin-top: 19px !important;
+}
+@media (max-width: 540px) {
+  .review-venue-list .review-venue-row {
+    grid-template-columns: 33px minmax(0, 1fr) auto;
+    gap: 10px;
+    min-height: 64px;
+  }
+  .review-venue-mark { width: 33px; height: 33px; border-radius: 6px; }
+  .review-venue-mark > span { font-size: 9px; }
+  .review-venue-mark img { width: 26px; height: 26px; }
+  .portfolio-shell a.review-venue-label { font-size: 11px; line-height: 1.55; }
+  .review-venue-years { font-size: 9px; padding-inline: 5px; }
+}
